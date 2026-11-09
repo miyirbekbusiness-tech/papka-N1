@@ -1,0 +1,61 @@
+name: Edith APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14.3'
+
+      - name: APK yig'ish
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle assembleRelease --no-daemon --stacktrace 2>&1 | tee build.log
+
+      - name: APK nomini tayyorlash
+        run: cp app/build/outputs/apk/release/app-release.apk Edith.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Edith-apk
+          path: Edith.apk
+
+      - name: Release'ga joylash
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Edith (yig'ish ${{ github.run_number }})
+          body: "Telefonga o'rnatish uchun pastdagi Edith.apk faylini yuklab oling."
+          files: Edith.apk
+          make_latest: true
+
+      - name: Xato logini saqlash
+        if: failure()
+        shell: bash
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          tail -c 150000 build.log > /tmp/log.txt || echo "log yo'q" > /tmp/log.txt
+          git checkout --orphan build-log
+          git rm -rf --cached . > /dev/null
+          cp /tmp/log.txt log.txt
+          git add -f log.txt
+          git commit -m "build log ${{ github.run_number }}"
+          git push -f origin build-log

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ink"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.2"
+            android:text="SOZLAMALAR"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Brain -->
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Edith'ning miyasi (AI)" />
+
+        <RadioGroup
+            android:id="@+id/rgProvider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbGemini"
+                style="@style/Edith.Choice"
+                android:text="Google Gemini (bepul limiti bor)" />
+
+            <RadioButton
+                android:id="@+id/rbClaude"
+                style="@style/Edith.Choice"
+                android:text="Anthropic Claude (pullik)" />
+        </RadioGroup>
+
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Gemini API kalit" />
+
+        <EditText
+            android:id="@+id/etGeminiKey"
+            style="@style/Edith.Input"
+            android:hint="AIza…"
+            android:inputType="textNoSuggestions|textVisiblePassword" />
+
+        <Button
+            android:id="@+id/btnGetGemini"
+            style="@style/Edith.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Gemini kalitini olish (aistudio.google.com)" />
+
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Gemini model" />
+
+        <EditText
+            android:id="@+id/etGeminiModel"
+            style="@style/Edith.Input"
+            android:inputType="textNoSuggestions" />
+
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Claude API kalit" />
+
+        <EditText
+            android:id="@+id/etClaudeKey"
+            style="@style/Edith.Input"
+            android:hint="sk-ant-…"
+            android:inputType="textNoSuggestions|textVisiblePassword" />
+
+        <Button
+            android:id="@+id/btnGetClaude"
+            style="@style/Edith.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Claude kalitini olish (console.anthropic.com)" />
+
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Claude model" />
+
+        <EditText
+            android:id="@+id/etClaudeModel"
+            style="@style/Edith.Input"
+            android:inputType="textNoSuggestions" />
+
+        <!-- Permission mode -->
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Ovozli ruxsat soʻrash" />
+
+        <RadioGroup
+            android:id="@+id/rgAsk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbAskAlways"
+                style="@style/Edith.Choice"
+                android:text="Har bir ishdan oldin" />
+
+            <RadioButton
+                android:id="@+id/rbAskImportant"
+                style="@style/Edith.Choice"
+                android:text="Faqat muhimlarida (qoʻngʻiroq, SMS, boshqa ilovada bosish va yozish)" />
+        </RadioGroup>
+
+        <!-- Speech -->
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Gapingizni qaysi tilda tushunsin" />
+
+        <RadioGroup
+            android:id="@+id/rgLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbUz"
+                style="@style/Edith.Choice"
+                android:text="Oʻzbekcha" />
+
+            <RadioButton
+                android:id="@+id/rbRu"
+                style="@style/Edith.Choice"
+                android:text="Ruscha" />
+
+            <RadioButton
+                android:id="@+id/rbEn"
+                style="@style/Edith.Choice"
+                android:text="Inglizcha" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/cbListenOnOpen"
+            style="@style/Edith.Choice"
+            android:layout_marginTop="12dp"
+            android:text="Ochilganda darhol tinglasin" />
+
+        <CheckBox
+            android:id="@+id/cbAutoListen"
+            style="@style/Edith.Choice"
+            android:text="Savol bersa, javobimni oʻzi tinglasin" />
+
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Gapirish tezligi" />
+
+        <SeekBar
+            android:id="@+id/sbRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="150" />
+
+        <TextView
+            android:id="@+id/tvVoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/muted"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnTestVoice"
+                style="@style/Edith.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="Ovozni sinash" />
+
+            <Button
+                android:id="@+id/btnTtsSettings"
+                style="@style/Edith.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ovoz sozlamalari" />
+        </LinearLayout>
+
+        <!-- Memory -->
+        <TextView
+            style="@style/Edith.Label"
+            android:text="Xotira" />
+
+        <TextView
+            android:id="@+id/tvMemory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnClear"
+            style="@style/Edith.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Xotirani tozalash"
+            android:textColor="@color/danger" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_btn_yes"
+            android:text="Saqlash"
+            android:textAllCaps="false"
+            android:textColor="@color/ink"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>
