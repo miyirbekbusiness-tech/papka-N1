@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Reel — part 1 (0–15 s)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>window.gsap || document.write('<script src="vendor/gsap.min.js"><\/script>')</script>
+<script src="kit.js"></script>
+</head>
+<body>
+<script>
+/* PART 1 · 0–15 s · 1080x1920 · 30 fps · 120 BPM (1 beat = 15 frames)
+   renderAt(t) seeks one paused timeline; ?t= freezes a frame. */
+KIT.ready().then(function () {
+  const st = KIT.stage({ part: 1, seed: 101 });
+  const S = KIT.S, P = KIT.PALETTE, C = KIT.C, SET = KIT.SET, tl = st.tl, lerp = KIT.lerp;
+  const A4 = 4 / 30, fr = n => n / 30;
+  const GY = 1420;                                   // ground line for feet
+  const WIDE = { x: 540, y: 974.5, s: 1.1 };          // wide park framing (ground line at y = 1450 on screen)
+  Object.assign(st.cam, WIDE);
+  const scr = (x, y) => ({ x: 540 + (x - WIDE.x) * WIDE.s, y: 960 + (y - WIDE.y) * WIDE.s });
+  const LIMO = KIT.mix(C.INK, P.DUSK, 0.3), CAR_S = 1.4, CAR_X = 430;
+
+  /* ---------------- layers (back to front) ---------------- */
+  const L = {};
+  ['bg', 'trees', 'cones', 'car', 'set', 'rich', 'hero', 'props', 'front', 'fx'].forEach(k => { L[k] = S('g', { id: 'L_' + k }, st.world); });
+
+  /* ---------------- SET: night city park ---------------- */
+  SET.sky(st, L.bg); SET.skyline(st, L.bg, { seed: 7 }); SET.ground(st, L.bg);
+  SET.tree(st, L.trees, { x: 14, base: 1300, h: 640, r: 142 });
+  SET.tree(st, L.trees, { x: 1046, base: 1310, h: 610, r: 150 });
+  SET.lamp(st, L.set, L.cones, { x: 96, base: 1425, h: 830, coneCx: 310, coneW: 460 });
+  SET.bench(st, L.set, { x: 400, y: GY, w: 320 });
+  SET.leaves(st, L.fx, { seed: 4, spawn: [{ x0: 56, x1: 150, y0: 820 }, { x0: 930, x1: 1030, y0: 820 }], y1: 1410 });
+
+  /* ---------------- limousine ---------------- */
+  const carG = S('g', { 'data-fg': 1 }, L.car);
+  const car = st.node(carG, { x: CAR_X + 560, y: 1392, sx: CAR_S, sy: CAR_S });
+  const bodyG = S('g', {}, carG);
+  const carB = st.node(bodyG, { x: 320, y: 0, px: 320, py: 0 });
+  const tyre = KIT.mix(C.INK, C.SKYLINE, 0.42), doorOpen = KIT.mix(C.INK, C.SKYLINE, 0.5);
+  S('path', { d: 'M150,-116 L198,-184 Q203,-192 214,-192 L556,-192 Q570,-192 577,-182 L614,-116 Z', fill: LIMO }, bodyG);
+  S('path', { d: 'M8,-30 L8,-92 Q8,-116 34,-118 L610,-118 Q636,-118 638,-96 L640,-30 Q640,-24 632,-24 L16,-24 Q8,-24 8,-30 Z', fill: LIMO }, bodyG);
+  S('path', { d: 'M176,-124 L208,-172 Q211,-177 218,-177 L270,-177 L270,-124 Z', fill: C.SKYLINE }, bodyG);
+  S('rect', { x: 398, y: -177, width: 98, height: 53, fill: C.SKYLINE }, bodyG);
+  S('path', { d: 'M508,-177 L550,-177 Q558,-177 562,-170 L588,-124 L508,-124 Z', fill: C.SKYLINE }, bodyG);
+  S('rect', { x: 30, y: -86, width: 590, height: 4, fill: C.GREY }, bodyG);
+  S('rect', { x: 280, y: -186, width: 104, height: 154, fill: P.DUSK }, bodyG);            // interior behind the door
+  S('rect', { x: 280, y: -72, width: 104, height: 40, fill: C.BENCH }, bodyG);
+  const doorG = S('g', {}, bodyG);
+  const doorFill = S('rect', { x: 280, y: -186, width: 104, height: 154, fill: LIMO }, doorG);
+  S('rect', { x: 288, y: -177, width: 88, height: 53, fill: C.SKYLINE }, doorG);
+  S('rect', { x: 280, y: -86, width: 104, height: 4, fill: C.GREY }, doorG);
+  S('rect', { x: 356, y: -108, width: 20, height: 6, rx: 3, fill: C.GREY }, doorG);
+  const door = st.node(doorG, { x: 280, y: 0, px: 280, py: 0 });
+  const doorS = { open: 0 };
+  S('rect', { x: 6, y: -102, width: 22, height: 19, rx: 6, fill: P.GOLD }, bodyG);          // headlight
+  S('rect', { x: 624, y: -104, width: 14, height: 19, rx: 5, fill: C.LEAF_B }, bodyG);      // tail light
+  function wheel(x) {
+    const g = S('g', {}, carG);
+    S('circle', { r: 42, fill: tyre }, g); S('circle', { r: 19, fill: C.GREY }, g);
+    S('rect', { x: -3.5, y: -17, width: 7, height: 34, rx: 3, fill: tyre }, g); S('rect', { x: -17, y: -3.5, width: 34, height: 7, rx: 3, fill: tyre }, g);
+    return st.node(g, { x: x, y: -42 });
+  }
+  const w1 = wheel(122), w2 = wheel(524);
+  const hlG = S('g', {}, L.cones);                                                          // headlight cone (behind the characters)
+  S('path', { d: 'M14,-130 L-780,-268 L-780,18 Z', fill: P.WHITE, opacity: 0.12 }, hlG);
+  const hl = st.node(hlG, { x: CAR_X + 560, y: 1392 });
+  st.post.push(function () {
+    hl.x = car.x; const a = (car.x - CAR_X) / (42 * CAR_S) * 57.2958; w1.r = a; w2.r = a;
+    doorFill.setAttribute('fill', doorS.open > 0.5 ? doorOpen : LIMO);
+  });
+
+  /* ---------------- characters ---------------- */
+  const hero = KIT.HERO(st, L.hero, { x: 400, y: GY });
+  const rich = KIT.RICH(st, L.rich, { x: 900, y: 1384, expr: 'smile' });
+  rich.detachArm('L', L.front);                       // his near arm must pass in front of HERO
+  hero.lightDir = 1; rich.lightDir = -1;
+  const sit = KIT.POSE.sit(hero.spec);
+  Object.assign(hero.pose, { dy: sit.dy, sit: 1, turn: 0.55 });
+  Object.assign(hero.pose.aL, { x: -36, y: -170, w: 1 }); Object.assign(hero.pose.aR, { x: 36, y: -170, w: 1 });
+  Object.assign(hero.face, { pupX: 3.5 });
+  Object.assign(rich.root, { o: 0, sx: 0.5, sy: 0.42 });
+  rich.pose.turn = -0.6;
+
+  /* ---------------- props ---------------- */
+  /* briefcase: follows RICH's hand; hold 0 = hanging by the handle, 1 = presented flat */
+  const caseG = S('g', { 'data-fg': 1 }, L.props);
+  const LID = KIT.mix(C.GREY, C.SKYLINE, 0.28);
+  S('rect', { x: -78, y: -8, width: 156, height: 44, rx: 7, fill: C.GREY }, caseG);
+  S('rect', { x: -78, y: 6, width: 156, height: 5, fill: LID }, caseG); S('rect', { x: -78, y: 19, width: 156, height: 5, fill: LID }, caseG);
+  /* the lid is hinged along the far edge: seen from the front it flips up behind the base and shows its lit inside */
+  const lidG = S('g', {}, caseG);
+  const lidFill = S('rect', { x: -78, y: -34, width: 156, height: 27, rx: 7, fill: LID }, lidG);
+  const trimG = S('g', {}, caseG);
+  S('path', { d: 'M-17,-34 Q-17,-50 0,-50 Q17,-50 17,-34', stroke: C.SKYLINE, 'stroke-width': 6, fill: 'none', 'stroke-linecap': 'round' }, trimG);
+  S('rect', { x: -46, y: -15, width: 12, height: 9, rx: 2, fill: C.TIE }, trimG); S('rect', { x: 34, y: -15, width: 12, height: 9, rx: 2, fill: C.TIE }, trimG);
+  const goldG = S('g', {}, caseG);
+  S('rect', { x: -70, y: -19, width: 140, height: 13, rx: 3, fill: P.GOLD }, goldG);
+  S('rect', { x: -70, y: -12, width: 140, height: 3, fill: C.TIE }, goldG);
+  const cs = st.node(caseG, { o: 0 });
+  const lid = st.node(lidG, { x: 0, y: -7, px: 0, py: -7, open: 0 });
+  const csS = { hold: 0, handR: 0 };
+  /* GOLD light from the open case: flat fan behind the characters */
+  const fanG = S('g', {}, L.cones);
+  S('path', { d: 'M-72,0 L72,0 L132,-170 L-132,-170 Z', fill: P.GOLD, opacity: 0.18 }, fanG);
+  const fan = st.node(fanG, { x: 592, y: 1030, sy: 0.02, o: 0 });
+  /* ring box */
+  const boxG = S('g', { 'data-fg': 1 }, L.props);
+  S('rect', { x: -21, y: -5, width: 42, height: 28, rx: 5, fill: P.CREAM }, boxG);
+  const ringG = S('g', {}, boxG);
+  S('circle', { cx: 0, cy: -19, r: 10, fill: 'none', stroke: P.GOLD, 'stroke-width': 5 }, ringG);
+  S('path', { d: 'M0,-39 L7,-31 L0,-24 L-7,-31 Z', fill: P.WHITE }, ringG);
+  const ring = st.node(ringG, { x: 0, y: -8, px: 0, py: -8, sx: 0, sy: 0 });
+  const boxLidG = S('g', {}, boxG);
+  S('rect', { x: -21, y: -21, width: 42, height: 17, rx: 5, fill: KIT.mix(P.CREAM, C.SKYLINE, 0.3) }, boxLidG);
+  const boxLid = st.node(boxLidG, { x: 21, y: -5, px: 21, py: -5 });
+  const box = st.node(boxG, { o: 0 });
+  st.post.push(function () {
+    const h = rich.hand(csS.handR > 0.5 ? 'R' : 'L');
+    cs.x = h.x + lerp(0, -36, csS.hold); cs.y = h.y + lerp(52, -34, csS.hold); cs.sx = cs.sy = Math.min(1, rich.root.sy);
+    const b = rich.hand('R'); box.x = b.x; box.y = b.y - 30;
+    lid.sy = 1 + 1.75 * lid.open; lidFill.setAttribute('fill', lid.open > 0.3 ? P.GOLD : LID);
+    trimG.setAttribute('display', lid.open > 0.3 ? 'none' : 'inline'); goldG.setAttribute('display', lid.open > 0.3 ? 'inline' : 'none');
+  });
+
+  /* thought bubble (world space, between the two men) */
+  const dots = [[442, 842, 7], [458, 818, 10], [478, 792, 14]].map(function (d) {
+    const e = S('circle', { cx: 0, cy: 0, r: d[2], fill: P.CREAM, 'data-fg': 1 }, L.fx);
+    return st.node(e, { x: d[0], y: d[1], sx: 0, sy: 0 });
+  });
+  const bub = KIT.bubble(st, L.fx, { w: 280, h: 220, seed: 5 });
+  const mark = KIT.markFigure(st, bub.content);
+  const markN = st.node(mark.g, { x: 0, y: 62, sx: 0.8, sy: 0.8, px: 0, py: 60 });
+  const bubN = st.node(bub.g, { x: 490, y: 780, px: -100, py: 80, sx: 0, sy: 0 });
+  st.post.push(function (t) { markN.r = 3 * Math.sin(2 * Math.PI * 1.1 * t); });                            // wobbling 3 degrees
+
+  /* GOLD door of light (screen space) */
+  const gd = { p: 0 };
+  const gdEl = S('path', { fill: P.GOLD, display: 'none' }, st.ui);
+  st.post.push(function () {
+    if (gd.p <= 0) { gdEl.setAttribute('display', 'none'); return; }
+    gdEl.removeAttribute('display');
+    const e = 1080 - gd.p * 1260, sl = 70 * (1 - gd.p);
+    gdEl.setAttribute('d', 'M' + (e - sl).toFixed(2) + ',0 L1081,0 L1081,1920 L' + (e + sl).toFixed(2) + ',1920 Z');
+  });
+
+  /* ================= TIMELINE ================= */
+  /* ---- CAMERA: wide 0-6, cut to close-up at 6.0, ease out to a medium two-shot, pan right from 14.0 ---- */
+  st.cut(st.cam, { x: 400, y: 936.67, s: 3.6 }, 6.0);
+  tl.to(st.cam, { s: 3.672, duration: 2.0, ease: 'none' }, 6.0);                            // 2 % push
+  tl.to(st.cam, { x: 555, y: 893.3, s: 1.5, duration: 2.8, ease: 'expo.out' }, 8.2);
+  tl.to(st.cam, { x: '+=53.33', duration: 1.0, ease: 'sine.inOut' }, 14.0);                 // 80 px on screen
+
+  /* ---- 0 [f0] the limousine is already rolling in, headlight cone sweeping over HERO ---- */
+  tl.to(car, { x: CAR_X + 65, duration: 0.8, ease: 'none' }, 0);
+  tl.to(car, { x: CAR_X, duration: 0.2, ease: 'power2.out' }, 0.8);
+  st.sfx('carRoll', 0, { dur: 1.0 });
+  tl.to(hero.face, { browY: 4, eye: 1.06, duration: fr(6), ease: 'power2.out' }, 0.4);
+  /* ---- 1.0 [f30] the car brakes: squash 1.06 x 0.94 for 3 frames; the door swings open ---- */
+  KIT.squash(st, carB, 1.0, 1.06, 0.94, 3);
+  st.cut(carB, { r: -1.2 }, 1.0); tl.to(carB, { r: 0, duration: fr(4), ease: 'power2.out' }, 1.0);
+  st.sfx('brake', 1.0);
+  tl.to(hero.face, { browY: 8, eye: 1.14, duration: fr(3), ease: 'power2.out' }, 1.0);
+  tl.to(hero.face, { browY: 3, eye: 1.04, duration: fr(8), ease: 'power2.inOut' }, 1.0 + fr(8));
+  tl.to(hl, { o: 0, duration: fr(8), ease: 'power1.in' }, 1.2);
+  tl.to(door, { sx: 1.05, duration: A4, ease: 'power1.in' }, 1.2);                          // 4-frame anticipation
+  st.cut(doorS, { open: 1 }, 1.2 + A4);
+  tl.to(door, { sx: 0.14, duration: fr(6), ease: 'expo.out' }, 1.2 + A4);
+  st.sfx('door', 1.2 + A4);
+  /* ---- RICH unfolds out of the car, crouches (4 frames), lands on the beat at 2.0 ---- */
+  st.cut(rich.root, { o: 1 }, 1.5);
+  tl.to(rich.root, { sx: 0.92, sy: 0.92, duration: fr(6), ease: 'expo.out' }, 1.5);
+  tl.to(rich.pose, { dy: 34, duration: A4, ease: 'power2.out' }, 1.7333);
+  tl.to(rich.root, { x: 740, y: GY, sx: 1, sy: 1, duration: A4, ease: 'none' }, 1.8667);
+  tl.to(rich.pose, { lift: 64, dy: 0, duration: fr(2), ease: 'power2.out' }, 1.8667);
+  tl.to(rich.pose, { lift: 0, duration: fr(2), ease: 'power2.in' }, 1.8667 + fr(2));
+  KIT.squash(st, rich.root, 2.0);                                                           // 1.15 x 0.85, 3 frames
+  st.sfx('land', 2.0);
+  tl.to(hero.face, { pupX: 4.5, duration: fr(5) }, 1.5);
+  /* ---- 2.0 [f60] HERO stands ---- */
+  tl.to(hero.pose, { dy: sit.dy + 8, lean: 3, duration: A4, ease: 'power2.out' }, 2.0);     // anticipation
+  tl.to(hero.pose, { dy: 0, sit: 0, lean: 0, turn: 0.7, duration: fr(10), ease: 'expo.out' }, 2.0 + A4);
+  tl.to(hero.pose.aL, { w: 0, duration: fr(8), ease: 'power2.out' }, 2.0 + A4);
+  tl.to(hero.pose.aR, { w: 0, duration: fr(8), ease: 'power2.out' }, 2.0 + A4);
+  st.sfx('step', 2.0 + A4 + fr(4), { who: 'HERO', gain: 0.6 });
+  /* RICH brings the briefcase up */
+  st.cut(cs, { o: 1 }, 1.5);
+  tl.to(rich.pose.aL, { x: -112, y: -280, w: 1, duration: fr(10), ease: 'expo.out' }, 2.5);
+  tl.to(csS, { hold: 1, duration: fr(10), ease: 'expo.out' }, 2.5);
+  /* ---- 3.0 [f90] the case snaps open: GOLD light on both faces ---- */
+  tl.to(rich.pose.aL, { y: -272, duration: A4, ease: 'power1.inOut' }, 3.0 - A4);           // anticipation
+  tl.to(rich.pose.aL, { y: -280, duration: fr(3), ease: 'back.out(3)' }, 3.0);
+  tl.to(lid, { open: 1, duration: fr(4), ease: 'back.out(2.2)' }, 3.0);
+  st.sfx('latch', 3.0);
+  st.cut(fan, { o: 1 }, 3.0);
+  tl.to(fan, { sy: 1, duration: fr(4), ease: 'expo.out' }, 3.0);
+  tl.to(hero.face, { light: 1, duration: fr(3) }, 3.0); tl.to(rich.face, { light: 1, duration: fr(3) }, 3.0);
+  tl.to(hero.face, { eye: 1.18, browY: 7, pupX: 4.5, pupY: 3.5, mw: 7, ma: -4, mb: 9, duration: fr(4), ease: 'power2.out' }, 3.0 + fr(1));
+  tl.to(rich.face, { mw: 17, ma: 6, mb: 17, browY: 4, duration: fr(5), ease: 'power2.out' }, 3.0 + fr(1));
+  /* ---- 4.0 [f120] LABEL pops on its leader to the case ---- */
+  const caseTop = scr(592, 1022);
+  st.label('LABEL1', '1 000 000 000 $', { x: Math.round(caseTop.x), y: 690, tx: Math.round(caseTop.x), ty: Math.round(caseTop.y), t0: 4.0, t1: 6.0, damping: 0.6 });
+  st.sfx('ding', 4.0);
+  /* ---- 5.0 [f150] he holds up a ring box ---- */
+  tl.to(rich.pose.aR, { x: 20, y: -290, w: 1, duration: A4, ease: 'power1.in' }, 4.6);      // anticipation: hand to the pocket
+  st.cut(box, { o: 1 }, 4.6 + A4);
+  tl.to(rich.pose.aR, { x: -106, y: -446, duration: fr(8), ease: 'expo.out' }, 4.6 + A4);
+  tl.to(boxLid, { r: 112, duration: fr(4), ease: 'back.out(2)' }, 5.0);
+  tl.to(ring, { sx: 1, sy: 1, duration: fr(10), ease: KIT.spring(0.6) }, 5.0);
+  tl.to(hero.face, { pupX: 5, pupY: -1, duration: fr(4), ease: 'power2.out' }, 5.0 + fr(2));
+
+  /* ---- 6.0 [f180] HARD CUT, close-up: HERO shock, jaw drops in 4 frames, eyes 1.3x ---- */
+  st.cut(rich.root, { x: 710 }, 6.0);
+  st.cut(csS, { hold: 0, handR: 1 }, 6.0); st.cut(lid, { open: 0 }, 6.0);
+  st.cut(rich.pose.aL, { w: 0 }, 6.0); st.cut(rich.pose.aR, { w: 0 }, 6.0);
+  st.cut(box, { o: 0 }, 6.0); st.cut(fan, { o: 0 }, 6.0); st.cut(rich.face, { light: 0, mw: 15, ma: 6, mb: 15, browY: 2 }, 6.0);
+  st.cut(hero.pose, { turn: 0.25 }, 6.0);
+  st.cut(hero.face, { pupX: 1.5, pupY: 0 }, 6.0);
+  hero.toExpr('shock', 6.0, A4, 'power2.out', { pupX: 1.5 });
+  /* ---- 8.0 [f240] eyes slide left, doubt, hand to chin ---- */
+  hero.toExpr('doubt', 8.0, fr(5), 'power2.out', { pupX: -5.5 });
+  tl.to(hero.face, { light: 0, duration: fr(8), ease: 'power1.out' }, 8.0);
+  tl.to(hero.pose, { headRot: -4, duration: fr(8), ease: 'power2.out' }, 8.2);
+  tl.to(hero.pose.aR, { x: 14, y: -436, w: 1, duration: fr(9), ease: 'expo.out' }, 8.2);
+  /* three bubble dots pop at 8.5, 8.75, 9.0 */
+  [8.5, 8.75, 9.0].forEach(function (t, i) {
+    tl.to(dots[i], { sx: 0.3, sy: 0.3, duration: fr(2), ease: 'power1.out' }, t - A4);      // anticipation
+    tl.to(dots[i], { sx: 0.16, sy: 0.16, duration: fr(2), ease: 'power1.in' }, t - fr(2));
+    tl.to(dots[i], { sx: 1, sy: 1, duration: fr(9), ease: KIT.spring(0.6) }, t);
+    st.sfx('pop', t, { n: i });
+  });
+  /* ---- 10.0 [f300] CREAM thought bubble springs out (damping 0.55) ---- */
+  tl.to(dots[2], { sx: 0.78, sy: 0.78, duration: A4, ease: 'power1.in' }, 10.0 - A4);       // anticipation
+  tl.to(dots[2], { sx: 1, sy: 1, duration: fr(5), ease: 'power2.out' }, 10.0);
+  tl.to(bubN, { sx: 1, sy: 1, duration: fr(16), ease: KIT.spring(0.55) }, 10.0);
+  tl.to(hero.face, { pupX: 3.6, pupY: -3.6, duration: fr(5), ease: 'power2.out' }, 10.0 + fr(2));
+  /* ---- 13.0 [f390] RICH's hand lands on HERO's shoulder: the bubble pops in 4 frames ---- */
+  tl.to(rich.pose.aL, { x: -96, y: -318, w: 1, duration: A4, ease: 'power2.out' }, 12.6);   // wind-up
+  tl.to(rich.pose.aL, { x: -232, y: -436, duration: fr(8), ease: 'power2.in' }, 12.6 + A4); // lands at 13.0
+  KIT.squash(st, hero.root, 13.0, 1.06, 0.94, 3);
+  tl.to(bubN, { sx: 1.25, sy: 1.25, o: 0, duration: A4, ease: 'power1.out' }, 13.0);
+  dots.forEach(function (d, i) { tl.to(d, { sx: 0, sy: 0, duration: fr(3), ease: 'power2.in' }, 13.0 + fr(i > 1 ? 0 : 1)); });
+  st.sfx('burst', 13.0);
+  hero.toExpr('shock', 13.0, fr(3), 'power2.out', { jaw: 5, eye: 1.18, ma: -6, mb: 15 });
+  tl.to(hero.pose.aR, { w: 0, duration: fr(6), ease: 'power2.out' }, 13.0);
+  tl.to(hero.pose, { turn: 0.8, headRot: 0, duration: fr(6), ease: 'power2.out' }, 13.0 + fr(3));
+  hero.toExpr('smile', 13.3, fr(6), 'power2.out', { mw: 12, ma: 3, mb: 9, pupX: 4 });
+  /* RICH points right */
+  tl.to(rich.pose.aL, { x: -212, y: -418, duration: A4, ease: 'power1.in' }, 13.3333);      // anticipation
+  tl.to(rich.pose.aL, { x: 104, y: -430, duration: fr(7), ease: 'expo.out' }, 13.3333 + A4);
+  tl.to(rich.pose, { turn: 0.6, duration: fr(6), ease: 'power2.out' }, 13.4);
+  tl.to(hero.face, { pupX: 5, duration: fr(4) }, 13.6);
+  /* ---- 14.0 [f420] both walk right; the GOLD door opens from the right edge and wipes the frame ---- */
+  [hero, rich].forEach(function (c) {
+    tl.to(c.pose, { dy: 9, duration: A4, ease: 'power1.in' }, 14.0 - A4);                   // anticipation
+    KIT.walk(st, c, { t0: 14.0, steps: 4, stride: 46, stepDur: 0.25, dir: 1, gain: c === hero ? 1 : 0.8 });
+  });
+  tl.to(hero.pose, { turn: 1, lean: 4, duration: fr(5), ease: 'power2.out' }, 14.0);
+  tl.to(rich.pose, { turn: 1, lean: 3, duration: fr(5), ease: 'power2.out' }, 14.0);
+  tl.to(rich.pose.aL, { w: 0, duration: fr(8), ease: 'power2.inOut' }, 14.0);
+  tl.to(gd, { p: 0.1, duration: fr(8), ease: 'expo.out' }, 14.0);
+  tl.to(gd, { p: 1, duration: fr(20), ease: 'power2.in' }, 14.0 + fr(8));                   // full GOLD from f448
+  st.sfx('whoosh', 449 / 30, { wipe: 'GOLD' });
+
+  /* ---- TEXT ---- */
+  st.sub('S1', 'Tasavvur qil: oldingga bir boy odam keldi.', 0, 3.0);
+  st.sub('S2', '“Qizimga uylansang — 1 milliard dollar beraman.”', 3.0, 6.0, { color: P.GOLD });
+  st.sub('S3', 'Sen hayronsan.', 6.0, 8.0);
+  st.sub('S4', 'Xayolingga bitta narsa keldi:', 8.0, 10.0);
+  st.sub('S5', '“Qizi xunuk boʻlsa kerak…”', 10.0, 13.0);
+
+  /* for checks */
+  st.groundY = GY; st.probeChar = hero;
+  st.expect = {
+    last: { name: 'GOLD', hex: P.GOLD },
+    airFrames: [[45, 59, 'RICH stepping out of the car']],
+    probeFrames: [0, 30, 100, 200, 300, 400],
+    detFrames: [45, 150, 250, 400],
+    text: { S1: 'Tasavvur qil: oldingga bir boy odam keldi.', S2: '“Qizimga uylansang — 1 milliard dollar beraman.”', S3: 'Sen hayronsan.', S4: 'Xayolingga bitta narsa keldi:', S5: '“Qizi xunuk boʻlsa kerak…”', LABEL1: '1 000 000 000 $' }
+  };
+  st.beats = [0, 15, 30, 40, 52, 60, 75, 90, 94, 120, 150, 160, 180, 184, 240, 255, 270, 300, 312, 360, 389, 390, 394, 410, 420, 435, 449];
+  KIT.run(st);
+});
+</script>
+</body>
+</html>

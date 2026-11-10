@@ -1,0 +1,126 @@
+{
+ "part": 1,
+ "pass": true,
+ "items": [
+  {
+   "name": "time S1",
+   "ok": true,
+   "detail": "7 words need 2.60 s, on screen 3.000 s (0.00–3.00)"
+  },
+  {
+   "name": "time S2",
+   "ok": true,
+   "detail": "6 words need 2.30 s, on screen 3.000 s (3.00–6.00)"
+  },
+  {
+   "name": "time S3",
+   "ok": true,
+   "detail": "2 words need 1.10 s, on screen 2.000 s (6.00–8.00)"
+  },
+  {
+   "name": "time S4",
+   "ok": true,
+   "detail": "4 words need 1.70 s, on screen 2.000 s (8.00–10.00)"
+  },
+  {
+   "name": "time S5",
+   "ok": true,
+   "detail": "4 words need 1.70 s, on screen 3.000 s (10.00–13.00)"
+  },
+  {
+   "name": "safe S1",
+   "ok": true,
+   "detail": "x 120–724, y 290–426, 2 line(s) at 56 px"
+  },
+  {
+   "name": "safe S2",
+   "ok": true,
+   "detail": "x 120–826, y 290–426, 2 line(s) at 56 px"
+  },
+  {
+   "name": "safe S3",
+   "ok": true,
+   "detail": "x 120–548, y 290–358, 1 line(s) at 56 px"
+  },
+  {
+   "name": "safe S4",
+   "ok": true,
+   "detail": "x 120–893, y 290–358, 1 line(s) at 56 px"
+  },
+  {
+   "name": "safe S5",
+   "ok": true,
+   "detail": "x 120–868, y 290–358, 1 line(s) at 56 px"
+  },
+  {
+   "name": "safe LABEL1",
+   "ok": true,
+   "detail": "pill x 437–757, y 659–721"
+  },
+  {
+   "name": "contrast S1",
+   "ok": true,
+   "detail": "worst 16.15:1 at f0 (text #FFFFFF vs brightest pixel behind its box, every frame it is on)"
+  },
+  {
+   "name": "contrast S2",
+   "ok": true,
+   "detail": "worst 11.35:1 at f90 (text #FFD27B vs brightest pixel behind its box, every frame it is on)"
+  },
+  {
+   "name": "contrast S3",
+   "ok": true,
+   "detail": "worst 14.85:1 at f232 (text #FFFFFF vs brightest pixel behind its box, every frame it is on)"
+  },
+  {
+   "name": "contrast S4",
+   "ok": true,
+   "detail": "worst 14.85:1 at f240 (text #FFFFFF vs brightest pixel behind its box, every frame it is on)"
+  },
+  {
+   "name": "contrast S5",
+   "ok": true,
+   "detail": "worst 16.00:1 at f300 (text #FFFFFF vs brightest pixel behind its box, every frame it is on)"
+  },
+  {
+   "name": "headroom",
+   "ok": true,
+   "detail": "nothing else above y=460 while a SUB is on: topmost foreground y=463.2 (f305 bubble)"
+  },
+  {
+   "name": "nothing overlaps SUB",
+   "ok": true,
+   "detail": "0 foreground boxes intersect a SUB box on any frame"
+  },
+  {
+   "name": "feet on the ground line",
+   "ok": true,
+   "detail": "ground y=1420; off the line only at f45-f59 (expected: RICH stepping out of the car f45-f59)"
+  },
+  {
+   "name": "hoodie probes 23C0B4",
+   "ok": true,
+   "detail": "f0 #23C0B4, f30 #23C0B4, f100 #23C0B4, f200 #23C0B4, f300 #23C0B4, f400 #23C0B4"
+  },
+  {
+   "name": "f449 is full GOLD",
+   "ok": true,
+   "detail": "all 1080x1920 pixels = #FFD27B (want #FFD27B)"
+  },
+  {
+   "name": "ʻ glyph renders",
+   "ok": true,
+   "detail": "Inter U+02BB ink 362 px (missing-glyph box 2864 px), advance 29.2 vs monospace 57.8; used in S5"
+  },
+  {
+   "name": "renderAt is deterministic (?t= vs seek)",
+   "ok": true,
+   "detail": "f45 identical, f150 identical, f250 identical, f400 identical"
+  },
+  {
+   "name": "text matches TEXT exactly",
+   "ok": true,
+   "detail": "6 strings identical"
+  }
+ ]
+}

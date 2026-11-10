@@ -1,0 +1,6 @@
+{
+  "name": "reel-tools",
+  "private": true,
+  "description": "Capture, check, sound-export and render scripts for the 60 s reel (Playwright is expected globally)",
+  "dependencies": { "sharp": "^0.35.5" }
+}

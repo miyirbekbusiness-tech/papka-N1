@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Reel kit — characters × expressions</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>window.gsap || document.write('<script src="vendor/gsap.min.js"><\/script>')</script>
+<script src="kit.js"></script>
+<style>
+  html,body{height:auto;overflow:auto;background:#0B0718}
+  svg#stage{height:auto;width:100%;max-width:2400px}
+</style>
+</head>
+<body>
+<script>
+KIT.ready().then(function () {
+  const S = KIT.S, P = KIT.PALETTE, C = KIT.C;
+  const st = KIT.stage({ part: 0 });
+  const names = KIT.EXPR_NAMES, cols = names.length;
+  const CW = 300, CH = 440, X0 = 60, Y0 = 150, SW = Math.max(2400, X0 * 2 + CW * cols);
+  const rowsY = [Y0, Y0 + CH, Y0 + CH * 2, Y0 + CH * 3];
+  const SH = Y0 + CH * 4 + 1700;
+  st.svg.setAttribute('viewBox', '0 0 ' + SW + ' ' + SH);
+  st.svg.setAttribute('width', SW); st.svg.setAttribute('height', SH);
+  const root = st.world;
+  S('rect', { x: 0, y: 0, width: SW, height: SH, fill: P.SKY }, root);
+  const label = (x, y, t, size, fill, anchor, w) => { const e = S('text', { x: x, y: y, 'font-family': 'Inter', 'font-weight': w || 700, 'font-size': size || 24, fill: fill || P.CREAM, 'text-anchor': anchor || 'start' }, root); e.textContent = t; return e; };
+  label(X0, 78, 'KIT', 56, P.WHITE, 'start', 800);
+  label(X0 + 150, 78, 'characters × expressions · BULBS · SET · SUB · LABEL', 30, C.GREY);
+
+  /* characters x expressions */
+  const makers = [['HERO', KIT.HERO], ['RICH', KIT.RICH], ['BRIDE', KIT.BRIDE], ['CHILD', KIT.CHILD]];
+  makers.forEach(function (m, r) {
+    names.forEach(function (n, i) {
+      const x = X0 + i * CW, y = rowsY[r];
+      S('rect', { x: x + 8, y: y + 8, width: CW - 16, height: CH - 16, rx: 18, fill: P.DUSK }, root);
+      S('rect', { x: x + 8, y: y + CH - 86, width: CW - 16, height: 78, fill: P.GROUND }, root);
+      S('rect', { x: x + 8, y: y + CH - 30, width: CW - 16, height: 22, rx: 11, fill: P.GROUND }, root);
+      const c = m[1](st, root, { x: x + CW / 2, y: y + CH - 62, k: 0.6, expr: n });
+      c.noBlink = true; c.breathAmt = 0;
+      label(x + 24, y + 42, m[0], 20, P.WHITE, 'start', 800);
+      label(x + CW - 24, y + 42, n, 20, P.GOLD, 'end');
+    });
+  });
+
+  /* proportions line-up with head rulers */
+  const LY = Y0 + CH * 4 + 60, GY = LY + 640;
+  label(X0, LY + 6, 'PROPORTIONS', 30, P.WHITE, 'start', 800);
+  S('rect', { x: X0, y: LY + 30, width: 1180, height: 680, rx: 18, fill: P.DUSK }, root);
+  S('rect', { x: X0, y: GY, width: 1180, height: 70, fill: P.GROUND }, root);
+  S('rect', { x: X0, y: GY + 40, width: 1180, height: 30, rx: 15, fill: P.GROUND }, root);
+  const line = [['HERO', KIT.HERO, 240, '5.5 heads · shoulders 1.6 heads'], ['RICH', KIT.RICH, 520, '10 % wider than HERO'], ['BRIDE', KIT.BRIDE, 800, '5.3 heads'], ['CHILD', KIT.CHILD, 1040, '2.5 heads']];
+  line.forEach(function (m) {
+    const x = X0 + m[2], c = m[1](st, root, { x: x, y: GY, k: 1, expr: 'neutral' });
+    c.noBlink = true; c.breathAmt = 0;
+    const sp = c.spec, hd = sp.r * 2, tall = sp.hip + sp.torso + sp.neck + hd, n = tall / hd;
+    const rx = x - sp.shX - sp.arm.w / 2 - 34;
+    for (let i = 0; i <= Math.floor(n); i++) S('rect', { x: rx - (i % 1 ? 6 : 12), y: GY - tall + i * hd - 1, width: 12, height: 2, fill: P.GOLD }, root);
+    S('rect', { x: rx - 1, y: GY - tall, width: 2, height: tall, fill: P.GOLD }, root);
+    label(x, GY + 110, m[0], 22, P.WHITE, 'middle', 800); label(x, GY + 138, m[3], 17, C.GREY, 'middle');
+  });
+  /* shoulder ruler for HERO */
+  (function () { const x = X0 + 240, y = GY - 250 - 190 - 14; S('rect', { x: x - 80, y: y - 60 - 100, width: 160, height: 2, fill: P.GOLD }, root); S('rect', { x: x - 80, y: y - 166, width: 2, height: 14, fill: P.GOLD }, root); S('rect', { x: x + 78, y: y - 166, width: 2, height: 14, fill: P.GOLD }, root); })();
+
+  /* palette swatches */
+  const PX = X0 + 1240, PY = LY + 30;
+  label(PX, LY + 6, 'PALETTE + BRAND', 30, P.WHITE, 'start', 800);
+  const sw = Object.entries(P).concat([['HOODIE', C.HOODIE], ['POCKET', C.POCKET], ['SKIN', C.SKIN], ['STUBBLE', C.STUBBLE], ['HAIR', C.HAIR], ['CHEEK', C.CHEEK], ['TROUSERS', C.TROUSERS], ['SUIT', C.SUIT], ['TIE', C.TIE], ['GREY', C.GREY], ['BRIDE HAIR', C.BRIDE_HAIR], ['BENCH', C.BENCH], ['LEAF A', C.LEAF_A], ['LEAF B', C.LEAF_B], ['SKYLINE', C.SKYLINE], ['INK', C.INK]]);
+  sw.forEach(function (e, i) {
+    const x = PX + (i % 8) * 136, y = PY + Math.floor(i / 8) * 128;
+    S('rect', { x: x, y: y, width: 124, height: 70, rx: 12, fill: e[1], stroke: P.DUSK, 'stroke-width': 2 }, root);
+    label(x, y + 92, e[0], 15, P.WHITE); label(x, y + 112, e[1].toUpperCase(), 14, C.GREY);
+  });
+
+  /* BULBS: lit / flicker / out */
+  const BY = PY + 420;
+  label(PX, BY, 'BULBS · six on one wire · lit = 30 % glow disc · out = 544174', 22, P.WHITE, 'start', 800);
+  S('rect', { x: PX, y: BY + 18, width: 1080, height: 170, rx: 18, fill: P.SKY, stroke: P.DUSK, 'stroke-width': 2 }, root);
+  const B = KIT.BULBS(st, root, { x0: PX + 60, y0: BY + 70, x1: PX + 1020, y1: BY + 70, sag: 30, r: 16, lit: [1, 1, 1, 1, 0, 0] });
+  ['1 lit', '2 lit', '3 lit', '4 lit', '5 out', '6 out'].forEach((t, i) => label(B.pos[i].x, BY + 172, t, 16, C.GREY, 'middle'));
+
+  /* bubble + MARK figure */
+  const UY = BY + 230;
+  label(PX, UY, 'THOUGHT BUBBLE + MARK', 22, P.WHITE, 'start', 800);
+  const bb = KIT.bubble(st, root, { w: 330, h: 250 }); bb.g.setAttribute('transform', 'translate(' + (PX + 180) + ' ' + (UY + 160) + ')');
+  const mf = KIT.markFigure(st, bb.content); mf.g.setAttribute('transform', 'translate(0 8) scale(0.92)');
+  [[PX + 372, UY + 250, 20], [PX + 408, UY + 284, 14], [PX + 432, UY + 310, 9]].forEach(d => S('circle', { cx: d[0], cy: d[1], r: d[2], fill: P.CREAM }, root));
+
+  /* SET + SUB + LABEL in a mini frame */
+  const FX = X0, FY = LY + 850, FS = 0.4;
+  label(FX, FY - 10, 'SET · night city park · SUB + LABEL (1080 × 1920 frame at 40 %)', 22, P.WHITE, 'start', 800);
+  const clip = S('clipPath', { id: 'frameClip' }, st.defs); S('rect', { x: 0, y: 0, width: 1080, height: 1920 }, clip);
+  const fr = S('g', { transform: 'translate(' + FX + ' ' + (FY + 10) + ') scale(' + FS + ')', 'clip-path': 'url(#frameClip)' }, root);
+  KIT.SET.sky(st, fr); KIT.SET.skyline(st, fr, { seed: 7 }); KIT.SET.ground(st, fr);
+  KIT.SET.tree(st, fr, { x: 30, base: 1300, h: 640, r: 150 }); KIT.SET.tree(st, fr, { x: 1010, base: 1310, h: 600, r: 140 });
+  const cones = S('g', {}, fr);
+  KIT.SET.lamp(st, fr, cones); KIT.SET.bench(st, fr);
+  const h2 = KIT.HERO(st, fr, { x: 330, y: 1420, expr: 'smile' }); h2.noBlink = true; Object.assign(h2.pose, KIT.POSE.sit(h2.spec));
+  const r2 = KIT.RICH(st, fr, { x: 760, y: 1420, expr: 'smile' }); r2.noBlink = true;
+  KIT.SET.leaves(st, fr, {});
+  /* safe area */
+  S('rect', { x: 120, y: 250, width: 840, height: 1250, fill: 'none', stroke: P.GOLD, 'stroke-width': 3, 'stroke-dasharray': '14 12', opacity: 0.6 }, fr);
+  /* move the SUB and LABEL layers into the mini frame */
+  const sub = st.sub('KITSUB', 'Tasavvur qil: oldingga bir boy odam keldi.', 0, 15);
+  const lab = st.label('KITLABEL', '1 000 000 000 $', { x: 600, y: 760, tx: 600, ty: 1130, t0: 0.2, t1: 15 });
+  fr.appendChild(st.subLayer); fr.appendChild(st.labelLayer);
+  st.renderAt(2);
+  window.STAGE = st; window.READY = true;
+});
+</script>
+</body>
+</html>

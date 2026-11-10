@@ -1,0 +1,4 @@
+out/frames_*/
+tools/node_modules
+render/
+*.tmp
