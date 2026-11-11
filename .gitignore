@@ -8,5 +8,5 @@ local.properties
 node_modules/
 frames/
 *.mp4
-!story_60s.mp4
+
 parts/
