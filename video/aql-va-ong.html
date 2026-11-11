@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aql va ong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+:root{
+  --void:#07060C; --card:#15131F; --line:#2F2850; --ink:#F5F3FF; --muted:#8E86A8;
+  --lav:#B292F5; --vio:#7C4DDB; --deep:#4D259D; --red:#E5484D; --amber:#F2B66D;
+}
+html,body{margin:0;height:100%;background:var(--void);overflow:hidden}
+#fit{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--void);
+  font-family:Inter,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+#bg,#cam,#subs,#wipe,#grain{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#bg,#cam{transform-origin:540px 1040px}
+#bg .grid{position:absolute;inset:-60px;
+  background-image:linear-gradient(to right,rgba(143,123,216,.04) 1px,transparent 1px),
+                   linear-gradient(to bottom,rgba(143,123,216,.04) 1px,transparent 1px);
+  background-size:54px 54px;background-position:0 0}
+#bg .blob{position:absolute;width:800px;height:800px;margin:-400px 0 0 -400px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,rgba(77,37,157,.16) 0%,rgba(77,37,157,.10) 30%,rgba(77,37,157,0) 70%)}
+#wipe,#grain{pointer-events:none}
+#grain{image-rendering:pixelated}
+.scene{position:absolute;left:0;top:0;width:1080px;height:1920px}
+
+/* subtitles */
+#subs{left:120px;top:300px;width:840px;height:auto}
+#subs .page{position:absolute;left:0;top:0;width:840px;text-align:center;
+  font:800 66px/1.12 Inter,sans-serif;letter-spacing:-0.02em;color:var(--ink);text-wrap:balance}
+#subs .w{display:inline-block;will-change:transform,filter,opacity}
+.hl{color:var(--lav)}
+
+/* card */
+.card{position:absolute;box-sizing:border-box;background:rgba(21,19,31,.88);border:1.5px solid var(--line);
+  border-radius:36px;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.6);overflow:hidden}
+.chip{position:absolute;box-sizing:border-box;height:48px;padding:0 22px 0 18px;display:flex;align-items:center;gap:12px;
+  background:rgba(21,19,31,.88);border:1.5px solid var(--line);border-radius:24px;
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.08),0 16px 40px rgba(0,0,0,.5)}
+.chip i{display:block;width:10px;height:10px;border-radius:50%;box-sizing:border-box;border:2.5px solid var(--lav)}
+.title{position:absolute;font:700 40px/44px Inter,sans-serif;letter-spacing:-0.01em;color:var(--ink);white-space:nowrap}
+.label{font:500 24px/28px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+.abs{position:absolute}
+.q{position:absolute;font:800 64px/1 Inter,sans-serif;color:var(--amber)}
+svg{overflow:visible}
+.dr{fill:none;stroke:var(--lav);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.dl{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.vf{fill:var(--vio);stroke:none}
+
+/* S1 chat */
+.bubble{position:absolute;box-sizing:border-box;background:var(--line);border-radius:28px 28px 28px 10px;
+  padding:22px 30px;font:700 40px/44px Inter,sans-serif;color:var(--ink);white-space:nowrap}
+.caret{display:inline-block;width:4px;height:42px;margin-left:4px;vertical-align:-7px;background:var(--lav);border-radius:2px}
+.mono{font:500 30px/36px 'JetBrains Mono',monospace;color:var(--ink);white-space:pre}
+.tk{position:relative;display:inline-block}
+.tk b{position:absolute;left:0;top:50px;height:8px;border-radius:4px;background:var(--lav)}
+.tk s{position:absolute;left:0;top:50px;height:8px;width:100%;border-radius:4px;background:var(--line)}
+
+/* rows */
+.row{position:absolute;left:48px;right:48px;height:108px}
+.row .rt{position:absolute;left:0;top:32px}
+.row .tick{position:absolute;right:0;top:26px;width:56px;height:56px}
+.row .div{position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--line)}
+</style>
+</head>
+<body>
+<div id="fit"><div id="stage">
+  <div id="bg"><div class="grid"></div><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
+  <div id="cam"></div>
+  <div id="subs"></div>
+  <canvas id="wipe" width="1080" height="1920"></canvas>
+  <canvas id="grain" width="540" height="960"></canvas>
+</div></div>
+<script>
+(() => {
+'use strict';
+/* ================================================================ SYSTEM */
+const FPS = 30, DUR = 90, FRAMES = DUR * FPS, BEAT = 15;
+const F = n => n / FPS;                         // frames -> seconds
+const params = new URLSearchParams(location.search);
+const FROZEN = params.has('t');
+
+function rng(seed) {                             // mulberry32
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, p) => a + (b - a) * p;
+const E = { outExpo: 'expo.out', inExpo: 'expo.in', outQuint: 'power4.out', inOutQuart: 'power3.inOut' };
+const ease = { inOutQuart: gsap.parseEase('power3.inOut'), outQuint: gsap.parseEase('power4.out'),
+  inOutCubic: gsap.parseEase('power2.inOut'), outCubic: gsap.parseEase('power2.out') };
+// damped spring impulse (damping ratio 0.6): 0 -> 1 (peak) -> 0, used for 1.0 -> 1.15 -> 1.0 pops
+const popEase = p => (p <= 0 || p >= 1) ? 0 : Math.exp(-0.75 * 2.25 * Math.PI * p) * Math.sin(2.25 * Math.PI * p) / 0.39923;
+
+const stage = document.getElementById('stage');
+const cam = document.getElementById('cam');
+const bg = document.getElementById('bg');
+const subsEl = document.getElementById('subs');
+
+function h(tag, attrs, parent, text) {
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs) {
+    if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else e.setAttribute(k, attrs[k]);
+  }
+  if (text != null) e.textContent = text;
+  if (parent) parent.appendChild(e);
+  return e;
+}
+const NS = 'http://www.w3.org/2000/svg';
+function s(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function svg(parent, x, y, w, hgt, vb, extra) {
+  return s('svg', Object.assign({ width: w, height: hgt, viewBox: vb || `0 0 ${w} ${hgt}`,
+    style: `position:absolute;left:${x}px;top:${y}px` }, extra || {}), parent);
+}
+// drawable shape: stroke drawn via stroke-dashoffset with pathLength = 1
+function d(tag, attrs, parent, cls) {
+  const e = s(tag, Object.assign({ class: cls || 'dr', pathLength: 1, 'stroke-dasharray': '1 2', 'stroke-dashoffset': 1.02 }, attrs), parent);
+  return e;
+}
+
+/* ---- master timeline ---- */
+const tl = gsap.timeline({ paused: true });
+tl.set({}, {}, DUR);
+const inited = new WeakMap();
+// fromTo that never renders early; first use of a property sets the element's resting state
+function T(target, from, to, at) {
+  const targets = gsap.utils.toArray(target);
+  for (const tg of targets) {
+    let seen = inited.get(tg); if (!seen) { seen = new Set(); inited.set(tg, seen); }
+    const fresh = {};
+    for (const k in from) if (!seen.has(k)) { seen.add(k); fresh[k] = from[k]; }
+    if (Object.keys(fresh).length) gsap.set(tg, fresh);
+  }
+  return tl.fromTo(targets, from, Object.assign({ immediateRender: false }, to), at);
+}
+const procs = [];
+const proc = fn => procs.push(fn);
+
+/* ---- motion vocabulary ---- */
+const enter = (el, at, dy = 40) => T(el, { autoAlpha: 0, y: dy }, { autoAlpha: 1, y: 0, duration: F(14), ease: E.outQuint }, at);
+const exit = (el, at) => T(el, { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: 40, duration: F(8), ease: E.inExpo }, at);
+const draw = (els, at, frames = 12, ez = 'power2.inOut') =>
+  T(els, { attr: { 'stroke-dashoffset': 1.02 } }, { attr: { 'stroke-dashoffset': 0 }, duration: F(frames), ease: ez }, at);
+const pop = (el, at, frames = 24) => T(el, { scale: 1 }, { scale: 1.15, duration: F(frames), ease: popEase }, at);
+const reveal = (el, at, frames = 8) =>
+  T(el, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: F(frames), ease: 'power3.out' }, at);
+const fadeFill = (el, at, frames = 6, to = 1) => T(el, { attr: { 'fill-opacity': 0 } }, { attr: { 'fill-opacity': to }, duration: F(frames), ease: 'power1.out' }, at);
+const resize = (el, to, at) => T(el, to.from, Object.assign({}, to.to, { duration: F(16), ease: E.inOutQuart }), at);
+
+/* ---- shared parts ---- */
+function makeCard(parent, x, y, w, hgt) {
+  return h('div', { class: 'card', style: `left:${x}px;top:${y}px;width:${w}px;height:${hgt}px` }, parent);
+}
+function makeChip(parent, text, cy) {
+  const c = h('div', { class: 'chip', style: `top:${cy}px;left:0` }, parent);
+  h('i', null, c); h('span', { class: 'label' }, c, text);
+  return c;
+}
+function centerChip(c) { c.style.left = Math.round(540 - c.offsetWidth / 2) + 'px'; }
+// tick: empty ring -> lavender ring, violet fill, ink check, spring pop
+function makeTick(parent, x, y, kind) {
+  const g = svg(parent, x, y, 56, 56, '0 0 56 56', { class: 'tickSvg' });
+  g.style.transformOrigin = '28px 28px';
+  const ring = s('circle', { cx: 28, cy: 28, r: 25, fill: 'none', stroke: '#2F2850', 'stroke-width': 2.5 }, g);
+  const col = kind === 'x' ? '#F2B66D' : '#B292F5';
+  const ring2 = d('circle', { cx: 28, cy: 28, r: 25, transform: 'rotate(-90 28 28)', style: `stroke:${col}` }, g);
+  let fill = null, marks;
+  if (kind === 'x') {
+    marks = [d('path', { d: 'M19 19 L37 37', style: 'stroke:#F2B66D' }, g), d('path', { d: 'M37 19 L19 37', style: 'stroke:#F2B66D' }, g)];
+  } else {
+    fill = s('circle', { cx: 28, cy: 28, r: 23.5, fill: '#7C4DDB', 'fill-opacity': 0 }, g);
+    marks = [d('path', { d: 'M17 29 L25 37 L40 20', style: 'stroke:#F5F3FF;stroke-width:4' }, g)];
+  }
+  return { el: g, ring, ring2, fill, marks };
+}
+function tick(tk, at) {                      // `at` must sit on a beat
+  draw(tk.ring2, at, 6, 'power2.out');
+  if (tk.fill) fadeFill(tk.fill, at, 4);
+  tk.marks.forEach((m, i) => draw(m, at + F(2 + i * 3), 6, 'power2.out'));
+  pop(tk.el, at);
+}
+
+/* ---- puzzle / eye icons (shared by S2 and S6) ---- */
+function puzzleIcon(parent, x, y, size) {
+  const g = svg(parent, x, y, size, size, '0 0 200 200');
+  const body = 'M40 56 H78 C70 30 130 30 122 56 H160 V94 C186 86 186 146 160 138 V176 H122 C130 150 70 150 78 176 H40 V138 C66 146 66 86 40 94 Z';
+  const fill = s('path', { d: body, class: 'vf', 'fill-opacity': 0, transform: 'translate(100 116) scale(.42) translate(-100 -116)' }, g);
+  const p = d('path', { d: body, 'vector-effect': 'non-scaling-stroke' }, g);
+  return { el: g, strokes: [p], fill };
+}
+function eyeIcon(parent, x, y, w) {             // closed at rest; open via openEye()
+  const hgt = w * 0.72;
+  const g = svg(parent, x, y, w, hgt, '-100 -72 200 144');
+  const id = 'eyeclip' + Math.random().toString(36).slice(2, 8);
+  const defs = s('defs', null, g);
+  const cp = s('clipPath', { id }, defs);
+  const clipPath = s('path', { d: 'M-88 0 Q0 64 88 0 Q0 64 -88 0 Z' }, cp);
+  const iris = s('g', { 'clip-path': `url(#${id})` }, g);
+  s('circle', { cx: 0, cy: 4, r: 30, fill: '#7C4DDB' }, iris);
+  s('circle', { cx: 0, cy: 4, r: 30, class: 'dr', 'stroke-width': 3 }, iris);
+  s('circle', { cx: 0, cy: 4, r: 11, fill: '#07060C' }, iris);
+  const lower = d('path', { d: 'M-88 0 Q0 64 88 0' }, g);
+  const lid = d('path', { d: 'M-88 0 Q0 64 88 0' }, g);
+  const lashes = s('g', null, g);
+  const lashPaths = [[-52, 22, -60, 40], [-18, 31, -20, 50], [18, 31, 20, 50], [52, 22, 60, 40]]
+    .map(([a, b, c, e]) => d('path', { d: `M${a} ${b} L${c} ${e}` }, lashes));
+  return { el: g, strokes: [lower, lid], lid, clipPath, lashes, lashPaths };
+}
+function openEye(eye, at, frames = 8) {
+  T(eye.lid, { attr: { d: 'M-88 0 Q0 64 88 0' } }, { attr: { d: 'M-88 0 Q0 -78 88 0' }, duration: F(frames), ease: E.inOutQuart }, at);
+  T(eye.clipPath, { attr: { d: 'M-88 0 Q0 64 88 0 Q0 64 -88 0 Z' } }, { attr: { d: 'M-88 0 Q0 64 88 0 Q0 -78 -88 0 Z' }, duration: F(frames), ease: E.inOutQuart }, at);
+  T(eye.lashes, { opacity: 1 }, { opacity: 0, duration: F(4), ease: 'power1.out' }, at);
+}
+function setEyeOpen(eye) {
+  eye.lid.setAttribute('d', 'M-88 0 Q0 -78 88 0');
+  eye.clipPath.setAttribute('d', 'M-88 0 Q0 64 88 0 Q0 -78 -88 0 Z');
+  eye.lashes.style.opacity = 0;
+}
+
+/* ---- scenes / camera ---- */
+const SCENES = [];
+function scene(name, start, end) {
+  const el = h('div', { class: 'scene', 'data-scene': name }, cam);
+  gsap.set(el, { autoAlpha: start === 0 ? 1 : 0 });
+  if (start > 0) tl.set(el, { autoAlpha: 1 }, start);
+  if (end < DUR) tl.set(el, { autoAlpha: 0 }, end);
+  // CAMERA: push in 3% over the scene; reset happens under the wipe at the next scene's first frame
+  const len = end - start - F(1);
+  tl.fromTo(cam, { scale: 1 }, { scale: 1.03, duration: len, ease: E.inOutQuart, immediateRender: false }, start);
+  tl.fromTo(bg, { scale: 1 }, { scale: 1.006, duration: len, ease: E.inOutQuart, immediateRender: false }, start); // parallax 0.2
+  SCENES.push({ name, start, end, el });
+  return el;
+}
+
+/* ---- background: blobs drift 30 px / 8 s, deterministic ---- */
+{
+  const r = rng(7);
+  const blobs = [...bg.querySelectorAll('.blob')];
+  const base = [[230, 560], [860, 1180], [300, 1640]];
+  const dirs = blobs.map(() => { const a = r() * Math.PI * 2; return [Math.cos(a), Math.sin(a)]; });
+  proc(t => blobs.forEach((b, i) => {
+    const k = 30 * t / 8;
+    b.style.transform = `translate(${base[i][0] + dirs[i][0] * k}px,${base[i][1] + dirs[i][1] * k}px)`;
+  }));
+}
+
+/* ---- WIPE: 60 px squares, seeded order, cover 8 frames, clear 8 frames ---- */
+const WIPES = [4, 16, 50, 70, 84];
+{
+  const cv = document.getElementById('wipe'), ctx = cv.getContext('2d');
+  const COLS = 18, ROWS = 32, N = COLS * ROWS;
+  const COLORS = ['#7C4DDB', '#B292F5', 'rgba(77,37,157,0.85)'];
+  const data = WIPES.map((w, wi) => {
+    const r = rng(1000 + wi * 77);
+    const order = (bias) => {
+      const keys = [];
+      for (let i = 0; i < N; i++) {
+        const c = i % COLS, rr = (i / COLS) | 0;
+        keys.push([i, 0.35 * bias(c / (COLS - 1), rr / (ROWS - 1)) + 0.65 * r()]);
+      }
+      keys.sort((a, b) => a[1] - b[1]);
+      const rank = new Float32Array(N); keys.forEach(([i], k) => rank[i] = k / N);
+      return rank;
+    };
+    const inRank = order((x, y) => (x + y) / 2);
+    const outRank = order((x, y) => (x + y) / 2);
+    const col = []; for (let i = 0; i < N; i++) col.push(COLORS[Math.floor(r() * 3)]);
+    return { frame: Math.round(w * FPS), inRank, outRank, col };
+  });
+  proc((t, f) => {
+    ctx.clearRect(0, 0, 1080, 1920);
+    for (const wd of data) {
+      const k = f - wd.frame;                  // k = 0 is the scene's first frame
+      if (k < -7 || k > 7) continue;
+      for (let i = 0; i < N; i++) {
+        let on;
+        if (k <= 0) on = wd.inRank[i] < (k + 8) / 8;     // -7..0 => 1/8 .. 8/8
+        else on = wd.outRank[i] >= k / 8;                // 1..7 => clears; k = 8 empty
+        if (!on) continue;
+        ctx.fillStyle = wd.col[i];
+        ctx.fillRect((i % COLS) * 60, ((i / COLS) | 0) * 60, 60, 60);
+      }
+    }
+  });
+}
+
+/* ---- grain 1.5% ---- */
+{
+  const cv = document.getElementById('grain'), ctx = cv.getContext('2d');
+  const img = ctx.createImageData(540, 960), px = img.data;
+  proc((t, f) => {
+    const r = rng(90001 + f * 13);
+    for (let i = 0; i < px.length; i += 4) {
+      const v = r() * 2 - 1, c = v > 0 ? 255 : 0;
+      px[i] = px[i + 1] = px[i + 2] = c; px[i + 3] = Math.abs(v) * 0.03 * 255;   // mean |v| 0.5 -> 1.5%
+    }
+    ctx.putImageData(img, 0, 0);
+  });
+  cv.style.width = '1080px'; cv.style.height = '1920px';
+}
+
+/* ================================================================ SUBTITLES */
+// `|` marks a page break inside one SCENES line (a line that needs more than 2 lines at 66 px).
+// The page text joined with a space is the exact SCENES string. p = page offsets in seconds (on beats).
+const LINES = [
+  { t: 0,    s: 'Bu mashina oʻzini *his* qiladimi?' },
+  { t: 2,    s: 'Yoki shunchaki *taqlid* qiladimi?' },
+  { t: 4,    s: 'Avval bilib oling: *aql* va *ong* — ikki xil narsa.' },
+  { t: 7,    s: '*Aql* — masala yechish.|Bugungi AI buni juda yaxshi qiladi.', p: [1.5] },
+  { t: 10.5, s: '*Ong* esa — ichingizda nimanidir *his* qilish.' },
+  { t: 13,   s: 'Qizil rangni koʻrish, ogʻriqni sezish,|*«men»* degan tuygʻu.', p: [1.5] },
+  { t: 16,   s: '*Ilm-fan* nima deydi?' },
+  { t: 18.5, s: 'Olimlar *ikki guruhga* boʻlingan.' },
+  { t: 22,   s: 'Birinchilar: ong — miyadagi *axborot jarayoni*.' },
+  { t: 26,   s: 'Uni chipda takrorlasak, ong ham *paydo boʻladi*.' },
+  { t: 30,   s: 'Ikkinchilar: yoʻq, ong *tirik tanaga* bogʻliq.' },
+  { t: 34,   s: 'Jon Serl: yomgʻirni kompyuterda|modellashtirsangiz, hech kim *hoʻl boʻlmaydi*.', p: [2] },
+  { t: 38.5, s: 'Devid Chalmers buni ongning|*«qiyin muammosi»* deb atagan.', p: [1.5] },
+  { t: 42,   s: '2023-yil: 19 olim hisobot chiqardi.' },
+  { t: 46,   s: 'Xulosa: hozirgi AI *ongli emas*.|Lekin texnik *toʻsiq ham koʻrinmaydi*.', p: [1.5] },
+  { t: 50,   s: '*Islom dini* nima deydi?' },
+  { t: 52.5, s: 'Qurʼon: «Ruh Robbimning ishidandir.|Sizlarga *ozgina ilm* berilgan».', p: [2.5] },
+  { t: 58,   s: 'Yaʼni ruhning haqiqatini *faqat Alloh* biladi.' },
+  { t: 62,   s: 'Qurʼon: Allohdan oʻzgalar|bitta *pashsha* ham yarata olmaydi.', p: [1.5] },
+  { t: 66,   s: 'Koʻp ulamolarga koʻra, AI — taqlid qiluvchi *vosita*.' },
+  { t: 70,   s: 'Haqiqiy sunʼiy ong uchun nima *kerak*?' },
+  { t: 72.5, s: '1. Oʻzini kuzatish: oʻz *fikrini* bilish.' },
+  { t: 75,   s: '2. Tana va *sezgilar*: dunyoni sezish.' },
+  { t: 77.5, s: '3. Yagona *«men»*:|hamma sezgini birlashtiruvchi markaz.', p: [1] },
+  { t: 80.5, s: '4. Va ongni oʻlchaydigan *test*. Hozircha u *yoʻq*.' },
+  { t: 84,   s: 'AI aqlli boʻla oladi.|*Ongli*-chi? Bu — *ochiq savol*.', p: [1] },
+  { t: 87,   s: 'Siz nima deysiz? *Izohda* yozing.' },
+];
+const PAGES = [];
+function buildPage(str) {
+  const div = h('div', { class: 'page' }, subsEl);
+  const words = [];
+  let star = false;
+  str.split(' ').forEach((w, i) => {
+    if (i) div.appendChild(document.createTextNode(' '));
+    const sp = h('span', { class: 'w' }, div);
+    let buf = '';
+    const flush = () => { if (!buf) return; if (star) h('span', { class: 'hl' }, sp, buf); else sp.appendChild(document.createTextNode(buf)); buf = ''; };
+    for (const ch of w) { if (ch === '*') { flush(); star = !star; } else buf += ch; }
+    flush();
+    words.push(sp);
+  });
+  return { div, words };
+}
+function buildSubtitles() {
+  LINES.forEach((ln, li) => {
+    const parts = ln.s.split('|');
+    const offs = [0].concat(ln.p || []);
+    parts.forEach((txt, pi) => PAGES.push({ line: li, start: ln.t + offs[pi], src: txt, ...buildPage(txt) }));
+  });
+  PAGES.forEach((pg, i) => {
+    pg.end = i + 1 < PAGES.length ? PAGES[i + 1].start : null;
+    if (pg.start === 0) gsap.set(pg.words, { opacity: 1, y: 0, filter: 'blur(0px)' });     // line 1 complete at frame 0
+    else pg.words.forEach((w, k) => T(w, { opacity: 0, y: 14, filter: 'blur(10px)' },
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: F(9), ease: E.outExpo }, pg.start - F(1) + k * F(4)));
+    if (pg.end != null) T(pg.div, { y: 0, opacity: 1, filter: 'blur(0px)' },
+      { y: -12, opacity: 0, filter: 'blur(8px)', duration: F(6), ease: E.inExpo }, pg.end - F(6));
+  });
+}
+
+/* ================================================================ S1 HOOK  0-4 s */
+function S1() {
+  const sc = scene('S1', 0, 4);
+  const card = makeCard(sc, 110, 820, 860, 440);
+  // window chrome: three dots + divider, input bar with a send arrow (no text)
+  const chrome = svg(card, 0, 0, 860, 440);
+  [0, 1, 2].forEach(i => s('circle', { cx: 52 + i * 26, cy: 46, r: 7, fill: '#2F2850' }, chrome));
+  s('line', { x1: 0, y1: 88, x2: 860, y2: 88, stroke: '#2F2850', 'stroke-width': 1.5 }, chrome);
+  s('rect', { x: 48, y: 336, width: 764, height: 72, rx: 36, fill: 'none', stroke: '#2F2850', 'stroke-width': 2 }, chrome);
+  s('circle', { cx: 776, cy: 372, r: 24, fill: '#7C4DDB' }, chrome);
+  s('path', { d: 'M776 383 V362 M767 370 L776 361 L785 370', fill: 'none', stroke: '#F5F3FF', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, chrome);
+  // AI avatar: a four-point spark
+  s('circle', { cx: 84, cy: 192, r: 34, fill: 'none', stroke: '#2F2850', 'stroke-width': 2.5 }, chrome);
+  s('path', { d: 'M84 172 C86 186 90 190 104 192 C90 194 86 198 84 212 C82 198 78 194 64 192 C78 190 82 186 84 172 Z', class: 'dr', fill: '#7C4DDB' }, chrome)
+    .style.fill = '#7C4DDB';
+
+  // layer A: typing bubble (below the scan line)
+  const A = h('div', { class: 'abs', style: 'left:0;top:0;width:860px;height:440px' }, card);
+  const bub = h('div', { class: 'bubble', style: 'left:140px;top:158px' }, A);
+  const txt = h('span', null, bub, 'Men bor');
+  const caret = h('span', { class: 'caret' }, bub);
+  // layer B: the same reply as token probabilities (above the scan line)
+  const B = h('div', { class: 'abs', style: 'left:0;top:0;width:860px;height:440px' }, card);
+  const rowBox = h('div', { class: 'abs', style: 'left:140px;top:140px;box-sizing:border-box;padding:22px 30px 46px;border:2px solid #2F2850;border-radius:28px 28px 28px 10px' }, B);
+  const mono = h('div', { class: 'mono' }, rowBox);
+  [['men 0.91', .91], ['bor 0.88', .88], ['man 0.97', .97]].forEach(([str, v], i) => {
+    if (i) mono.appendChild(document.createTextNode(' · '));
+    const tk = h('span', { class: 'tk' }, mono, str);
+    h('s', null, tk); h('b', { style: `width:${v * 100}%` }, tk);
+  });
+  const scan = h('div', { class: 'abs', style: 'left:24px;width:812px;height:3px;border-radius:2px;background:#B292F5;top:0' }, card);
+
+  const typed = ['Men bor', 'Men borm', 'Men borma', 'Men borman', 'Men borman.'];
+  proc((t, f) => {
+    if (f >= 120) return;
+    txt.textContent = typed[f >= 20 ? 4 : f >= 16 ? 3 : f >= 12 ? 2 : f >= 8 ? 1 : 0];
+    caret.style.opacity = (f % 15) < 8 ? 1 : 0;                               // 2 Hz
+    const p = ease.inOutCubic(clamp((f - 60) / 18));                          // f60 -> f78
+    const y = p * 440;
+    A.style.clipPath = `inset(${y}px 0px 0px 0px)`;
+    B.style.clipPath = `inset(0px 0px ${440 - y}px 0px)`;
+    scan.style.top = (y - 1.5) + 'px';
+    scan.style.opacity = (f >= 60 && f <= 78) ? 1 : 0;
+  });
+}
+
+/* ================================================================ S2  4-16 s */
+// compact AQL / ONG pair (also used by S6)
+function compactPair(parent, top, opts) {
+  const aql = makeCard(parent, 110, top, 410, 480);
+  const ong = makeCard(parent, 560, top, 410, 480);
+  const pz = puzzleIcon(aql, 105, 66, 200);
+  const at = h('div', { class: 'title' }, aql, 'AQL');
+  const eye = eyeIcon(ong, 85, 104, 240);
+  const ot = h('div', { class: 'title' }, ong, 'ONG');
+  const q = h('div', { class: 'q', style: 'left:318px;top:46px' }, ong, '?');
+  return { aql, ong, pz, at, eye, ot, q };
+}
+function S2() {
+  const sc = scene('S2', 4, 16);
+  const P = compactPair(sc, 800);
+  P.at.style.top = '312px'; P.ot.style.top = '312px';
+  const atW = P.at.offsetWidth, otW = P.ot.offsetWidth;
+  P.at.style.left = (410 - atW) / 2 + 'px'; P.ot.style.left = (410 - otW) / 2 + 'px';
+
+  // rows that the AQL card reveals when it grows to full width
+  const rowsBox = h('div', { class: 'abs', style: 'left:0;top:184px;width:860px;height:330px' }, P.aql);
+  const rowNames = ['Matn yozish', 'Kod yozish', 'Shaxmat'];
+  const rows = rowNames.map((n, i) => {
+    const r = h('div', { class: 'row', style: `top:${i * 108}px` }, rowsBox);
+    const body = h('div', { class: 'abs', style: 'left:0;top:0;width:100%;height:100%' }, r);
+    h('div', { class: 'title rt' }, body, n);
+    if (i < 2) h('div', { class: 'div' }, body);
+    return { r, body, tk: makeTick(r, 708, 26) };
+  });
+  rows.forEach(o => { o.tk.el.style.left = 'auto'; o.tk.el.style.right = '0px'; });
+
+  // 4.0  the pair enters (hero AQL, ONG 4 frames later at 60% travel), icons draw on
+  enter(P.aql, 4); enter(P.ong, 4 + F(4), 24);
+  draw(P.pz.strokes, 4 + F(8), 18); fadeFill(P.pz.fill, 4 + F(22), 8, 1);
+  draw(P.eye.strokes, 4 + F(12), 16); draw(P.eye.lashPaths, 4 + F(24), 8);
+  T(P.q, { scale: 0, transformOrigin: '50% 60%' }, { scale: 1, duration: F(12), ease: 'back.out(2)' }, 4.5);
+  T(rowsBox, { autoAlpha: 0 }, { autoAlpha: 1, duration: F(1) }, 7);
+
+  // 7.0  ONG leaves, AQL grows to full width (resize 16f), rows reveal, ticks on 7.5 / 8.0 / 8.5
+  exit(P.ong, 7);
+  resize(P.aql, { from: { left: 110, top: 800, width: 410, height: 480 }, to: { left: 110, top: 740, width: 860, height: 600 } }, 7 + F(4));
+  resize(P.pz.el, { from: { left: 105, top: 66, scale: 1, transformOrigin: '0px 0px' }, to: { left: 44, top: 32, scale: 0.6 } }, 7 + F(4));
+  resize(P.at, { from: { left: (410 - atW) / 2, top: 312 }, to: { left: 192, top: 70 } }, 7 + F(4));
+  rows.forEach((o, i) => reveal(o.body, 7 + F(14) + i * F(3), 10));
+  rows.forEach((o, i) => tick(o.tk, 7.5 + i * 0.5));
+
+  // 10.5  full ONG card slides over AQL; the eye opens; 13.0 / 13.5 / 14.0 icons draw on
+  const ong = makeCard(sc, 110, 740, 860, 600);
+  const ot = h('div', { class: 'title', style: 'left:48px;top:40px' }, ong, 'ONG');
+  const q = h('div', { class: 'q', style: 'top:30px;font-size:52px' }, ong, '?');
+  q.style.left = (48 + ot.offsetWidth + 14) + 'px';
+  const eye = eyeIcon(ong, 250, 96, 360);
+  // three sensation icons
+  const cells = svg(ong, 0, 380, 860, 200);
+  const red = s('circle', { cx: 215, cy: 100, r: 52, fill: '#E5484D', 'fill-opacity': 0 }, cells);
+  const redS = d('circle', { cx: 215, cy: 100, r: 52, transform: 'rotate(-90 215 100)', style: 'stroke:#E5484D' }, cells);
+  const boltP = 'M444 34 L402 108 H434 L418 168 L462 88 H428 Z';
+  const boltF = s('path', { d: boltP, class: 'vf', 'fill-opacity': 0 }, cells);
+  const bolt = d('path', { d: boltP }, cells);
+  const mirFrame = d('ellipse', { cx: 645, cy: 86, rx: 40, ry: 54 }, cells);
+  const mirStand = d('path', { d: 'M645 140 V170 M617 172 H673' }, cells);
+  const mirShine = d('path', { d: 'M622 70 Q626 52 640 46' }, cells);
+  const mirDot = s('circle', { cx: 656, cy: 96, r: 9, fill: '#7C4DDB' }, cells);
+
+  enter(ong, 10.5);
+  exit(P.aql, 10.5 + F(4));
+  eye.strokes.concat(eye.lashPaths).forEach(p => p.setAttribute('stroke-dashoffset', 0));   // drawn when the card lands
+  openEye(eye, 11.0, 8);
+  draw(redS, 13.0, 12); fadeFill(red, 13.0 + F(8), 6);
+  draw(bolt, 13.5, 12); fadeFill(boltF, 13.5 + F(10), 6, 0.9);
+  draw([mirFrame, mirStand], 14.0, 12); draw(mirShine, 14.0 + F(8), 6);
+  T(mirDot, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: F(10), ease: 'back.out(2.2)' }, 14.0 + F(10));
+}
+
+/* ================================================================ BUILD / RENDER */
+let built = false;
+function build() {
+  buildSubtitles();
+  S1(); S2();
+  built = true;
+}
+function renderAt(t) {
+  const f = Math.max(0, Math.min(FRAMES - 1, Math.round(t * FPS)));
+  const tt = f / FPS;
+  tl.seek(tt, false);
+  for (const p of procs) p(tt, f);
+  window.__frame = f;
+  return f;
+}
+
+/* ---- fit the 1080x1920 stage into the window ---- */
+function fit() {
+  const k = Math.min(innerWidth / 1080, innerHeight / 1920);
+  const el = document.getElementById('fit');
+  el.style.transform = `translate(${(innerWidth - 1080 * k) / 2}px,${(innerHeight - 1920 * k) / 2}px) scale(${k})`;
+}
+addEventListener('resize', fit); fit();
+
+/* ---- checks (called by the still renderer) ---- */
+function lum(hex) {
+  const c = hex.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+const parseRGB = str => { const m = str.match(/[\d.]+/g).map(Number); return { c: m.slice(0, 3), a: m.length > 3 ? m[3] : 1 }; };
+function effOpacity(el) {
+  let o = 1;
+  for (let e = el; e && e !== stage; e = e.parentElement) {
+    const cs = getComputedStyle(e);
+    if (cs.visibility === 'hidden' || cs.display === 'none') return 0;
+    o *= parseFloat(cs.opacity);
+  }
+  return o;
+}
+function bgBehind(el) {                      // composite card / bubble / button fills over the void + blob
+  const layers = [];
+  for (let e = el; e && e !== stage; e = e.parentElement) {
+    const b = parseRGB(getComputedStyle(e).backgroundColor);
+    if (b.a > 0 && !e.classList.contains('caret')) layers.push(b);
+  }
+  let col = [0x07 * .84 + 0x4D * .16, 0x06 * .84 + 0x25 * .16, 0x0C * .84 + 0x9D * .16];   // void + 16% blob (worst case)
+  for (let i = layers.length - 1; i >= 0; i--) { const L = layers[i]; col = col.map((v, k) => v * (1 - L.a) + L.c[k] * L.a); }
+  return col;
+}
+window.__audit = () => {
+  const out = { textOut: [], contrastLow: [], overlap: [], minContrast: 99, texts: [] };
+  const els = [...stage.querySelectorAll('*')].filter(e => [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim()));
+  let subBottom = 300;
+  for (const pg of PAGES) if (effOpacity(pg.div) > 0.01 && pg.words.some(w => parseFloat(getComputedStyle(w).opacity) > 0.01)) {
+    const tops = new Set(pg.words.map(w => w.offsetTop)); subBottom = Math.max(subBottom, 300 + tops.size * 66 * 1.12);
+  }
+  for (const e of els) {
+    const op = effOpacity(e);
+    if (op < 0.02) continue;
+    const r = e.getBoundingClientRect();
+    if (r.width === 0) continue;
+    const txt = e.textContent.trim();
+    out.texts.push(txt);
+    if (r.left < 119.5 || r.right > 960.5 || r.top < 249.5 || r.bottom > 1500.5)
+      out.textOut.push({ txt, l: Math.round(r.left), r: Math.round(r.right), t: Math.round(r.top), b: Math.round(r.bottom) });
+    const fg = parseRGB(getComputedStyle(e).color).c, bgc = bgBehind(e);
+    const L1 = lum(fg), L2 = lum(bgc), cr = (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+    out.minContrast = Math.min(out.minContrast, +cr.toFixed(2));
+    if (cr < 4.5) out.contrastLow.push({ txt, cr: +cr.toFixed(2) });
+  }
+  for (const c of stage.querySelectorAll('.card,.chip')) {
+    if (effOpacity(c) < 0.02) continue;
+    const r = c.getBoundingClientRect();
+    if (r.top < subBottom + 8) out.overlap.push({ cls: c.className, top: Math.round(r.top), subBottom: Math.round(subBottom) });
+  }
+  return out;
+};
+window.__subsReport = () => PAGES.map(pg => {
+  const lines = new Map();
+  for (const w of pg.words) {
+    const top = w.offsetTop, l = w.offsetLeft, r = l + w.offsetWidth;
+    const e = lines.get(top) || { l: 1e9, r: -1e9 }; e.l = Math.min(e.l, l); e.r = Math.max(e.r, r); lines.set(top, e);
+  }
+  const widths = [...lines.values()].map(e => Math.round(e.r - e.l));
+  return { line: pg.line, start: pg.start, frame: Math.round(pg.start * FPS), text: pg.div.textContent, lines: lines.size, widths, maxW: Math.max(...widths) };
+});
+window.__lineText = () => LINES.map(l => l.s.replace(/\|/g, ' ').replace(/\*/g, ''));
+window.__firstWordOpacity = i => parseFloat(getComputedStyle(PAGES[i].words[0]).opacity);
+window.__pages = () => PAGES.map(p => p.start);
+
+/* ---- boot: fonts first, then build, then frame 0 ---- */
+const SAMPLE = 'AaQqʻʼ«»—·?0123456789';
+window.__ready = Promise.all([
+  document.fonts.load(`800 66px Inter`, SAMPLE),
+  document.fonts.load(`700 40px Inter`, SAMPLE),
+  document.fonts.load(`500 24px "JetBrains Mono"`, SAMPLE),
+  document.fonts.load(`500 30px "JetBrains Mono"`, SAMPLE),
+]).then(() => document.fonts.ready).then(() => {
+  window.__fontsOK = document.fonts.check('800 66px Inter', 'ʻʼ') && document.fonts.check('500 24px "JetBrains Mono"', 'ʻʼ');
+  build();
+  const t0 = FROZEN ? parseFloat(params.get('t')) || 0 : 0;
+  renderAt(t0);
+  if (!FROZEN) {
+    const startAt = performance.now();
+    const loop = now => { renderAt(((now - startAt) / 1000) % DUR); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+  return true;
+});
+window.renderAt = renderAt;
+window.renderFrame = f => renderAt(f / FPS);
+window.master = tl;
+})();
+</script>
+</body>
+</html>
