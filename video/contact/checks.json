@@ -1,0 +1,830 @@
+{
+ "errors": [
+  "Unsafe attempt to load URL file:///home/user/papka-N1/video/aql-va-ong.html?t=0 from frame with URL file:///home/user/papka-N1/video/aql-va-ong.html?t=0. 'file:' URLs are treated as unique security origins.\n"
+ ],
+ "fontsOK": true,
+ "subtitles": [
+  " 0.00s f   0  2 line(s)  [550, 392] px  Bu mashina oʻzini his qiladimi?",
+  " 2.00s f  60  2 line(s)  [478, 476] px  Yoki shunchaki taqlid qiladimi?",
+  " 4.00s f 120  2 line(s)  [624, 711] px  Avval bilib oling: aql va ong — ikki xil narsa.",
+  " 7.00s f 210  1 line(s)  [708] px  Aql — masala yechish.",
+  " 8.50s f 255  2 line(s)  [496, 564] px  Bugungi AI buni juda yaxshi qiladi.",
+  "10.50s f 315  2 line(s)  [674, 610] px  Ong esa — ichingizda nimanidir his qilish.",
+  "13.00s f 390  2 line(s)  [606, 482] px  Qizil rangni koʻrish, ogʻriqni sezish,",
+  "14.50s f 435  1 line(s)  [676] px  «men» degan tuygʻu.",
+  "16.00s f 480  1 line(s)  [620] px  Ilm-fan nima deydi?",
+  "18.50s f 555  2 line(s)  [349, 596] px  Olimlar ikki guruhga boʻlingan.",
+  "22.00s f 660  2 line(s)  [556, 834] px  Birinchilar: ong — miyadagi axborot jarayoni.",
+  "26.00s f 780  2 line(s)  [726, 728] px  Uni chipda takrorlasak, ong ham paydo boʻladi.",
+  "30.00s f 900  2 line(s)  [656, 604] px  Ikkinchilar: yoʻq, ong tirik tanaga bogʻliq.",
+  "34.00s f1020  2 line(s)  [590, 420] px  Jon Serl: yomgʻirni kompyuterda",
+  "36.00s f1080  2 line(s)  [627, 760] px  modellashtirsangiz, hech kim hoʻl boʻlmaydi.",
+  "38.50s f1155  2 line(s)  [498, 412] px  Devid Chalmers buni ongning",
+  "40.00s f1200  2 line(s)  [609, 373] px  «qiyin muammosi» deb atagan.",
+  "42.00s f1260  2 line(s)  [524, 530] px  2023-yil: 19 olim hisobot chiqardi.",
+  "46.00s f1380  2 line(s)  [472, 443] px  Xulosa: hozirgi AI ongli emas.",
+  "47.50s f1425  2 line(s)  [566, 545] px  Lekin texnik toʻsiq ham koʻrinmaydi.",
+  "50.00s f1500  1 line(s)  [693] px  Islom dini nima deydi?",
+  "52.50s f1575  2 line(s)  [418, 726] px  Qurʼon: «Ruh Robbimning ishidandir.",
+  "55.00s f1650  2 line(s)  [478, 434] px  Sizlarga ozgina ilm berilgan».",
+  "58.00s f1740  2 line(s)  [740, 548] px  Yaʼni ruhning haqiqatini faqat Alloh biladi.",
+  "62.00s f1860  1 line(s)  [800] px  Qurʼon: Allohdan oʻzgalar",
+  "63.50s f1905  2 line(s)  [578, 486] px  bitta pashsha ham yarata olmaydi.",
+  "66.00s f1980  2 line(s)  [702, 828] px  Koʻp ulamolarga koʻra, AI — taqlid qiluvchi vosita.",
+  "70.00s f2100  2 line(s)  [582, 594] px  Haqiqiy sunʼiy ong uchun nima kerak?",
+  "72.50s f2175  2 line(s)  [550, 498] px  1. Oʻzini kuzatish: oʻz fikrini bilish.",
+  "75.00s f2250  2 line(s)  [602, 496] px  2. Tana va sezgilar: dunyoni sezish.",
+  "77.50s f2325  1 line(s)  [575] px  3. Yagona «men»:",
+  "78.50s f2355  2 line(s)  [474, 732] px  hamma sezgini birlashtiruvchi markaz.",
+  "80.50s f2415  2 line(s)  [772, 664] px  4. Va ongni oʻlchaydigan test. Hozircha u yoʻq.",
+  "84.00s f2520  1 line(s)  [566] px  AI aqlli boʻla oladi.",
+  "85.00s f2550  2 line(s)  [503, 380] px  Ongli-chi? Bu — ochiq savol.",
+  "87.00s f2610  2 line(s)  [524, 458] px  Siz nima deysiz? Izohda yozing."
+ ],
+ "subtitleFail": [],
+ "lineText": [
+  "Bu mashina oʻzini his qiladimi?",
+  "Yoki shunchaki taqlid qiladimi?",
+  "Avval bilib oling: aql va ong — ikki xil narsa.",
+  "Aql — masala yechish. Bugungi AI buni juda yaxshi qiladi.",
+  "Ong esa — ichingizda nimanidir his qilish.",
+  "Qizil rangni koʻrish, ogʻriqni sezish, «men» degan tuygʻu.",
+  "Ilm-fan nima deydi?",
+  "Olimlar ikki guruhga boʻlingan.",
+  "Birinchilar: ong — miyadagi axborot jarayoni.",
+  "Uni chipda takrorlasak, ong ham paydo boʻladi.",
+  "Ikkinchilar: yoʻq, ong tirik tanaga bogʻliq.",
+  "Jon Serl: yomgʻirni kompyuterda modellashtirsangiz, hech kim hoʻl boʻlmaydi.",
+  "Devid Chalmers buni ongning «qiyin muammosi» deb atagan.",
+  "2023-yil: 19 olim hisobot chiqardi.",
+  "Xulosa: hozirgi AI ongli emas. Lekin texnik toʻsiq ham koʻrinmaydi.",
+  "Islom dini nima deydi?",
+  "Qurʼon: «Ruh Robbimning ishidandir. Sizlarga ozgina ilm berilgan».",
+  "Yaʼni ruhning haqiqatini faqat Alloh biladi.",
+  "Qurʼon: Allohdan oʻzgalar bitta pashsha ham yarata olmaydi.",
+  "Koʻp ulamolarga koʻra, AI — taqlid qiluvchi vosita.",
+  "Haqiqiy sunʼiy ong uchun nima kerak?",
+  "1. Oʻzini kuzatish: oʻz fikrini bilish.",
+  "2. Tana va sezgilar: dunyoni sezish.",
+  "3. Yagona «men»: hamma sezgini birlashtiruvchi markaz.",
+  "4. Va ongni oʻlchaydigan test. Hozircha u yoʻq.",
+  "AI aqlli boʻla oladi. Ongli-chi? Bu — ochiq savol.",
+  "Siz nima deysiz? Izohda yozing."
+ ],
+ "startFrames": [
+  {
+   "t": 0,
+   "frame": 0,
+   "before": 0,
+   "at": 1,
+   "ok": true
+  },
+  {
+   "t": 2,
+   "frame": 60,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 4,
+   "frame": 120,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 7,
+   "frame": 210,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 8.5,
+   "frame": 255,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 10.5,
+   "frame": 315,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 13,
+   "frame": 390,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 14.5,
+   "frame": 435,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 16,
+   "frame": 480,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 18.5,
+   "frame": 555,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 22,
+   "frame": 660,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 26,
+   "frame": 780,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 30,
+   "frame": 900,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 34,
+   "frame": 1020,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 36,
+   "frame": 1080,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 38.5,
+   "frame": 1155,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 40,
+   "frame": 1200,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 42,
+   "frame": 1260,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 46,
+   "frame": 1380,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 47.5,
+   "frame": 1425,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 50,
+   "frame": 1500,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 52.5,
+   "frame": 1575,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 55,
+   "frame": 1650,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 58,
+   "frame": 1740,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 62,
+   "frame": 1860,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 63.5,
+   "frame": 1905,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 66,
+   "frame": 1980,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 70,
+   "frame": 2100,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 72.5,
+   "frame": 2175,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 75,
+   "frame": 2250,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 77.5,
+   "frame": 2325,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 78.5,
+   "frame": 2355,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 80.5,
+   "frame": 2415,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 84,
+   "frame": 2520,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 85,
+   "frame": 2550,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  },
+  {
+   "t": 87,
+   "frame": 2610,
+   "before": 0,
+   "at": 0.537,
+   "ok": true
+  }
+ ],
+ "platformFonts": {
+  "Inter (webfont)": 1120,
+  "JetBrains Mono Medium (webfont)": 155
+ },
+ "audit": [
+  {
+   "t": 1,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 7.58,
+   "texts": [
+    "Men borman.",
+    "men 0.91 · bor 0.88 · man 0.97",
+    "men 0.91",
+    "bor 0.88",
+    "man 0.97",
+    "Bu",
+    "mashina",
+    "oʻzini",
+    "his",
+    "qiladimi?"
+   ]
+  },
+  {
+   "t": 3,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 7.58,
+   "texts": [
+    "Men borman.",
+    "men 0.91 · bor 0.88 · man 0.97",
+    "men 0.91",
+    "bor 0.88",
+    "man 0.97",
+    "Yoki",
+    "shunchaki",
+    "taqlid",
+    "qiladimi?"
+   ]
+  },
+  {
+   "t": 5.5,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 7.58,
+   "texts": [
+    "AQL",
+    "ONG",
+    "?",
+    "Avval",
+    "bilib",
+    "oling:",
+    "aql",
+    "va",
+    "ong",
+    "—",
+    "ikki",
+    "xil",
+    "narsa."
+   ]
+  },
+  {
+   "t": 8.75,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 16.82,
+   "texts": [
+    "AQL",
+    "Matn yozish",
+    "Kod yozish",
+    "Shaxmat",
+    "Bugungi",
+    "AI",
+    "buni"
+   ]
+  },
+  {
+   "t": 11.75,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 7.58,
+   "texts": [
+    "ONG",
+    "?",
+    "Ong",
+    "esa",
+    "—",
+    "ichingizda",
+    "nimanidir",
+    "his",
+    "qilish."
+   ]
+  },
+  {
+   "t": 14.5,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 7.58,
+   "texts": [
+    "ONG",
+    "?",
+    "«men»"
+   ]
+  },
+  {
+   "t": 17.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "1-GURUH",
+    "2-GURUH",
+    "Ilm-fan",
+    "nima",
+    "deydi?"
+   ]
+  },
+  {
+   "t": 20.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "1-GURUH",
+    "2-GURUH",
+    "Olimlar",
+    "ikki",
+    "guruhga",
+    "boʻlingan."
+   ]
+  },
+  {
+   "t": 24,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "1-GURUH",
+    "2-GURUH",
+    "Birinchilar:",
+    "ong",
+    "—",
+    "miyadagi",
+    "axborot",
+    "jarayoni.",
+    "jarayoni"
+   ]
+  },
+  {
+   "t": 28,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "1-GURUH",
+    "2-GURUH",
+    "Uni",
+    "chipda",
+    "takrorlasak,",
+    "ong",
+    "ham",
+    "paydo",
+    "boʻladi.",
+    "boʻladi"
+   ]
+  },
+  {
+   "t": 32,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "1-GURUH",
+    "2-GURUH",
+    "Ikkinchilar:",
+    "yoʻq,",
+    "ong",
+    "tirik",
+    "tanaga",
+    "bogʻliq."
+   ]
+  },
+  {
+   "t": 36.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "modellashtirsangiz,",
+    "hech",
+    "kim"
+   ]
+  },
+  {
+   "t": 40.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "DEVID CHALMERS",
+    "«Qiyin muammo»",
+    "«qiyin",
+    "muammosi»",
+    "deb"
+   ]
+  },
+  {
+   "t": 44,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "HISOBOT · 2023",
+    "2023-yil:",
+    "19",
+    "olim",
+    "hisobot",
+    "chiqardi."
+   ]
+  },
+  {
+   "t": 48,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ILM-FAN",
+    "Hozirgi AI ongli",
+    "Texnik toʻsiq",
+    "koʻrinmaydi",
+    "Lekin",
+    "texnik",
+    "toʻsiq",
+    "ham"
+   ]
+  },
+  {
+   "t": 51.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ISLOM",
+    "ISRO SURASI, 85-OYAT · MAʼNOSI",
+    "HAJ SURASI, 73-OYAT · MAʼNOSI",
+    "Islom",
+    "dini",
+    "nima",
+    "deydi?"
+   ]
+  },
+  {
+   "t": 55.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ISLOM",
+    "ISRO SURASI, 85-OYAT · MAʼNOSI",
+    "HAJ SURASI, 73-OYAT · MAʼNOSI",
+    "Sizlarga",
+    "ozgina",
+    "ilm"
+   ]
+  },
+  {
+   "t": 60,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ISLOM",
+    "ISRO SURASI, 85-OYAT · MAʼNOSI",
+    "HAJ SURASI, 73-OYAT · MAʼNOSI",
+    "Yaʼni",
+    "ruhning",
+    "haqiqatini",
+    "faqat",
+    "Alloh",
+    "biladi."
+   ]
+  },
+  {
+   "t": 64,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ISLOM",
+    "HAJ SURASI, 73-OYAT · MAʼNOSI",
+    "bitta",
+    "pashsha",
+    "ham",
+    "yarata"
+   ]
+  },
+  {
+   "t": 68,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "ISLOM",
+    "HAJ SURASI, 73-OYAT · MAʼNOSI",
+    "Koʻp",
+    "ulamolarga",
+    "koʻra,",
+    "AI",
+    "—",
+    "taqlid",
+    "qiluvchi",
+    "vosita.",
+    "vosita"
+   ]
+  },
+  {
+   "t": 71.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "SHARTLAR",
+    "1",
+    "Oʻzini kuzatish",
+    "2",
+    "Tana va sezgilar",
+    "3",
+    "Yagona «men»",
+    "4",
+    "Ong testi",
+    "Haqiqiy",
+    "sunʼiy",
+    "ong",
+    "uchun",
+    "nima",
+    "kerak?",
+    "kerak"
+   ]
+  },
+  {
+   "t": 73.75,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "SHARTLAR",
+    "1",
+    "Oʻzini kuzatish",
+    "2",
+    "Tana va sezgilar",
+    "3",
+    "Yagona «men»",
+    "4",
+    "Ong testi",
+    "1.",
+    "Oʻzini",
+    "kuzatish:",
+    "oʻz",
+    "fikrini",
+    "bilish."
+   ]
+  },
+  {
+   "t": 76.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "SHARTLAR",
+    "1",
+    "Oʻzini kuzatish",
+    "2",
+    "Tana va sezgilar",
+    "3",
+    "Yagona «men»",
+    "4",
+    "Ong testi",
+    "2.",
+    "Tana",
+    "va",
+    "sezgilar:",
+    "sezgilar",
+    "dunyoni",
+    "sezish."
+   ]
+  },
+  {
+   "t": 79,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "SHARTLAR",
+    "1",
+    "Oʻzini kuzatish",
+    "2",
+    "Tana va sezgilar",
+    "3",
+    "Yagona «men»",
+    "4",
+    "Ong testi",
+    "hamma",
+    "sezgini",
+    "birlashtiruvchi",
+    "markaz."
+   ]
+  },
+  {
+   "t": 82.25,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 5.38,
+   "texts": [
+    "SHARTLAR",
+    "1",
+    "Oʻzini kuzatish",
+    "2",
+    "Tana va sezgilar",
+    "3",
+    "Yagona «men»",
+    "4",
+    "Ong testi",
+    "?",
+    "4.",
+    "Va",
+    "ongni",
+    "oʻlchaydigan",
+    "test.",
+    "test",
+    "Hozircha",
+    "u",
+    "yoʻq.",
+    "yoʻq"
+   ]
+  },
+  {
+   "t": 85.5,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 7.58,
+   "texts": [
+    "AQL",
+    "ONG",
+    "?",
+    "Ongli-chi?",
+    "Ongli",
+    "Bu",
+    "—",
+    "ochiq"
+   ]
+  },
+  {
+   "t": 88.5,
+   "textOut": [],
+   "contrastLow": [],
+   "overlap": [],
+   "minContrast": 4.86,
+   "texts": [
+    "@dangasalar_n1",
+    "Obuna boʻling",
+    "Siz",
+    "nima",
+    "deysiz?",
+    "Izohda",
+    "yozing."
+   ]
+  }
+ ]
+}

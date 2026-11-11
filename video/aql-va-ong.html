@@ -348,9 +348,14 @@ function buildPage(str) {
   const div = h('div', { class: 'page' }, subsEl);
   const words = [];
   let star = false;
-  str.split(' ').forEach((w, i) => {
-    if (i) div.appendChild(document.createTextNode(' '));
-    const sp = h('span', { class: 'w' }, div);
+  const parts = str.split(' ');
+  let host = div;
+  parts.forEach((w, i) => {
+    // keep a word and a following em dash on one line (same characters, only the break opportunity moves)
+    if (i) (w === '—' ? host : div).appendChild(document.createTextNode(' '));
+    if (parts[i + 1] === '—') { host = h('span', { style: 'white-space:nowrap' }, div); }
+    const sp = h('span', { class: 'w' }, w === '—' || parts[i + 1] === '—' ? host : div);
+    if (w === '—') host = div;
     let buf = '';
     const flush = () => { if (!buf) return; if (star) h('span', { class: 'hl' }, sp, buf); else sp.appendChild(document.createTextNode(buf)); buf = ''; };
     for (const ch of w) { if (ch === '*') { flush(); star = !star; } else buf += ch; }
@@ -580,13 +585,13 @@ function S3() {
   const beam = s('line', { stroke: '#B292F5', 'stroke-width': 3, 'stroke-linecap': 'round' }, g);
   // the chip body that the grid snaps into (drawn in brain-local units)
   const chipG = s('g', null, g);
-  const chipRect = d('rect', { x: -178, y: -178, width: 356, height: 356, rx: 30, 'vector-effect': 'non-scaling-stroke' }, chipG);
+  const chipRect = d('rect', { x: -178, y: -178, width: 356, height: 356, rx: 30 }, chipG);
   const pins = [];
   [-112, -37, 37, 112].forEach(o => {
-    pins.push(d('path', { d: `M${o} -180 V-214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
-    pins.push(d('path', { d: `M${o} 180 V214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
-    pins.push(d('path', { d: `M-180 ${o} H-214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
-    pins.push(d('path', { d: `M180 ${o} H214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
+    pins.push(d('path', { d: `M${o} -180 V-214` }, chipG));
+    pins.push(d('path', { d: `M${o} 180 V214` }, chipG));
+    pins.push(d('path', { d: `M-180 ${o} H-214` }, chipG));
+    pins.push(d('path', { d: `M180 ${o} H214` }, chipG));
   });
   // neuron (2-guruh) and the amber "not equal" badge
   const nG = s('g', { transform: 'translate(645 392)' }, g);
@@ -670,6 +675,7 @@ function S3() {
     beam.setAttribute('y1', st.cy - st.s * 270); beam.setAttribute('y2', st.cy + st.s * 270);
     beam.setAttribute('opacity', st.beam > 0 && st.beam < 1 ? 1 : 0);
     chipG.setAttribute('transform', `translate(${st.cx} ${st.cy}) scale(${st.s})`);
+    [chipRect].concat(pins).forEach(e => { e.style.strokeWidth = (3 / st.s).toFixed(3); });
   });
 
   /* ---------- card B: Searle's rain in a monitor (34 - 38.5) ---------- */
@@ -794,11 +800,215 @@ function S3() {
   reveal(val, 48, 10);
 }
 
+/* ================================================================ S4  50-70 s */
+function S4() {
+  const sc = scene('S4', 50, 70);
+  const chip = makeChip(sc, 'ISLOM', 684); centerChip(chip);
+  const card = makeCard(sc, 110, 756, 860, 640);
+  enter(card, 50); enter(chip, 50 + F(4), 24);
+  const g = svg(card, 0, 0, 860, 640);
+
+  // 8-point girih star: two squares, an inset double line and the inner octagon (local units, R = 200)
+  const st = { x: 430, y: 320, s: 1, rot: 0 };
+  const star = s('g', null, g);
+  const poly = (r, a0, n) => { let p = ''; for (let k = 0; k < n; k++) { const a = (a0 + k * 360 / n) * Math.PI / 180; p += (k ? ' L' : 'M') + (r * Math.cos(a)).toFixed(2) + ' ' + (r * Math.sin(a)).toFixed(2); } return p + ' Z'; };
+  const NS_ = {};   // stroke widths are compensated for the frame's scale in proc (dashes stay exact)
+  const sqA = d('path', Object.assign({ d: poly(200, -90, 4) }, NS_), star);
+  const sqB = d('path', Object.assign({ d: poly(200, -45, 4) }, NS_), star);
+  const inA = d('path', Object.assign({ d: poly(172, -90, 4), style: 'stroke-width:2;stroke-opacity:.55' }, NS_), star);
+  const inB = d('path', Object.assign({ d: poly(172, -45, 4), style: 'stroke-width:2;stroke-opacity:.55' }, NS_), star);
+  const oct = d('circle', Object.assign({ r: 136, transform: 'rotate(-90)', style: 'stroke-width:2' }, NS_), star);
+  draw(sqA, 50 + F(4), 30, 'power1.inOut');
+  draw(sqB, 50 + F(12), 30, 'power1.inOut');
+  draw(oct, 50 + F(26), 30, 'power1.inOut');
+  draw([inA, inB], 50 + F(34), 30, 'power1.inOut');
+
+  // content sits upright in the frame's centre
+  const starPaths = [[sqA, 3], [sqB, 3], [inA, 2], [inB, 2], [oct, 2]];
+  const content = s('g', { transform: 'translate(430 290)' }, g);
+  // 52.5 quote mark (an ornament, not text)
+  const quote = s('g', { transform: 'scale(1.5)' }, content);
+  const qShapes = [];
+  [-34, 34].forEach(ox => {
+    qShapes.push(s('circle', { cx: ox, cy: -6, r: 20, class: 'vf', 'fill-opacity': 0 }, quote));
+    qShapes.push(d('path', { d: `M${ox + 20} -6 A20 20 0 1 0 ${ox} 14 C${ox + 2} 34 ${ox - 10} 48 ${ox - 26} 56` }, quote));
+  });
+  // 62 fly in thin lines
+  const fly = s('g', { transform: 'translate(0 -6) scale(1.3)' }, content);
+  const flyStrokes = [];
+  const thin = 'stroke-width:2';
+  const wings = [-1, 1].map(side => {
+    const wg = s('g', null, fly);
+    flyStrokes.push(d('ellipse', { cx: 0, cy: 54, rx: 21, ry: 56, style: thin }, wg));
+    flyStrokes.push(d('path', { d: 'M0 4 Q4 50 0 104 M0 34 Q12 54 14 80', style: thin + ';stroke-opacity:.6' }, wg));
+    return { wg, side };
+  });
+  [['M-14 -22 L-46 -42 L-62 -34'], ['M-18 -10 L-54 -8 L-70 8'], ['M-14 2 L-42 24 L-50 48'],
+   ['M14 -22 L46 -42 L62 -34'], ['M18 -10 L54 -8 L70 8'], ['M14 2 L42 24 L50 48']]
+    .forEach(([p]) => flyStrokes.push(d('path', { d: p, style: thin }, fly)));
+  flyStrokes.push(d('ellipse', { cx: 0, cy: -16, rx: 20, ry: 24, style: thin }, fly));
+  flyStrokes.push(d('ellipse', { cx: 0, cy: 42, rx: 24, ry: 40, style: thin }, fly));
+  flyStrokes.push(d('path', { d: 'M-22 30 Q0 38 22 30 M-22 48 Q0 56 22 48 M-16 66 Q0 72 16 66', style: thin + ';stroke-opacity:.6' }, fly));
+  flyStrokes.push(d('circle', { cx: 0, cy: -54, r: 15, style: thin }, fly));
+  const flyEyes = [-11, 11].map(x => s('circle', { cx: x, cy: -58, r: 8, class: 'vf', 'fill-opacity': 0 }, fly));
+  // 66 robot head, gear in its chest
+  const robot = s('g', { transform: 'translate(0 14)' }, content);
+  const rb = [
+    d('path', { d: 'M0 -140 V-122' }, robot),
+    d('rect', { x: -64, y: -122, width: 128, height: 100, rx: 28 }, robot),
+    d('path', { d: 'M-16 -22 V-8 M16 -22 V-8' }, robot),
+    d('rect', { x: -88, y: -8, width: 176, height: 140, rx: 26 }, robot),
+  ];
+  const ant = s('circle', { cx: 0, cy: -148, r: 8, class: 'vf', 'fill-opacity': 0 }, robot);
+  const reyes = [-26, 26].map(x => s('circle', { cx: x, cy: -74, r: 10, fill: '#B292F5', 'fill-opacity': 0 }, robot));
+  const gearG = s('g', { transform: 'translate(0 62)' }, robot);
+  let gp = '';
+  for (let k = 0; k < 10; k++) {
+    const a0 = k * 36 * Math.PI / 180, pts = [[30, -9], [40, -6], [40, 6], [30, 9]];
+    pts.forEach(([r, w], i) => { const a = a0 + w * Math.PI / 180; gp += (k === 0 && i === 0 ? 'M' : ' L') + (r * Math.cos(a)).toFixed(2) + ' ' + (r * Math.sin(a)).toFixed(2); });
+  }
+  const gear = d('path', { d: gp + ' Z' }, gearG);
+  const hub = d('circle', { r: 11 }, gearG);
+  const hubF = s('circle', { r: 11, class: 'vf', 'fill-opacity': 0 }, gearG);
+
+  // labels
+  const lab1 = h('div', { class: 'label abs', style: 'top:578px' }, card, 'ISRO SURASI, 85-OYAT · MAʼNOSI');
+  const lab2 = h('div', { class: 'label abs', style: 'top:578px' }, card, 'HAJ SURASI, 73-OYAT · MAʼNOSI');
+  lab1.style.left = (430 - lab1.offsetWidth / 2) + 'px'; lab2.style.left = (430 - lab2.offsetWidth / 2) + 'px';
+
+  // 52.5 the star becomes the ornamental frame of a quote card
+  T(st, { y: 320, s: 1 }, { y: 290, s: 1.35, duration: F(16), ease: E.inOutQuart }, 52.5);
+  draw(qShapes.filter((e, i) => i % 2), 52.5 + F(8), 14);
+  qShapes.filter((e, i) => i % 2 === 0).forEach((c, i) => fadeFill(c, 52.5 + F(18) + i * F(4), 6));
+  reveal(lab1, 52.5 + F(12), 12);
+  // 58 the frame rotates 15 degrees, slowly
+  T(st, { rot: 0 }, { rot: 15, duration: 3.9, ease: 'sine.inOut' }, 58);
+  // 62 the fly; label changes
+  T(quote, { opacity: 1, scale: 1, transformOrigin: '50% 50%' }, { opacity: 0, scale: 0.9, duration: F(8), ease: E.inExpo }, 62);
+  T(lab1, { autoAlpha: 1 }, { autoAlpha: 0, duration: F(8), ease: E.inExpo }, 62);
+  draw(flyStrokes, 62 + F(4), 14);
+  flyEyes.forEach((e, i) => fadeFill(e, 62 + F(16) + i * F(2), 5));
+  reveal(lab2, 62 + F(10), 12);
+  // 66 robot outline, gear turning
+  T(fly, { opacity: 1, scale: 1, transformOrigin: '50% 50%' }, { opacity: 0, scale: 0.9, duration: F(8), ease: E.inExpo }, 66);
+  draw(rb, 66 + F(4), 16);
+  draw([gear, hub], 66 + F(12), 14);
+  fadeFill(ant, 66 + F(16), 5); reyes.forEach((e, i) => fadeFill(e, 66 + F(20) + i * F(2), 5)); fadeFill(hubF, 66 + F(24), 5);
+
+  proc((t, f) => {
+    if (t < 50 || t >= 70) return;
+    star.setAttribute('transform', `translate(${st.x} ${st.y}) rotate(${st.rot}) scale(${st.s})`);
+    starPaths.forEach(([e, w]) => { e.style.strokeWidth = (w / st.s).toFixed(3); });
+    const a = 26 * Math.sin(2 * Math.PI * f / 6);                       // 5 Hz flutter
+    wings.forEach(({ wg, side }) => wg.setAttribute('transform', `translate(${side * 10} -30) rotate(${side * -(32 + a)})`));
+    gearG.setAttribute('transform', `translate(0 62) rotate(${Math.max(0, t - 66.5) * 72})`);
+  });
+}
+
+/* ================================================================ S5  70-84 s */
+function S5() {
+  const sc = scene('S5', 70, 84);
+  // group = chip 48 + gap 24 + card; centred on y 1040 (card grows 440 -> 700 at 77.5)
+  const chip = makeChip(sc, 'SHARTLAR', 784); centerChip(chip);
+  const card = makeCard(sc, 110, 856, 860, 440);
+  enter(card, 70); enter(chip, 70 + F(4), 24);
+  const names = ['Oʻzini kuzatish', 'Tana va sezgilar', 'Yagona «men»', 'Ong testi'];
+  const rows = names.map((n, i) => {
+    const r = h('div', { class: 'row', style: `top:${28 + i * 96}px;height:96px` }, card);
+    const ns = svg(r, 0, 22, 52, 52, '0 0 52 52');
+    const ring = s('circle', { cx: 26, cy: 26, r: 23, fill: 'none', stroke: '#2F2850', 'stroke-width': 2.5 }, ns);
+    const num = h('div', { class: 'label abs', style: 'left:0;top:34px;width:52px;text-align:center' }, r, String(i + 1));
+    const bar = h('div', { class: 'abs', style: 'left:84px;top:41px;width:' + [380, 330, 300, 260][i] + 'px;height:14px;border-radius:7px;background:#2F2850' }, r);
+    const txt = h('div', { class: 'title', style: 'left:84px;top:26px' }, r, n);
+    if (i < 3) h('div', { class: 'div' }, r);
+    const tk = i < 3 ? makeTick(r, 708, 20) : null;
+    return { r, ring, num, bar, txt, tk };
+  });
+  rows.forEach(o => { if (o.tk) o.tk.el.style.left = '708px'; });
+  const q = h('div', { class: 'q', style: 'left:720px;top:18px;font-size:56px;width:40px;text-align:center' }, rows[3].r, '?');
+
+  const activate = (o, at) => {
+    T(o.ring, { attr: { stroke: '#2F2850' } }, { attr: { stroke: '#B292F5' }, duration: F(4), ease: 'none' }, at);
+    T(o.bar, { opacity: 1 }, { opacity: 0, duration: F(4), ease: 'power1.in' }, at + F(4));
+    reveal(o.txt, at + F(4), 10);
+  };
+  [72.5, 75, 77.5].forEach((at, i) => { activate(rows[i], at); tick(rows[i].tk, at); });
+  activate(rows[3], 80.5);
+  T(q, { opacity: 0 }, { opacity: 1, duration: F(4), ease: 'power1.out' }, 80.5);
+  T(q, { scale: 1, transformOrigin: '50% 60%' }, { scale: 1.08, duration: F(7.5), ease: 'sine.inOut', yoyo: true, repeat: 13 }, 80.5);
+
+  // 77.5: card grows (4 frames after the tick) to hold the "men" diagram: 6 nodes orbit and link to one centre star
+  resize(card, { from: { top: 856, height: 440 }, to: { top: 726, height: 700 } }, 77.5 + F(4));
+  resize(chip, { from: { top: 784 }, to: { top: 654 } }, 77.5 + F(8));
+  const og = svg(card, 0, 0, 860, 700);
+  const C = [430, 566];
+  const orbit = d('ellipse', { cx: C[0], cy: C[1], rx: 170, ry: 84 }, og, 'dl');
+  const links = [], nodes = [];
+  for (let i = 0; i < 6; i++) links.push(s('line', { stroke: '#B292F5', 'stroke-width': 2, 'stroke-linecap': 'round', opacity: 0 }, og));
+  let sp = '';
+  for (let k = 0; k < 16; k++) { const a = (k * 22.5 - 90) * Math.PI / 180, r = k % 2 ? 13 : 32; sp += (k ? ' L' : 'M') + (C[0] + r * Math.cos(a)).toFixed(1) + ' ' + (C[1] + r * Math.sin(a)).toFixed(1); }
+  const starF = s('path', { d: sp + ' Z', class: 'vf', 'fill-opacity': 0 }, og);
+  const starS = d('path', { d: sp + ' Z' }, og);
+  for (let i = 0; i < 6; i++) nodes.push(s('circle', { r: 0, fill: '#15131F', stroke: '#B292F5', 'stroke-width': 3 }, og));
+  draw(orbit, 77.5 + F(16), 14);
+  draw(starS, 77.5 + F(18), 12); fadeFill(starF, 77.5 + F(26), 6);
+  const nodeAt = i => 77.5 + F(24) + i * F(3);
+  proc(t => {
+    if (t < 77 || t >= 84) return;
+    for (let i = 0; i < 6; i++) {
+      const a = (i * 60 - 90 + (t - 77.5) * 24) * Math.PI / 180;
+      const x = C[0] + 170 * Math.cos(a), y = C[1] + 84 * Math.sin(a);
+      const p = clamp((t - nodeAt(i)) / F(8));
+      nodes[i].setAttribute('cx', x.toFixed(2)); nodes[i].setAttribute('cy', y.toFixed(2));
+      nodes[i].setAttribute('r', (11 * ease.outCubic(p)).toFixed(2));
+      const lp = ease.inOutCubic(clamp((t - nodeAt(i) - F(6)) / F(8)));
+      const L = links[i];
+      L.setAttribute('x1', x.toFixed(2)); L.setAttribute('y1', y.toFixed(2));
+      L.setAttribute('x2', lerp(x, C[0], lp).toFixed(2)); L.setAttribute('y2', lerp(y, C[1], lp).toFixed(2));
+      L.setAttribute('opacity', lp > 0 ? 0.7 : 0);
+    }
+  });
+}
+
+/* ================================================================ S6  84-90 s */
+function S6() {
+  const sc = scene('S6', 84, 90);
+  const P = compactPair(sc, 800);
+  [P.at, P.ot].forEach(e => { e.style.top = '312px'; e.style.left = (410 - e.offsetWidth) / 2 + 'px'; });
+  P.pz.strokes.concat(P.eye.strokes).forEach(e => e.setAttribute('stroke-dashoffset', 0));
+  P.pz.fill.setAttribute('fill-opacity', 1);
+  setEyeOpen(P.eye);
+  const tk = makeTick(P.aql, 330, 24);
+  enter(P.aql, 84); enter(P.ong, 84 + F(4), 24);
+  tick(tk, 84.5);
+
+  // 87: channel card, subscribe button pressed at 88.5
+  exit(P.aql, 87); exit(P.ong, 87 + F(2));
+  const card = makeCard(sc, 110, 820, 860, 440);
+  enter(card, 87 + F(6));
+  const av = svg(card, 370, 44, 120, 120, '0 0 120 120');
+  const avRing = d('circle', { cx: 60, cy: 60, r: 56, transform: 'rotate(-90 60 60)' }, av);
+  const moonF = s('path', { d: 'M74 30 A32 32 0 1 0 90 78 A26 26 0 1 1 74 30 Z', class: 'vf', 'fill-opacity': 0 }, av);
+  const moon = d('path', { d: 'M74 30 A32 32 0 1 0 90 78 A26 26 0 1 1 74 30 Z' }, av);
+  const name = h('div', { class: 'title', style: 'top:192px' }, card, '@dangasalar_n1');
+  name.style.left = (430 - name.offsetWidth / 2) + 'px';
+  const btn = h('div', { class: 'abs', style: 'left:190px;top:288px;width:480px;height:96px;border-radius:48px;background:#7C4DDB;transform-origin:50% 50%' }, card);
+  const btxt = h('div', { class: 'title', style: 'top:26px' }, btn, 'Obuna boʻling');
+  btxt.style.left = (240 - btxt.offsetWidth / 2) + 'px';
+  const ck = svg(btn, 212, 20, 56, 56, '0 0 56 56');
+  const ckp = d('path', { d: 'M14 29 L24 39 L43 18', style: 'stroke:#F5F3FF;stroke-width:5' }, ck);
+  draw(avRing, 87 + F(12), 14); draw(moon, 87 + F(16), 12); fadeFill(moonF, 87 + F(26), 6);
+  T(btn, { scale: 1 }, { scale: 0.94, duration: F(4), ease: 'power2.out' }, 88.5);
+  T(btn, { scale: 0.94 }, { scale: 1, duration: F(8), ease: 'power2.out' }, 88.5 + F(4));
+  T(btxt, { opacity: 1 }, { opacity: 0, duration: F(4), ease: 'power1.in' }, 88.5 + F(2));
+  draw(ckp, 88.5 + F(5), 8, 'power2.out');
+}
+
 /* ================================================================ BUILD / RENDER */
 let built = false;
 function build() {
   buildSubtitles();
-  S1(); S2(); S3();
+  S1(); S2(); S3(); S4(); S5(); S6();
   built = true;
 }
 function renderAt(t) {
