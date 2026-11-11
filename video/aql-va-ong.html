@@ -495,11 +495,310 @@ function S2() {
   T(mirDot, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: F(10), ease: 'back.out(2.2)' }, 14.0 + F(10));
 }
 
+/* ================================================================ S3  16-50 s */
+// brain silhouette: 52 outline dots + 68 interior dots, each linked to its 3 nearest
+function brainPoints() {
+  const OUT = [[-250, 90], [-290, 20], [-295, -50], [-270, -120], [-215, -175], [-140, -205], [-50, -215], [40, -210], [130, -190],
+    [210, -150], [265, -90], [295, -20], [295, 50], [270, 105], [230, 130], [250, 165], [230, 200], [180, 215], [125, 205], [95, 215],
+    [90, 262], [55, 262], [50, 200], [10, 150], [-60, 140], [-120, 150], [-170, 135], [-215, 115]].map(([x, y]) => [x, y - 24]);
+  const dense = [];
+  const N = OUT.length;
+  for (let i = 0; i < N; i++) {
+    const p0 = OUT[(i - 1 + N) % N], p1 = OUT[i], p2 = OUT[(i + 1) % N], p3 = OUT[(i + 2) % N];
+    for (let k = 0; k < 24; k++) {
+      const t = k / 24, t2 = t * t, t3 = t2 * t;
+      const cr = j => 0.5 * (2 * p1[j] + (-p0[j] + p2[j]) * t + (2 * p0[j] - 5 * p1[j] + 4 * p2[j] - p3[j]) * t2 + (-p0[j] + 3 * p1[j] - 3 * p2[j] + p3[j]) * t3);
+      dense.push([cr(0), cr(1)]);
+    }
+  }
+  const segL = dense.map((p, i) => Math.hypot(dense[(i + 1) % dense.length][0] - p[0], dense[(i + 1) % dense.length][1] - p[1]));
+  const total = segL.reduce((a, b) => a + b, 0);
+  const pts = [];
+  let acc = 0, j = 0;
+  for (let k = 0; k < 52; k++) {
+    const target = k * total / 52;
+    while (acc + segL[j] < target) { acc += segL[j]; j++; }
+    const u = (target - acc) / segL[j], a = dense[j], b = dense[(j + 1) % dense.length];
+    pts.push([lerp(a[0], b[0], u), lerp(a[1], b[1], u)]);
+  }
+  const inside = (x, y) => { let c = false; for (let i = 0, k = dense.length - 1; i < dense.length; k = i++) {
+    const [xi, yi] = dense[i], [xk, yk] = dense[k];
+    if ((yi > y) !== (yk > y) && x < (xk - xi) * (y - yi) / (yk - yi) + xi) c = !c; } return c; };
+  const r = rng(4242);
+  let dmin = 50, tries = 0;
+  while (pts.length < 120) {
+    const x = -300 + r() * 600, y = -245 + r() * 490;
+    tries++;
+    if (tries % 4000 === 0) dmin -= 2;
+    if (!inside(x, y)) continue;
+    if (pts.some(p => Math.hypot(p[0] - x, p[1] - y) < dmin)) continue;
+    pts.push([x, y]);
+  }
+  const edges = [], seen = new Set();
+  pts.forEach((p, i) => {
+    pts.map((q, k) => [k, Math.hypot(q[0] - p[0], q[1] - p[1])]).filter(([k]) => k !== i)
+      .sort((a, b) => a[1] - b[1]).slice(0, 3).forEach(([k]) => {
+        const key = i < k ? i + ':' + k : k + ':' + i;
+        if (!seen.has(key)) { seen.add(key); edges.push([Math.min(i, k), Math.max(i, k)]); }
+      });
+  });
+  return { pts, edges };
+}
+
+function S3() {
+  const sc = scene('S3', 16, 50);
+  const chip = makeChip(sc, 'ILM-FAN', 684); centerChip(chip);
+  const CT = 756, CH = 640;
+
+  /* ---------- card A: brain -> two groups -> chip vs neuron (16 - 34) ---------- */
+  const A = makeCard(sc, 110, CT, 860, CH);
+  enter(A, 16); enter(chip, 16 + F(4), 24);
+  const g = svg(A, 0, 0, 860, CH);
+  const L1 = h('div', { class: 'label abs', style: 'top:40px;left:0' }, A, '1-GURUH');
+  const L2 = h('div', { class: 'label abs', style: 'top:40px;left:0' }, A, '2-GURUH');
+  const w1 = L1.offsetWidth, w2 = L2.offsetWidth;
+  const st = { cx: 430, cy: 360, s: 0.96, split: 430, beam: 0 };
+
+  const splitLine = d('line', { x1: 430, y1: 96, x2: 430, y2: 604 }, g);
+  const { pts, edges } = brainPoints();
+  const eG = s('g', null, g), pG = s('g', null, g), dG = s('g', null, g);
+  const eEl = edges.map(() => s('line', { stroke: '#B292F5', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, eG));
+  const dEl = pts.map(() => s('circle', { r: 5, fill: '#7C4DDB', stroke: '#B292F5', 'stroke-width': 2 }, dG));
+  const r3 = rng(311);
+  const appear = pts.map(p => 16 + F(6) + ((p[0] + 300) / 600) * F(20) + r3() * F(4));
+  // grid targets: 11 x 11 minus one, assigned row by row (sorted by y, then x)
+  const order = pts.map((p, i) => i).sort((a, b) => pts[a][1] - pts[b][1]);
+  const grid = new Array(pts.length);
+  for (let row = 0; row < 11; row++) {
+    const slice = order.slice(row * 11, row * 11 + 11).sort((a, b) => pts[a][0] - pts[b][0]);
+    slice.forEach((i, c) => { grid[i] = [-150 + 30 * c + (slice.length < 11 ? 15 : 0), -150 + 30 * row]; });
+  }
+  const snapAt = pts.map(p => 26 + F(2) + ((p[0] + 300) / 600) * F(28));
+  const pulses = [];
+  for (let k = 0; k < 40; k++) pulses.push({ e: Math.floor(r3() * edges.length), dir: r3() < 0.5, P: 0.9 + r3() * 0.8, ph: r3(), on: k < 14 ? 16.9 : 22 + (k - 14) * F(1),
+    el: s('circle', { r: 4.5, fill: '#F5F3FF' }, pG) });
+  const beam = s('line', { stroke: '#B292F5', 'stroke-width': 3, 'stroke-linecap': 'round' }, g);
+  // the chip body that the grid snaps into (drawn in brain-local units)
+  const chipG = s('g', null, g);
+  const chipRect = d('rect', { x: -178, y: -178, width: 356, height: 356, rx: 30, 'vector-effect': 'non-scaling-stroke' }, chipG);
+  const pins = [];
+  [-112, -37, 37, 112].forEach(o => {
+    pins.push(d('path', { d: `M${o} -180 V-214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
+    pins.push(d('path', { d: `M${o} 180 V214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
+    pins.push(d('path', { d: `M-180 ${o} H-214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
+    pins.push(d('path', { d: `M180 ${o} H214`, 'vector-effect': 'non-scaling-stroke' }, chipG));
+  });
+  // neuron (2-guruh) and the amber "not equal" badge
+  const nG = s('g', { transform: 'translate(645 392)' }, g);
+  const neuron = [
+    'M-6 -98 C-34 -96 -46 -70 -40 -50 C-34 -26 -10 -18 6 -20 C30 -22 46 -44 40 -66 C34 -88 18 -100 -6 -98 Z',
+    'M-30 -86 L-78 -140 L-112 -150 M-78 -140 L-88 -188',
+    'M0 -98 L2 -166 L-20 -200 M2 -166 L28 -202',
+    'M30 -84 L84 -128 L120 -128 M84 -128 L96 -172',
+    'M-40 -56 L-100 -46 L-130 -14',
+    'M40 -54 L100 -48 L126 -16',
+    'M0 -20 V180',
+    'M0 180 L-40 214 M0 180 V220 M0 180 L40 214',
+  ].map(p => d('path', { d: p }, nG));
+  const myelin = [8, 62, 116].map(y => d('rect', { x: -12, y, width: 24, height: 42, rx: 12 }, nG));
+  const nucleus = s('circle', { cx: 0, cy: -58, r: 13, class: 'vf', 'fill-opacity': 0 }, nG);
+  const neq = s('g', { transform: 'translate(430 392)' }, g);
+  const neqIn = s('g', null, neq);
+  s('circle', { r: 38, fill: '#15131F', stroke: '#2F2850', 'stroke-width': 2 }, neqIn);
+  ['M-15 -8 H15', 'M-15 8 H15', 'M9 -20 L-9 20'].forEach(p => s('path', { d: p, fill: 'none', stroke: '#F2B66D', 'stroke-width': 4.5, 'stroke-linecap': 'round' }, neqIn));
+
+  // 18.5 split
+  draw(splitLine, 18.5, 14, 'power3.out');
+  T(st, { cx: 430, cy: 360, s: 0.96 }, { cx: 215, cy: 380, s: 0.6, duration: F(16), ease: E.inOutQuart }, 18.5 + F(4));
+  T(L1, { left: 215 - w1 / 2 }, { left: 215 - w1 / 2, duration: F(1) }, 18.5);
+  T(L2, { left: 645 - w2 / 2 }, { left: 645 - w2 / 2, duration: F(1) }, 18.5);
+  reveal(L1, 18.5 + F(10), 10); reveal(L2, 18.5 + F(14), 10);
+  // 22.0 left half widens, signals race
+  T(st, { split: 430 }, { split: 645, duration: F(16), ease: E.inOutQuart }, 22);
+  T(st, { cx: 215, cy: 380, s: 0.6 }, { cx: 322, cy: 380, s: 0.88, duration: F(16), ease: E.inOutQuart }, 22);
+  T(L1, { left: 215 - w1 / 2 }, { left: 322 - w1 / 2, duration: F(16), ease: E.inOutQuart }, 22 + F(4));
+  T(L2, { left: 645 - w2 / 2 }, { left: 752 - w2 / 2, duration: F(16), ease: E.inOutQuart }, 22 + F(4));
+  // 26.0 beam crosses, dots snap to the grid, chip outline + 16 pins
+  T(st, { beam: 0 }, { beam: 1, duration: F(30), ease: 'none' }, 26);
+  draw(chipRect, 26 + F(26), 14, 'power2.out');
+  pins.forEach((p, i) => draw(p, 26 + F(32) + (i % 4) * F(1), 6, 'power2.out'));
+  // 30.0 chip left, neuron right, amber "≠" between
+  T(st, { split: 645 }, { split: 430, duration: F(16), ease: E.inOutQuart }, 30);
+  T(st, { cx: 322, cy: 380, s: 0.88 }, { cx: 215, cy: 392, s: 0.62, duration: F(16), ease: E.inOutQuart }, 30);
+  T(L1, { left: 322 - w1 / 2 }, { left: 215 - w1 / 2, duration: F(16), ease: E.inOutQuart }, 30 + F(4));
+  T(L2, { left: 752 - w2 / 2 }, { left: 645 - w2 / 2, duration: F(16), ease: E.inOutQuart }, 30 + F(4));
+  draw(neuron.concat(myelin), 30 + F(8), 18);
+  fadeFill(nucleus, 30 + F(22), 6);
+  T(neqIn, { scale: 0, transformOrigin: '50% 50%' }, { scale: 1, duration: F(10), ease: 'back.out(2)' }, 30.5);
+  T(neqIn, { opacity: 0 }, { opacity: 1, duration: F(3), ease: 'none' }, 30.5);
+
+  const iq = ease.inOutCubic;
+  proc(t => {
+    if (t < 16 || t >= 34.4) return;
+    splitLine.setAttribute('x1', st.split); splitLine.setAttribute('x2', st.split);
+    const P = pts.map((p, i) => {
+      const q = iq(clamp((t - snapAt[i]) / F(10)));
+      const lx = lerp(p[0], grid[i][0], q), ly = lerp(p[1], grid[i][1], q);
+      return [st.cx + st.s * lx, st.cy + st.s * ly, clamp((t - appear[i]) / F(5)), q];
+    });
+    P.forEach((p, i) => {
+      const e = dEl[i];
+      e.setAttribute('cx', p[0].toFixed(2)); e.setAttribute('cy', p[1].toFixed(2));
+      e.setAttribute('r', (5 * ease.outCubic(p[2]) * (1 - 0.15 * p[3])).toFixed(2));
+      e.setAttribute('opacity', p[2].toFixed(3));
+    });
+    const ea = edges.map(([a, b]) => clamp(Math.min(P[a][2], P[b][2]) * 1.0 - 0) * (1 - Math.max(P[a][3], P[b][3])));
+    edges.forEach(([a, b], k) => {
+      const e = eEl[k];
+      e.setAttribute('x1', P[a][0].toFixed(2)); e.setAttribute('y1', P[a][1].toFixed(2));
+      e.setAttribute('x2', P[b][0].toFixed(2)); e.setAttribute('y2', P[b][1].toFixed(2));
+      e.setAttribute('opacity', (0.42 * ea[k]).toFixed(3));
+    });
+    // pulses: speed x3 from 22 s (integrated so positions never jump)
+    const ramp = t < 22 ? 0 : t < 22.5 ? (t - 22) * (t - 22) : 0.25 + (t - 22.5);
+    const clock = t + 2 * ramp;
+    pulses.forEach(pu => {
+      const [a, b] = edges[pu.e];
+      let u = ((clock / pu.P + pu.ph) % 1 + 1) % 1; if (pu.dir) u = 1 - u;
+      const vis = t >= pu.on ? Math.sin(Math.PI * u) * ea[pu.e] : 0;
+      pu.el.setAttribute('cx', lerp(P[a][0], P[b][0], u).toFixed(2));
+      pu.el.setAttribute('cy', lerp(P[a][1], P[b][1], u).toFixed(2));
+      pu.el.setAttribute('opacity', vis.toFixed(3));
+    });
+    const bx = st.cx + st.s * lerp(-310, 310, st.beam);
+    beam.setAttribute('x1', bx); beam.setAttribute('x2', bx);
+    beam.setAttribute('y1', st.cy - st.s * 270); beam.setAttribute('y2', st.cy + st.s * 270);
+    beam.setAttribute('opacity', st.beam > 0 && st.beam < 1 ? 1 : 0);
+    chipG.setAttribute('transform', `translate(${st.cx} ${st.cy}) scale(${st.s})`);
+  });
+
+  /* ---------- card B: Searle's rain in a monitor (34 - 38.5) ---------- */
+  exit(A, 34);
+  const B = makeCard(sc, 110, CT, 860, CH);
+  enter(B, 34 + F(4));
+  const mg = svg(B, 0, 0, 860, CH);
+  const clipId = 'screenclip';
+  s('rect', { x: 196, y: 96, width: 468, height: 288, rx: 10 }, s('clipPath', { id: clipId }, s('defs', null, mg)));
+  const bezel = d('rect', { x: 170, y: 70, width: 520, height: 340, rx: 24 }, mg);
+  const screen = d('rect', { x: 196, y: 96, width: 468, height: 288, rx: 10 }, mg, 'dl');
+  const stand = d('path', { d: 'M408 410 L396 478 M452 410 L464 478' }, mg);
+  const base = d('path', { d: 'M336 482 H524' }, mg);
+  const floor = d('path', { d: 'M90 560 H770' }, mg, 'dl');
+  const rainG = s('g', { 'clip-path': `url(#${clipId})` }, mg);
+  const r4 = rng(3434);
+  const drops = [];
+  for (let i = 0; i < 30; i++) drops.push({ x: 214 + r4() * 432, P: 0.36 + r4() * 0.14, on: 34.6 + r4() * 0.5,
+    el: s('line', { stroke: '#B292F5', 'stroke-width': 2.5, 'stroke-linecap': 'round' }, rainG),
+    sp: s('path', { fill: 'none', stroke: '#B292F5', 'stroke-width': 2, 'stroke-linecap': 'round' }, rainG) });
+  draw(bezel, 34 + F(10), 16); draw(screen, 34 + F(14), 14);
+  draw([stand, base], 34 + F(20), 10); draw(floor, 34 + F(24), 12);
+  proc(t => {
+    if (t < 34 || t >= 38.9) return;
+    for (const dr of drops) {
+      const k = (t - dr.on) / dr.P;
+      if (k < 0) { dr.el.setAttribute('opacity', 0); dr.sp.setAttribute('opacity', 0); continue; }
+      const u = k % 1, y = 96 - 30 + u * (288 + 30 + 18);       // falls past the bezel line, clipped there
+      dr.el.setAttribute('x1', dr.x); dr.el.setAttribute('x2', dr.x - 4);
+      dr.el.setAttribute('y1', y); dr.el.setAttribute('y2', y + 26);
+      dr.el.setAttribute('opacity', 0.9);
+      // tiny splash on the inside of the bottom bezel
+      const sk = u * dr.P - (288 + 4) / (288 + 48) * dr.P;
+      const sp = sk > 0 && sk < F(6) ? sk / F(6) : (k >= 1 && u * dr.P < F(6) - (dr.P - (288 + 4) / (288 + 48) * dr.P) ? 1 : -1);
+      if (sp >= 0 && sp <= 1) {
+        const w = 4 + 10 * sp;
+        dr.sp.setAttribute('d', `M${dr.x - w} 382 Q${dr.x} ${376 - 4 * sp} ${dr.x + w} 382`);
+        dr.sp.setAttribute('opacity', (1 - sp).toFixed(2));
+      } else dr.sp.setAttribute('opacity', 0);
+    }
+  });
+
+  /* ---------- card C: the hard problem (38.5 - 42) ---------- */
+  exit(B, 38.5);
+  const C = makeCard(sc, 110, CT, 860, CH);
+  enter(C, 38.5 + F(4));
+  const cl = h('div', { class: 'label abs', style: 'top:52px' }, C, 'DEVID CHALMERS');
+  cl.style.left = (430 - cl.offsetWidth / 2) + 'px';
+  const ct = h('div', { class: 'title', style: 'top:94px' }, C, '«Qiyin muammo»');
+  ct.style.left = (430 - ct.offsetWidth / 2) + 'px';
+  const kg = svg(C, 0, 0, 860, CH);
+  // trefoil knot with real over/under gaps (crossings found numerically, alternating along the curve)
+  const KN = 480, kp = [];
+  for (let i = 0; i < KN; i++) {
+    const th = i / KN * 2 * Math.PI;
+    kp.push([430 + 54 * (Math.sin(th) + 2 * Math.sin(2 * th)), 404 - 54 * (Math.cos(th) - 2 * Math.cos(2 * th)) + 20]);
+  }
+  const cross = [];
+  for (let i = 0; i < KN; i++) for (let j = i + 4; j < KN; j++) {
+    if ((j + 4) % KN <= i && j > KN - 4) continue;
+    const [a1, a2] = [kp[i], kp[(i + 1) % KN]], [b1, b2] = [kp[j], kp[(j + 1) % KN]];
+    const den = (a2[0] - a1[0]) * (b2[1] - b1[1]) - (a2[1] - a1[1]) * (b2[0] - b1[0]);
+    if (Math.abs(den) < 1e-9) continue;
+    const u = ((b1[0] - a1[0]) * (b2[1] - b1[1]) - (b1[1] - a1[1]) * (b2[0] - b1[0])) / den;
+    const v = ((b1[0] - a1[0]) * (a2[1] - a1[1]) - (b1[1] - a1[1]) * (a2[0] - a1[0])) / den;
+    if (u >= 0 && u < 1 && v >= 0 && v < 1) cross.push([i + u, j + v]);
+  }
+  const events = cross.flatMap(([x, y]) => [x, y]).sort((a, b) => a - b);
+  const under = events.filter((e, k) => k % 2 === 1);          // alternate over / under along the strand
+  const gap = 9;                                               // samples either side of an under-crossing
+  const strands = [];
+  let cur = null;
+  for (let i = 0; i <= KN; i++) {
+    const inGap = under.some(e => { const dd = Math.abs(i - e); return Math.min(dd, KN - dd) < gap; });
+    if (inGap) { cur = null; continue; }
+    if (!cur) { cur = []; strands.push(cur); }
+    cur.push(kp[i % KN]);
+  }
+  // one path per strand (dashing restarts per subpath), drawn back to back over 45 frames
+  const lens = strands.map(st => st.reduce((a, p, i) => i ? a + Math.hypot(p[0] - st[i - 1][0], p[1] - st[i - 1][1]) : 0, 0));
+  const total = lens.reduce((a, b) => a + b, 0);
+  let tAcc = 38.5 + F(10);
+  strands.forEach((st, k) => {
+    const el = d('path', { d: st.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ') }, kg);
+    const dur = 45 * lens[k] / total;
+    draw(el, tAcc, dur, 'none');
+    tAcc += F(dur);
+  });
+
+  /* ---------- card D: the 2023 report, 19 scientists (42 - 46) ---------- */
+  exit(C, 42);
+  const D = makeCard(sc, 110, CT, 860, CH);
+  enter(D, 42 + F(4));
+  const dg = svg(D, 0, 0, 860, CH);
+  s('path', { d: 'M776 0 L860 84', fill: 'none', stroke: '#2F2850', 'stroke-width': 2 }, dg);
+  s('path', { d: 'M776 0 L860 84 L860 0 Z', fill: '#2F2850', 'fill-opacity': 0.6 }, dg);
+  h('div', { class: 'label abs', style: 'left:48px;top:48px' }, D, 'HISOBOT · 2023');
+  [620, 560, 650, 420].forEach((w, i) => s('rect', { x: 48, y: 112 + i * 30, width: w, height: 12, rx: 6, fill: '#2F2850' }, dg));
+  const circ = [];
+  [7, 6, 6].forEach((n, row) => {
+    for (let j = 0; j < n; j++) {
+      const cx = 430 + (j - (n - 1) / 2) * 92, cy = 338 + row * 92;
+      s('circle', { cx, cy, r: 30, fill: 'none', stroke: '#2F2850', 'stroke-width': 2.5 }, dg);
+      const f = s('circle', { cx, cy, r: 30, fill: '#7C4DDB', 'fill-opacity': 0, stroke: '#B292F5', 'stroke-width': 3, 'stroke-opacity': 0 }, dg);
+      circ.push(f);
+    }
+  });
+  circ.forEach((c, i) => T(c, { attr: { 'fill-opacity': 0, 'stroke-opacity': 0 } }, { attr: { 'fill-opacity': 1, 'stroke-opacity': 1 }, duration: F(4), ease: 'power1.out' }, 43 + i * F(2)));
+
+  /* ---------- card E: conclusion rows (46 - 50) ---------- */
+  exit(D, 46);
+  const Ec = makeCard(sc, 110, CT, 860, CH);
+  enter(Ec, 46 + F(4));
+  const r1 = h('div', { class: 'row', style: 'top:178px' }, Ec);
+  h('div', { class: 'title rt' }, r1, 'Hozirgi AI ongli');
+  h('div', { class: 'div' }, r1);
+  const x1 = makeTick(r1, 708, 26, 'x');
+  const r2 = h('div', { class: 'row', style: 'top:354px' }, Ec);
+  h('div', { class: 'title rt' }, r2, 'Texnik toʻsiq');
+  const val = h('div', { class: 'title rt hl', style: 'left:auto;right:0' }, r2, 'koʻrinmaydi');
+  tick(x1, 46.5);
+  reveal(val, 48, 10);
+}
+
 /* ================================================================ BUILD / RENDER */
 let built = false;
 function build() {
   buildSubtitles();
-  S1(); S2();
+  S1(); S2(); S3();
   built = true;
 }
 function renderAt(t) {
