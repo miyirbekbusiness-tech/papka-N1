@@ -143,7 +143,9 @@ export function SUB(ctx, { id, text, t0, t1, color = P.WHITE, x = 120, top = 290
   const g = el('g', { id: 'sub_' + id, opacity: 0, class: 'sub' }, parent || ctx.ui);
   const asc = 0.96875 * s + (l - 1.2109 * s) / 2;
   const tx = el('text', { x, y: top + asc, fill: color, 'font-family': 'Inter', 'font-weight': weight, 'font-size': s }, g);
-  lines.forEach((ln, i) => { const ts = el('tspan', { x, y: top + asc + i * l }, tx); ts.textContent = ln; });
+  // align the ink (not the pen origin) to x, so glyphs like "j" never cross the safe edge
+  const mc = measureCtx(); mc.font = `${weight} ${s}px Inter`;
+  lines.forEach((ln, i) => { const lb = Math.max(0, mc.measureText(ln).actualBoundingBoxLeft); const ts = el('tspan', { x: x + lb, y: top + asc + i * l }, tx); ts.textContent = ln; });
   ctx.tl.set(g, { opacity: 0 }, 0);
   ctx.tl.to(g, { opacity: 1, duration: F(4), ease: 'none' }, t0);
   ctx.tl.set(g, { opacity: 0 }, t1);
@@ -421,6 +423,11 @@ const RICH_SPEC = {
   legX: 29, legW: 40, thigh: 120, shin: 110, shoeH: 20, legColor: '#0F0B24', shadowW: 88,
   eyeX: 19, eyeY: -4, eyeR: 10, browY: -24, browW: 24, browH: 8, browColor: '#C9C6D6', mouthY: 31,
   cheekX: 33, cheekY: 14, noseY: 11, noseW: 7, noseH: 6,
+  // part 2 additions: smile, sad
+  exprs: {
+    smile: { ...EXPR.smile, mW: 36, mUp: 4, mLow: 26, lid: 0.22, cheek: 1.2, browLift: 4 },
+    sad: { ...EXPR.sad, lid: 0.45, browTilt: 1.1, mW: 22, mUp: -8, mLow: -1, lookY: 0.8 },
+  },
   body(r) {
     const t = r.torso;
     el('path', { d: 'M -88 -402 Q -88 -440 -53 -440 L 53 -440 Q 88 -440 88 -402 L 82 -250 Q 81 -232 62 -232 L 6 -232 L 0 -250 L -6 -232 L -62 -232 Q -81 -232 -82 -250 Z', fill: '#0F0B24' }, t);
@@ -447,7 +454,12 @@ const BRIDE_SPEC = {
   legX: 16, legW: 24, thigh: 116, shin: 110, shoeH: 14, legColor: SKIN, shadowW: 92,
   eyeX: 18, eyeY: -2, eyeR: 11, browY: -24, browW: 18, browH: 5, browColor: '#4A2338', mouthY: 26, lashes: true,
   cheekX: 31, cheekY: 15, noseY: 10, noseW: 4, noseH: 3.5,
-  exprs: {},
+  // part 2 additions: smile, soft, laugh
+  exprs: {
+    smile: { ...EXPR.smile, mW: 30, mUp: 4, mLow: 22, lid: 0.18, cheek: 1.25, browLift: 4 },
+    soft: { ...EXPR.neutral, lid: 0.42, browTilt: 0.35, browLift: 2, mW: 22, mUp: 5, mLow: 12, cheek: 1.25, lookY: 0.15 },
+    laugh: { ...EXPR.smile, happy: 1, mW: 34, mUp: 0, mLow: 34, cheek: 1.35, browLift: 7 },
+  },
   body(r) {
     const t = r.torso;
     r.skirt = el('path', { d: 'M -40 -330 L 40 -330 Q 70 -200 106 -30 Q 108 -16 94 -14 Q 0 -4 -94 -14 Q -108 -16 -106 -30 Q -70 -200 -40 -330 Z', fill: '#F6EFFD', class: 'dress' }, t);
@@ -653,4 +665,37 @@ export function MARKBUBBLE(ctx, { parent, x, y, w = 380, h = 340 } = {}) {
   const q = el('text', { x: 4, y: 2, 'text-anchor': 'middle', fill: P.WHITE, 'font-family': 'Inter', 'font-weight': 800, 'font-size': 80 }, fig);
   q.textContent = '?';
   return { g, inner, cloud, fig };
+}
+
+// ---------------------------------------------------------------- ICONS (part 2)
+// rings, house, crib, sun — flat, 3 colours each, drawn in a 120 px box centred on 0,0
+export const ICONS = {
+  rings(g) {
+    el('path', { d: 'M -22 -2 m -30 0 a 30 30 0 1 0 60 0 a 30 30 0 1 0 -60 0 Z m 10 0 a 20 20 0 1 1 40 0 a 20 20 0 1 1 -40 0 Z', fill: P.GOLD, 'fill-rule': 'evenodd' }, g);
+    el('path', { d: 'M 22 10 m -30 0 a 30 30 0 1 0 60 0 a 30 30 0 1 0 -60 0 Z m 10 0 a 20 20 0 1 1 40 0 a 20 20 0 1 1 -40 0 Z', fill: '#F2B33D', 'fill-rule': 'evenodd' }, g);
+    el('path', { d: 'M -22 -50 L -12 -38 L -22 -26 L -32 -38 Z', fill: P.WHITE }, g);
+  },
+  house(g) {
+    el('rect', { x: -40, y: -10, width: 80, height: 62, rx: 6, fill: P.CREAM }, g);
+    el('path', { d: 'M -58 -4 L 0 -56 L 58 -4 Q 60 4 52 4 L -52 4 Q -60 4 -58 -4 Z', fill: '#FD893B' }, g);
+    el('rect', { x: -12, y: 18, width: 24, height: 34, rx: 4, fill: '#794C6E' }, g);
+  },
+  crib(g) {
+    el('rect', { x: -56, y: -34, width: 12, height: 88, rx: 5, fill: '#794C6E' }, g);
+    el('rect', { x: 44, y: -34, width: 12, height: 88, rx: 5, fill: '#794C6E' }, g);
+    el('rect', { x: -48, y: 4, width: 96, height: 18, rx: 6, fill: P.CREAM }, g);
+    el('path', { d: 'M -46 6 Q -20 -24 18 -6 Q 36 2 46 6 Z', fill: '#23C0B4' }, g);
+    [-24, -6, 12, 30].forEach(x => el('rect', { x: x - 3, y: -24, width: 6, height: 70, rx: 3, fill: '#794C6E' }, g));
+    el('rect', { x: -56, y: 40, width: 112, height: 10, rx: 5, fill: '#794C6E' }, g);
+    el('rect', { x: -56, y: -30, width: 112, height: 10, rx: 5, fill: '#794C6E' }, g);
+  },
+  sun(g) {
+    for (let i = 0; i < 12; i++) el('rect', { x: -5, y: -60, width: 10, height: 20, rx: 5, fill: '#FEB13F', transform: `rotate(${i * 30})` }, g);
+    el('circle', { r: 36, fill: P.GOLD }, g);
+    el('circle', { r: 20, fill: '#FD893B' }, g);
+  },
+};
+export function ICON(name, parent, { x = 0, y = 0, size = 120 } = {}) {
+  const g = el('g', { class: 'icon icon-' + name, transform: `translate(${x} ${y}) scale(${size / 120})` }, parent);
+  ICONS[name](g); return g;
 }

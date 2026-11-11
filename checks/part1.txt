@@ -1,16 +1,16 @@
-CHECKS part1.html  (2026-11-11T00:03:40.719Z)
+CHECKS part1.html  (2026-11-11T00:11:05.245Z)
 PASS  S1 on screen 3.00 s (needs 2.60 s for 7 words), 2 line(s) at 56px
 PASS  S2 on screen 3.00 s (needs 2.30 s for 6 words), 2 line(s) at 56px
 PASS  S3 on screen 2.00 s (needs 1.10 s for 2 words), 1 line(s) at 56px
 PASS  S4 on screen 2.00 s (needs 1.70 s for 4 words), 1 line(s) at 56px
 PASS  S5 on screen 4.00 s (needs 1.70 s for 4 words), 1 line(s) at 56px
 PASS  ʻ glyph: Inter loaded=true, text uses Inter=true, width Inter 231.7 vs serif 213.1 / mono 337.1
-PASS  S1 inside safe area: x 120–937, y 290–426
-PASS  S2 inside safe area: x 120–800, y 290–426
-PASS  S3 inside safe area: x 120–553, y 290–358
-PASS  S4 inside safe area: x 120–905, y 290–358
-PASS  S5 inside safe area: x 120–878, y 290–358
-PASS  L1 inside safe area: x 382–698, y 791–849
+PASS  S1 inside safe area (ink): x 121–936, y 300–413
+PASS  S2 inside safe area (ink): x 123–798, y 300–1055
+PASS  S3 inside safe area (ink): x 122–549, y 302–356
+PASS  S4 inside safe area (ink): x 121–900, y 300–356
+PASS  S5 inside safe area (ink): x 124–876, y 300–348
+PASS  L1 inside safe area (ink): x 382–698, y 791–849
 PASS  SUB contrast worst 11.98:1 (S2 f90), sampled every 2 frames
 PASS  nothing but sky above y=460 while a SUB is on
 PASS  hero feet at t=0.5s: sole y=1581.3 vs ground 1580

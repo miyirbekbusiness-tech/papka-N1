@@ -40,7 +40,7 @@ chars.forEach((c, row) => {
     T(cx, y + 44, 22, e, 700, K.EXPRESSIONS.includes(e) ? P.CREAM : P.GOLD, 'middle');
   });
 });
-// palette + bulbs + set swatches
+
 const yb = Y0 + chars.length * RH + 20;
 T(40, yb + 30, 30, 'PALETTE', 800);
 Object.entries(P).forEach(([k, v], i) => { K.el('rect', { x: 40 + i * 175, y: yb + 50, width: 155, height: 70, rx: 12, fill: v }, svg); T(40 + i * 175, yb + 146, 20, k + ' ' + v.slice(1), 700); });
@@ -56,6 +56,8 @@ K.el('stop', { offset: 0, 'stop-color': P.SKY }, lg); K.el('stop', { offset: 1, 
 const clip = K.el('clipPath', { id: 'setclip' }, defs); K.el('rect', { x: 0, y: 0, width: 1080, height: 1440 }, clip);
 const inner = K.el('g', { transform: 'translate(0 -480)', 'clip-path': 'url(#setclip)' }, setG);
 K.PARK(ctx, { parent: K.el('g', {}, inner) });
+T(1260, yb + 210, 30, 'ICONS', 800);
+['rings','house','crib','sun'].forEach((n, i) => { if (K.ICON) { K.ICON(n, svg, { x: 1330 + i * 160, y: yb + 320 }); T(1330 + i * 160, yb + 420, 20, n, 700, P.CREAM, 'middle'); } });
 window.__ready = true;
 </script>
 </body></html>

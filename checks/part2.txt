@@ -1,0 +1,25 @@
+CHECKS part2.html  (2026-11-11T00:10:46.798Z)
+PASS  S6 on screen 2.50 s (needs 2.30 s for 6 words), 2 line(s) at 56px
+PASS  S7 on screen 3.00 s (needs 2.60 s for 7 words), 2 line(s) at 56px
+PASS  S8 on screen 2.00 s (needs 1.40 s for 3 words), 1 line(s) at 56px
+PASS  S9 on screen 3.00 s (needs 2.60 s for 7 words), 2 line(s) at 56px
+PASS  S10 on screen 3.50 s (needs 1.70 s for 4 words), 1 line(s) at 56px
+PASS  no SUB before 0.5s (first at 0.5s)
+PASS  ʻ glyph: Inter loaded=true, text uses Inter=true, width Inter 231.7 vs serif 213.1 / mono 337.1
+PASS  S6 inside safe area (ink): x 120–953, y 300–424
+PASS  S7 inside safe area (ink): x 122–853, y 300–416
+PASS  S8 inside safe area (ink): x 124–655, y 300–356
+PASS  S9 inside safe area (ink): x 122–839, y 300–424
+PASS  S10 inside safe area (ink): x 124–924, y 300–356
+PASS  SUB contrast worst 11.98:1 (S9 f240), sampled every 2 frames
+PASS  nothing but sky above y=460 while a SUB is on
+PASS  bride feet at t=1s: sole y=1440.0 vs ground 1440
+PASS  hero feet at t=3.6s: sole y=1580.0 vs ground 1580
+PASS  rich feet at t=3.6s: sole y=1580.0 vs ground 1580
+PASS  hero feet at t=10s: sole y=1600.0 vs ground 1600
+PASS  bride feet at t=10s: sole y=1440.0 vs ground 1440
+PASS  hero feet at t=14.2s: sole y=1474.0 vs ground 1474
+PASS  f0 is full #FFD27B (0 other pixels)
+PASS  f449 is full #F6EFFD (0 other pixels)
+PASS  the heartbeat line is the only PINK besides the flower pin: 0 other PINK elements
+ALL PASS
