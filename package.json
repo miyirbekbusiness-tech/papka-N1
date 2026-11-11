@@ -1,0 +1,25 @@
+{
+  "name": "papka-n1",
+  "version": "1.0.0",
+  "description": "Oʻzbekcha gapiradigan, hazilkash shaxsiy AI yordamchi (Android). Har bir ishdan oldin sizdan ovoz bilan ruxsat soʻraydi, keyin oʻzi bajaradi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyirbekbusiness-tech/papka-N1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miyirbekbusiness-tech/papka-N1/issues"
+  },
+  "homepage": "https://github.com/miyirbekbusiness-tech/papka-N1#readme",
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "gsap": "^3.12.5",
+    "sharp": "^0.35.5"
+  }
+}

@@ -1,0 +1,226 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Part 1 — The Offer</title>
+<meta name="viewport" content="width=1080">
+<!-- GSAP 3.12.5: cdnjs is blocked in this build environment, so the npm copy is vendored -->
+<script src="vendor/gsap.min.js"></script>
+</head><body>
+<script type="module">
+import * as K from './kit.js';
+const { PALETTE: P, F, el } = K;
+
+K.boot(ctx => {
+  const { tl, world } = ctx;
+  const G = K.GROUND_Y; // 1580
+
+  // ---------------- SET
+  const park = K.PARK(ctx, { parent: el('g', {}, world), benchX: 300, lampX: 110 });
+
+  // ---------------- limousine (black, rolls in from the right)
+  const car = { x: 1180, sx: 1, sy: 1, door: 1, cone: 1, coneRot: -10 };
+  const CAR_S = 0.8, CAR_Y = 1480, BLACK = '#06040C';
+  const carBack = el('g', {}, world);
+  const inCar = el('g', {}, world);
+  const carFront = el('g', {}, world);
+  const ci = el('g', {}, carBack);
+  el('rect', { x: 370, y: -335, width: 170, height: 280, fill: P.GROUND }, ci);
+  el('rect', { x: 384, y: -150, width: 142, height: 96, rx: 10, fill: '#544174' }, ci);
+  const cb = el('g', {}, carFront);
+  el('path', { d: 'M 0 -70 Q 0 -160 40 -175 L 250 -195 L 330 -345 Q 338 -360 360 -360 L 1180 -360 Q 1200 -360 1200 -340 L 1200 -70 Q 1200 -40 1170 -40 L 30 -40 Q 0 -40 0 -70 Z M 370 -336 L 540 -336 L 540 -58 L 370 -58 Z', fill: BLACK, 'fill-rule': 'evenodd' }, cb);
+  el('path', { d: 'M 266 -200 L 334 -334 L 352 -336 L 352 -200 Z', fill: P.DUSK }, cb);
+  [[560, 760], [780, 980], [1000, 1170]].forEach(([a, b]) => el('rect', { x: a, y: -334, width: b - a, height: 98, rx: 10, fill: P.DUSK }, cb));
+  el('rect', { x: 0, y: -160, width: 370, height: 10, fill: '#544174' }, cb);
+  el('rect', { x: 540, y: -160, width: 660, height: 10, fill: '#544174' }, cb);
+  el('rect', { x: -6, y: -92, width: 52, height: 20, rx: 8, fill: '#544174' }, cb);
+  el('rect', { x: 2, y: -132, width: 16, height: 28, rx: 5, fill: P.GOLD }, cb);
+  [180, 1000].forEach(x => { el('circle', { cx: x, cy: -50, r: 52, fill: '#020106' }, cb); el('circle', { cx: x, cy: -50, r: 22, fill: '#544174' }, cb); });
+  const door = el('g', {}, cb);
+  el('rect', { x: 0, y: -338, width: 170, height: 284, rx: 6, fill: BLACK }, door);
+  el('rect', { x: 12, y: -322, width: 146, height: 86, rx: 10, fill: P.DUSK }, door);
+  el('rect', { x: 0, y: -160, width: 170, height: 10, fill: '#544174' }, door);
+  el('rect', { x: 128, y: -206, width: 28, height: 10, rx: 5, fill: '#544174' }, door);
+  const coneG = el('g', {}, world); // headlight cone sits over the people while it sweeps
+  const cone = el('path', { d: 'M 0 -10 L 0 10 L -760 230 L -760 -170 Z', fill: P.WHITE, opacity: 0.12 }, coneG);
+  ctx.procs.push(() => {
+    const T = `translate(${car.x} ${CAR_Y}) scale(${CAR_S * car.sx} ${CAR_S * car.sy})`;
+    [ci, cb].forEach(n => n.setAttribute('transform', T));
+    door.setAttribute('transform', `translate(370 0) scale(${car.door} 1)`);
+    cone.setAttribute('transform', `translate(${car.x + 8 * CAR_S} ${CAR_Y - 118 * CAR_S}) rotate(${car.coneRot})`);
+    cone.setAttribute('opacity', 0.12 * car.cone);
+  });
+
+  // ---------------- characters
+  const people = el('g', {}, world);
+  const hero = K.HERO(ctx, { parent: people, pose: { x: 300, y: G, sit: 1, aL: 14, eL: 30, aR: 14, eR: 30, turn: 0.25, lookX: 0.5 } });
+  const rich = K.RICH(ctx, { parent: inCar, pose: { x: car.x + 455 * CAR_S, y: 1600, s: 0.8, sit: 1, shadow: 0, turn: -0.6, lookX: -0.8, aL: 8, eL: 10, aR: 8, eR: 10 } });
+  ctx.procs.push(t => { const want = t < 1.866 ? inCar : people; if (rich.wrap.parentNode !== want) want.appendChild(rich.wrap); });
+  // while inside, RICH is only seen through the doorway
+  const clip = el('clipPath', { id: 'doorClip' }, ctx.defs);
+  const clipR = el('rect', { x: 370, y: -336, width: 170, height: 278 }, clip);
+  inCar.setAttribute('clip-path', 'url(#doorClip)');
+  clip.setAttribute('clipPathUnits', 'userSpaceOnUse');
+  ctx.procs.push(() => clipR.setAttribute('transform', `translate(${car.x} ${CAR_Y}) scale(${CAR_S * car.sx} ${CAR_S * car.sy})`));
+  // RICH rides in the car until he steps out
+  const richRide = { on: 1 };
+  ctx.procs.push(() => { if (richRide.on > 0.5) { rich.p.x = car.x + 455 * CAR_S; rich.apply(ctx.t); } });
+
+  // briefcase in RICH's left hand (screen-left), ring box in his right hand
+  const caseG = el('g', {}, rich.arms[0].prop);
+  const caseIn = el('g', {}, caseG);
+  const lid = el('g', {}, caseIn);
+  el('rect', { x: -60, y: -58, width: 120, height: 60, rx: 8, fill: '#794C6E' }, lid);
+  el('rect', { x: -50, y: -50, width: 100, height: 44, rx: 6, fill: P.GOLD }, lid);
+  const beam = el('path', { d: 'M -56 10 L 56 10 L 150 -330 L -150 -330 Z', fill: P.GOLD, opacity: 0 }, caseIn);
+  el('rect', { x: -12, y: -2, width: 24, height: 16, rx: 6, fill: '#544174' }, caseIn);
+  el('rect', { x: -60, y: 12, width: 120, height: 84, rx: 10, fill: '#794C6E' }, caseIn);
+  const gold = el('g', { opacity: 0 }, caseIn);
+  el('rect', { x: -52, y: 18, width: 104, height: 70, rx: 6, fill: P.GOLD }, gold);
+  [[-46, 26], [-6, 26], [-26, 50], [14, 50], [-46, 72], [-6, 72], [34, 72]].forEach(([x, y]) => el('rect', { x, y, width: 34, height: 14, rx: 3, fill: '#F2B33D' }, gold));
+  const latch = el('g', {}, caseIn);
+  [-30, 22].forEach(x => el('rect', { x, y: 12, width: 10, height: 14, rx: 3, fill: P.GOLD }, latch));
+  const cs = { open: 0, light: 0, vis: 1 };
+  ctx.procs.push(() => {
+    lid.setAttribute('transform', `translate(0 14) scale(1 ${-1 + 2 * (1 - cs.open)}) translate(0 -14)`);
+    lid.setAttribute('visibility', cs.open > 0.02 ? 'visible' : 'hidden');
+    gold.setAttribute('opacity', cs.open > 0.5 ? 1 : 0);
+    latch.setAttribute('opacity', cs.open > 0.5 ? 0 : 1);
+    beam.setAttribute('opacity', 0.28 * cs.light);
+    caseG.setAttribute('opacity', cs.vis);
+    caseG.setAttribute('transform', 'translate(0 8)');
+  });
+  const ringG = el('g', { transform: 'translate(0 -18)' }, rich.arms[1].prop);
+  const ringIn = el('g', {}, ringG);
+  el('rect', { x: -24, y: -26, width: 48, height: 26, rx: 6, fill: '#794C6E' }, ringIn);
+  el('rect', { x: -24, y: -52, width: 48, height: 22, rx: 6, fill: '#794C6E' }, ringIn);
+  el('rect', { x: -18, y: -48, width: 36, height: 14, rx: 4, fill: P.CREAM }, ringIn);
+  el('circle', { cx: 0, cy: -24, r: 13, fill: P.GOLD }, ringIn);
+  el('circle', { cx: 0, cy: -24, r: 7, fill: '#794C6E' }, ringIn);
+  el('path', { d: 'M -8 -40 L 0 -48 L 8 -40 L 0 -32 Z', fill: P.WHITE }, ringIn);
+  const ringSt = K.Pop(ctx, ringIn, 0, -10, 0);
+
+  // ---------------- leaves (max 8, slow sine), kept below the subtitle zone
+  K.LEAVES(ctx, { n: 8, parent: el('g', {}, world), x0: -80, x1: 1300, y0: 900, y1: 1700 });
+
+  // ---------------- 0.0  S1 — HERO on the bench, the limo already rolling in
+  K.SUB(ctx, { id: 'S1', text: 'Tasavvur qil: oldingga bir boy odam keldi.', t0: 0, t1: 3.0 });
+  ctx.event(0, 'carRoll', { dur: 1.0 });
+  tl.to(car, { x: 500, duration: 1.0, ease: 'power3.out' }, 0);
+  tl.to(car, { coneRot: 6, duration: 1.0, ease: 'power1.out' }, 0);
+  // 1.0 brake: squash 1.06 x 0.94 for 3 frames; door swings open
+  ctx.event(1.0, 'brake');
+  tl.to(car, { sx: 1.06, sy: 0.94, duration: F(1), ease: 'none' }, 1.0);
+  tl.to(car, { sx: 1, sy: 1, duration: F(2), ease: 'power2.out' }, 1.0 + F(1));
+  tl.to(car, { cone: 0, duration: F(8), ease: 'power1.in' }, 1.0);
+  tl.to(hero.p, { turn: 0.5, lookX: 1, duration: F(8), ease: 'power2.out' }, 0.6);
+  ctx.event(1.1, 'doorClick');
+  tl.to(car, { door: -0.55, duration: F(12), ease: 'expo.out' }, 1.1);
+  // 2.0 RICH steps out: 4-frame anticipation, hop, lands on the beat with squash
+  tl.to(rich.p, { sy: 0.92, sx: 1.04, duration: F(4), ease: 'power2.out' }, 1.733);
+  tl.set(richRide, { on: 0 }, 1.866);
+  tl.set(rich.p, { gy: G, shadow: 1 }, 1.866);
+  tl.to(rich.p, { x: 760, s: 1, sit: 0, sx: 1, sy: 1, duration: F(4), ease: 'power2.out' }, 1.866);
+  tl.to(rich.p, { y: 1500, duration: F(2), ease: 'power2.out' }, 1.866);
+  tl.to(rich.p, { y: G, duration: F(2), ease: 'power2.in' }, 1.933);
+  K.land(ctx, rich, 2.0);
+  ctx.event(2.0, 'step', { who: 'rich' });
+  // HERO stands after RICH has landed (one hero move at a time)
+  tl.to(hero.p, { rot: 4, duration: F(4), ease: 'power2.out' }, 2.13);
+  tl.to(hero.p, { sit: 0, rot: 0, x: 330, aL: 6, eL: 4, aR: 6, eR: 4, duration: F(8), ease: 'expo.out' }, 2.27);
+  K.land(ctx, hero, 2.53, 1.06, 0.94);
+  ctx.event(2.5, 'step', { who: 'hero' });
+  expr(rich, 'smile', 2.2);
+  tl.to(rich.p, { turn: -0.7, lookX: -1, duration: F(6) }, 2.1);
+
+  // 3.0 S2 — briefcase snaps open: GOLD light on both faces
+  K.SUB(ctx, { id: 'S2', text: '“Qizimga uylansang — 1 milliard dollar beraman.”', t0: 3.0, t1: 6.0, color: P.GOLD });
+  tl.to(rich.p, { aL: 40, eL: 50, duration: F(8), ease: 'power2.inOut' }, 2.6);
+  tl.to(cs, { open: 0.15, duration: F(4), ease: 'power2.out' }, 2.87);
+  tl.to(cs, { open: 1, duration: F(3), ease: 'expo.out' }, 3.0);
+  ctx.event(3.0, 'latch');
+  tl.to(cs, { light: 1, duration: F(6), ease: 'expo.out' }, 3.0);
+  tl.to([hero.p, rich.p], { glow: 1, duration: F(6), ease: 'expo.out' }, 3.0);
+  expr(hero, 'shock', 3.1, F(6));
+  // 4.0 LABEL pops (damping 0.6) on its leader to the case
+  K.LABEL(ctx, { id: 'L1', text: '1 000 000 000 $', x: 540, y: 820, t0: 4.0, t1: 6.0, z: 0.6,
+    anchor: () => { const [wx, wy] = rich.pointWorld(caseIn, 0, -6); return ctx.toScreen(wx, wy); } });
+  ctx.event(4.0, 'cashDing');
+  // 5.0 he holds up a ring box
+  tl.to(rich.p, { aR: 150, eR: 10, duration: F(8), ease: 'expo.out' }, 4.73);
+  K.pop(ctx, ringSt, 5.0, { z: 0.6, dur: 0.45 });
+  ctx.event(5.0, 'ringBox');
+  expr(rich, 'neutral', 4.8);
+
+  // 6.0 S3 — hard cut, close-up: HERO shock, jaw drops in 4 frames, eyes 1.3x; 2% push
+  K.SUB(ctx, { id: 'S3', text: 'Sen hayronsan.', t0: 6.0, t1: 8.0 });
+  tl.set(hero.p, { ...hero.exprs.neutral, glow: 0, turn: 0.1, lookX: 0, lookY: 0 }, 6.0);
+  expr(hero, 'shock', 6.0, F(4), 'power3.out');
+  tl.set([rich.p], { glow: 0 }, 6.0);
+  tl.set(cs, { vis: 0, light: 0 }, 6.0);
+  tl.set(ringSt, { k: 0 }, 6.0);
+  tl.set(rich.p, { aL: 6, eL: 4, aR: 6, eR: 4, x: 600, ...rich.exprs.neutral, turn: -0.5, lookX: -0.7 }, 6.0);
+  ctx.event(6.0, 'cut');
+
+  // 8.0 S4 — eyes slide left, doubt, hand to chin; three bubble dots
+  K.SUB(ctx, { id: 'S4', text: 'Xayolingga bitta narsa keldi:', t0: 8.0, t1: 10.0 });
+  expr(hero, 'doubt', 8.0, F(8), 'expo.out');
+  tl.to(hero.p, { aR: -66, eR: -142, tilt: -4, duration: F(10), ease: 'expo.out' }, 8.2);
+  const HX = 330, HY = G - 500;
+  const dots = [[HX + 66, HY - 70, 10], [HX + 92, HY - 104, 14], [HX + 126, HY - 146, 19]].map(([x, y, r], i) => {
+    const g = el('g', {}, world); el('circle', { cx: x, cy: y, r, fill: P.CREAM }, g);
+    const st = K.Pop(ctx, g, x, y); K.pop(ctx, st, 8.5 + i * 0.25, { z: 0.55, dur: 0.35 }); ctx.event(8.5 + i * 0.25, 'bubblePop', { i });
+    return st;
+  });
+
+  // 10.0 S5 — CREAM thought bubble springs out (damping 0.55), MARK face, 3° wobble
+  K.SUB(ctx, { id: 'S5', text: '“Qizi xunuk boʻlsa kerak…”', t0: 10.0, t1: 14.0 });
+  const mb = K.MARKBUBBLE(ctx, { parent: el('g', {}, world), w: 380, h: 330 });
+  const BX = 448, BY = 905, BS = 0.5;
+  mb.g.setAttribute('data-anchor', 'bubble');
+  const bubbleOuter = el('g', {}, world); bubbleOuter.appendChild(mb.g);
+  const bst = K.Pop(ctx, bubbleOuter, HX + 70, HY - 80);
+  ctx.procs.push(t => mb.g.setAttribute('transform', `translate(${BX} ${BY}) scale(${BS}) rotate(${3 * Math.sin(t * Math.PI * 2 / 1.0)})`));
+  K.pop(ctx, bst, 10.0, { z: 0.55, dur: 0.7 });
+  ctx.event(10.0, 'bubbleSpring');
+  dots.forEach(st => tl.to(st, { k: 0, duration: F(4), ease: 'expo.in' }, 9.9));
+  expr(hero, 'shock', 10.0, F(6));
+  expr(hero, 'doubt', 11.0, F(10));
+
+  // 13.0 RICH's hand on HERO's shoulder: the bubble pops in 4 frames; RICH points right
+  tl.to(rich.p, { x: 560, walk: 1, walkAmp: 1, duration: 1.0, ease: 'none' }, 11.4);
+  tl.set(rich.p, { walkAmp: 0, walk: 0 }, 12.4);
+  K.land(ctx, rich, 12.4, 1.04, 0.96);
+  ctx.event(11.65, 'step', { who: 'rich' }); ctx.event(12.15, 'step', { who: 'rich' });
+  tl.to(rich.p, { aL: 150, eL: -120, duration: F(4), ease: 'power2.in' }, 12.87);
+  tl.to(hero.p, { aR: 6, eR: 4, tilt: 0, duration: F(8), ease: 'expo.out' }, 12.6);
+  K.burst(ctx, bst, 13.0, 4);
+  ctx.event(13.0, 'bubbleBurst');
+  K.land(ctx, hero, 13.0, 1.04, 0.96);
+  expr(hero, 'neutral', 13.1);
+  tl.to(hero.p, { turn: 0.5, lookX: 0.8, duration: F(6) }, 13.1);
+  tl.to(rich.p, { aR: 92, eR: 0, duration: F(8), ease: 'expo.out' }, 13.33);
+  expr(rich, 'smile', 13.33);
+
+  // 14.0 both walk right; a door of GOLD light opens from the right edge and wipes
+  tl.to(rich.p, { aL: 6, eL: 4, duration: F(6) }, 13.95);
+  tl.to(hero.p, { x: 470, walk: 2, walkAmp: 1, duration: 1.0, ease: 'none' }, 14.0);
+  tl.to(rich.p, { x: 700, walk: 2, walkAmp: 1, duration: 1.0, ease: 'none' }, 14.0);
+  [14.25, 14.5, 14.75].forEach(t => ctx.event(t, 'step', { who: 'both' }));
+  const wipe = el('rect', { x: 1080, y: 0, width: 0, height: 1920, fill: P.GOLD }, ctx.fx);
+  const ws = { w: 0 };
+  ctx.procs.push(() => { wipe.setAttribute('x', 1080 - ws.w); wipe.setAttribute('width', ws.w); });
+  tl.to(ws, { w: 70, duration: F(8), ease: 'expo.out' }, 14.0);
+  tl.to(ws, { w: 1081, duration: F(20), ease: 'expo.in' }, 14.27);
+  ctx.event(14.0, 'whoosh');
+
+  // ---------------- camera: wide 0-6, cut to close-up 6.0 (+2 % push), ease out to
+  // a medium two-shot by 13.0, pan right 80 px from 14.0
+  K.camSet(ctx, 0, { x: 560, y: 1150, s: 1.2 });
+  K.camSet(ctx, 6.0, { x: 330, y: 968, s: 2.6 });
+  K.camTo(ctx, 6.0, 2.0, { s: 2.652 }, 'none');
+  K.camTo(ctx, 8.0, 5.0, { x: 445, y: 1000, s: 1.5 }, 'power2.inOut');
+  K.camTo(ctx, 14.0, 0.96, { x: 525 }, 'power1.in');
+
+  function expr(r, name, t, d, e) { K.expr(ctx, r, name, t, d, e); }
+}, { seed: 101, duration: 15 });
+
+</script>
+</body></html>

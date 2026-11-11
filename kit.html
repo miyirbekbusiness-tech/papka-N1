@@ -1,0 +1,61 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Reel Kit</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Inter;font-weight:700;src:url(fonts/inter-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2) format('woff2')}
+html,body{margin:0;background:#170E3A;color:#fff;font-family:Inter,sans-serif}
+svg{display:block}
+</style></head>
+<body>
+<script type="module">
+import * as K from './kit.js';
+const P = K.PALETTE;
+await Promise.all([document.fonts.load('800 40px Inter','ʻ?'), document.fonts.load('700 26px Inter','ʻ?')]);
+const params = new URLSearchParams(location.search);
+const EXTRA = { BRIDE: ['smile','soft','laugh'], RICH: ['smile','sad'] };
+const chars = ['HERO','RICH','BRIDE','CHILD'];
+const cols = Math.max(...chars.map(c => K.EXPRESSIONS.length + (EXTRA[c]||[]).filter(e => !K.EXPRESSIONS.includes(e)).length));
+const CW = 250, RH = 520, X0 = 170, Y0 = 120;
+const Wd = X0 + cols * CW + 30, Hd = Y0 + chars.length * RH + 560;
+const svg = K.el('svg', { width: Wd, height: Hd, viewBox: `0 0 ${Wd} ${Hd}`, id:'kit' }); document.body.appendChild(svg);
+K.el('rect', { width: Wd, height: Hd, fill: P.SKY }, svg);
+const T = (x, y, s, txt, w=700, fill=P.WHITE, anchor='start') => { const e = K.el('text', { x, y, 'font-family':'Inter', 'font-weight': w, 'font-size': s, fill, 'text-anchor': anchor }, svg); e.textContent = txt; return e; };
+T(40, 64, 44, 'Reel kit — characters × expressions', 800);
+const ctx = { rand: K.mulberry32(1), world: svg, rigs: [], procs: [], tl: gsap.timeline({ paused: true }), event(){} };
+chars.forEach((c, row) => {
+  const y = Y0 + row * RH;
+  K.el('rect', { x: 20, y: y, width: Wd - 40, height: RH - 16, rx: 18, fill: P.DUSK, opacity: 0.45 }, svg);
+  T(40, y + 44, 30, c, 800);
+  const ex = [...K.EXPRESSIONS, ...(EXTRA[c]||[]).filter(e => !K.EXPRESSIONS.includes(e))];
+  ex.forEach((e, i) => {
+    const cx = X0 + i * CW + CW / 2, gy = y + RH - 40;
+    const s = 0.7;
+    const g = K.el('g', {}, svg);
+    let rig;
+    try { rig = K[c](ctx, { parent: g, expr: e, pose: { x: cx, y: gy, s, blink: 0, breathe: 0 } }); }
+    catch (err) { T(cx, gy - 160, 20, 'n/a', 700, P.GOLD, 'middle'); return; }
+    rig.apply(0);
+    T(cx, y + 44, 22, e, 700, K.EXPRESSIONS.includes(e) ? P.CREAM : P.GOLD, 'middle');
+  });
+});
+// palette + bulbs + set swatches
+const yb = Y0 + chars.length * RH + 20;
+T(40, yb + 30, 30, 'PALETTE', 800);
+Object.entries(P).forEach(([k, v], i) => { K.el('rect', { x: 40 + i * 175, y: yb + 50, width: 155, height: 70, rx: 12, fill: v }, svg); T(40 + i * 175, yb + 146, 20, k + ' ' + v.slice(1), 700); });
+T(40, yb + 210, 30, 'BULBS (lit / out)', 800);
+const B = K.BULBS(ctx, { x1: 60, y1: yb + 240, x2: 900, y2: yb + 240, sag: 30, parent: svg });
+B.level[3] = 0; B.level[4] = 0; B.level[5] = 0;
+ctx.procs.forEach(p => p(0));
+T(980, yb + 210, 30, 'SET', 800);
+const setG = K.el('g', { transform: `translate(980 ${yb + 230}) scale(0.22)` }, svg);
+K.el('rect', { x: 0, y: 0, width: 1080, height: 1920*0.75, fill: 'url(#skyGradK)' }, setG);
+const defs = K.el('defs', {}, svg); const lg = K.el('linearGradient', { id: 'skyGradK', x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
+K.el('stop', { offset: 0, 'stop-color': P.SKY }, lg); K.el('stop', { offset: 1, 'stop-color': P.DUSK }, lg);
+const clip = K.el('clipPath', { id: 'setclip' }, defs); K.el('rect', { x: 0, y: 0, width: 1080, height: 1440 }, clip);
+const inner = K.el('g', { transform: 'translate(0 -480)', 'clip-path': 'url(#setclip)' }, setG);
+K.PARK(ctx, { parent: K.el('g', {}, inner) });
+window.__ready = true;
+</script>
+</body></html>
