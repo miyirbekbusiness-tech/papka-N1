@@ -1,0 +1,321 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Part 3 — The Years</title>
+<meta name="viewport" content="width=1080">
+<!-- GSAP 3.12.5: cdnjs is blocked in this build environment, so the npm copy is vendored -->
+<script src="vendor/gsap.min.js"></script>
+</head><body>
+<script type="module">
+import * as K from './kit.js';
+import { HERO, RICH, BRIDE, CHILD, BULBS, SET, PALETTE, SUB, LABEL } from './kit.js';
+const { SKY, DUSK, GROUND, CREAM, GOLD, GREEN, WHITE } = PALETTE;
+const { F, el } = K;
+
+// two-bone IK for a kit arm: returns {a, e} so the hand reaches local point (tx, ty)
+function ik(rig, side, tx, ty, bend = 1) {
+  const S = rig.spec, sd = side < 0 ? -1 : 1, p = rig.p;
+  const th = S.thigh * (1 - 0.72 * p.sit), hipStand = -(S.thigh + S.shin + S.shoeH), hipY = -(th + S.shin + S.shoeH);
+  const sx = sd * S.shoulderX, sy = S.shoulderY + (hipY - hipStand);
+  const L1 = S.upperArm, L2 = S.foreArm + 8;
+  const dx = tx - sx, dy = ty - sy, D = K.clamp(Math.hypot(dx, dy), Math.abs(L1 - L2) + 1, L1 + L2 - 0.5);
+  const phiD = Math.atan2(-dx, dy), alpha = Math.acos(K.clamp((L1 * L1 + D * D - L2 * L2) / (2 * L1 * D), -1, 1));
+  const phi1 = phiD + bend * sd * alpha;
+  const ex = sx - L1 * Math.sin(phi1), ey = sy + L1 * Math.cos(phi1);
+  const phi2 = Math.atan2(-(tx - ex), ty - ey);
+  const deg = r => r * 180 / Math.PI;
+  return { a: -sd * deg(phi1), e: sd * deg(phi1 - phi2) };
+}
+// world target -> rig-local target
+const toLocal = (rig, wx, wy) => [(wx - rig.p.x) / (rig.p.s * (rig.p.flip < 0 ? -1 : 1)), (wy - rig.p.y) / rig.p.s];
+function reach(rig, side, wx, wy, pose = {}, bend = 1) {
+  const q = { ...rig.p, ...pose }, save = rig.p; rig.p = q;
+  const [lx, ly] = toLocal(rig, wx, wy); const r = ik(rig, side, lx, ly, bend); rig.p = save;
+  return side < 0 ? { aL: r.a, eL: r.e } : { aR: r.a, eR: r.e };
+}
+
+K.boot(ctx => {
+  const { tl, world } = ctx;
+  void SET; void RICH;
+  const G = SET.GROUND_Y;
+
+  // ================= WEDDING (x 0): the kit SET in spring, flower arch with all six BULBS lit
+  const wed = el('g', { class: 'wedding' }, world);
+  SET.PARK(ctx, { parent: wed, season: 'spring', bench: false, lamp: false, trees: [[60, 0.95], [1020, 1.0], [-260, 1.0], [1300, 1.0]] });
+  const arch = el('g', {}, wed);
+  const AX = 540, AR = 250, AT = 1070; // arch centre x, radius, top of the posts
+  el('path', { d: `M ${AX - AR - 18} ${G} L ${AX - AR - 18} ${AT} A ${AR + 18} ${AR + 18} 0 0 1 ${AX + AR + 18} ${AT} L ${AX + AR + 18} ${G} L ${AX + AR - 12} ${G} L ${AX + AR - 12} ${AT} A ${AR - 12} ${AR - 12} 0 0 0 ${AX - AR + 12} ${AT} L ${AX - AR + 12} ${G} Z`, fill: '#794C6E' }, arch);
+  const fr = K.mulberry32(9);
+  for (let i = 0; i <= 26; i++) {
+    const k = i / 26, a = Math.PI * (1 - k);
+    const x = AX + Math.cos(a) * (AR + 3), y = AT - Math.sin(a) * (AR + 3);
+    el('circle', { cx: x + (fr() - 0.5) * 8, cy: y + (fr() - 0.5) * 8, r: 13 + fr() * 6, fill: GREEN }, arch);
+    el('circle', { cx: x + (fr() - 0.5) * 12, cy: y + (fr() - 0.5) * 12, r: 9 + fr() * 4, fill: [CREAM, GOLD, '#FEB13F'][i % 3] }, arch);
+  }
+  [-1, 1].forEach(sd => { for (let y = AT + 30; y < G - 120; y += 60) { el('circle', { cx: AX + sd * (AR + 3), cy: y, r: 14, fill: GREEN }, arch); el('circle', { cx: AX + sd * (AR + 3) + 6, cy: y - 8, r: 9, fill: [CREAM, GOLD][(y / 60 | 0) % 2] }, arch); } });
+  const wedBulbs = BULBS(ctx, { parent: wed, x1: AX - AR + 28, y1: AT - 10, x2: AX + AR - 28, y2: AT - 10, sag: -196, r: 15 });
+
+  // ================= DANCE (x 3000): under the park lamp (autumn park)
+  const dance = el('g', { class: 'dance', transform: 'translate(3000 0)' }, world);
+  SET.PARK(ctx, { parent: dance, season: 'autumn', bench: false, lampX: 300, trees: [[-120, 1.0], [980, 1.0]] });
+  // ================= RAIN (x 6000): one umbrella in the rain
+  const rain = el('g', { class: 'rain', transform: 'translate(6000 0)' }, world);
+  SET.PARK(ctx, { parent: rain, season: 'autumn', bench: false, lamp: false, trees: [[60, 1.0], [1040, 0.9]] });
+  const drops = el('g', { opacity: 0.35 }, rain);
+  const rr = K.mulberry32(5);
+  const R = [...Array(48)].map(() => ({ e: el('rect', { width: 3, height: 46, rx: 1.5, fill: WHITE }, drops), x: rr() * 1200 - 60, ph: rr(), sp: 1300 + rr() * 300 }));
+  ctx.procs.push(t => R.forEach(d => {
+    let y = 800 + ((d.ph * 880 + t * d.sp) % 880);
+    const under = d.x > 300 && d.x < 780 && y > 900; // the umbrella keeps them dry
+    d.e.setAttribute('x', d.x); d.e.setAttribute('y', y); d.e.setAttribute('transform', `rotate(8 ${d.x} ${y})`);
+    d.e.setAttribute('visibility', under ? 'hidden' : 'visible');
+  }));
+
+  // ================= HOME (x 10000): living room at night, inside a house
+  const HX = 10000;
+  const home = el('g', { class: 'home' }, world);
+  el('rect', { x: HX - 300, y: 0, width: 1700, height: 1500, fill: DUSK, class: 'backdrop' }, home);
+  el('rect', { x: HX - 300, y: 1500, width: 1700, height: 900, fill: GROUND }, home);
+  el('rect', { x: HX - 300, y: 1486, width: 1700, height: 18, fill: '#544174' }, home);
+  // window with the city outside
+  el('rect', { x: HX + 660, y: 900, width: 330, height: 380, rx: 10, fill: '#544174' }, home);
+  el('rect', { x: HX + 676, y: 916, width: 298, height: 348, rx: 6, fill: SKY }, home);
+  [[690, 1150, 60, 114], [758, 1100, 70, 164], [836, 1170, 54, 94], [896, 1120, 66, 144]].forEach(([x, y, w, h]) => {
+    el('rect', { x: HX + x, y, width: w, height: h, fill: '#32246A' }, home);
+    for (let yy = y + 14; yy < y + h - 14; yy += 26) el('rect', { x: HX + x + 12, y: yy, width: 9, height: 12, fill: GOLD }, home);
+  });
+  el('rect', { x: HX + 820, y: 916, width: 10, height: 348, fill: '#544174' }, home);
+  el('rect', { x: HX + 676, y: 1084, width: 298, height: 10, fill: '#544174' }, home);
+  const homeBulbs = BULBS(ctx, { parent: home, x1: HX + 640, y1: 850, x2: HX + 1010, y2: 850, sag: 26, r: 15 });
+  // one GOLD lamp
+  el('circle', { cx: HX + 190, cy: 1110, r: 120, fill: GOLD, opacity: 0.3 }, home);
+  el('rect', { x: HX + 184, y: 1110, width: 12, height: 470, fill: '#544174' }, home);
+  el('rect', { x: HX + 150, y: 1568, width: 80, height: 14, rx: 6, fill: '#544174' }, home);
+  el('path', { d: `M ${HX + 140} 1130 L ${HX + 240} 1130 L ${HX + 218} 1050 L ${HX + 162} 1050 Z`, fill: GOLD }, home);
+  // sofa 794C6E
+  const SX = HX + 440;
+  el('rect', { x: SX - 230, y: 1250, width: 460, height: 190, rx: 30, fill: '#794C6E' }, home);
+  const sofaFront = el('g', {}, home);
+  // the seat cushion sits behind the people; armrests and front base go in front
+  el('rect', { x: SX - 210, y: 1404, width: 420, height: 60, rx: 18, fill: '#8A5A80' }, home);
+  // crib (slides in at 10.5)
+  const crib = { x: HX + 1300 };
+  const cribBack = el('g', {}, home);
+  el('rect', { x: -100, y: -260, width: 200, height: 16, rx: 8, fill: '#794C6E' }, cribBack);
+  [-100, 100].forEach(x => el('rect', { x: x - 8, y: -280, width: 16, height: 280, rx: 6, fill: '#794C6E' }, cribBack));
+  el('rect', { x: -96, y: -112, width: 192, height: 22, rx: 6, fill: CREAM }, cribBack);
+
+  // ================= characters (from kit.js, unchanged)
+  const heroG = el('g', {}, world), brideG = el('g', {}, world), childG = el('g', {}, world);
+  const hero = HERO(ctx, { parent: heroG, expr: 'smile', pose: { x: 430, y: G, turn: 0.6, lookX: 0.8 } });
+  const bride = BRIDE(ctx, { parent: brideG, expr: 'smile', pose: { x: 650, y: G, turn: -0.6, lookX: -0.8 } });
+  const rich = RICH(ctx, { parent: heroG, expr: 'smile', pose: { x: 930, y: G, turn: -0.7, lookX: -0.9 } });
+  const child = CHILD(ctx, { parent: childG, expr: 'smile', pose: { x: HX + 1300, y: 1700, s: 0.85, opacity: 0 } });
+  const cribFront = el('g', {}, world);
+  el('rect', { x: -100, y: -90, width: 200, height: 70, rx: 8, fill: '#794C6E' }, cribFront);
+  for (let x = -76; x <= 76; x += 38) el('rect', { x: x - 5, y: -250, width: 10, height: 170, rx: 5, fill: '#794C6E' }, cribFront);
+  [-100, 100].forEach(x => el('rect', { x: x - 10, y: -290, width: 20, height: 290, rx: 6, fill: '#794C6E' }, cribFront));
+  el('rect', { x: -110, y: -262, width: 220, height: 18, rx: 8, fill: '#794C6E' }, cribFront);
+  const childClip = el('clipPath', { id: 'cribClip', clipPathUnits: 'userSpaceOnUse' }, ctx.defs);
+  const ccr = el('rect', { x: HX - 400, y: -2000, width: 3000, height: 3490 }, childClip);
+  childG.setAttribute('clip-path', 'url(#cribClip)');
+  void ccr;
+  const armFront = el('g', {}, world);
+  el('rect', { x: SX - 260, y: 1330, width: 60, height: 250, rx: 24, fill: '#794C6E' }, armFront);
+  el('rect', { x: SX + 200, y: 1330, width: 60, height: 250, rx: 24, fill: '#794C6E' }, armFront);
+  el('rect', { x: SX - 230, y: 1450, width: 460, height: 110, rx: 20, fill: '#794C6E' }, armFront);
+  [-140, 140].forEach(dx => el('rect', { x: SX + dx - 10, y: 1556, width: 20, height: 24, fill: '#544174' }, armFront));
+  const homeShow = { on: 0 };
+  ctx.procs.push(() => {
+    armFront.setAttribute('visibility', homeShow.on ? 'visible' : 'hidden');
+    sofaFront.setAttribute('visibility', 'visible');
+    cribBack.setAttribute('transform', `translate(${crib.x} ${G})`);
+    cribFront.setAttribute('transform', `translate(${crib.x} ${G})`);
+  });
+
+  // OUTFITS for WEDDING: HERO's jacket 2A2660 over the hoodie, BRIDE's WHITE veil
+  const jacket = el('g', {}, hero.torso);
+  [-1, 1].forEach(sd => el('path', { d: 'M -80 -404 Q -80 -440 -48 -440 L -24 -440 L -18 -330 L -26 -238 L -60 -238 Q -76 -238 -76 -256 Z', transform: `scale(${sd} 1)`, fill: '#2A2660' }, jacket));
+  const sleeves = hero.arms.map(a => {
+    const s1 = el('rect', { x: -a.w / 2 - 1, y: -a.w / 2, width: a.w + 2, height: a.l1 + a.w / 2, rx: a.w / 2, fill: '#2A2660' }, a.g);
+    a.g.insertBefore(s1, a.j);
+    const s2 = el('rect', { x: -a.w / 2 - 1, y: -a.w / 2, width: a.w + 2, height: a.l2 + a.w / 2 - 6, rx: a.w / 2, fill: '#2A2660' }, a.j);
+    a.j.insertBefore(s2, a.end);
+    return [s1, s2];
+  }).flat();
+  const veil = el('path', { d: 'M -46 -52 Q 0 -78 46 -52 Q 96 120 108 300 Q 0 330 -108 300 Q -96 120 -46 -52 Z', fill: WHITE, opacity: 0.92 }, bride.hairBack);
+  const veilTop = el('path', { d: 'M -50 -36 Q 0 -86 50 -36 Q 0 -66 -50 -36 Z', fill: WHITE }, bride.headG);
+  const outfit = { on: 1 };
+  ctx.procs.push(() => [jacket, veil, veilTop, ...sleeves].forEach(n => n.setAttribute('visibility', outfit.on ? 'visible' : 'hidden')));
+
+  // ================= 0.0 full CREAM contracts in 10 frames into BRIDE's dress
+  const cream = el('circle', { r: 2400, fill: CREAM }, ctx.fx);
+  const cr = { r: 2400 };
+  ctx.procs.push(() => {
+    const [wx, wy] = bride.pointWorld(bride.torso, 0, -150); const [sx, sy] = ctx.toScreen(wx, wy);
+    cream.setAttribute('cx', sx); cream.setAttribute('cy', sy); cream.setAttribute('r', Math.max(0, cr.r));
+  });
+  tl.to(cr, { r: 70, duration: F(10), ease: 'expo.in' }, 0);
+  tl.set(cr, { r: 0 }, F(10));
+  ctx.event(0, 'whoosh');
+
+  // 0.5 S11 — HERO nods and takes her hand
+  SUB(ctx, { id: 'S11', text: 'Sen rozi boʻlding.', t0: 0.5, t1: 2.0 });
+  tl.to(hero.p, { lookY: 0.7, tilt: 4, duration: F(4), ease: 'power2.out' }, 0.5);
+  tl.to(hero.p, { lookY: 0, tilt: 0, duration: F(5), ease: 'power2.inOut' }, 0.5 + F(4));
+  tl.to(hero.p, { lookY: 0.6, tilt: 3, duration: F(4), ease: 'power2.out' }, 0.8);
+  tl.to(hero.p, { lookY: 0, tilt: 0, duration: F(5), ease: 'power2.inOut' }, 0.8 + F(4));
+  const CLASP = [540, 1268];
+  tl.to(hero.p, { ...reach(hero, 1, ...CLASP), duration: F(10), ease: 'expo.out' }, 1.1);
+  tl.to(bride.p, { ...reach(bride, -1, CLASP[0] + 4, CLASP[1] + 4), duration: F(10), ease: 'expo.out' }, 1.25);
+  ctx.event(1.4, 'touch');
+  // 2.0 S12 — the ring slides on; one 4-point sparkle for 6 frames
+  SUB(ctx, { id: 'S12', text: 'Turmush qurdingiz.', t0: 2.0, t1: 3.5 });
+  const ringG = el('g', {}, world);
+  el('path', { d: 'M -10 0 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0 Z M -6 0 a 6 6 0 1 1 12 0 a 6 6 0 1 1 -12 0 Z', fill: GOLD, 'fill-rule': 'evenodd' }, ringG);
+  const ring = { x: CLASP[0] - 30, y: CLASP[1] - 30, o: 0 };
+  ctx.procs.push(() => { ringG.setAttribute('transform', `translate(${ring.x} ${ring.y})`); ringG.setAttribute('opacity', ring.o); });
+  tl.set(ring, { o: 1 }, 1.7);
+  tl.to(ring, { x: CLASP[0] + 14, y: CLASP[1] + 6, duration: F(9), ease: 'expo.out' }, 2.0 - F(4));
+  const spark = el('path', { d: 'M 0 -34 Q 4 -4 34 0 Q 4 4 0 34 Q -4 4 -34 0 Q -4 -4 0 -34 Z', fill: WHITE }, world);
+  const sp = K.Pop(ctx, spark, 0, 0);
+  ctx.procs.push(() => spark.setAttribute('transform', `translate(${CLASP[0] + 14} ${CLASP[1] + 6}) scale(${Math.max(0, sp.k)})`));
+  tl.to(sp, { k: 1, duration: F(3), ease: 'expo.out' }, 2.1);
+  tl.to(sp, { k: 0, duration: F(3), ease: 'expo.in' }, 2.1 + F(3));
+  ctx.event(2.1, 'ringDing');
+  tl.set(ring, { o: 0 }, 3.5);
+  // 2.5 RICH fires a confetti popper: 30 paper bits fall, gone by 3.5
+  tl.to(rich.p, { aL: 128, eL: 8, duration: F(8), ease: 'expo.out' }, 2.0);
+  const popper = el('path', { d: 'M -10 0 L 10 0 L 22 -44 L -22 -44 Z', fill: GOLD }, rich.arms[0].prop);
+  void popper;
+  const conf = el('g', {}, world);
+  const cr2 = K.mulberry32(77), P0 = [770, 960];
+  const bits = [...Array(30)].map((_, i) => {
+    const ang = (-165 + cr2() * 60) * Math.PI / 180, v = 300 + cr2() * 260;
+    return { e: el('rect', { x: -7, y: -4, width: 14, height: 8, rx: 2, fill: [GOLD, GREEN, CREAM, '#FEB13F', '#FD893B'][i % 5] }, conf), vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, sp: (cr2() - 0.5) * 900, ph: cr2() * 6 };
+  });
+  ctx.procs.push(t => {
+    const dt = t - 2.5;
+    bits.forEach(b => {
+      if (dt < 0 || t >= 3.5) { b.e.setAttribute('visibility', 'hidden'); return; }
+      const drag = 1.6, x = P0[0] + b.vx * (1 - Math.exp(-drag * dt)) / drag + 30 * Math.sin(dt * 6 + b.ph);
+      const y = P0[1] + b.vy * (1 - Math.exp(-drag * dt)) / drag + 300 * dt * dt;
+      b.e.setAttribute('visibility', 'visible');
+      b.e.setAttribute('transform', `translate(${x} ${y}) rotate(${b.sp * dt}) scale(1 ${Math.cos(dt * 9 + b.ph)})`);
+      b.e.setAttribute('opacity', K.clamp((3.5 - t) / 0.3));
+    });
+  });
+  ctx.event(2.5, 'confettiPop');
+
+  // 3.5 S13 — three hard cuts on beats 3.5, 4.5, 5.5; HEART reads 1.0x, 1.5x, 2.2x
+  SUB(ctx, { id: 'S13', text: 'Bir-biringizni haqiqatan sevib qoldingiz. Juda kuchli.', t0: 3.5, t1: 6.5 });
+  tl.set(outfit, { on: 0 }, 3.5);
+  tl.set(rich.p, { opacity: 0 }, 3.5);
+  const heart = el('path', { d: 'M 0 34 C -70 -6 -46 -64 0 -30 C 46 -64 70 -6 0 34 Z', fill: '#F58E94' }, ctx.fx);
+  const hs = { k: 0, sx: 1, sy: 1, x: 540, y: 1150 };
+  ctx.procs.push(() => { heart.setAttribute('transform', `translate(${hs.x} ${hs.y}) scale(${hs.k * hs.sx} ${hs.k * hs.sy})`); heart.setAttribute('visibility', hs.k > 0 ? 'visible' : 'hidden'); });
+  const cutHeart = (t, k, x, y) => {
+    tl.set(hs, { k, x, y, sx: 1.15, sy: 0.85 }, t);
+    tl.to(hs, { sx: 1, sy: 1, duration: F(3), ease: 'power2.out' }, t + F(1));
+    ctx.event(t, 'cut');
+  };
+  // dance: under the park lamp
+  tl.set(hero.p, { x: 3440, y: G, ...reach(hero, 1, 3540, 1000, { x: 3440 }), aL: 30, eL: 40, turn: 0.6, lookX: 0.8, tilt: 3 }, 3.5);
+  tl.set(bride.p, { x: 3640, y: G, aL: 150, eL: 10, aR: 40, eR: 50, turn: -0.5, lookX: -0.7, tilt: -4, rot: -3 }, 3.5);
+  K.expr(ctx, hero, 'love', 3.5, 0); K.expr(ctx, bride, 'laugh', 3.5, 0);
+  tl.to(bride.p, { rot: 3, duration: 0.5, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 3.5);
+  cutHeart(3.5, 1.0, 540, 1150);
+  // umbrella in the rain
+  const umb = el('g', {}, hero.arms[1].prop);
+  el('rect', { x: -4, y: -250, width: 8, height: 250, fill: '#544174' }, umb);
+  el('path', { d: 'M -200 -230 Q 0 -440 200 -230 Q 166 -250 134 -230 Q 100 -252 66 -230 Q 34 -252 0 -230 Q -34 -252 -66 -230 Q -100 -252 -134 -230 Q -166 -250 -200 -230 Z', fill: GOLD }, umb);
+  const us = { o: 0 };
+  ctx.procs.push(() => umb.setAttribute('opacity', us.o));
+  tl.set(hero.p, { x: 6450, aL: 6, eL: 4, ...reach(hero, 1, 6520, 1140, { x: 6450 }), turn: 0.5, lookX: 0.7, lookY: 0, tilt: 2 }, 4.5);
+  tl.set(bride.p, { x: 6610, aL: 30, eL: 60, aR: 8, eR: 8, turn: -0.5, lookX: -0.8, tilt: -5, rot: 0 }, 4.5);
+  K.expr(ctx, bride, 'smile', 4.5, 0);
+  tl.set(us, { o: 1 }, 4.5); tl.set(us, { o: 0 }, 5.5);
+  cutHeart(4.5, 1.5, 540, 1180);
+  ctx.event(4.5, 'rainStart', { until: 5.5 });
+  // foreheads together, under the arch
+  tl.set(hero.p, { x: 470, aR: 30, eR: 70, aL: 6, eL: 4, turn: 0.6, lookX: 0.3, lookY: 0.6, tilt: 13 }, 5.5);
+  tl.set(bride.p, { x: 612, aL: 30, eL: 70, aR: 6, eR: 4, turn: -0.6, lookX: -0.3, lookY: 0.6, tilt: -13 }, 5.5);
+  K.expr(ctx, hero, 'smile', 5.5, 0); K.expr(ctx, bride, 'soft', 5.5, 0);
+  tl.set(hero.p, { lid: 0.85 }, 5.5); tl.set(bride.p, { lid: 0.85 }, 5.5);
+  cutHeart(5.5, 2.2, 540, 1250);
+  tl.to(hs, { k: 0, duration: F(6), ease: 'expo.in' }, 6.5 - F(6));
+
+  // 6.5 S14 — tilt up to BULBS; LABEL at 7.0; bulb 6 flickers at 2 Hz from 8.0
+  SUB(ctx, { id: 'S14', text: 'Lekin uning umri atigi 5–6 yil qolgan edi.', t0: 6.5, t1: 9.5 });
+  LABEL(ctx, { id: 'L2', text: '5–6 yil', x: 540, y: 610, t0: 7.0, t1: 9.5, z: 0.6, anchor: () => ctx.toScreen(AX, AT - 10 - 196 + 8) });
+  ctx.event(7.0, 'labelPop');
+  [wedBulbs, homeBulbs].forEach(B => B.flicker(8.0, 5));
+  K.expr(ctx, hero, 'sad', 7.4, F(12)); K.expr(ctx, bride, 'sad', 7.6, F(12));
+
+  // 9.5 S15 — HOME: they sit on the sofa; bulb 1 out at 10.0; crib at 10.5; CHILD at 11.0
+  SUB(ctx, { id: 'S15', text: 'Birga yashadingiz. Farzand koʻrdingiz.', t0: 9.5, t1: 11.5 });
+  tl.set(homeShow, { on: 1 }, 9.5);
+  tl.set(hero.p, { x: SX - 100, y: G, sit: 1, aL: 14, eL: 30, aR: 30, eR: 20, tilt: 4, turn: 0.4, lookX: 0.6, lookY: 0, rot: 0 }, 9.5);
+  tl.set(bride.p, { x: SX + 90, y: G, sit: 1, aL: 30, eL: 20, aR: 14, eR: 30, tilt: -6, turn: -0.4, lookX: -0.5, lookY: 0, rot: 0 }, 9.5);
+  K.expr(ctx, hero, 'smile', 9.5, 0); K.expr(ctx, bride, 'smile', 9.5, 0);
+  ctx.event(9.5, 'cut');
+  [wedBulbs, homeBulbs].forEach(B => { B.out(10.0, 0); });
+  tl.to(crib, { x: HX + 900, duration: F(12), ease: 'expo.out' }, 10.5);
+  ctx.event(10.5, 'cribSlide');
+  tl.set(child.p, { opacity: 1, x: HX + 900, y: 1720 }, 10.5);
+  tl.to(child.p, { x: HX + 900, duration: F(12), ease: 'expo.out' }, 10.5);
+  tl.to(child.p, { y: G - 90, duration: F(12), ease: K.backOut(2.2) }, 11.0);
+  ctx.event(11.0, 'childPop');
+  K.expr(ctx, child, 'smile', 11.0, 0);
+  tl.to(child.p, { aL: 150, eL: 10, aR: 150, eR: 10, duration: F(8), ease: 'expo.out' }, 11.1);
+  tl.to(bride.p, { turn: 0.5, lookX: 0.9, tilt: 0, duration: F(8) }, 11.0);
+  K.expr(ctx, bride, 'laugh', 11.1, F(6));
+
+  // 11.5 S16 — close on HERO watching BRIDE lift CHILD; all but BRIDE desaturate to 30 %
+  SUB(ctx, { id: 'S16', text: 'U sening borligʻing boʻlib qoldi.', t0: 11.5, t1: 14.0 });
+  tl.to(bride.p, { sit: 0, x: HX + 760, duration: F(10), ease: 'expo.out' }, 11.5);
+  tl.to(child.p, { x: HX + 780, y: 1300, duration: F(12), ease: 'power2.inOut' }, 11.7);
+  tl.to(child.p, { aL: 70, eL: 40, aR: 70, eR: 40, duration: F(8) }, 11.8);
+  tl.to(bride.p, { ...reach(bride, -1, HX + 736, 1230, { x: HX + 760, sit: 0 }), ...reach(bride, 1, HX + 826, 1236, { x: HX + 760, sit: 0 }), turn: 0.3, lookX: 0.4, lookY: 0.3, duration: F(10), ease: 'expo.out' }, 11.7);
+  tl.set(childG, { attr: { 'clip-path': '' } }, 11.7);
+  tl.to(hero.p, { turn: 0.6, lookX: 1, lookY: -0.2, tilt: 5, duration: F(10) }, 11.5);
+  K.expr(ctx, hero, 'love', 11.8, F(10));
+  K.expr(ctx, bride, 'smile', 12.2, F(8));
+  [wedBulbs, homeBulbs].forEach(B => { B.out(12.0, 1); B.out(13.0, 2); });
+  // desaturation filter on everything except BRIDE
+  const filt = el('filter', { id: 'desat', 'color-interpolation-filters': 'sRGB' }, ctx.defs);
+  const cm = el('feColorMatrix', { type: 'saturate', values: 1 }, filt);
+  const ds = { k: 0 };
+  ctx.procs.push(() => {
+    cm.setAttribute('values', (1 - 0.7 * ds.k).toFixed(4));
+    [...world.children].forEach(n => { if (n !== brideG) { if (ds.k > 0) n.setAttribute('filter', 'url(#desat)'); else n.removeAttribute('filter'); } });
+  });
+  tl.to(ds, { k: 1, duration: F(15), ease: 'power1.inOut' }, 11.5);
+
+  // 14.0 pull back through the window to the house at night; tilt up; f449 = full SKY
+  const house = el('g', { class: 'house' }, world);
+  el('path', { d: `M ${HX - 1200} -500 L ${HX + 2300} -500 L ${HX + 2300} 2600 L ${HX - 1200} 2600 Z M ${HX - 300} 0 L ${HX - 300} 2300 L ${HX + 1400} 2300 L ${HX + 1400} 0 Z`, fill: '#544174', 'fill-rule': 'evenodd' }, house);
+  el('path', { d: `M ${HX - 1500} -480 L ${HX + 550} -1900 L ${HX + 2600} -480 Z`, fill: '#794C6E' }, house);
+  [[HX - 1000, 300], [HX + 1700, 300], [HX - 1000, 1300], [HX + 1700, 1300]].forEach(([x, y]) => el('rect', { x, y, width: 420, height: 600, rx: 20, fill: DUSK }, house));
+  el('rect', { x: HX - 330, y: -30, width: 1760, height: 60, fill: '#794C6E' }, house);
+  el('rect', { x: HX - 330, y: 2280, width: 1760, height: 60, fill: '#794C6E' }, house);
+  el('rect', { x: HX - 4000, y: 2600, width: 9000, height: 3000, fill: GROUND }, house);
+  const stop1 = ctx.defs.querySelector('#skyGrad stop[offset="1"]');
+  const skyK = { k: 0 };
+  ctx.procs.push(() => stop1.setAttribute('stop-color', K.mix(DUSK, SKY, skyK.k)));
+  K.expr(ctx, hero, 'smile', 14.0, F(10));
+  ctx.event(14.0, 'whooshSoft');
+  tl.to(skyK, { k: 1, duration: F(24), ease: 'power1.in' }, 14.15);
+
+  // ================= camera (one group transform)
+  K.camSet(ctx, 0, { x: 540, y: 1150, s: 1.15 });                     // WEDDING
+  K.camTo(ctx, 0.5, F(12), { x: 540, y: 1088, s: 1.7 }, 'expo.out');   // close on the hands 0.5-3.5
+  K.camSet(ctx, 3.5, { x: 3540, y: 1130, s: 1.45 });                  // dance (locked)
+  K.camSet(ctx, 4.5, { x: 6530, y: 1130, s: 1.45 });                  // umbrella (locked)
+  K.camSet(ctx, 5.5, { x: 541, y: 1088, s: 1.7 });                    // foreheads (locked)
+  K.camTo(ctx, 6.5, F(16), { y: 960 }, 'power2.inOut');               // tilt up to BULBS
+  K.camSet(ctx, 9.5, { x: HX + 575, y: 1200, s: 1.25 });              // HOME, level
+  K.camTo(ctx, 11.5, 2.4, { x: HX + 520, y: 1110, s: 1.9 }, 'power2.inOut'); // push to HERO's face
+  K.camTo(ctx, 14.0, F(16), { x: HX + 550, y: 1000, s: 0.2 }, 'expo.in');   // pull out through the window
+  K.camTo(ctx, 14.0 + F(14), F(15), { y: -9000 }, 'power2.in');       // tilt up
+}, { seed: 303, duration: 15 });
+</script>
+</body></html>

@@ -1,0 +1,31 @@
+CHECKS part3.html  (2026-11-11T00:17:59.687Z)
+PASS  S11 on screen 1.50 s (needs 1.40 s for 3 words), 1 line(s) at 56px
+PASS  S12 on screen 1.50 s (needs 1.10 s for 2 words), 1 line(s) at 56px
+PASS  S13 on screen 3.00 s (needs 2.30 s for 6 words), 2 line(s) at 56px
+PASS  S14 on screen 3.00 s (needs 2.90 s for 8 words), 2 line(s) at 56px
+PASS  S15 on screen 2.00 s (needs 1.70 s for 4 words), 2 line(s) at 56px
+PASS  S16 on screen 2.50 s (needs 2.00 s for 5 words), 2 line(s) at 56px
+PASS  no SUB before 0.5s (first at 0.5s)
+PASS  ʻ glyph: Inter loaded=true, text uses Inter=true, width Inter 231.7 vs serif 213.1 / mono 337.1
+PASS  S11 inside safe area (ink): x 122–596, y 300–356
+PASS  S12 inside safe area (ink): x 121–660, y 300–356
+PASS  S13 inside safe area (ink): x 122–936, y 300–424
+PASS  S14 inside safe area (ink): x 122–903, y 300–424
+PASS  S15 inside safe area (ink): x 123–867, y 300–424
+PASS  S16 inside safe area (ink): x 122–806, y 300–424
+PASS  L2 inside safe area (ink): x 466–614, y 581–639
+PASS  SUB contrast worst 13.16:1 (S15 f286), sampled every 2 frames
+PASS  nothing but sky above y=460 while a SUB is on
+PASS  hero feet at t=1s: sole y=1580.0 vs ground 1580
+PASS  bride feet at t=1s: sole y=1580.0 vs ground 1580
+PASS  rich feet at t=2.5s: sole y=1580.0 vs ground 1580
+PASS  hero feet at t=4s: sole y=1580.0 vs ground 1580
+PASS  bride feet at t=5s: sole y=1580.0 vs ground 1580
+PASS  hero feet at t=10s: sole y=1581.3 vs ground 1580
+PASS  bride feet at t=10s: sole y=1580.7 vs ground 1580
+PASS  bride feet at t=12.5s: sole y=1580.0 vs ground 1580
+PASS  f0 is full #F6EFFD (0 other pixels)
+PASS  f449 is full #170E3A (0 other pixels)
+PASS  bulbs go out only at 10.0, 12.0 and 13.0 and stay out (bulbs 4-5 stay lit, 6 flickers from 8.0): checked 450 frames x 2 strings
+PASS  BULBS never overlap the SUB: bulb strings stay below y=460 whenever a SUB is on
+ALL PASS
