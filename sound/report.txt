@@ -1,0 +1,2 @@
+sound.wav: 60.000000 s, 48 kHz stereo, integrated -14.1 LUFS, true peak -2.1 dBTP, limiter gain reduction <= 1.63 dB
+music_bed.wav: integrated -20 LUFS, true peak -6.7 dBTP

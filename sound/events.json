@@ -1,0 +1,571 @@
+[
+ {
+  "t": 0,
+  "name": "carRoll",
+  "dur": 1,
+  "part": 1,
+  "g": 0
+ },
+ {
+  "name": "sub",
+  "id": "S1",
+  "part": 1,
+  "t": 0,
+  "g": 0
+ },
+ {
+  "t": 1,
+  "name": "brake",
+  "part": 1,
+  "g": 1
+ },
+ {
+  "t": 1.1,
+  "name": "doorClick",
+  "part": 1,
+  "g": 1.1
+ },
+ {
+  "t": 2,
+  "name": "step",
+  "who": "rich",
+  "part": 1,
+  "g": 2
+ },
+ {
+  "t": 2.5,
+  "name": "step",
+  "who": "hero",
+  "part": 1,
+  "g": 2.5
+ },
+ {
+  "t": 3,
+  "name": "latch",
+  "part": 1,
+  "g": 3
+ },
+ {
+  "name": "sub",
+  "id": "S2",
+  "part": 1,
+  "t": 3,
+  "g": 3
+ },
+ {
+  "t": 4,
+  "name": "cashDing",
+  "part": 1,
+  "g": 4
+ },
+ {
+  "t": 5,
+  "name": "ringBox",
+  "part": 1,
+  "g": 5
+ },
+ {
+  "t": 6,
+  "name": "cut",
+  "part": 1,
+  "g": 6
+ },
+ {
+  "name": "sub",
+  "id": "S3",
+  "part": 1,
+  "t": 6,
+  "g": 6
+ },
+ {
+  "name": "sub",
+  "id": "S4",
+  "part": 1,
+  "t": 8,
+  "g": 8
+ },
+ {
+  "t": 8.5,
+  "name": "bubblePop",
+  "i": 0,
+  "part": 1,
+  "g": 8.5
+ },
+ {
+  "t": 8.75,
+  "name": "bubblePop",
+  "i": 1,
+  "part": 1,
+  "g": 8.75
+ },
+ {
+  "t": 9,
+  "name": "bubblePop",
+  "i": 2,
+  "part": 1,
+  "g": 9
+ },
+ {
+  "t": 10,
+  "name": "bubbleSpring",
+  "part": 1,
+  "g": 10
+ },
+ {
+  "name": "sub",
+  "id": "S5",
+  "part": 1,
+  "t": 10,
+  "g": 10
+ },
+ {
+  "t": 11.65,
+  "name": "step",
+  "who": "rich",
+  "part": 1,
+  "g": 11.65
+ },
+ {
+  "t": 12.15,
+  "name": "step",
+  "who": "rich",
+  "part": 1,
+  "g": 12.15
+ },
+ {
+  "t": 13,
+  "name": "bubbleBurst",
+  "part": 1,
+  "g": 13
+ },
+ {
+  "t": 14,
+  "name": "whoosh",
+  "part": 1,
+  "g": 14
+ },
+ {
+  "t": 14.25,
+  "name": "step",
+  "who": "both",
+  "part": 1,
+  "g": 14.25
+ },
+ {
+  "t": 14.5,
+  "name": "step",
+  "who": "both",
+  "part": 1,
+  "g": 14.5
+ },
+ {
+  "t": 14.75,
+  "name": "step",
+  "who": "both",
+  "part": 1,
+  "g": 14.75
+ },
+ {
+  "t": 0,
+  "name": "whoosh",
+  "part": 2,
+  "g": 15
+ },
+ {
+  "name": "sub",
+  "id": "S6",
+  "part": 2,
+  "t": 0.5,
+  "g": 15.5
+ },
+ {
+  "t": 1.5,
+  "name": "cut",
+  "part": 2,
+  "g": 16.5
+ },
+ {
+  "t": 2.4,
+  "name": "glassCrack",
+  "part": 2,
+  "g": 17.4
+ },
+ {
+  "name": "sub",
+  "id": "S7",
+  "part": 2,
+  "t": 3,
+  "g": 18
+ },
+ {
+  "t": 3.5,
+  "name": "bubblePop",
+  "part": 2,
+  "g": 18.5
+ },
+ {
+  "name": "sub",
+  "id": "S8",
+  "part": 2,
+  "t": 6,
+  "g": 21
+ },
+ {
+  "t": 6.1804,
+  "name": "heartbeat",
+  "part": 2,
+  "g": 21.1804
+ },
+ {
+  "t": 6.4118,
+  "name": "heartbeat",
+  "part": 2,
+  "g": 21.4118
+ },
+ {
+  "t": 8,
+  "name": "bubbleSpring",
+  "part": 2,
+  "g": 23
+ },
+ {
+  "name": "sub",
+  "id": "S9",
+  "part": 2,
+  "t": 8,
+  "g": 23
+ },
+ {
+  "t": 8.5,
+  "name": "chime",
+  "i": 0,
+  "part": 2,
+  "g": 23.5
+ },
+ {
+  "t": 9,
+  "name": "chime",
+  "i": 1,
+  "part": 2,
+  "g": 24
+ },
+ {
+  "t": 9.5,
+  "name": "chime",
+  "i": 2,
+  "part": 2,
+  "g": 24.5
+ },
+ {
+  "name": "sub",
+  "id": "S10",
+  "part": 2,
+  "t": 11,
+  "g": 26
+ },
+ {
+  "t": 11.5,
+  "name": "chime",
+  "i": 3,
+  "part": 2,
+  "g": 26.5
+ },
+ {
+  "t": 13,
+  "name": "whooshSoft",
+  "part": 2,
+  "g": 28
+ },
+ {
+  "t": 13.52,
+  "name": "step",
+  "part": 2,
+  "g": 28.52
+ },
+ {
+  "t": 13.77,
+  "name": "step",
+  "part": 2,
+  "g": 28.77
+ },
+ {
+  "t": 14.5,
+  "name": "clasp",
+  "part": 2,
+  "g": 29.5
+ },
+ {
+  "t": 0,
+  "name": "whoosh",
+  "part": 3,
+  "g": 30
+ },
+ {
+  "name": "sub",
+  "id": "S11",
+  "part": 3,
+  "t": 0.5,
+  "g": 30.5
+ },
+ {
+  "t": 1.4,
+  "name": "touch",
+  "part": 3,
+  "g": 31.4
+ },
+ {
+  "name": "sub",
+  "id": "S12",
+  "part": 3,
+  "t": 2,
+  "g": 32
+ },
+ {
+  "t": 2.1,
+  "name": "ringDing",
+  "part": 3,
+  "g": 32.1
+ },
+ {
+  "t": 2.5,
+  "name": "confettiPop",
+  "part": 3,
+  "g": 32.5
+ },
+ {
+  "t": 3.5,
+  "name": "cut",
+  "part": 3,
+  "g": 33.5
+ },
+ {
+  "name": "sub",
+  "id": "S13",
+  "part": 3,
+  "t": 3.5,
+  "g": 33.5
+ },
+ {
+  "t": 4.5,
+  "name": "cut",
+  "part": 3,
+  "g": 34.5
+ },
+ {
+  "t": 4.5,
+  "name": "rainStart",
+  "until": 5.5,
+  "part": 3,
+  "g": 34.5
+ },
+ {
+  "t": 5.5,
+  "name": "cut",
+  "part": 3,
+  "g": 35.5
+ },
+ {
+  "name": "sub",
+  "id": "S14",
+  "part": 3,
+  "t": 6.5,
+  "g": 36.5
+ },
+ {
+  "t": 7,
+  "name": "labelPop",
+  "part": 3,
+  "g": 37
+ },
+ {
+  "t": 9.5,
+  "name": "cut",
+  "part": 3,
+  "g": 39.5
+ },
+ {
+  "name": "sub",
+  "id": "S15",
+  "part": 3,
+  "t": 9.5,
+  "g": 39.5
+ },
+ {
+  "t": 10,
+  "name": "bulbOut",
+  "i": 0,
+  "part": 3,
+  "g": 40
+ },
+ {
+  "t": 10,
+  "name": "bulbOut",
+  "i": 0,
+  "part": 3,
+  "g": 40
+ },
+ {
+  "t": 10.5,
+  "name": "cribSlide",
+  "part": 3,
+  "g": 40.5
+ },
+ {
+  "t": 11,
+  "name": "childPop",
+  "part": 3,
+  "g": 41
+ },
+ {
+  "name": "sub",
+  "id": "S16",
+  "part": 3,
+  "t": 11.5,
+  "g": 41.5
+ },
+ {
+  "t": 12,
+  "name": "bulbOut",
+  "i": 1,
+  "part": 3,
+  "g": 42
+ },
+ {
+  "t": 12,
+  "name": "bulbOut",
+  "i": 1,
+  "part": 3,
+  "g": 42
+ },
+ {
+  "t": 13,
+  "name": "bulbOut",
+  "i": 2,
+  "part": 3,
+  "g": 43
+ },
+ {
+  "t": 13,
+  "name": "bulbOut",
+  "i": 2,
+  "part": 3,
+  "g": 43
+ },
+ {
+  "t": 14,
+  "name": "whooshSoft",
+  "part": 3,
+  "g": 44
+ },
+ {
+  "t": 0,
+  "name": "whooshSoft",
+  "part": 4,
+  "g": 45
+ },
+ {
+  "name": "sub",
+  "id": "S17",
+  "part": 4,
+  "t": 0,
+  "g": 45
+ },
+ {
+  "t": 1,
+  "name": "bulbOut",
+  "i": 3,
+  "part": 4,
+  "g": 46
+ },
+ {
+  "name": "sub",
+  "id": "S18",
+  "part": 4,
+  "t": 2.5,
+  "g": 47.5
+ },
+ {
+  "t": 2.6,
+  "name": "fabric",
+  "part": 4,
+  "g": 47.6
+ },
+ {
+  "t": 3.1,
+  "name": "kiss",
+  "part": 4,
+  "g": 48.1
+ },
+ {
+  "name": "sub",
+  "id": "S19",
+  "part": 4,
+  "t": 4.5,
+  "g": 49.5
+ },
+ {
+  "t": 5,
+  "name": "fadeTone",
+  "dur": 1,
+  "part": 4,
+  "g": 50
+ },
+ {
+  "t": 5.7,
+  "name": "leavesLift",
+  "part": 4,
+  "g": 50.7
+ },
+ {
+  "name": "sub",
+  "id": "S20",
+  "part": 4,
+  "t": 7.5,
+  "g": 52.5
+ },
+ {
+  "t": 8,
+  "name": "hug",
+  "part": 4,
+  "g": 53
+ },
+ {
+  "t": 9,
+  "name": "splitThud",
+  "part": 4,
+  "g": 54
+ },
+ {
+  "name": "sub",
+  "id": "S21",
+  "part": 4,
+  "t": 9,
+  "g": 54
+ },
+ {
+  "t": 11,
+  "name": "whoosh",
+  "part": 4,
+  "g": 56
+ },
+ {
+  "name": "sub",
+  "id": "CTA1",
+  "part": 4,
+  "t": 11,
+  "g": 56
+ },
+ {
+  "name": "sub",
+  "id": "CTA2",
+  "part": 4,
+  "t": 12,
+  "g": 57
+ },
+ {
+  "t": 13,
+  "name": "lampWarm",
+  "part": 4,
+  "g": 58
+ }
+]
