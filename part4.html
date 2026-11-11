@@ -1,0 +1,259 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Part 4 — The Bench</title>
+<meta name="viewport" content="width=1080">
+<!-- GSAP 3.12.5: cdnjs is blocked in this build environment, so the npm copy is vendored -->
+<script src="vendor/gsap.min.js"></script>
+</head><body>
+<script type="module">
+import * as K from './kit.js';
+import { HERO, BRIDE, CHILD, BULBS, SET, PALETTE, SUB, LABEL } from './kit.js';
+const { SKY, DUSK, PINK, GOLD, WHITE } = PALETTE;
+const { F, el } = K;
+void LABEL;
+
+// two-bone IK for a kit arm (same helper as part 3)
+function ik(rig, side, tx, ty, bend = 1) {
+  const S = rig.spec, sd = side < 0 ? -1 : 1, p = rig.p;
+  const th = S.thigh * (1 - 0.72 * p.sit), hipStand = -(S.thigh + S.shin + S.shoeH), hipY = -(th + S.shin + S.shoeH);
+  const sx = sd * S.shoulderX, sy = S.shoulderY + (hipY - hipStand);
+  const L1 = S.upperArm, L2 = S.foreArm + 8;
+  const dx = tx - sx, dy = ty - sy, D = K.clamp(Math.hypot(dx, dy), Math.abs(L1 - L2) + 1, L1 + L2 - 0.5);
+  const phiD = Math.atan2(-dx, dy), alpha = Math.acos(K.clamp((L1 * L1 + D * D - L2 * L2) / (2 * L1 * D), -1, 1));
+  const phi1 = phiD + bend * sd * alpha;
+  const ex = sx - L1 * Math.sin(phi1), ey = sy + L1 * Math.cos(phi1);
+  const phi2 = Math.atan2(-(tx - ex), ty - ey);
+  const deg = r => r * 180 / Math.PI;
+  return { a: -sd * deg(phi1), e: sd * deg(phi1 - phi2) };
+}
+function reach(rig, side, wx, wy, pose = {}, bend = 1) {
+  const q = { ...rig.p, ...pose };
+  const lx = (wx - q.x) / q.s, ly = (wy - q.y) / q.s;
+  const save = rig.p; rig.p = q; const r = ik(rig, side, lx, ly, bend); rig.p = save;
+  return side < 0 ? { aL: r.a, eL: r.e } : { aR: r.a, eR: r.e };
+}
+
+// BENCH: the kit SET in autumn, BULBS between two lamp posts above the bench
+function bench(ctx, parent) {
+  const g = el('g', {}, parent);
+  SET.PARK(ctx, { parent: g, season: 'autumn', lamp: false, benchX: 540, trees: [[-60, 1.0], [1120, 1.05]] });
+  const lampL = SET.LAMP(g, { x: 210, h: 680, arm: 150, lit: 0 });
+  const lampR = SET.LAMP(el('g', { transform: 'translate(1740 0) scale(-1 1)' }, g), { x: 870, h: 680, arm: 150, lit: 0 });
+  const B = BULBS(ctx, { parent: g, x1: 210, y1: 905, x2: 870, y2: 905, sag: 26, r: 15 });
+  // bulbs 1-3 out, 4 and 5 lit, 6 flickering at 2 Hz
+  B.level[0] = B.level[1] = B.level[2] = 0;
+  ctx.tl.set(B.level, { 0: 0, 1: 0, 2: 0 }, 0);
+  B.flicker(0, 5);
+  return { g, lampL, lampR, B };
+}
+
+K.boot(ctx => {
+  const { tl, world } = ctx;
+  const G = SET.GROUND_Y;
+
+  // ================= main view
+  const set = bench(ctx, world);
+  K.LEAVES(ctx, { n: 6, parent: el('g', {}, world), x0: -40, x1: 1120, y0: 980, y1: 1700, seed: 41 });
+  const people = el('g', {}, world);
+  const hero = HERO(ctx, { parent: people, expr: 'neutral', pose: { x: 500, y: G, sit: 1, turn: 0.3, lookX: 0.3, lookY: 0.4, tilt: 4 } });
+  const bride = BRIDE(ctx, { parent: people, expr: 'soft', pose: { x: 655, y: G - 6, sit: 1, rot: -7, tilt: -14, turn: -0.4, lookX: -0.3, lookY: 0.5, aR: 20, eR: 40 } });
+  const child = CHILD(ctx, { parent: people, expr: 'neutral', pose: { x: 490, y: 1446, s: 0.85, sit: 1, tilt: 12, lid: 1, blink: 0, aL: 30, eL: 50, aR: 30, eR: 50, shadow: 0 } });
+  const front = el('g', {}, world);
+  // he grips her hand
+  const GRIP = [578, 1398];
+  Object.assign(hero.p, reach(hero, 1, ...GRIP));
+  Object.assign(bride.p, reach(bride, -1, GRIP[0] + 6, GRIP[1] + 2));
+  tl.set(hero.p, reach(hero, 1, ...GRIP), 0);
+  tl.set(bride.p, reach(bride, -1, GRIP[0] + 6, GRIP[1] + 2), 0);
+
+  // SCARF FEB13F: on BRIDE, then wrapped around HERO and CHILD (a band morphing between two centre lines)
+  const scarf = el('path', { fill: '#FEB13F' }, front);
+  const scarfEnd = el('path', { fill: '#FEB13F' }, front);
+  const A = [[-24, -300], [-30, -362], [-26, -412], [-8, -428], [12, -428], [30, -414], [40, -372], [44, -318]];
+  const Bp = [[78, -300], [80, -372], [62, -428], [24, -446], [-22, -446], [-60, -428], [-74, -360], [-58, -292]];
+  const sc = { k: 0, on: 1 };
+  ctx.procs.push(() => {
+    const pts = A.map((a, i) => {
+      const [ax, ay] = bride.pointWorld(bride.torso, ...a), [bx, by] = hero.pointWorld(hero.torso, ...Bp[i]);
+      const k = K.smooth(sc.k), arc = Math.sin(Math.PI * k) * 60;
+      return [K.lerp(ax, bx, k), K.lerp(ay, by, k) - arc];
+    });
+    const w = 15, L = [], R = [];
+    pts.forEach((p, i) => { const q = pts[Math.min(i + 1, pts.length - 1)], o = pts[Math.max(i - 1, 0)]; const dx = q[0] - o[0], dy = q[1] - o[1], n = Math.hypot(dx, dy) || 1; L.push([p[0] - dy / n * w, p[1] + dx / n * w]); R.push([p[0] + dy / n * w, p[1] - dx / n * w]); });
+    const poly = [...L, ...R.reverse()];
+    scarf.setAttribute('d', 'M ' + poly.map(p => p.map(v => v.toFixed(1)).join(' ')).join(' L ') + ' Z');
+    const e = pts[0];
+    scarfEnd.setAttribute('d', `M ${e[0] - 15} ${e[1]} L ${e[0] + 15} ${e[1]} L ${e[0] + 18} ${e[1] + 70} L ${e[0] - 12} ${e[1] + 66} Z`);
+    [scarf, scarfEnd].forEach(n => n.setAttribute('visibility', sc.on ? 'visible' : 'hidden'));
+  });
+
+  // ================= 0.0 S17 — full SKY already tilting down to BENCH (10 frames)
+  SUB(ctx, { id: 'S17', text: 'Usiz bir soniya ham yashay olmaysan.', t0: 0, t1: 2.5 });
+  const stop1 = ctx.defs.querySelector('#skyGrad stop[offset="1"]');
+  const skyK = { k: 1 };
+  ctx.procs.push(() => stop1.setAttribute('stop-color', K.mix(DUSK, SKY, skyK.k)));
+  tl.to(skyK, { k: 0, duration: F(10), ease: 'power2.out' }, 0);
+  ctx.event(0, 'whooshSoft');
+  // 1.0 bulb 4 clicks out
+  set.B.out(1.0, 3);
+  K.expr(ctx, hero, 'sad', 1.1, F(10));
+
+  // 2.5 S18 — she wraps SCARF around HERO and CHILD; 3.0 she kisses CHILD's forehead, smile
+  SUB(ctx, { id: 'S18', text: 'U juda ham mehribon edi.', t0: 2.5, t1: 4.5 });
+  tl.to(bride.p, { aR: 120, eR: 30, tilt: -4, duration: F(8), ease: 'expo.out' }, 2.37);
+  tl.to(sc, { k: 1, duration: F(14), ease: 'power2.inOut' }, 2.5);
+  ctx.event(2.6, 'fabric');
+  tl.to(bride.p, { aR: 30, eR: 40, duration: F(10), ease: 'power2.inOut' }, 2.97);
+  tl.to(bride.p, { rot: -17, tilt: -10, x: 640, y: G - 14, lookX: -0.8, lookY: 0.8, duration: F(10), ease: 'expo.out' }, 2.9);
+  K.expr(ctx, bride, 'smile', 3.0, F(8));
+  tl.set(bride.p, { lid: 0.85 }, 3.15);
+  ctx.event(3.1, 'kiss');
+  tl.to(bride.p, { rot: -7, tilt: -14, x: 655, y: G - 6, lookX: -0.3, lookY: 0.5, duration: F(14), ease: 'power2.inOut' }, 3.7);
+  K.expr(ctx, bride, 'soft', 3.8, F(10));
+  K.expr(ctx, hero, 'smile', 3.2, F(10));
+
+  // 4.5 S19 — 5.0 bulbs 5 and 6 fade over 30 frames; BRIDE drains to a WHITE line drawing
+  // in 20 frames, then lifts off as 12 orange leaves by 6.5; SCARF stays on HERO
+  SUB(ctx, { id: 'S19', text: 'Lekin 5 yildan soʻng u vafot etdi.', t0: 4.5, t1: 7.5 });
+  set.B.fade(5.0, 4, 1.0); set.B.fade(5.0, 5, 1.0);
+  ctx.event(5.0, 'fadeTone', { dur: 1.0 });
+  K.expr(ctx, hero, 'neutral', 4.6, F(10));
+  const shapes = [...bride.root.querySelectorAll('path,rect,circle,ellipse')];
+  const dr = { d: 0, o: 1 };
+  ctx.procs.push(() => {
+    shapes.forEach(n => {
+      if (dr.d > 0) { n.setAttribute('stroke', WHITE); n.setAttribute('stroke-width', 3); n.setAttribute('stroke-opacity', dr.d); n.setAttribute('stroke-linejoin', 'round'); }
+      else n.removeAttribute('stroke');
+      n.setAttribute('fill-opacity', 1 - dr.d);
+    });
+    bride.shadowEl.setAttribute('fill-opacity', 0.2 * (1 - dr.d));
+  });
+  tl.to(dr, { d: 1, duration: F(20), ease: 'power1.inOut' }, 5.0);
+  tl.to(bride.p, { opacity: 0, duration: 0.8, ease: 'power1.in' }, 5.7);
+  // 12 orange leaves from her silhouette
+  const LP = [[0, -500], [-30, -470], [30, -470], [0, -420], [-40, -380], [40, -380], [0, -330], [-60, -250], [60, -250], [-80, -120], [80, -120], [0, -60]];
+  const lr = K.mulberry32(12);
+  const lf = el('g', {}, world);
+  const leaves = LP.map((pt, i) => ({ pt, e: el('path', { d: 'M 0 -16 Q 13 0 0 16 Q -13 0 0 -16 Z', fill: i % 2 ? '#FD893B' : '#FEB13F' }, lf), dx: 60 + lr() * 160, dy: 120 + lr() * 140, ph: lr() * 6, w0: null }));
+  const lv = { k: 0 };
+  ctx.procs.push(t => leaves.forEach((L, i) => {
+    if (lv.k <= 0) { L.e.setAttribute('visibility', 'hidden'); return; }
+    if (!L.w0 || t < 5.6) L.w0 = bride.pointWorld(bride.root, ...L.pt);
+    const u = Math.max(0, t - 5.7);
+    const grow = K.clamp((t - 5.7 - i * 0.03) / 0.35);
+    const x = L.w0[0] + L.dx * K.smooth(u / 1.8) + 18 * Math.sin(u * 3 + L.ph);
+    const y = Math.max(860, L.w0[1] - L.dy * K.smooth(u / 1.8));
+    L.e.setAttribute('visibility', grow > 0 ? 'visible' : 'hidden');
+    L.e.setAttribute('transform', `translate(${x} ${y}) rotate(${40 * Math.sin(u * 2 + L.ph) + i * 30}) scale(${grow})`);
+    L.e.setAttribute('opacity', K.clamp((7.45 - t) / 0.45));
+  }));
+  tl.set(lv, { k: 1 }, 5.6);
+  tl.set(lv, { k: 0 }, 7.45);
+  ctx.event(5.7, 'leavesLift');
+  // 7.0 his hand closes on air
+  tl.to(hero.p, { aR: 8, eR: 60, duration: F(8), ease: 'expo.out' }, 7.0);
+  K.expr(ctx, hero, 'sad', 6.6, F(12));
+
+  // 7.5 S20 — CHILD wakes and hugs HERO at 8.0; one tear at 8.5; HERO sad, then cry
+  SUB(ctx, { id: 'S20', text: 'Sen bunga chiday olarmiding?', t0: 7.5, t1: 11.0 });
+  tl.to(child.p, { lid: 0, tilt: 0, lookY: -0.6, duration: F(8), ease: 'power2.out' }, 7.6);
+  K.expr(ctx, child, 'sad', 7.7, F(6));
+  tl.to(child.p, { sy: 0.94, duration: F(4) }, 7.87);
+  tl.to(child.p, { y: 1372, x: 506, sy: 1, aL: 150, eL: 40, aR: 150, eR: 40, tilt: -8, duration: F(8), ease: 'expo.out' }, 8.0);
+  ctx.event(8.0, 'hug');
+  tl.to(hero.p, { aL: 40, eL: 100, aR: 40, eR: 100, tilt: 6, lookY: 0.6, duration: F(10), ease: 'expo.out' }, 8.1);
+  const tear = el('ellipse', { rx: 5, ry: 8, fill: WHITE, opacity: 0 }, world);
+  const tr = { k: 0, o: 0 };
+  ctx.procs.push(() => { const [ex, ey] = hero.pointWorld(hero.faceG, 18, 6); tear.setAttribute('cx', ex); tear.setAttribute('cy', ey + 46 * tr.k); tear.setAttribute('opacity', 0.9 * tr.o); });
+  tl.set(tr, { o: 1 }, 8.5);
+  tl.to(tr, { k: 1, duration: 0.9, ease: 'power1.in' }, 8.5);
+  tl.to(tr, { o: 0, duration: F(6) }, 9.4);
+  K.expr(ctx, hero, 'cry', 9.5, F(12));
+
+  // 9.0 S21 under S20; split at y=960 on a 3 px WHITE line (8 frames)
+  SUB(ctx, { id: 'S21', text: 'Yoki umuman rozi boʻlmasmiding?', t0: 9.0, t1: 11.0, top: 358 });
+  // bottom half: the same bench, HERO alone, no SCARF, in his part-1 pose
+  const split = el('g', { class: 'split' }, ctx.svg); ctx.svg.insertBefore(split, ctx.fx);
+  const clip = el('clipPath', { id: 'bottomHalf' }, ctx.defs); el('rect', { x: 0, y: 961.5, width: 1080, height: 960 }, clip);
+  const slide = el('g', {}, split); split.setAttribute('clip-path', 'url(#bottomHalf)');
+  el('rect', { x: 0, y: 0, width: 1080, height: 1920, fill: 'url(#skyGrad)' }, slide);
+  const cam2 = el('g', {}, slide);
+  const set2 = bench(ctx, cam2);
+  void set2;
+  const alone = HERO(ctx, { parent: cam2, expr: 'neutral', pose: { x: 500, y: G, sit: 1, aL: 14, eL: 30, aR: 14, eR: 30, turn: 0.25, lookX: 0.5 } });
+  void alone;
+  const line = el('rect', { x: 540, y: 960, width: 0, height: 3, fill: WHITE }, ctx.fx);
+  const sp = { w: 0, y: 1920, on: 0 };
+  ctx.procs.push(() => {
+    split.setAttribute('visibility', sp.on ? 'visible' : 'hidden');
+    slide.setAttribute('transform', `translate(0 ${sp.y})`);
+    // cam2 frames the bench so its HERO sits in the bottom half
+    const c = ctx.cam, cy2 = 1166 - (1445 - 960) / c.s;
+    cam2.setAttribute('transform', `translate(540 960) scale(${c.s}) translate(${-c.x} ${-cy2})`);
+    line.setAttribute('x', 540 - sp.w / 2); line.setAttribute('width', sp.w);
+  });
+  tl.set(sp, { on: 1 }, 9.0);
+  tl.to(sp, { w: 1080, duration: F(8), ease: 'expo.out' }, 9.0);
+  tl.to(sp, { y: 0, duration: F(8), ease: 'expo.out' }, 9.0);
+  ctx.event(9.0, 'splitThud');
+
+  // 11.0 CTA1 — the bottom half slides out (8 frames, ease-in-expo); pull wide
+  tl.to(sp, { y: 1000, duration: F(8), ease: 'expo.in' }, 11.0);
+  tl.to(sp, { w: 0, duration: F(8), ease: 'expo.in' }, 11.0);
+  tl.set(sp, { on: 0 }, 11.0 + F(8));
+  ctx.event(11.0, 'whoosh');
+  // CTA1 in SUB style with "dangasalar_n1" on a PINK pill
+  const cta1 = (() => {
+    const id = 'CTA1', text = 'dangasalar_n1 kanaliga obuna boʻling', t0 = 11.0, t1 = 15.0, x = 120, top = 290, s = 56, l = 68, pad = 14;
+    const font = `800 ${s}px Inter`, word = 'dangasalar_n1';
+    const g = el('g', { id: 'sub_' + id, opacity: 0, class: 'sub' }, ctx.ui);
+    const ww = K.textWidth(word, font);
+    const asc = 0.96875 * s + (l - 1.2109 * s) / 2;
+    el('rect', { x, y: top + 2, width: ww + pad * 2, height: l - 4, rx: 12, fill: PINK, class: 'pill' }, g);
+    const tx = el('text', { x: x + pad, y: top + asc, fill: WHITE, 'font-family': 'Inter', 'font-weight': 800, 'font-size': s }, g);
+    // greedy wrap with the pill padding counted on line 1
+    const rest = text.slice(word.length + 1).split(' ');
+    const lines = [[word]]; let wcur = ww + pad * 2;
+    rest.forEach(w => { const add = K.textWidth(' ' + w, font); if (lines.length === 1 && wcur + add <= 840) { lines[0].push(w); wcur += add; } else if (lines.length > 1 && K.textWidth(lines[1].concat(w).join(' '), font) <= 840) lines[1].push(w); else lines.push([w]); });
+    lines.forEach((ws, i) => {
+      if (i === 0) { const t1s = el('tspan', { x: x + pad, y: top + asc }, tx); t1s.textContent = word; if (ws.length > 1) { const t2 = el('tspan', { x: x + pad * 2 + ww + K.textWidth(' ', font), y: top + asc }, tx); t2.textContent = ws.slice(1).join(' '); } }
+      else { const ts = el('tspan', { x, y: top + asc + i * l }, tx); ts.textContent = ws.join(' '); }
+    });
+    tl.set(g, { opacity: 0 }, 0); tl.to(g, { opacity: 1, duration: F(4), ease: 'none' }, t0); tl.set(g, { opacity: 0 }, t1 + 1);
+    const meta = { id, text, t0, t1, size: s, lines: lines.length, words: 4, box: [x, top, 840, lines.length * l] };
+    ctx.subs.push(meta);
+    return { g, meta };
+  })();
+  const ctaBottom = 290 + cta1.meta.lines * 68;
+  SUB(ctx, { id: 'CTA2', text: 'va commentga hechkimga qiziq boʻlmagan fikringizni yozib qoldiring', t0: 12.0, t1: 15.0, top: ctaBottom + 14, size: 44, lh: 56, minSize: 44, weight: 700, maxLines: 3 });
+  // HERO and CHILD stand on the path
+  tl.set(child.p, { sit: 0, x: 600, y: G, s: 0.85, tilt: 0, aL: 8, eL: 6, aR: 8, eR: 6, shadow: 1, lookY: -0.5, lookX: -0.6, turn: -0.4 }, 11.0);
+  tl.set(hero.p, { sit: 0, x: 500, y: G, aL: 6, eL: 4, aR: 6, eR: 4, tilt: 0, turn: 0.3, lookX: 0.5, lookY: 0.4 }, 11.0);
+  K.expr(ctx, hero, 'sad', 11.0, 0);
+  tl.set(sc, { k: 1 }, 11.0);
+  tl.to(hero.p, { x: 600, walk: 1, walkAmp: 1, duration: 1.0, ease: 'power1.inOut' }, 11.3);
+  tl.to(child.p, { x: 700, walk: 1.6, walkAmp: 1, duration: 1.0, ease: 'power1.inOut' }, 11.3);
+  tl.set([hero.p, child.p], { walkAmp: 0, walk: 0 }, 12.3);
+  // 12.0 CTA2. 13.0 CHILD takes HERO's hand and the lamp above them warms on
+  tl.to(child.p, { ...reach(child, -1, 668, 1430, { x: 700, sit: 0 }), duration: F(8), ease: 'expo.out' }, 12.87);
+  tl.to(hero.p, { ...reach(hero, 1, 668, 1430, { x: 600, sit: 0 }), turn: 0.4, lookX: 0.6, lookY: 0.6, duration: F(8), ease: 'expo.out' }, 12.93);
+  K.expr(ctx, child, 'smile', 13.0, F(8));
+  K.expr(ctx, hero, 'smile', 13.2, F(12));
+  const lamp = set.lampR;
+  const lw = { k: 0 };
+  ctx.procs.push(() => { lamp.head.setAttribute('opacity', lw.k); lamp.headOff.setAttribute('opacity', 1 - lw.k); lamp.cone.setAttribute('opacity', 0.12 * lw.k); });
+  tl.to(lw, { k: 1, duration: F(20), ease: 'power1.out' }, 13.0);
+  ctx.event(13.0, 'lampWarm');
+
+  // ================= camera: tilt down 0-0.33, medium on the bench with a 2 % push until 7.5,
+  // close on HERO and CHILD at 7.5, locked during the split, pull wide at 11.0
+  K.camSet(ctx, 0, { x: 560, y: -1800, s: 1.2 });
+  K.camTo(ctx, 0, F(10), { y: 1220 }, 'power2.out');
+  K.camTo(ctx, F(10), 7.5 - F(10), { s: 1.224 }, 'none');
+  K.camSet(ctx, 7.5, { x: 520, y: 1118, s: 1.6 });
+  K.camSet(ctx, 9.0, { x: 545, y: 1455, s: 0.7 });                    // split: both halves frame the bench, locked
+  K.camTo(ctx, 11.0, F(20), { x: 600, y: 1270, s: 0.72 }, 'expo.out');
+  K.camTo(ctx, 11.0 + F(20), 15 - 11.0 - F(20), { s: 0.7344 }, 'none');
+  window.__bulbs = [set.B];
+}, { seed: 404, duration: 15 });
+</script>
+</body></html>

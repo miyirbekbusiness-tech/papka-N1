@@ -1,0 +1,31 @@
+CHECKS part4.html  (2026-11-11T00:25:08.252Z)
+PASS  S17 on screen 2.50 s (needs 2.30 s for 6 words), 2 line(s) at 56px
+PASS  S18 on screen 2.00 s (needs 2.00 s for 5 words), 1 line(s) at 56px
+PASS  S19 on screen 3.00 s (needs 2.60 s for 7 words), 2 line(s) at 56px
+PASS  S20 on screen 3.50 s (needs 1.70 s for 4 words), 1 line(s) at 56px
+PASS  S21 on screen 2.00 s (needs 1.70 s for 4 words), 2 line(s) at 56px
+PASS  CTA1 on screen 4.00 s (needs 1.70 s for 4 words), 2 line(s) at 56px
+PASS  CTA2 on screen 3.00 s (needs 2.90 s for 8 words), 2 line(s) at 44px
+PASS  ʻ glyph: Inter loaded=true, text uses Inter=true, width Inter 231.7 vs serif 213.1 / mono 337.1
+PASS  S17 inside safe area (ink): x 121–872, y 300–424
+PASS  S18 inside safe area (ink): x 123–817, y 300–356
+PASS  S19 inside safe area (ink): x 121–872, y 300–413
+PASS  S20 inside safe area (ink): x 121–954, y 300–492
+PASS  S21 inside safe area (ink): x 121–954, y 300–492
+PASS  CTA1 inside safe area (ink): x 120–900, y 292–550
+PASS  CTA2 inside safe area (ink): x 120–900, y 292–550
+PASS  SUB contrast worst 16.68:1 (CTA2 f360), sampled every 2 frames
+PASS  nothing but sky above y=460 (or under the text, if it runs lower) while a SUB is on
+PASS  hero feet at t=0.5s: sole y=1581.3 vs ground 1580
+PASS  bride feet at t=0.5s: sole y=1580.4 vs ground 1580
+PASS  bride feet at t=3.3s: sole y=1580.2 vs ground 1580
+PASS  hero feet at t=12.5s: sole y=1580.0 vs ground 1580
+PASS  child feet at t=12.5s: sole y=1580.0 vs ground 1580
+PASS  hero feet at t=14.9s: sole y=1580.0 vs ground 1580
+PASS  child feet at t=14.9s: sole y=1580.0 vs ground 1580
+PASS  f0 is full #170E3A (0 other pixels)
+PASS  CTA1 and CTA2 spelled exactly as TEXT: "dangasalar_n1 kanaliga obuna boʻling" / "va commentga hechkimga qiziq boʻlmagan fikringizni yozib qoldiring"
+PASS  BRIDE never cuts out: drains, then lifts (opacity changes smoothly, max step per frame): largest frame-to-frame opacity step 0.082, last visible frame f194
+PASS  no bulb relights: levels never rise; at f449 levels [0,0,0,0,0,0]
+FAIL  CTA1 pill word contrast (WHITE on PINK): 3.11:1 — the brand pill colour cannot reach 4.5:1 with WHITE text (passes WCAG AA large-text 3:1)
+1 FAILED

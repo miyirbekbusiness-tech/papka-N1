@@ -43,11 +43,11 @@ const hex = h => [0, 2, 4].map(i => parseInt(h.replace('#', '').substr(i, 2), 16
   for (const bx of boxes) {
     const sub = meta.subs.find(s => s.id === bx.id);
     if (sub) {
-      await p.evaluate(() => { ['bg', 'cam', 'fx'].forEach(id => document.getElementById(id).style.display = 'none'); document.querySelectorAll('.label').forEach(n => n.style.display = 'none'); document.body.style.background = '#FF00FF'; });
+      await p.evaluate(() => { ['bg', 'cam', 'fx'].forEach(id => document.getElementById(id).style.display = 'none'); document.querySelectorAll('.split').forEach(n => n.style.display = 'none'); document.querySelectorAll('.label').forEach(n => n.style.display = 'none'); document.body.style.background = '#FF00FF'; });
       const { data, info } = await grab((sub.t0 + sub.t1) / 2);
       let x0 = 1e9, x1 = -1, y0 = 1e9, y1 = -1;
       for (let y = 0; y < info.height; y++) for (let x = 0; x < info.width; x++) { const i = (y * info.width + x) * 3; if (!(data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 255)) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } }
-      await p.evaluate(() => { ['bg', 'cam', 'fx'].forEach(id => document.getElementById(id).style.display = ''); document.querySelectorAll('.label').forEach(n => n.style.display = ''); document.body.style.background = ''; });
+      await p.evaluate(() => { ['bg', 'cam', 'fx'].forEach(id => document.getElementById(id).style.display = ''); document.querySelectorAll('.split').forEach(n => n.style.display = ''); document.querySelectorAll('.label').forEach(n => n.style.display = ''); document.body.style.background = ''; });
       Object.assign(bx, { x0, x1: x1 + 1, y0, y1: y1 + 1 });
     }
     log(bx.x0 >= 119.5 && bx.x1 <= 960.5 && bx.y0 >= 249.5 && bx.y1 <= 1500.5, `${bx.id} inside safe area (ink): x ${bx.x0.toFixed(0)}–${bx.x1.toFixed(0)}, y ${bx.y0.toFixed(0)}–${bx.y1.toFixed(0)}`);
@@ -69,13 +69,14 @@ const hex = h => [0, 2, 4].map(i => parseInt(h.replace('#', '').substr(i, 2), 16
     }
     // clear zone: hide sky, magenta backdrop, look above y=460 (labels stay visible)
     await p.evaluate(() => { const u = document.getElementById('ui'); u.style.display = ''; u.querySelectorAll('.sub').forEach(n => n.style.display = 'none'); document.querySelectorAll('.backdrop').forEach(n => n.style.display = 'none'); document.getElementById('bg').style.display = 'none'; document.body.style.background = '#FF00FF'; });
-    const { data } = await grab(t, { x: 0, y: 0, width: 1080, height: 460 });
+    const zone = Math.ceil(Math.max(460, ...on.map(s => s.box[1] + s.box[3] + 10)));
+    const { data } = await grab(t, { x: 0, y: 0, width: 1080, height: zone });
     let n = 0; for (let i = 0; i < data.length; i += 3) if (!(data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 255)) n++;
     if (n) { dirty++; dirtyAt.push(`f${f}:${n}px`); }
     await p.evaluate(() => { document.getElementById('ui').querySelectorAll('.sub').forEach(n => n.style.display = ''); document.querySelectorAll('.backdrop').forEach(n => n.style.display = ''); document.getElementById('bg').style.display = ''; document.body.style.background = ''; });
   }
   log(worst >= 4.5, `SUB contrast worst ${worst.toFixed(2)}:1 (${worstAt}), sampled every ${step} frames`);
-  log(dirty === 0, `nothing but sky above y=460 while a SUB is on${dirty ? ': ' + dirtyAt.slice(0, 8).join(' ') : ''}`);
+  log(dirty === 0, `nothing but sky above y=460 (or under the text, if it runs lower) while a SUB is on${dirty ? ': ' + dirtyAt.slice(0, 8).join(' ') : ''}`);
   // 5. feet on the ground line
   if (cfg.feet) for (const [t, who, gy] of cfg.feet) {
     const r = await p.evaluate(([t, who]) => {
