@@ -1,0 +1,28 @@
+{
+  "note": "start = global second the line starts (SUB in + 2 frames); end_by = latest end (next S/CTA start - 0.2 s). Spoken text follows the pronunciation rules; subtitles stay unchanged.",
+  "lines": [
+    {"id":"S1","start":0.067,"end_by":2.8,"sub":"Tasavvur qil: oldingga bir boy odam keldi.","spoken":"Tasavvur qil: oldingga bir boy odam keldi.","delivery":"warm, quiet storyteller"},
+    {"id":"S2","start":3.067,"end_by":5.8,"sub":"“Qizimga uylansang — 1 milliard dollar beraman.”","spoken":"Qizimga uylansang, bir milliard dollar beraman.","delivery":"RICH: same narrator, a little slower and lower"},
+    {"id":"S3","start":6.067,"end_by":7.8,"sub":"Sen hayronsan.","spoken":"Sen hayronsan."},
+    {"id":"S4","start":8.067,"end_by":9.8,"sub":"Xayolingga bitta narsa keldi:","spoken":"Xayolingga bitta narsa keldi:"},
+    {"id":"S5","start":10.067,"end_by":15.3,"sub":"“Qizi xunuk boʻlsa kerak…”","spoken":"Qizi xunuk boʻlsa kerak."},
+    {"id":"S6","start":15.567,"end_by":17.8,"sub":"Lekin uchrashgach koʻrding: u juda chiroyli.","spoken":"Lekin uchrashgach koʻrding: u juda chiroyli."},
+    {"id":"S7","start":18.067,"end_by":20.8,"sub":"Nega boy bunday qilyapti? Qizida nimadir bormi?","spoken":"Nega boy bunday qilyapti? Qizida nimadir bormi?"},
+    {"id":"S8","start":21.067,"end_by":22.8,"sub":"“Qizim ogʻir kasal.”","spoken":"Qizim ogʻir kasal.","delivery":"RICH: slower and lower"},
+    {"id":"S9","start":23.067,"end_by":25.8,"sub":"“Bitta orzusi bor: turmush qurish, oilali boʻlish…”","spoken":"Bitta orzusi bor: turmush qurish, oilali boʻlish,","delivery":"RICH: slower and lower"},
+    {"id":"S10","start":26.067,"end_by":30.3,"sub":"“…va baxtli hayot kechirish.”","spoken":"va baxtli hayot kechirish.","delivery":"RICH: slower and lower"},
+    {"id":"S11","start":30.567,"end_by":31.8,"sub":"Sen rozi boʻlding.","spoken":"Sen rozi boʻlding."},
+    {"id":"S12","start":32.067,"end_by":33.3,"sub":"Turmush qurdingiz.","spoken":"Turmush qurdingiz."},
+    {"id":"S13","start":33.567,"end_by":36.3,"sub":"Bir-biringizni haqiqatan sevib qoldingiz. Juda kuchli.","spoken":"Bir-biringizni haqiqatan sevib qoldingiz. Juda kuchli."},
+    {"id":"S14","start":36.567,"end_by":39.3,"sub":"Lekin uning umri atigi 5–6 yil qolgan edi.","spoken":"Lekin uning umri atigi besh-olti yil qolgan edi.","delivery":"slower, sadder from here"},
+    {"id":"S15","start":39.567,"end_by":41.3,"sub":"Birga yashadingiz. Farzand koʻrdingiz.","spoken":"Birga yashadingiz. Farzand koʻrdingiz."},
+    {"id":"S16","start":41.567,"end_by":44.8,"sub":"U sening borligʻing boʻlib qoldi.","spoken":"U sening borligʻing boʻlib qoldi."},
+    {"id":"S17","start":45.067,"end_by":47.3,"sub":"Usiz bir soniya ham yashay olmaysan.","spoken":"Usiz bir soniya ham yashay olmaysan."},
+    {"id":"S18","start":47.567,"end_by":49.3,"sub":"U juda ham mehribon edi.","spoken":"U juda ham mehribon edi."},
+    {"id":"S19","start":49.567,"end_by":52.3,"sub":"Lekin 5 yildan soʻng u vafot etdi.","spoken":"Lekin besh yildan soʻng u vafot etdi.","delivery":"almost whispered"},
+    {"id":"S20","start":52.567,"end_by":53.8,"sub":"Sen bunga chiday olarmiding?","spoken":"Sen bunga chiday olarmiding?","delivery":"a real question"},
+    {"id":"S21","start":54.0,"end_by":55.8,"sub":"Yoki umuman rozi boʻlmasmiding?","spoken":"Yoki umuman rozi boʻlmasmiding?","delivery":"a real question"},
+    {"id":"CTA1","start":56.0,"end_by":null,"sub":"dangasalar_n1 kanaliga obuna boʻling","spoken":"Dangasalar en bir kanaliga obuna boʻling.","delivery":"friendly, clear"},
+    {"id":"CTA2","start":null,"end_by":59.8,"sub":"va commentga hechkimga qiziq boʻlmagan fikringizni yozib qoldiring","spoken":"Va kommentga hechkimga qiziq boʻlmagan fikringizni yozib qoldiring.","delivery":"friendly, clear; starts 0.15 s after CTA1 ends"}
+  ]
+}
