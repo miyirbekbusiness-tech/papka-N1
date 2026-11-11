@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Reel Cover</title>
+<meta name="viewport" content="width=1080">
+<script src="vendor/gsap.min.js"></script>
+</head><body>
+<script type="module">
+// Reels cover, 1080x1920. Everything that matters sits inside the 4:5 profile-grid crop (y 285-1635).
+import * as K from './kit.js';
+const { PALETTE: P, el } = K;
+
+K.boot(ctx => {
+  const { world, ui } = ctx;
+  const G = K.GROUND_Y;
+  K.PARK(ctx, { parent: el('g', {}, world), benchX: 250, lampX: 90, trees: [[600, 0.95], [1010, 1.05], [-180, 1.0]] });
+
+  const hero = K.HERO(ctx, { expr: 'shock', pose: { x: 330, y: G, turn: 0.5, lookX: 1, glow: 1, aL: 20, eL: 40, aR: 40, eR: 110, blink: 0, breathe: 0 } });
+  const rich = K.RICH(ctx, { expr: 'smile', pose: { x: 780, y: G, turn: -0.7, lookX: -1, glow: 1, aL: 40, eL: 50, aR: 150, eR: 10, blink: 0, breathe: 0 } });
+  void hero;
+  // open briefcase with gold in RICH's hand, gold light rising
+  const caseG = el('g', { transform: 'translate(0 8)' }, rich.arms[0].prop);
+  el('path', { d: 'M -56 10 L 56 10 L 170 -360 L -170 -360 Z', fill: P.GOLD, opacity: 0.28 }, caseG);
+  el('rect', { x: -60, y: -58, width: 120, height: 60, rx: 8, fill: '#794C6E' }, caseG);
+  el('rect', { x: -50, y: -50, width: 100, height: 44, rx: 6, fill: P.GOLD }, caseG);
+  el('rect', { x: -60, y: 12, width: 120, height: 84, rx: 10, fill: '#794C6E' }, caseG);
+  el('rect', { x: -52, y: 18, width: 104, height: 70, rx: 6, fill: P.GOLD }, caseG);
+  [[-46, 26], [-6, 26], [-26, 50], [14, 50], [-46, 72], [-6, 72], [34, 72]].forEach(([x, y]) => el('rect', { x, y, width: 34, height: 14, rx: 3, fill: '#F2B33D' }, caseG));
+  // ring box held up
+  const ring = el('g', { transform: 'translate(0 -18)' }, rich.arms[1].prop);
+  el('rect', { x: -24, y: -26, width: 48, height: 26, rx: 6, fill: '#794C6E' }, ring);
+  el('rect', { x: -24, y: -52, width: 48, height: 22, rx: 6, fill: '#794C6E' }, ring);
+  el('rect', { x: -18, y: -48, width: 36, height: 14, rx: 4, fill: P.CREAM }, ring);
+  el('circle', { cx: 0, cy: -24, r: 13, fill: P.GOLD }, ring);
+  el('circle', { cx: 0, cy: -24, r: 7, fill: '#794C6E' }, ring);
+  el('path', { d: 'M -8 -40 L 0 -48 L 8 -40 L 0 -32 Z', fill: P.WHITE }, ring);
+
+  // the MARK thought bubble over HERO
+  const mb = K.MARKBUBBLE(ctx, { parent: el('g', {}, ui) });
+  mb.g.setAttribute('transform', 'translate(200 650) scale(0.55) rotate(-4)');
+  [[300, 790, 11], [282, 762, 15]].forEach(([cx, cy, r]) => el('circle', { cx, cy, r, fill: P.CREAM }, ui));
+
+  // headline (inside the 4:5 crop) and the big money label
+  const T = (txt, x, y, size, fill, w = 800) => { const t = el('text', { x, y, 'text-anchor': 'middle', fill, 'font-family': 'Inter', 'font-weight': w, 'font-size': size }, ui); t.textContent = txt; return t; };
+  T('Qizimga uylansang —', 540, 420, 76, P.WHITE);
+  T('1 milliard dollar', 540, 520, 96, P.GOLD);
+  const pill = el('g', { transform: 'translate(690 700) rotate(-3)' }, ui);
+  const tw = K.textWidth('1 000 000 000 $', '800 58px Inter');
+  el('rect', { x: -tw / 2 - 30, y: -50, width: tw + 60, height: 96, rx: 18, fill: P.PINK }, pill);
+  const pt = el('text', { x: 0, y: 20, 'text-anchor': 'middle', fill: P.WHITE, 'font-family': 'Inter', 'font-weight': 800, 'font-size': 58 }, pill); pt.textContent = '1 000 000 000 $';
+  T('Sen rozi boʻlarmiding?', 540, 1612, 62, P.WHITE);
+
+  K.camSet(ctx, 0, { x: 560, y: 1145, s: 1.3 });
+}, { seed: 9, duration: 1 });
+</script>
+</body></html>
