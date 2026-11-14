@@ -5,3 +5,10 @@ local.properties
 .idea/
 *.iml
 .DS_Store
+reels/stage*/frames/
+reels/stage*/check/
+reels/stage*/stills/
+reels/stage*/sheet/
+reels/stage*/*.wav
+reels/final_mix.wav
+reels/final_frames/

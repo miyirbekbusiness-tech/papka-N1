@@ -1,0 +1,200 @@
+{
+ "stage": 1,
+ "subtitle_contrast_min": 8.97,
+ "subtitle_contrast": [
+  {
+   "text": "Tasavvur qil: sen mavjud boʻlmasang,",
+   "bgL95": 0.0315,
+   "contrast": 12.89
+  },
+  {
+   "text": "Tasavvur qil: sen mavjud boʻlmasang,",
+   "bgL95": 0.0338,
+   "contrast": 12.54
+  },
+  {
+   "text": "Tasavvur qil: sen mavjud boʻlmasang,",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "nima boʻladi?",
+   "bgL95": 0.0338,
+   "contrast": 12.54
+  },
+  {
+   "text": "nima boʻladi?",
+   "bgL95": 0.0338,
+   "contrast": 12.54
+  },
+  {
+   "text": "nima boʻladi?",
+   "bgL95": 0.0338,
+   "contrast": 12.54
+  },
+  {
+   "text": "Dunyo toʻxtamaydi.",
+   "bgL95": 0.0338,
+   "contrast": 12.54
+  },
+  {
+   "text": "Dunyo toʻxtamaydi.",
+   "bgL95": 0.0338,
+   "contrast": 12.54
+  },
+  {
+   "text": "Dunyo toʻxtamaydi.",
+   "bgL95": 0.0268,
+   "contrast": 13.67
+  },
+  {
+   "text": "Soat yuraveradi, avtobus oʻtaveradi,",
+   "bgL95": 0.0233,
+   "contrast": 14.32
+  },
+  {
+   "text": "Soat yuraveradi, avtobus oʻtaveradi,",
+   "bgL95": 0.0235,
+   "contrast": 14.29
+  },
+  {
+   "text": "Soat yuraveradi, avtobus oʻtaveradi,",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "shahar chiroqlari yonaveradi.",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "shahar chiroqlari yonaveradi.",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "shahar chiroqlari yonaveradi.",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "Lekin sening yoʻqligingni",
+   "bgL95": 0.03,
+   "contrast": 13.13
+  },
+  {
+   "text": "Lekin sening yoʻqligingni",
+   "bgL95": 0.0101,
+   "contrast": 17.47
+  },
+  {
+   "text": "Lekin sening yoʻqligingni",
+   "bgL95": 0.0103,
+   "contrast": 17.41
+  },
+  {
+   "text": "kim his qiladi?",
+   "bgL95": 0.0157,
+   "contrast": 15.99
+  },
+  {
+   "text": "kim his qiladi?",
+   "bgL95": 0.0101,
+   "contrast": 17.47
+  },
+  {
+   "text": "kim his qiladi?",
+   "bgL95": 0.0101,
+   "contrast": 17.47
+  },
+  {
+   "text": "Sen emas — his qiladigan sen yoʻqsan.",
+   "bgL95": 0.0129,
+   "contrast": 16.69
+  },
+  {
+   "text": "Sen emas — his qiladigan sen yoʻqsan.",
+   "bgL95": 0.0129,
+   "contrast": 16.69
+  },
+  {
+   "text": "Sen emas — his qiladigan sen yoʻqsan.",
+   "bgL95": 0.0058,
+   "contrast": 18.82
+  }
+ ],
+ "labels": [],
+ "sweater": [
+  {
+   "shot": "S1 close-up",
+   "frame": 72,
+   "measured": "#F1A739",
+   "max_channel_diff": 2.2
+  }
+ ],
+ "streams": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_type": "video",
+    "duration": "15.000000",
+    "nb_frames": "450"
+   },
+   {
+    "codec_type": "audio",
+    "duration": "15.000000",
+    "nb_frames": "705"
+   }
+  ],
+  "format": {
+   "duration": "15.000000"
+  }
+ },
+ "loudness": {
+  "integrated_lufs": -14.0,
+  "true_peak_dbtp": -2.8
+ },
+ "hero_js_sha256": "dad898763e0b507a",
+ "kit_sha256": {
+  "hero.js": "dad898763e0b507a",
+  "subs.js": "c64155f57b0e5fea",
+  "style.js": "25a39ef87376a161",
+  "scene.js": "4ebe2db5617c04d1"
+ },
+ "cuts": [
+  {
+   "shot": "S1 close-up",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 4.8,
+   "lenOK": true
+  },
+  {
+   "shot": "S2 wide bedroom",
+   "f0": 144,
+   "cueFrame": 144,
+   "onCue": true,
+   "dur": 4.467,
+   "lenOK": true
+  },
+  {
+   "shot": "S3 low angle chair",
+   "f0": 278,
+   "cueFrame": 278,
+   "onCue": true,
+   "dur": 2.867,
+   "lenOK": false
+  },
+  {
+   "shot": "S4 macro crumbs",
+   "f0": 364,
+   "cueFrame": 364,
+   "onCue": true,
+   "dur": 2.867,
+   "lenOK": false
+  }
+ ],
+ "subs_mismatch": [],
+ "safe_area_violations": []
+}

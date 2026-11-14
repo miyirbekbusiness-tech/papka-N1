@@ -1,0 +1,337 @@
+{
+ "subs": [],
+ "cuts": [
+  {
+   "shot": "S1 close-up",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 4.8,
+   "lenOK": true
+  },
+  {
+   "shot": "S2 wide bedroom",
+   "f0": 144,
+   "cueFrame": 144,
+   "onCue": true,
+   "dur": 4.467,
+   "lenOK": true
+  },
+  {
+   "shot": "S3 low angle chair",
+   "f0": 278,
+   "cueFrame": 278,
+   "onCue": true,
+   "dur": 2.867,
+   "lenOK": false
+  },
+  {
+   "shot": "S4 macro crumbs",
+   "f0": 364,
+   "cueFrame": 364,
+   "onCue": true,
+   "dur": 2.867,
+   "lenOK": false
+  }
+ ],
+ "safe": [],
+ "labels": [],
+ "phraseBoxes": [
+  {
+   "text": "Tasavvur qil: sen mavjud boʻlmasang,",
+   "t": 0.2,
+   "f": 6,
+   "box": [
+    120,
+    300,
+    425,
+    380
+   ],
+   "fEnd": 75
+  },
+  {
+   "text": "Tasavvur qil: sen mavjud boʻlmasang,",
+   "t": 1.3,
+   "f": 39,
+   "box": [
+    120,
+    300,
+    685,
+    380
+   ],
+   "fEnd": 75
+  },
+  {
+   "text": "Tasavvur qil: sen mavjud boʻlmasang,",
+   "t": 2.466666666666667,
+   "f": 74,
+   "box": [
+    120,
+    300,
+    958,
+    460
+   ],
+   "fEnd": 75
+  },
+  {
+   "text": "nima boʻladi?",
+   "t": 2.7,
+   "f": 81,
+   "box": [
+    120,
+    300,
+    292,
+    380
+   ],
+   "fEnd": 103
+  },
+  {
+   "text": "nima boʻladi?",
+   "t": 3.033333333333333,
+   "f": 91,
+   "box": [
+    120,
+    300,
+    579,
+    380
+   ],
+   "fEnd": 103
+  },
+  {
+   "text": "nima boʻladi?",
+   "t": 3.4,
+   "f": 102,
+   "box": [
+    120,
+    300,
+    579,
+    380
+   ],
+   "fEnd": 103
+  },
+  {
+   "text": "Dunyo toʻxtamaydi.",
+   "t": 3.6333333333333333,
+   "f": 109,
+   "box": [
+    120,
+    300,
+    343,
+    380
+   ],
+   "fEnd": 141
+  },
+  {
+   "text": "Dunyo toʻxtamaydi.",
+   "t": 4.133333333333334,
+   "f": 124,
+   "box": [
+    120,
+    300,
+    785,
+    380
+   ],
+   "fEnd": 141
+  },
+  {
+   "text": "Dunyo toʻxtamaydi.",
+   "t": 4.666666666666667,
+   "f": 140,
+   "box": [
+    120,
+    300,
+    785,
+    380
+   ],
+   "fEnd": 141
+  },
+  {
+   "text": "Soat yuraveradi, avtobus oʻtaveradi,",
+   "t": 4.9,
+   "f": 147,
+   "box": [
+    120,
+    300,
+    272,
+    380
+   ],
+   "fEnd": 220
+  },
+  {
+   "text": "Soat yuraveradi, avtobus oʻtaveradi,",
+   "t": 6.066666666666666,
+   "f": 182,
+   "box": [
+    120,
+    300,
+    670,
+    380
+   ],
+   "fEnd": 220
+  },
+  {
+   "text": "Soat yuraveradi, avtobus oʻtaveradi,",
+   "t": 7.3,
+   "f": 219,
+   "box": [
+    120,
+    300,
+    771,
+    460
+   ],
+   "fEnd": 220
+  },
+  {
+   "text": "shahar chiroqlari yonaveradi.",
+   "t": 7.533333333333333,
+   "f": 226,
+   "box": [
+    120,
+    300,
+    353,
+    380
+   ],
+   "fEnd": 275
+  },
+  {
+   "text": "shahar chiroqlari yonaveradi.",
+   "t": 8.3,
+   "f": 249,
+   "box": [
+    120,
+    300,
+    698,
+    380
+   ],
+   "fEnd": 275
+  },
+  {
+   "text": "shahar chiroqlari yonaveradi.",
+   "t": 9.133333333333333,
+   "f": 274,
+   "box": [
+    120,
+    300,
+    698,
+    460
+   ],
+   "fEnd": 275
+  },
+  {
+   "text": "Lekin sening yoʻqligingni",
+   "t": 9.366666666666667,
+   "f": 281,
+   "box": [
+    120,
+    300,
+    308,
+    380
+   ],
+   "fEnd": 327
+  },
+  {
+   "text": "Lekin sening yoʻqligingni",
+   "t": 10.1,
+   "f": 303,
+   "box": [
+    120,
+    300,
+    557,
+    380
+   ],
+   "fEnd": 327
+  },
+  {
+   "text": "Lekin sening yoʻqligingni",
+   "t": 10.866666666666667,
+   "f": 326,
+   "box": [
+    120,
+    300,
+    557,
+    460
+   ],
+   "fEnd": 327
+  },
+  {
+   "text": "kim his qiladi?",
+   "t": 11.1,
+   "f": 333,
+   "box": [
+    120,
+    300,
+    250,
+    380
+   ],
+   "fEnd": 361
+  },
+  {
+   "text": "kim his qiladi?",
+   "t": 11.533333333333333,
+   "f": 346,
+   "box": [
+    120,
+    300,
+    615,
+    380
+   ],
+   "fEnd": 361
+  },
+  {
+   "text": "kim his qiladi?",
+   "t": 12,
+   "f": 360,
+   "box": [
+    120,
+    300,
+    615,
+    380
+   ],
+   "fEnd": 361
+  },
+  {
+   "text": "Sen emas — his qiladigan sen yoʻqsan.",
+   "t": 12.233333333333333,
+   "f": 367,
+   "box": [
+    120,
+    300,
+    247,
+    380
+   ],
+   "fEnd": 448
+  },
+  {
+   "text": "Sen emas — his qiladigan sen yoʻqsan.",
+   "t": 13.533333333333333,
+   "f": 406,
+   "box": [
+    120,
+    300,
+    650,
+    460
+   ],
+   "fEnd": 448
+  },
+  {
+   "text": "Sen emas — his qiladigan sen yoʻqsan.",
+   "t": 14.9,
+   "f": 447,
+   "box": [
+    120,
+    300,
+    879,
+    460
+   ],
+   "fEnd": 448
+  }
+ ],
+ "swatch": [
+  {
+   "shot": "S1 close-up",
+   "f": 72,
+   "x": 327,
+   "y": 1756
+  }
+ ]
+}
