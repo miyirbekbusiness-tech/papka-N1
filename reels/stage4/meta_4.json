@@ -1,0 +1,392 @@
+{
+ "stage": 4,
+ "fps": 30,
+ "duration": 15,
+ "frames": 450,
+ "shots": [
+  {
+   "name": "S13 hill drain",
+   "cue": "Demak",
+   "f0": 0,
+   "f1": 141,
+   "dur": 4.7,
+   "cut": "open"
+  },
+  {
+   "name": "S14 re-ignite",
+   "cue": "Mavjudligingning",
+   "f0": 141,
+   "f1": 260,
+   "dur": 3.966666666666667,
+   "cut": "hard"
+  },
+  {
+   "name": "S15 aerial city",
+   "cue": "U",
+   "f0": 260,
+   "f1": 322,
+   "dur": 2.066666666666667,
+   "cut": "hard"
+  },
+  {
+   "name": "S16 CTA",
+   "cue": "Shunday",
+   "f0": 322,
+   "f1": 450,
+   "dur": 4.266666666666667,
+   "cut": "hard"
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0,
+   "type": "wind",
+   "dur": 5
+  },
+  {
+   "t": 0.9333,
+   "type": "drain",
+   "dur": 0.6
+  },
+  {
+   "t": 4.7,
+   "type": "whoosh",
+   "cut": "hard"
+  },
+  {
+   "t": 5.0333,
+   "type": "spark"
+  },
+  {
+   "t": 5.1,
+   "type": "swell",
+   "dur": 0.5,
+   "gain": 0.7
+  },
+  {
+   "t": 8.2333,
+   "type": "swell",
+   "dur": 0.9
+  },
+  {
+   "t": 8.6667,
+   "type": "whoosh",
+   "cut": "hard"
+  },
+  {
+   "t": 8.7867,
+   "type": "chime",
+   "i": 0,
+   "major": true,
+   "gain": 0.8,
+   "pan": -0.6
+  },
+  {
+   "t": 8.9567,
+   "type": "chime",
+   "i": 1,
+   "major": true,
+   "gain": 0.8,
+   "pan": -0.42999999999999994
+  },
+  {
+   "t": 9.1267,
+   "type": "chime",
+   "i": 2,
+   "major": true,
+   "gain": 0.8,
+   "pan": -0.25999999999999995
+  },
+  {
+   "t": 9.2967,
+   "type": "chime",
+   "i": 3,
+   "major": true,
+   "gain": 0.8,
+   "pan": -0.08999999999999997
+  },
+  {
+   "t": 9.4667,
+   "type": "chime",
+   "i": 4,
+   "major": true,
+   "gain": 0.8,
+   "pan": 0.08000000000000007
+  },
+  {
+   "t": 9.6367,
+   "type": "chime",
+   "i": 5,
+   "major": true,
+   "gain": 0.8,
+   "pan": 0.2500000000000001
+  },
+  {
+   "t": 9.8067,
+   "type": "chime",
+   "i": 6,
+   "major": true,
+   "gain": 0.8,
+   "pan": 0.42000000000000004
+  },
+  {
+   "t": 9.9767,
+   "type": "chime",
+   "i": 7,
+   "major": true,
+   "gain": 0.8,
+   "pan": 0.5900000000000002
+  },
+  {
+   "t": 10.7333,
+   "type": "whoosh",
+   "cut": "hard"
+  },
+  {
+   "t": 10.8667,
+   "type": "slide",
+   "dur": 0.5,
+   "gain": 0.8
+  },
+  {
+   "t": 13.2333,
+   "type": "hop"
+  },
+  {
+   "t": 13.5,
+   "type": "click"
+  },
+  {
+   "t": 13.6,
+   "type": "ding",
+   "gain": 0.6,
+   "f": 1318.5
+  },
+  {
+   "t": 13.8333,
+   "type": "land",
+   "gain": 0.6,
+   "pan": -0.4
+  },
+  {
+   "t": 14.1667,
+   "type": "cloth",
+   "gain": 0.6,
+   "pan": -0.5
+  }
+ ],
+ "music": {
+  "bpm": 90,
+  "key": "Dm",
+  "drops": [],
+  "tail": true,
+  "major_from": 4.7
+ },
+ "words": [
+  {
+   "word": "Demak,",
+   "start": 0.077,
+   "end": 0.424,
+   "frame": 2
+  },
+  {
+   "word": "sen",
+   "start": 0.635,
+   "end": 0.882,
+   "frame": 19
+  },
+  {
+   "word": "boʻlmasang,",
+   "start": 0.93,
+   "end": 1.527,
+   "frame": 28
+  },
+  {
+   "word": "yoʻqlikni",
+   "start": 1.739,
+   "end": 2.285,
+   "frame": 52
+  },
+  {
+   "word": "his",
+   "start": 2.334,
+   "end": 2.58,
+   "frame": 70
+  },
+  {
+   "word": "qiladigan",
+   "start": 2.628,
+   "end": 3.175,
+   "frame": 79
+  },
+  {
+   "word": "hech",
+   "start": 3.223,
+   "end": 3.52,
+   "frame": 97
+  },
+  {
+   "word": "kim",
+   "start": 3.568,
+   "end": 3.814,
+   "frame": 107
+  },
+  {
+   "word": "qolmaydi.",
+   "start": 3.862,
+   "end": 4.359,
+   "frame": 116
+  },
+  {
+   "word": "Mavjudligingning",
+   "start": 4.706,
+   "end": 5.603,
+   "frame": 141
+  },
+  {
+   "word": "yagona",
+   "start": 5.651,
+   "end": 6.048,
+   "frame": 170
+  },
+  {
+   "word": "guvohi",
+   "start": 6.096,
+   "end": 6.492,
+   "frame": 183
+  },
+  {
+   "word": "—",
+   "start": 6.541,
+   "end": 6.618,
+   "frame": 196
+  },
+  {
+   "word": "ichingdagi",
+   "start": 6.829,
+   "end": 7.426,
+   "frame": 205
+  },
+  {
+   "word": "shu",
+   "start": 7.474,
+   "end": 7.721,
+   "frame": 224
+  },
+  {
+   "word": "yorugʻlik.",
+   "start": 7.769,
+   "end": 8.316,
+   "frame": 233
+  },
+  {
+   "word": "U",
+   "start": 8.662,
+   "end": 8.809,
+   "frame": 260
+  },
+  {
+   "word": "hozir",
+   "start": 8.857,
+   "end": 9.203,
+   "frame": 266
+  },
+  {
+   "word": "ham",
+   "start": 9.252,
+   "end": 9.498,
+   "frame": 278
+  },
+  {
+   "word": "yonib",
+   "start": 9.546,
+   "end": 9.893,
+   "frame": 286
+  },
+  {
+   "word": "turibdi.",
+   "start": 9.941,
+   "end": 10.388,
+   "frame": 298
+  },
+  {
+   "word": "Shunday",
+   "start": 10.734,
+   "end": 11.181,
+   "frame": 322
+  },
+  {
+   "word": "savollar",
+   "start": 11.229,
+   "end": 11.726,
+   "frame": 337
+  },
+  {
+   "word": "uchun",
+   "start": 11.774,
+   "end": 12.12,
+   "frame": 353
+  },
+  {
+   "word": "dangasa_ai",
+   "start": 12.169,
+   "end": 12.765,
+   "frame": 365
+  },
+  {
+   "word": "sahifamizga",
+   "start": 12.814,
+   "end": 13.46,
+   "frame": 384
+  },
+  {
+   "word": "obuna",
+   "start": 13.509,
+   "end": 13.855,
+   "frame": 405
+  },
+  {
+   "word": "boʻling.",
+   "start": 13.903,
+   "end": 14.35,
+   "frame": 417
+  }
+ ],
+ "phrases": [
+  {
+   "f0": 2,
+   "fClear": 49,
+   "text": "Demak, sen boʻlmasang,"
+  },
+  {
+   "f0": 52,
+   "fClear": 137,
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi."
+  },
+  {
+   "f0": 141,
+   "fClear": 202,
+   "text": "Mavjudligingning yagona guvohi —"
+  },
+  {
+   "f0": 205,
+   "fClear": 255,
+   "text": "ichingdagi shu yorugʻlik."
+  },
+  {
+   "f0": 260,
+   "fClear": 318,
+   "text": "U hozir ham yonib turibdi."
+  },
+  {
+   "f0": 322,
+   "fClear": 381,
+   "text": "Shunday savollar uchun dangasa_ai"
+  },
+  {
+   "f0": 384,
+   "fClear": 437,
+   "text": "sahifamizga obuna boʻling."
+  }
+ ]
+}

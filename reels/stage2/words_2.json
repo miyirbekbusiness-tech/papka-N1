@@ -1,0 +1,193 @@
+{
+ "stage": 2,
+ "provisional": true,
+ "voice_duration": null,
+ "words": [
+  {
+   "word": "Faylasuf",
+   "start": 0.07,
+   "end": 0.52,
+   "frame": 2
+  },
+  {
+   "word": "Devid",
+   "start": 0.563,
+   "end": 0.877,
+   "frame": 17
+  },
+  {
+   "word": "Chalmers",
+   "start": 0.921,
+   "end": 1.371,
+   "frame": 28
+  },
+  {
+   "word": "buni",
+   "start": 1.415,
+   "end": 1.683,
+   "frame": 42
+  },
+  {
+   "word": "boshqacha",
+   "start": 1.727,
+   "end": 2.222,
+   "frame": 52
+  },
+  {
+   "word": "soʻradi.",
+   "start": 2.266,
+   "end": 2.67,
+   "frame": 68
+  },
+  {
+   "word": "Olimlar",
+   "start": 2.984,
+   "end": 3.389,
+   "frame": 90
+  },
+  {
+   "word": "miya",
+   "start": 3.433,
+   "end": 3.701,
+   "frame": 103
+  },
+  {
+   "word": "ishini",
+   "start": 3.745,
+   "end": 4.104,
+   "frame": 112
+  },
+  {
+   "word": "oʻrgana",
+   "start": 4.148,
+   "end": 4.553,
+   "frame": 124
+  },
+  {
+   "word": "oladi:",
+   "start": 4.596,
+   "end": 4.91,
+   "frame": 138
+  },
+  {
+   "word": "koʻz",
+   "start": 5.102,
+   "end": 5.371,
+   "frame": 153
+  },
+  {
+   "word": "yorugʻlikni",
+   "start": 5.414,
+   "end": 6.0,
+   "frame": 162
+  },
+  {
+   "word": "ushlaydi,",
+   "start": 6.044,
+   "end": 6.494,
+   "frame": 181
+  },
+  {
+   "word": "neyronlar",
+   "start": 6.686,
+   "end": 7.181,
+   "frame": 201
+  },
+  {
+   "word": "signal",
+   "start": 7.225,
+   "end": 7.584,
+   "frame": 217
+  },
+  {
+   "word": "yuboradi.",
+   "start": 7.628,
+   "end": 8.078,
+   "frame": 229
+  },
+  {
+   "word": "Lekin",
+   "start": 8.392,
+   "end": 8.706,
+   "frame": 252
+  },
+  {
+   "word": "nega",
+   "start": 8.749,
+   "end": 9.018,
+   "frame": 262
+  },
+  {
+   "word": "olmaning",
+   "start": 9.061,
+   "end": 9.511,
+   "frame": 272
+  },
+  {
+   "word": "shirinligi",
+   "start": 9.555,
+   "end": 10.096,
+   "frame": 287
+  },
+  {
+   "word": "ichingda",
+   "start": 10.139,
+   "end": 10.589,
+   "frame": 304
+  },
+  {
+   "word": "his",
+   "start": 10.633,
+   "end": 10.856,
+   "frame": 319
+  },
+  {
+   "word": "qilinadi?",
+   "start": 10.9,
+   "end": 11.35,
+   "frame": 327
+  },
+  {
+   "word": "Chalmers",
+   "start": 11.664,
+   "end": 12.114,
+   "frame": 350
+  },
+  {
+   "word": "buni",
+   "start": 12.157,
+   "end": 12.426,
+   "frame": 365
+  },
+  {
+   "word": "ongning",
+   "start": 12.47,
+   "end": 12.874,
+   "frame": 374
+  },
+  {
+   "word": "qiyin",
+   "start": 12.918,
+   "end": 13.232,
+   "frame": 388
+  },
+  {
+   "word": "muammosi",
+   "start": 13.276,
+   "end": 13.726,
+   "frame": 398
+  },
+  {
+   "word": "deb",
+   "start": 13.769,
+   "end": 13.992,
+   "frame": 413
+  },
+  {
+   "word": "atadi.",
+   "start": 14.036,
+   "end": 14.35,
+   "frame": 421
+  }
+ ]
+}

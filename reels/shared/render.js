@@ -80,7 +80,8 @@ async function main() {
         });
         // 2. cuts on cue frames, shot lengths
         M.shots.forEach((s, i) => {
-          const cueF = s.cue ? M.words.find(w => w.word.replace(/[.,?!:;«»]/g, '') === s.cue || w.word === s.cue)?.frame : 0;
+          const hits = s.cue ? M.words.filter(w => w.word.replace(/[.,?!:;«»]/g, '') === s.cue || w.word === s.cue) : [];
+          const cueF = (hits.find(w => w.frame === s.f0) || hits[0] || { frame: 0 }).frame;
           out.cuts.push({ shot: s.name, f0: s.f0, cueFrame: i === 0 ? 0 : cueF, onCue: i === 0 ? s.f0 === 0 : cueF === s.f0, dur: +s.dur.toFixed(3), lenOK: s.dur >= 3.5 - 1e-6 && s.dur <= 5.0 + 1e-6 });
         });
         // 3. text, labels and faces inside x 120–960, y 250–1500 (sampled every 3 frames)
@@ -91,7 +92,7 @@ async function main() {
           document.querySelectorAll('[data-check]').forEach(e => {
             const kind = e.dataset.check; if (kind === 'hero') return;
             if (!vis(e)) return;
-            const r = e.getBoundingClientRect(); if (r.width < 2) return;
+            const r = e.getBoundingClientRect(); if (r.width < 2 || r.right <= 0 || r.left >= 1080 || r.bottom <= 0 || r.top >= 1920) return;
             const ok = r.left >= 119.5 && r.right <= 960.5 && r.top >= 249.5 && r.bottom <= 1500.5;
             if (!ok) { const key = kind + ':' + (e.textContent || '').slice(0, 20); (bad[key] = bad[key] || []).push([f, Math.round(r.left), Math.round(r.top), Math.round(r.right), Math.round(r.bottom)]); }
           });

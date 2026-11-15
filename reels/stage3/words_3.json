@@ -1,0 +1,187 @@
+{
+ "stage": 3,
+ "provisional": true,
+ "voice_duration": null,
+ "words": [
+  {
+   "word": "Chalmersning",
+   "start": 0.076,
+   "end": 0.763,
+   "frame": 2
+  },
+  {
+   "word": "tajribasi:",
+   "start": 0.811,
+   "end": 1.35,
+   "frame": 24
+  },
+  {
+   "word": "sening",
+   "start": 1.559,
+   "end": 1.95,
+   "frame": 47
+  },
+  {
+   "word": "aynan",
+   "start": 1.998,
+   "end": 2.339,
+   "frame": 60
+  },
+  {
+   "word": "nusxangni",
+   "start": 2.387,
+   "end": 2.926,
+   "frame": 72
+  },
+  {
+   "word": "tasavvur",
+   "start": 2.974,
+   "end": 3.464,
+   "frame": 89
+  },
+  {
+   "word": "qil.",
+   "start": 3.511,
+   "end": 3.754,
+   "frame": 105
+  },
+  {
+   "word": "U",
+   "start": 4.096,
+   "end": 4.24,
+   "frame": 123
+  },
+  {
+   "word": "ham",
+   "start": 4.288,
+   "end": 4.531,
+   "frame": 129
+  },
+  {
+   "word": "gapiradi,",
+   "start": 4.578,
+   "end": 5.068,
+   "frame": 137
+  },
+  {
+   "word": "kuladi,",
+   "start": 5.277,
+   "end": 5.668,
+   "frame": 158
+  },
+  {
+   "word": "ogʻrisa",
+   "start": 5.877,
+   "end": 6.318,
+   "frame": 176
+  },
+  {
+   "word": "«voy»",
+   "start": 6.365,
+   "end": 6.608,
+   "frame": 191
+  },
+  {
+   "word": "deydi.",
+   "start": 6.656,
+   "end": 6.997,
+   "frame": 200
+  },
+  {
+   "word": "Lekin",
+   "start": 7.339,
+   "end": 7.681,
+   "frame": 220
+  },
+  {
+   "word": "ichida",
+   "start": 7.729,
+   "end": 8.12,
+   "frame": 232
+  },
+  {
+   "word": "hech",
+   "start": 8.167,
+   "end": 8.46,
+   "frame": 245
+  },
+  {
+   "word": "kim",
+   "start": 8.507,
+   "end": 8.75,
+   "frame": 255
+  },
+  {
+   "word": "yoʻq",
+   "start": 8.798,
+   "end": 9.09,
+   "frame": 264
+  },
+  {
+   "word": "—",
+   "start": 9.138,
+   "end": 9.213,
+   "frame": 274
+  },
+  {
+   "word": "chiroq",
+   "start": 9.422,
+   "end": 9.814,
+   "frame": 283
+  },
+  {
+   "word": "oʻchiq.",
+   "start": 9.861,
+   "end": 10.252,
+   "frame": 296
+  },
+  {
+   "word": "Tashqaridan",
+   "start": 10.594,
+   "end": 11.232,
+   "frame": 318
+  },
+  {
+   "word": "farqini",
+   "start": 11.279,
+   "end": 11.72,
+   "frame": 338
+  },
+  {
+   "word": "hech",
+   "start": 11.767,
+   "end": 12.06,
+   "frame": 353
+  },
+  {
+   "word": "kim",
+   "start": 12.107,
+   "end": 12.35,
+   "frame": 363
+  },
+  {
+   "word": "bilmaydi.",
+   "start": 12.398,
+   "end": 12.888,
+   "frame": 372
+  },
+  {
+   "word": "Faqat",
+   "start": 13.23,
+   "end": 13.571,
+   "frame": 397
+  },
+  {
+   "word": "sen",
+   "start": 13.619,
+   "end": 13.862,
+   "frame": 409
+  },
+  {
+   "word": "bilasan.",
+   "start": 13.909,
+   "end": 14.35,
+   "frame": 417
+  }
+ ]
+}

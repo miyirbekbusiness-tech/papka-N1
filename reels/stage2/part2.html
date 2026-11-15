@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Stage 2 · 15–30 s</title>
+<meta name="viewport" content="width=1080">
+<link rel="stylesheet" href="../shared/frame.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="../shared/style.js"></script>
+<script src="../shared/hero.js"></script>
+<script src="../shared/subs.js"></script>
+<script src="../shared/scene.js"></script>
+</head>
+<body>
+<div id="frame"></div>
+<script>
+(function () {
+const S = STYLE, P = S.PAL, E = S.E, el = S.el, FPS = 30;
+const SC = SCENE.init({ stage: 2, duration: 15, music: { bpm: 90, key: 'Dm', drops: [] } });
+const tl = SC.tl, svg = SC.svg;
+
+/* ---------- props ---------- */
+function pencil(parent) {          // yellow pencil, coral eraser end; tip at local (0,0), body along +x
+  const g = el('g', {}, parent);
+  el('path', { d: 'M0,0L70,-26L70,26Z', fill: '#E9C9A0' }, g);
+  el('path', { d: 'M0,0L22,-8L22,8Z', fill: P.ink }, g);
+  el('rect', { x: 70, y: -26, width: 300, height: 52, fill: P.pencil }, g);
+  el('rect', { x: 70, y: 4, width: 300, height: 22, fill: S.shade(P.pencil) }, g);
+  el('rect', { x: 370, y: -28, width: 34, height: 56, fill: P.violet }, g);
+  el('path', { d: S.rrect(398, -26, 64, 52, 20), fill: P.coral }, g);
+  return g;
+}
+function apple(parent, sc = 1) {
+  const g = el('g', { transform: `scale(${sc})` }, parent);
+  const body = 'M0,-30C-22,-48 -62,-40 -64,-2C-66,38 -36,66 -14,62C-6,60 6,60 14,62C36,66 66,38 64,-2C62,-40 22,-48 0,-30Z';
+  const cid = S.uid('ap'); const cp = el('clipPath', { id: cid }, S.defs(svg)); el('path', { d: body }, cp);
+  el('path', { d: body, fill: P.apple }, g);
+  const sh = el('g', { 'clip-path': `url(#${cid})` }, g);
+  el('rect', { x: 20, y: -60, width: 60, height: 140, fill: S.shade(P.apple) }, sh);
+  const bites = el('g', { 'clip-path': `url(#${cid})` }, g);
+  const b1 = el('circle', { cx: -66, cy: -6, r: 26, fill: '#F6E3C2' }, bites);
+  const b2 = el('circle', { cx: -62, cy: 32, r: 24, fill: '#F6E3C2' }, bites);
+  el('rect', { x: -3, y: -58, width: 6, height: 26, rx: 3, fill: P.ink }, g);
+  el('path', { d: 'M3,-46C14,-66 40,-66 46,-58C34,-44 16,-42 3,-46Z', fill: P.teal }, g);
+  return { g, b1, b2 };
+}
+function book(parent) {            // open book icon: amber cover, paper pages
+  const g = el('g', {}, parent);
+  el('ellipse', { cx: 0, cy: 96, rx: 170, ry: 16, fill: P.ink, opacity: .25 }, g);
+  el('path', { d: S.rrect(-166, -98, 332, 190, 18), fill: P.amber }, g);
+  el('path', { d: S.rrect(0, -98, 166, 190, 18), fill: S.shade(P.amber) }, g);
+  el('path', { d: 'M-150,-84Q-76,-104 -4,-84L-4,74Q-76,56 -150,74Z', fill: P.paper }, g);
+  el('path', { d: 'M4,-84Q76,-104 150,-84L150,74Q76,56 4,74Z', fill: S.shade(P.paper) }, g);
+  for (let i = 0; i < 5; i++) { el('rect', { x: -130, y: -58 + i * 24, width: 104, height: 7, rx: 3.5, fill: P.ink, opacity: .18 }, g); el('rect', { x: 24, y: -58 + i * 24, width: 104, height: 7, rx: 3.5, fill: P.ink, opacity: .18 }, g); }
+  return g;
+}
+function bedroomBack(w, o = {}) {
+  el('rect', { x: -400, y: -300, width: 1900, height: 2700, fill: S.linGrad(svg, [[0, S.back(P.wall, 1)], [1, P.wall]]) }, w);
+  el('rect', { x: -400, y: o.floorY || 1500, width: 1900, height: 900, fill: S.linGrad(svg, [[0, S.back(P.floor, 1)], [1, P.floor]]) }, w);
+  el('rect', { x: -400, y: (o.floorY || 1500) - 12, width: 1900, height: 20, fill: S.shade(P.wall, 0.2) }, w);
+  if (o.window !== false) {
+    const wx = o.wx ?? 640, wy = o.wy ?? 300;
+    el('path', { d: S.rrect(wx - 24, wy - 24, 548, 748, 24), fill: '#4C3D8A' }, w);
+    const cid = S.uid('w'); const cp = el('clipPath', { id: cid }, S.defs(svg)); el('rect', { x: wx, y: wy, width: 500, height: 700 }, cp);
+    const wi = el('g', { 'clip-path': `url(#${cid})` }, w);
+    el('rect', { x: wx, y: wy, width: 500, height: 700, fill: S.linGrad(svg, [[0, P.sky0], [1, P.sky1]]) }, wi);
+    SC.city(wi, { x0: wx - 20, x1: wx + 520, base: wy + 720, seed: o.seed || 61, layers: [{ col: S.back(P.sky1, 1), h: [300, 560], w: [60, 110], lit: .3, density: .5, win: 11, gap: 11 }, { col: S.back(P.wall, 1), h: [200, 400], w: [100, 160], lit: .55, density: .6, win: 14, gap: 12 }] });
+    el('rect', { x: wx + 241, y: wy, width: 18, height: 700, fill: '#4C3D8A' }, w);
+  }
+  if (o.lamp) { el('circle', { cx: o.lamp[0], cy: o.lamp[1], r: 560, fill: S.radGrad(svg, S.softStops(P.win, 0.28)) }, w); }
+}
+
+SC.start(() => {
+  const F = SC.F, W = SC.W;
+  const tOl = W('Olimlar'), tLe = W('Lekin'), tCh = W('Chalmers', 1);
+
+  /* =================== SHOT 5 · pencil draws HERO back in =================== */
+  const s5 = SC.shot({ name: 'S5 pencil redraw', f0: 0, cueWord: 'Faylasuf' });
+  bedroomBack(s5.w, { lamp: [1000, 1250], floorY: 1520 });
+  SC.chair(s5.w, { x: 600, y: 1640, s: 1.0, col: P.coral });
+  const hero = HERO.create(svg, s5.w, { id: 'hero', seed: 202 });
+  Object.assign(hero.pose, { x: 430, y: 1600, s: 1.15, fill: 0, line: 0, lineColor: P.paper, lineW: 4.5 });
+  const bk = book(s5.w); const bkSt = { y: 2200 };
+  const dark5 = el('rect', { x: 0, y: 0, width: 1080, height: 1920, fill: P.ink }, s5.g);
+  const lightSt = { d: 0.9 };
+  SC.on(() => dark5.setAttribute('opacity', lightSt.d));
+  const pen = pencil(s5.w); const penSt = { x: 1300, y: 300, r: 145, show: 1 };
+  // pencil sweeps in upside-down, flips 180°, line-draws the hero in 24 frames
+  const tFlip = 0.12, tDraw = 0.45, dDraw = 24 / FPS, tFill = tDraw + dDraw + 2 / FPS;
+  tl.fromTo(penSt, { x: 1300, y: 260 }, { x: 760, y: 560, duration: 0.3, ease: E.outCubic }, 0);
+  tl.fromTo(penSt, { r: 145 }, { r: -35, duration: 0.32, ease: E.spring(0.6) }, tFlip);
+  SC.cue(tFlip + 0.12, 'swoosh');
+  const loop = { u: 0 };
+  tl.fromTo(loop, { u: 0 }, { u: 1, duration: dDraw, ease: E.inOutSine }, tDraw);
+  tl.fromTo(hero.pose, { line: 0 }, { line: 1, duration: dDraw, ease: E.inOutSine }, tDraw);
+  SC.cue(tDraw, 'pencil', { dur: dDraw + 0.05, pan: -0.2 });
+  // fills pop with squash (ζ 0.55), lights back to 100%
+  tl.to(hero.pose, { fill: 1, duration: 3 / FPS, ease: E.outCubic }, tFill);
+  tl.fromTo(hero.pose, { sx: 1, sy: 1 }, { sx: 1.15, sy: 0.85, duration: 3 / FPS, ease: E.outCubic }, tFill);
+  tl.to(hero.pose, { sx: 1, sy: 1, duration: 16 / FPS, ease: E.spring(0.55) }, tFill + 3 / FPS);
+  tl.set(hero.pose, { line: 0 }, tFill + 3 / FPS);
+  tl.to(lightSt, { d: 0, duration: 10 / FPS, ease: E.outCubic }, tFill);
+  SC.cue(tFill, 'fillpop'); SC.cue(tFill + 2 / FPS, 'click', { gain: 0.5, pan: 0.5 });
+  tl.to(penSt, { x: 1350, y: -200, r: -10, duration: 0.25 * 0.6, ease: E.inCubic }, tFill + 0.1);
+  SC.on(t => {
+    let x = penSt.x, y = penSt.y;
+    if (t >= tDraw && t < tDraw + dDraw + 0.05) { const a = -Math.PI / 2 + loop.u * Math.PI * 2; x = 430 + Math.cos(a) * 190; y = 1220 + Math.sin(a) * 430; }
+    pen.setAttribute('transform', `translate(${x},${y}) rotate(${penSt.r})`);
+  });
+  // at "Devid": the book slides up beside him, pills name it; he turns to read
+  const tDv = W('Devid');
+  tl.fromTo(bkSt, { y: 2200 }, { y: 1300, duration: 14 / FPS, ease: E.outQuint }, tDv);
+  SC.on(() => bk.setAttribute('transform', `translate(800,${bkSt.y})`));
+  SC.cue(tDv + 7 / FPS, 'slide', { dur: 0.45, pan: 0.5 });
+  const pName = SC.pill(s5.scr, { text: 'Devid Chalmers', color: P.coral, x: 760, y: 1010, target: () => SC.toScreen(bk, 0, -100) });
+  const pRole = SC.pill(s5.scr, { text: 'faylasuf', color: P.green, textColor: P.ink, size: 26, x: 760, y: 1088 });
+  SC.popIn(pName, tDv + 10 / FPS); SC.popIn(pRole, tDv + 14 / FPS);
+  SC.cue(tDv + 10 / FPS, 'pop', { gain: 0.5, pan: 0.4 }); SC.cue(tDv + 14 / FPS, 'pop', { gain: 0.35, pan: 0.4 });
+  tl.to(hero.pose, { turn: 0.6, lookX: 5, lookY: 3, tilt: 4, duration: 12 / FPS, ease: E.spring(0.7) }, tDv + 12 / FPS);
+  const faces5 = [[0, 'neutral'], [tFill + 0.1, 'wonder'], [tDv + 12 / FPS, 'thinking']];
+  SC.on(t => { hero.setFace(faces5.filter(f => f[0] <= t + 1e-6).pop()[1]); hero.apply(t); });
+  // drift, then a fast push into his glasses for the match-cut
+  const pushT = tOl - 12 / FPS;
+  tl.fromTo(s5.camState, { x: 540, y: 960, s: 1 }, { x: 560, y: 940, s: 1.04, duration: pushT, ease: E.inOutSine }, 0);
+  const lensW = () => [430 + (-48 + 0.6 * 30 * 0.95) * 1.15, 1600 - 648 * 1.15 + 2];
+  tl.to(s5.camState, { x: lensW()[0], y: lensW()[1], s: 3.2, duration: 12 / FPS, ease: E.inCubic }, pushT);
+  [pName, pRole].forEach(pl => { tl.to(pl.st, { p: 0, lead: 0, duration: 6 / FPS, ease: E.inCubic }, pushT - 6 / FPS); });
+
+  /* =================== SHOT 6 · match-cut: side cut-away of his head =================== */
+  const s6 = SC.shot({ name: 'S6 brain cutaway', f0: F('Olimlar'), cueWord: 'Olimlar', cut: 'match' });
+  const EYE = [360, 900];
+  const nodes = [], paths = [];
+  let pupil6, ray, rayHead, check;
+  {
+    const w = s6.w;
+    el('rect', { x: -800, y: -800, width: 2700, height: 3600, fill: S.linGrad(svg, [[0, S.back(P.wall, 1)], [1, P.wall]]) }, w);
+    el('circle', { cx: 620, cy: 960, r: 700, fill: S.radGrad(svg, S.softStops(P.win, 0.10)) }, w);
+    // hair behind
+    [[520, 560, 120], [660, 520, 130], [800, 580, 120], [900, 700, 110], [930, 850, 100]].forEach(([x, y, r]) => el('circle', { cx: x, cy: y, r, fill: P.hair }, w));
+    // head profile (facing left)
+    el('path', { d: S.rrect(560, 1150, 200, 300, 60), fill: S.shade(P.skin) }, w);                     // neck
+    el('path', { d: S.rrect(300, 1380, 700, 700, 160), fill: P.amber }, w);                            // sweater shoulders
+    el('path', { d: S.rrect(760, 1380, 240, 700, 120), fill: S.shade(P.amber) }, w);
+    el('path', { d: S.rrect(500, 1300, 320, 110, 55), fill: P.teal }, w);                              // scarf
+    el('path', { d: S.rrect(700, 1300, 120, 110, 50), fill: S.shade(P.teal) }, w);
+    el('circle', { cx: 650, cy: 860, r: 330, fill: P.skin }, w);
+    el('path', { d: S.rrect(300, 720, 520, 520, 150), fill: P.skin }, w);
+    el('path', { d: 'M318,900Q250,960 300,1010Q320,1020 340,1010Z', fill: P.skin }, w);                  // nose
+    el('path', { d: 'M760,620A330,330 0 0 1 960,980L900,1220L760,1220Z', fill: S.shade(P.skin) }, w);
+    el('circle', { cx: 700, cy: 980, r: 46, fill: S.shade(P.skin) }, w);                                   // ear
+    el('path', { d: 'M330,1110Q370,1130 400,1110', fill: 'none', stroke: '#4A1B34', 'stroke-width': 9, 'stroke-linecap': 'round' }, w);
+    el('ellipse', { cx: 410, cy: 1030, rx: 34, ry: 18, fill: P.blush, opacity: .3 }, w);
+    [[470, 560, 70], [380, 640, 60], [600, 520, 64]].forEach(([x, y, r]) => el('circle', { cx: x, cy: y, r, fill: P.hair }, w));
+    // cut-away window: violet brain
+    el('path', { d: 'M470,820C460,660 600,600 720,620C850,630 920,720 900,840C890,960 790,1000 690,990C560,985 480,940 470,820Z', fill: S.back(P.violet, 1) }, w);
+    el('path', { d: 'M500,820C495,690 610,640 720,652C830,660 880,740 868,836C858,930 780,960 690,955C580,950 505,920 500,820Z', fill: P.violet }, w);
+    el('path', { d: 'M720,652C830,660 880,740 868,836C858,930 780,960 700,955C760,880 770,740 720,652Z', fill: S.shade(P.violet) }, w);
+    // eye + glasses (side view)
+    el('ellipse', { cx: EYE[0], cy: EYE[1], rx: 26, ry: 32, fill: '#FFFFFF' }, w);
+    pupil6 = el('circle', { cx: EYE[0] - 10, cy: EYE[1], r: 13, fill: P.ink }, w);
+    el('circle', { cx: EYE[0] - 2, cy: EYE[1], r: 56, fill: 'none', stroke: P.hair, 'stroke-width': 8 }, w);
+    el('path', { d: `M${EYE[0] + 54},${EYE[1] - 10}L690,960`, stroke: P.hair, 'stroke-width': 8, 'stroke-linecap': 'round' }, w);
+    // 14 neuron nodes, 4 px paths (from the eye's optic nerve into the brain)
+    const N = [[540, 880], [600, 820], [580, 740], [660, 700], [700, 780], [650, 880], [740, 860], [780, 720], [820, 800], [760, 920], [840, 880], [700, 940], [620, 950], [800, 660]];
+    const E2 = [[-1, 0], [0, 1], [1, 2], [2, 3], [1, 4], [0, 5], [4, 6], [3, 7], [7, 13], [6, 8], [6, 9], [8, 10], [9, 11], [5, 12]];
+    const pg = el('g', {}, w), ng = el('g', {}, w);
+    E2.forEach(([a, b], i) => {
+      const A = a < 0 ? [EYE[0] + 28, EYE[1]] : N[a], B = N[b];
+      const d = `M${A[0]},${A[1]}Q${(A[0] + B[0]) / 2},${(A[1] + B[1]) / 2 - 18} ${B[0]},${B[1]}`;
+      const p = el('path', { d, fill: 'none', stroke: S.mix(P.violet, P.paper, 0.35), 'stroke-width': 4, 'stroke-linecap': 'round' }, pg);
+      const dot = el('circle', { r: 8, fill: P.win, opacity: 0 }, pg);
+      paths.push({ p, dot, to: b });
+    });
+    N.forEach(([x, y]) => nodes.push(el('circle', { cx: x, cy: y, r: 13, fill: S.mix(P.violet, P.paper, 0.4) }, ng)));
+    // apple outside, in front of the face
+    const ap = apple(w, 1.25); ap.g.setAttribute('transform', 'translate(170,640) scale(1.25)');
+    ray = el('line', { x1: 210, y1: 650, x2: 210, y2: 650, stroke: P.win, 'stroke-width': 8, 'stroke-dasharray': '18 14', 'stroke-linecap': 'round' }, w);
+    rayHead = el('circle', { r: 10, fill: P.win }, w);
+    check = el('path', { d: 'M-34,0L-10,24L36,-24', fill: 'none', stroke: P.green, 'stroke-width': 18, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, w);
+  }
+  // camera: pulls back out of the lens, then keeps drifting
+  tl.fromTo(s6.camState, { x: EYE[0], y: EYE[1], s: 3.2 }, { x: 560, y: 900, s: 1.0, duration: 20 / FPS, ease: E.outQuint }, tOl);
+  tl.to(s6.camState, { x: 590, y: 880, s: 1.05, duration: tLe - tOl - 20 / FPS, ease: E.inOutSine }, tOl + 20 / FPS);
+  // "koʻz": dashed ray apple → eye in 10 frames, pupil shrinks
+  const tKz = W('koʻz'); const raySt = { u: 0 }, pupSt = { s: 1 };
+  tl.fromTo(raySt, { u: 0 }, { u: 1, duration: 10 / FPS, ease: E.inOutSine }, tKz);
+  tl.fromTo(pupSt, { s: 1 }, { s: 0.55, duration: 12 / FPS, ease: E.spring(0.6) }, tKz + 10 / FPS);
+  SC.cue(tKz + 10 / FPS, 'zip', { dur: 10 / FPS, pan: -0.5, pan_end: -0.2 });
+  SC.on(() => {
+    const A = [215, 660], B = [EYE[0] - 30, EYE[1] - 4];
+    const x = A[0] + (B[0] - A[0]) * raySt.u, y = A[1] + (B[1] - A[1]) * raySt.u;
+    ray.setAttribute('x2', x); ray.setAttribute('y2', y); ray.style.opacity = raySt.u > 0 ? 1 : 0;
+    rayHead.setAttribute('cx', x); rayHead.setAttribute('cy', y); rayHead.style.opacity = raySt.u > 0 && raySt.u < 1 ? 1 : 0;
+    pupil6.setAttribute('r', 13 * pupSt.s);
+  });
+  // "neyronlar": signal dots run the paths, nodes flash teal 2 frames apart, a green check pops
+  const fNy = F('neyronlar');
+  const order = [0, 1, 5, 2, 4, 12, 3, 6, 7, 9, 8, 11, 13, 10];
+  const flashF = {}; order.forEach((nd, i) => flashF[nd] = fNy + 6 + i * 2);
+  order.forEach((nd, i) => { if (i % 2 === 0) SC.cue((fNy + 6 + i * 2) / FPS, 'blip', { f: 900 + i * 60, pan: 0.2 }); });
+  const fCheck = fNy + 6 + order.length * 2 + 4;
+  SC.cue(fCheck / FPS, 'ding');
+  const chkSt = { p: 0 };
+  tl.fromTo(chkSt, { p: 0 }, { p: 1, duration: 10 / FPS, ease: t => E.outBack(t, 2.2) }, fCheck / FPS);
+  SC.on((t, fr) => {
+    paths.forEach(o => {
+      const fe = flashF[o.to], fs = fe - 6, u = (fr - fs) / 6;
+      if (u > 0 && u < 1) { const L = o.p.getTotalLength(), pt = o.p.getPointAtLength(L * E.inOutSine(u)); o.dot.setAttribute('cx', pt.x); o.dot.setAttribute('cy', pt.y); o.dot.setAttribute('opacity', 1); }
+      else o.dot.setAttribute('opacity', 0);
+    });
+    nodes.forEach((n, i) => { const d = fr - flashF[i]; n.setAttribute('fill', d >= 0 && d < 6 ? P.teal : d >= 6 ? S.mix(P.teal, P.violet, 0.35) : S.mix(P.violet, P.paper, 0.4)); n.setAttribute('r', d >= 0 && d < 3 ? 17 : 13); });
+    check.setAttribute('transform', `translate(840,560) scale(${chkSt.p})`); check.style.opacity = chkSt.p > 0.01 ? 1 : 0;
+  });
+
+  /* =================== SHOT 7 · close medium: the apple, the bite, the X-ray lens =================== */
+  const s7 = SC.shot({ name: 'S7 apple x-ray', f0: F('Lekin'), cueWord: 'Lekin', cut: 'hard' });
+  bedroomBack(s7.w, { lamp: [180, 1200], wx: 620, wy: 180, seed: 71, floorY: 2100 });
+  const hero7 = HERO.create(svg, s7.w, { id: 'hero7', seed: 203 });
+  const HS7 = 1.75;
+  Object.assign(hero7.pose, { x: 540, y: 860 + 648 * HS7, s: HS7 });
+  const ap7 = apple(hero7.slots.handR, 1.0);
+  const restR = { aR1: -10, aR2: 8 };
+  const lift = hero7.ik('R', 150, -560, true), bite = hero7.ik('R', 66, -585, true), hold = hero7.ik('R', 140, -545, true);
+  Object.assign(hero7.pose, restR);
+  tl.to(hero7.pose, { aR1: -4, duration: 4 / FPS, ease: E.inCubic }, tLe + 2 / FPS);
+  tl.to(hero7.pose, { aR1: lift.a1, aR2: lift.a2, duration: 14 / FPS, ease: E.spring(0.7) }, tLe + 6 / FPS);
+  const tSh = W('shirinligi');
+  tl.to(hero7.pose, { aR1: bite.a1, aR2: bite.a2, duration: 6 / FPS, ease: E.inOutCubic }, tSh - 6 / FPS);
+  tl.to(hero7.pose, { aR1: hold.a1, aR2: hold.a2, duration: 10 / FPS, ease: E.spring(0.7) }, tSh + 4 / FPS);
+  const biteSt = { b: 0 };
+  tl.set(biteSt, { b: 1 }, tSh);
+  SC.cue(tSh, 'crunch', { pan: 0.1 });
+  const faces7 = [[0, 'happy'], [tSh - 6 / FPS, 'happy', 'O'], [tSh, 'happy', 'bite'], [tSh + 4 / FPS, 'blissful']];
+  // X-ray lens at "his"
+  const tHis = W('his');
+  const HEADW = [540, 860];
+  const lens = el('g', {}, s7.w);
+  const lcid = S.uid('lens'); const lcp = el('clipPath', { id: lcid }, S.defs(svg)); const lcc = el('circle', { r: 165 }, lcp);
+  const lensIn = el('g', { 'clip-path': `url(#${lcid})` }, lens);
+  el('rect', { x: -400, y: -400, width: 2000, height: 2400, fill: S.linGrad(svg, [[0, '#241A4E'], [1, '#33256B']]) }, lensIn);
+  const skull = el('g', {}, lensIn);
+  el('path', { d: S.rrect(-110 * HS7, -120 * HS7, 220 * HS7, 240 * HS7, 84 * HS7), fill: S.back(P.violet, 1) }, skull);
+  el('path', { d: 'M-120,-20C-125,-150 0,-185 90,-160C175,-130 190,-30 160,40C130,110 40,120 -30,105C-100,90 -118,40 -120,-20Z', fill: P.violet }, skull);
+  const light7 = SC.innerLight(skull, { x: 0, y: -10 });
+  const ring = el('circle', { r: 165, fill: 'none', stroke: P.paper, 'stroke-width': 12 }, lens);
+  const lensSt = { x: 1400, show: 0 };
+  tl.set(lensSt, { show: 1 }, tHis - 12 / FPS);
+  tl.fromTo(lensSt, { x: 1400 }, { x: HEADW[0], duration: 12 / FPS, ease: E.outQuint }, tHis - 12 / FPS);
+  SC.cue(tHis - 4 / FPS, 'swoosh', { pan: 0.6, pan_end: 0 });
+  light7.st.s = HS7;                                                   // INNER_LIGHT at the hero's scale
+  tl.fromTo(light7.st, { s: HS7 }, { s: HS7 * 1.15, duration: 9 / FPS, ease: E.outCubic }, tHis);
+  tl.to(light7.st, { s: HS7, duration: 14 / FPS, ease: E.spring(0.7) }, tHis + 9 / FPS);
+  SC.cue(tHis + 9 / FPS, 'swell', { dur: 0.6 });
+  SC.on(t => {
+    const f = faces7.filter(f => f[0] <= t + 1e-6).pop(); hero7.setFace(f[1], f[2]); hero7.apply(t);
+    ap7.g.setAttribute('transform', `rotate(${-(hero7.pose.aR1 + hero7.pose.aR2)}) translate(0,8)`);
+    ap7.b1.style.display = biteSt.b ? '' : 'none'; ap7.b2.style.display = biteSt.b ? '' : 'none';
+    lens.style.display = lensSt.show ? '' : 'none';
+    const hy = HEADW[1] + (s7.camState ? 0 : 0);
+    lens.setAttribute('transform', `translate(${lensSt.x},${hy})`);
+    skull.setAttribute('transform', `translate(${HEADW[0] - lensSt.x},0)`);
+  });
+  tl.fromTo(s7.camState, { x: 540, y: 980, s: 1.0 }, { x: 540, y: 950, s: 1.04, duration: tCh - tLe, ease: E.inOutSine }, tLe);
+
+  /* =================== SHOT 8 · low heroic angle, the stamp =================== */
+  const s8 = SC.shot({ name: 'S8 heroic stamp', f0: F('Chalmers', 1), cueWord: 'Chalmers', cut: 'hard' });
+  {
+    const w = s8.w;
+    el('rect', { x: -400, y: -400, width: 1900, height: 2800, fill: S.linGrad(svg, [[0, S.back(P.wall, 2)], [0.6, S.back(P.wall, 1)], [1, P.wall]]) }, w);
+    el('path', { d: 'M-400,-400L1500,-400L1500,220L-400,120Z', fill: S.back(P.wall, 3) }, w);           // ceiling seen from below
+    el('path', { d: S.rrect(80, 330, 360, 600, 22), fill: '#4C3D8A' }, w);
+    el('rect', { x: 100, y: 350, width: 320, height: 560, fill: S.linGrad(svg, [[0, P.sky0], [1, P.sky1]]) }, w);
+    SC.city(w, { x0: 100, x1: 420, base: 910, seed: 81, layers: [{ col: S.back(P.wall, 1), h: [200, 420], w: [70, 120], lit: .6, density: .55, win: 13, gap: 12 }] });
+    el('circle', { cx: 540, cy: 1250, r: 760, fill: S.radGrad(svg, S.softStops(P.win, 0.22)) }, w);
+    el('rect', { x: -400, y: 1830, width: 1900, height: 500, fill: P.floor }, w);
+  }
+  const hero8 = HERO.create(svg, s8.w, { id: 'hero8', seed: 204 });
+  Object.assign(hero8.pose, { x: 540, y: 1960, s: 1.55, sy: 1.0, aL1: 18, aL2: -14, aR1: -18, aR2: 14 });
+  const tQy = W('qiyin');
+  const pBig = SC.pill(s8.scr, { text: 'Ongning qiyin muammosi', color: P.coral, x: 540, y: 572, target: () => SC.toScreen(hero8.parts.headIn, 0, -175) });
+  SC.popIn(pBig, tQy, { stamp: true });
+  SC.cue(tQy, 'stamp', { gain: 0.9 });
+  tl.to(hero8.pose, { lookY: -5, duration: 6 / FPS, ease: E.outCubic }, tQy + 2 / FPS);
+  const faces8 = [[0, 'thinking'], [tQy + 2 / FPS, 'wonder']];
+  SC.on(t => { hero8.setFace(faces8.filter(f => f[0] <= t + 1e-6).pop()[1]); hero8.apply(t); });
+  tl.fromTo(s8.camState, { x: 540, y: 980, s: 1.0, r: -2 }, { x: 540, y: 960, s: 1.03, r: -1, duration: 15 - tCh, ease: E.inOutSine }, tCh);
+});
+})();
+</script>
+</body>
+</html>

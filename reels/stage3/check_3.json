@@ -1,0 +1,320 @@
+{
+ "subs": [],
+ "cuts": [
+  {
+   "shot": "S9 copier",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 4.1,
+   "lenOK": true
+  },
+  {
+   "shot": "S10 two-shot",
+   "f0": 123,
+   "cueFrame": 123,
+   "onCue": true,
+   "dur": 3.233,
+   "lenOK": false
+  },
+  {
+   "shot": "S11 magnifier",
+   "f0": 220,
+   "cueFrame": 220,
+   "onCue": true,
+   "dur": 3.267,
+   "lenOK": false
+  },
+  {
+   "shot": "S12 crowd",
+   "f0": 318,
+   "cueFrame": 318,
+   "onCue": true,
+   "dur": 4.4,
+   "lenOK": true
+  }
+ ],
+ "safe": [
+  {
+   "el": "face:",
+   "frames": 7,
+   "first": [
+    402,
+    819,
+    714,
+    1101,
+    1024
+   ],
+   "last": [
+    420,
+    1079,
+    701,
+    1423,
+    1077
+   ]
+  }
+ ],
+ "labels": [],
+ "phraseBoxes": [
+  {
+   "text": "Chalmersning tajribasi:",
+   "t": 0.16666666666666666,
+   "f": 5,
+   "box": [
+    120,
+    300,
+    598,
+    380
+   ],
+   "fEnd": 44
+  },
+  {
+   "text": "Chalmersning tajribasi:",
+   "t": 0.7666666666666667,
+   "f": 23,
+   "box": [
+    120,
+    300,
+    598,
+    380
+   ],
+   "fEnd": 44
+  },
+  {
+   "text": "Chalmersning tajribasi:",
+   "t": 1.4333333333333333,
+   "f": 43,
+   "box": [
+    120,
+    300,
+    910,
+    380
+   ],
+   "fEnd": 44
+  },
+  {
+   "text": "sening aynan nusxangni tasavvur qil.",
+   "t": 1.6666666666666667,
+   "f": 50,
+   "box": [
+    120,
+    300,
+    351,
+    380
+   ],
+   "fEnd": 119
+  },
+  {
+   "text": "sening aynan nusxangni tasavvur qil.",
+   "t": 2.7666666666666666,
+   "f": 83,
+   "box": [
+    120,
+    300,
+    954,
+    380
+   ],
+   "fEnd": 119
+  },
+  {
+   "text": "sening aynan nusxangni tasavvur qil.",
+   "t": 3.933333333333333,
+   "f": 118,
+   "box": [
+    120,
+    300,
+    954,
+    460
+   ],
+   "fEnd": 119
+  },
+  {
+   "text": "U ham gapiradi, kuladi, ogʻrisa «voy» deydi.",
+   "t": 4.2,
+   "f": 126,
+   "box": [
+    120,
+    300,
+    170,
+    380
+   ],
+   "fEnd": 216
+  },
+  {
+   "text": "U ham gapiradi, kuladi, ogʻrisa «voy» deydi.",
+   "t": 5.666666666666667,
+   "f": 170,
+   "box": [
+    120,
+    300,
+    907,
+    380
+   ],
+   "fEnd": 216
+  },
+  {
+   "text": "U ham gapiradi, kuladi, ogʻrisa «voy» deydi.",
+   "t": 7.166666666666667,
+   "f": 215,
+   "box": [
+    120,
+    300,
+    907,
+    460
+   ],
+   "fEnd": 216
+  },
+  {
+   "text": "Lekin ichida hech kim yoʻq — chiroq oʻchiq.",
+   "t": 7.433333333333334,
+   "f": 223,
+   "box": [
+    120,
+    300,
+    308,
+    380
+   ],
+   "fEnd": 314
+  },
+  {
+   "text": "Lekin ichida hech kim yoʻq — chiroq oʻchiq.",
+   "t": 8.9,
+   "f": 267,
+   "box": [
+    120,
+    300,
+    871,
+    460
+   ],
+   "fEnd": 314
+  },
+  {
+   "text": "Lekin ichida hech kim yoʻq — chiroq oʻchiq.",
+   "t": 10.433333333333334,
+   "f": 313,
+   "box": [
+    120,
+    300,
+    871,
+    460
+   ],
+   "fEnd": 314
+  },
+  {
+   "text": "Tashqaridan farqini hech kim bilmaydi.",
+   "t": 10.7,
+   "f": 321,
+   "box": [
+    120,
+    300,
+    542,
+    380
+   ],
+   "fEnd": 393
+  },
+  {
+   "text": "Tashqaridan farqini hech kim bilmaydi.",
+   "t": 11.866666666666667,
+   "f": 356,
+   "box": [
+    120,
+    300,
+    783,
+    460
+   ],
+   "fEnd": 393
+  },
+  {
+   "text": "Tashqaridan farqini hech kim bilmaydi.",
+   "t": 13.066666666666666,
+   "f": 392,
+   "box": [
+    120,
+    300,
+    783,
+    460
+   ],
+   "fEnd": 393
+  },
+  {
+   "text": "Faqat sen bilasan.",
+   "t": 13.333333333333334,
+   "f": 400,
+   "box": [
+    120,
+    300,
+    314,
+    380
+   ],
+   "fEnd": 437
+  },
+  {
+   "text": "Faqat sen bilasan.",
+   "t": 13.9,
+   "f": 417,
+   "box": [
+    120,
+    300,
+    735,
+    382
+   ],
+   "fEnd": 437
+  },
+  {
+   "text": "Faqat sen bilasan.",
+   "t": 14.533333333333333,
+   "f": 436,
+   "box": [
+    120,
+    300,
+    735,
+    380
+   ],
+   "fEnd": 437
+  }
+ ],
+ "swatch": [
+  {
+   "shot": "S9 copier",
+   "f": 62,
+   "x": 342,
+   "y": 1017
+  },
+  {
+   "shot": "S10 two-shot",
+   "f": 172,
+   "x": 192,
+   "y": 1313
+  },
+  {
+   "shot": "S10 two-shot",
+   "f": 172,
+   "x": 630,
+   "y": 1294
+  },
+  {
+   "shot": "S11 magnifier",
+   "f": 269,
+   "x": 202,
+   "y": 1491
+  },
+  {
+   "shot": "S11 magnifier",
+   "f": 269,
+   "x": 628,
+   "y": 1491
+  },
+  {
+   "shot": "S12 crowd",
+   "f": 384,
+   "x": 195,
+   "y": 1144
+  },
+  {
+   "shot": "S12 crowd",
+   "f": 384,
+   "x": 570,
+   "y": 1144
+  }
+ ]
+}

@@ -17,7 +17,7 @@
     words.forEach((w, i) => {
       cur.push(i);
       const next = words[i + 1];
-      if (/[.?!,:;]$/.test(w.word) || (next && next.word === '—')) { clauses.push(cur); cur = []; }
+      if (/[.?!,:;—]$/.test(w.word)) { clauses.push(cur); cur = []; }
     });
     if (cur.length) clauses.push(cur);
     const fits = (idx) => {           // returns line assignment or null if > 2 lines
