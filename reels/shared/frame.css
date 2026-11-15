@@ -1,0 +1,6 @@
+/* shared/frame.css — 1080x1920 frame; fonts are local so frame 0 never renders a fallback */
+@font-face { font-family: 'Montserrat'; font-weight: 800; font-style: normal; font-display: block; src: url('fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-weight: 700; font-style: normal; font-display: block; src: url('fonts/montserrat-latin-700-normal.woff2') format('woff2'); }
+html, body { margin: 0; padding: 0; background: #0F0B24; }
+#frame { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0F0B24; }
+#frame svg { position: absolute; left: 0; top: 0; display: block; }

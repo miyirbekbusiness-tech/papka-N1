@@ -1,0 +1,182 @@
+{
+ "stage": 1,
+ "voice_duration": 14.55,
+ "speech_end": 14.479,
+ "timing_source": "ElevenLabs Scribe word timestamps, onsets refined on the waveform",
+ "words": [
+  {
+   "word": "Tasavvur",
+   "start": 0.085,
+   "end": 0.48,
+   "frame": 3
+  },
+  {
+   "word": "qil:",
+   "start": 0.58,
+   "end": 0.96,
+   "frame": 17
+  },
+  {
+   "word": "sen",
+   "start": 0.99,
+   "end": 1.28,
+   "frame": 30
+  },
+  {
+   "word": "mavjud",
+   "start": 1.36,
+   "end": 1.68,
+   "frame": 41
+  },
+  {
+   "word": "boʻlmasang,",
+   "start": 1.76,
+   "end": 2.56,
+   "frame": 53
+  },
+  {
+   "word": "nima",
+   "start": 2.585,
+   "end": 2.88,
+   "frame": 78
+  },
+  {
+   "word": "boʻladi?",
+   "start": 2.92,
+   "end": 3.52,
+   "frame": 88
+  },
+  {
+   "word": "Dunyo",
+   "start": 3.545,
+   "end": 3.92,
+   "frame": 106
+  },
+  {
+   "word": "toʻxtamaydi.",
+   "start": 3.965,
+   "end": 4.8,
+   "frame": 119
+  },
+  {
+   "word": "Soat",
+   "start": 4.795,
+   "end": 5.12,
+   "frame": 144
+  },
+  {
+   "word": "yuraveradi,",
+   "start": 5.135,
+   "end": 6,
+   "frame": 154
+  },
+  {
+   "word": "avtobus",
+   "start": 6.12,
+   "end": 6.64,
+   "frame": 184
+  },
+  {
+   "word": "oʻtaveradi,",
+   "start": 6.68,
+   "end": 7.44,
+   "frame": 200
+  },
+  {
+   "word": "shahar",
+   "start": 7.43,
+   "end": 7.76,
+   "frame": 223
+  },
+  {
+   "word": "chiroqlari",
+   "start": 7.86,
+   "end": 8.4,
+   "frame": 236
+  },
+  {
+   "word": "yonaveradi.",
+   "start": 8.52,
+   "end": 9.28,
+   "frame": 256
+  },
+  {
+   "word": "Lekin",
+   "start": 9.275,
+   "end": 9.68,
+   "frame": 278
+  },
+  {
+   "word": "sening",
+   "start": 9.87,
+   "end": 10.24,
+   "frame": 296
+  },
+  {
+   "word": "yoʻqligingni",
+   "start": 10.32,
+   "end": 10.96,
+   "frame": 310
+  },
+  {
+   "word": "kim",
+   "start": 10.995,
+   "end": 11.2,
+   "frame": 330
+  },
+  {
+   "word": "his",
+   "start": 11.28,
+   "end": 11.36,
+   "frame": 338
+  },
+  {
+   "word": "qiladi?",
+   "start": 11.455,
+   "end": 12,
+   "frame": 344
+  },
+  {
+   "word": "Sen",
+   "start": 12.12,
+   "end": 12.24,
+   "frame": 364
+  },
+  {
+   "word": "emas",
+   "start": 12.44,
+   "end": 12.64,
+   "frame": 373
+  },
+  {
+   "word": "—",
+   "start": 12.82,
+   "end": 12.88,
+   "frame": 385
+  },
+  {
+   "word": "his",
+   "start": 12.96,
+   "end": 13.04,
+   "frame": 389
+  },
+  {
+   "word": "qiladigan",
+   "start": 13.085,
+   "end": 13.68,
+   "frame": 393
+  },
+  {
+   "word": "sen",
+   "start": 13.76,
+   "end": 14,
+   "frame": 413
+  },
+  {
+   "word": "yoʻqsan.",
+   "start": 14.08,
+   "end": 14.72,
+   "frame": 422
+  }
+ ]
+}

@@ -1,0 +1,409 @@
+{
+ "stage": 2,
+ "fps": 30,
+ "duration": 15,
+ "frames": 450,
+ "shots": [
+  {
+   "name": "S5 pencil redraw",
+   "cue": "Faylasuf",
+   "f0": 0,
+   "f1": 108,
+   "dur": 3.6,
+   "cut": "open"
+  },
+  {
+   "name": "S6 brain cutaway",
+   "cue": "Olimlar",
+   "f0": 108,
+   "f1": 225,
+   "dur": 3.9,
+   "cut": "match"
+  },
+  {
+   "name": "S7 apple x-ray",
+   "cue": "Lekin",
+   "f0": 225,
+   "f1": 336,
+   "dur": 3.7,
+   "cut": "hard"
+  },
+  {
+   "name": "S8 heroic stamp",
+   "cue": "Chalmers",
+   "f0": 336,
+   "f1": 450,
+   "dur": 3.8,
+   "cut": "hard"
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.24,
+   "type": "swoosh"
+  },
+  {
+   "t": 0.45,
+   "type": "pencil",
+   "dur": 0.8500000000000001,
+   "pan": -0.2
+  },
+  {
+   "t": 0.9,
+   "type": "slide",
+   "dur": 0.45,
+   "pan": 0.5
+  },
+  {
+   "t": 1,
+   "type": "pop",
+   "gain": 0.5,
+   "pan": 0.4
+  },
+  {
+   "t": 1.1333,
+   "type": "pop",
+   "gain": 0.35,
+   "pan": 0.4
+  },
+  {
+   "t": 1.3167,
+   "type": "fillpop"
+  },
+  {
+   "t": 1.3833,
+   "type": "click",
+   "gain": 0.5,
+   "pan": 0.5
+  },
+  {
+   "t": 3.6,
+   "type": "whoosh",
+   "cut": "match"
+  },
+  {
+   "t": 5.4667,
+   "type": "zip",
+   "dur": 0.3333333333333333,
+   "pan": -0.5,
+   "pan_end": -0.2
+  },
+  {
+   "t": 6.4667,
+   "type": "blip",
+   "f": 900,
+   "pan": 0.2
+  },
+  {
+   "t": 6.6,
+   "type": "blip",
+   "f": 1020,
+   "pan": 0.2
+  },
+  {
+   "t": 6.7333,
+   "type": "blip",
+   "f": 1140,
+   "pan": 0.2
+  },
+  {
+   "t": 6.8667,
+   "type": "blip",
+   "f": 1260,
+   "pan": 0.2
+  },
+  {
+   "t": 7,
+   "type": "blip",
+   "f": 1380,
+   "pan": 0.2
+  },
+  {
+   "t": 7.1333,
+   "type": "blip",
+   "f": 1500,
+   "pan": 0.2
+  },
+  {
+   "t": 7.2667,
+   "type": "blip",
+   "f": 1620,
+   "pan": 0.2
+  },
+  {
+   "t": 7.5,
+   "type": "whoosh",
+   "cut": "hard"
+  },
+  {
+   "t": 7.5333,
+   "type": "ding"
+  },
+  {
+   "t": 8.8,
+   "type": "crunch",
+   "pan": 0.1
+  },
+  {
+   "t": 9.9,
+   "type": "swoosh",
+   "pan": 0.6,
+   "pan_end": 0
+  },
+  {
+   "t": 10.3333,
+   "type": "swell",
+   "dur": 0.6
+  },
+  {
+   "t": 11.2,
+   "type": "whoosh",
+   "cut": "hard"
+  },
+  {
+   "t": 12.7333,
+   "type": "stamp",
+   "gain": 0.9
+  }
+ ],
+ "music": {
+  "bpm": 90,
+  "key": "Dm",
+  "drops": []
+ },
+ "words": [
+  {
+   "word": "Faylasuf",
+   "start": 0.084,
+   "end": 0.627,
+   "frame": 3
+  },
+  {
+   "word": "Devid",
+   "start": 0.679,
+   "end": 1.058,
+   "frame": 20
+  },
+  {
+   "word": "Chalmers",
+   "start": 1.111,
+   "end": 1.654,
+   "frame": 33
+  },
+  {
+   "word": "buni",
+   "start": 1.707,
+   "end": 2.03,
+   "frame": 51
+  },
+  {
+   "word": "boshqacha",
+   "start": 2.084,
+   "end": 2.681,
+   "frame": 63
+  },
+  {
+   "word": "soʻradi.",
+   "start": 2.734,
+   "end": 3.221,
+   "frame": 82
+  },
+  {
+   "word": "Olimlar",
+   "start": 3.6,
+   "end": 3.892,
+   "frame": 108
+  },
+  {
+   "word": "miya",
+   "start": 3.924,
+   "end": 4.117,
+   "frame": 118
+  },
+  {
+   "word": "ishini",
+   "start": 4.149,
+   "end": 4.408,
+   "frame": 124
+  },
+  {
+   "word": "oʻrgana",
+   "start": 4.439,
+   "end": 4.731,
+   "frame": 133
+  },
+  {
+   "word": "oladi:",
+   "start": 4.763,
+   "end": 4.989,
+   "frame": 143
+  },
+  {
+   "word": "koʻz",
+   "start": 5.127,
+   "end": 5.321,
+   "frame": 154
+  },
+  {
+   "word": "yorugʻlikni",
+   "start": 5.352,
+   "end": 5.775,
+   "frame": 161
+  },
+  {
+   "word": "ushlaydi,",
+   "start": 5.807,
+   "end": 6.131,
+   "frame": 174
+  },
+  {
+   "word": "neyronlar",
+   "start": 6.27,
+   "end": 6.627,
+   "frame": 188
+  },
+  {
+   "word": "signal",
+   "start": 6.658,
+   "end": 6.917,
+   "frame": 200
+  },
+  {
+   "word": "yuboradi.",
+   "start": 6.949,
+   "end": 7.274,
+   "frame": 208
+  },
+  {
+   "word": "Lekin",
+   "start": 7.5,
+   "end": 7.855,
+   "frame": 225
+  },
+  {
+   "word": "nega",
+   "start": 7.904,
+   "end": 8.208,
+   "frame": 237
+  },
+  {
+   "word": "olmaning",
+   "start": 8.257,
+   "end": 8.765,
+   "frame": 248
+  },
+  {
+   "word": "shirinligi",
+   "start": 8.815,
+   "end": 9.427,
+   "frame": 264
+  },
+  {
+   "word": "ichingda",
+   "start": 9.476,
+   "end": 9.984,
+   "frame": 284
+  },
+  {
+   "word": "his",
+   "start": 10.034,
+   "end": 10.286,
+   "frame": 301
+  },
+  {
+   "word": "qilinadi?",
+   "start": 10.336,
+   "end": 10.845,
+   "frame": 310
+  },
+  {
+   "word": "Chalmers",
+   "start": 11.2,
+   "end": 11.744,
+   "frame": 336
+  },
+  {
+   "word": "buni",
+   "start": 11.797,
+   "end": 12.122,
+   "frame": 354
+  },
+  {
+   "word": "ongning",
+   "start": 12.175,
+   "end": 12.664,
+   "frame": 365
+  },
+  {
+   "word": "qiyin",
+   "start": 12.717,
+   "end": 13.097,
+   "frame": 382
+  },
+  {
+   "word": "muammosi",
+   "start": 13.15,
+   "end": 13.695,
+   "frame": 394
+  },
+  {
+   "word": "deb",
+   "start": 13.747,
+   "end": 14.017,
+   "frame": 412
+  },
+  {
+   "word": "atadi.",
+   "start": 14.07,
+   "end": 14.45,
+   "frame": 422
+  }
+ ],
+ "phrases": [
+  {
+   "f0": 3,
+   "fClear": 48,
+   "text": "Faylasuf Devid Chalmers"
+  },
+  {
+   "f0": 51,
+   "fClear": 103,
+   "text": "buni boshqacha soʻradi."
+  },
+  {
+   "f0": 108,
+   "fClear": 151,
+   "text": "Olimlar miya ishini oʻrgana oladi:"
+  },
+  {
+   "f0": 154,
+   "fClear": 185,
+   "text": "koʻz yorugʻlikni ushlaydi,"
+  },
+  {
+   "f0": 188,
+   "fClear": 222,
+   "text": "neyronlar signal yuboradi."
+  },
+  {
+   "f0": 225,
+   "fClear": 281,
+   "text": "Lekin nega olmaning shirinligi"
+  },
+  {
+   "f0": 284,
+   "fClear": 331,
+   "text": "ichingda his qilinadi?"
+  },
+  {
+   "f0": 336,
+   "fClear": 379,
+   "text": "Chalmers buni ongning"
+  },
+  {
+   "f0": 382,
+   "fClear": 440,
+   "text": "qiyin muammosi deb atadi."
+  }
+ ]
+}

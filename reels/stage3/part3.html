@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Stage 3 · 30–45 s</title>
+<meta name="viewport" content="width=1080">
+<link rel="stylesheet" href="../shared/frame.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="../shared/style.js"></script>
+<script src="../shared/hero.js"></script>
+<script src="../shared/subs.js"></script>
+<script src="../shared/scene.js"></script>
+</head>
+<body>
+<div id="frame"></div>
+<script>
+(function () {
+const S = STYLE, P = S.PAL, E = S.E, el = S.el, FPS = 30;
+const SC = SCENE.init({ stage: 3, duration: 15, music: { bpm: 90, key: 'Dm', drops: [] } });
+const tl = SC.tl, svg = SC.svg;
+const faceAt = (list, t) => list.filter(f => f[0] <= t + 1e-6).pop();
+
+/* ---------- sets & props ---------- */
+function hallway(w, o = {}) {
+  const fy = o.floorY ?? 1560;
+  el('rect', { x: -600, y: -600, width: 2400, height: fy + 600, fill: S.linGrad(svg, [[0, S.back(P.wall, 2)], [1, S.back(P.wall, 1)]]) }, w);
+  el('rect', { x: -600, y: fy, width: 2400, height: 1200, fill: S.linGrad(svg, [[0, S.back(P.floor, 1)], [1, P.floor]]) }, w);
+  // ceiling lights with soft pools
+  for (let x = -200; x < 1700; x += 520) {
+    el('circle', { cx: x + 110, cy: (o.ceilY ?? 260) + 260, r: 430, fill: S.radGrad(svg, S.softStops(P.win, 0.16)) }, w);
+    el('path', { d: S.rrect(x, (o.ceilY ?? 260) - 20, 220, 30, 12), fill: P.win }, w);
+  }
+  // lockers
+  const ly = o.lockY ?? 820, lh = fy - ly - 20;
+  const lc = o.lockerCol || P.violet;
+  for (let x = -500; x < 1700; x += 132) {
+    el('path', { d: S.rrect(x, ly, 124, lh, 10), fill: lc }, w);
+    el('rect', { x: x + 84, y: ly, width: 40, height: lh, fill: S.shade(lc), rx: 8 }, w);
+    for (let k = 0; k < 3; k++) el('rect', { x: x + 22, y: ly + 30 + k * 16, width: 64, height: 6, rx: 3, fill: S.back(lc, 1) }, w);
+    el('rect', { x: x + 96, y: ly + lh * 0.45, width: 10, height: 44, rx: 5, fill: S.back(lc, 1) }, w);
+  }
+  el('rect', { x: -600, y: fy - 20, width: 2400, height: 22, fill: S.back(P.violet, 1) }, w);
+}
+function copier(w, x, y, sc = 1) {          // retro copier; (x,y) = floor point at its front-left; platen on top
+  const g = el('g', { transform: `translate(${x},${y}) scale(${sc})` }, w);
+  el('ellipse', { cx: 300, cy: 4, rx: 360, ry: 26, fill: P.ink, opacity: .25 }, g);
+  el('path', { d: S.rrect(0, -440, 600, 440, 30), fill: '#D8D2E6' }, g);
+  el('path', { d: S.rrect(420, -440, 180, 440, 30), fill: S.shade('#D8D2E6') }, g);
+  el('path', { d: S.rrect(30, -230, 380, 70, 14), fill: P.violet }, g);           // drawer
+  el('path', { d: S.rrect(30, -130, 380, 70, 14), fill: P.violet }, g);
+  el('rect', { x: 190, y: -206, width: 60, height: 14, rx: 7, fill: S.back(P.violet, 1) }, g);
+  el('rect', { x: 190, y: -106, width: 60, height: 14, rx: 7, fill: S.back(P.violet, 1) }, g);
+  el('path', { d: S.rrect(60, -380, 200, 80, 12), fill: S.back(P.violet, 1) }, g);   // panel
+  [[90, P.teal], [140, P.coral], [190, P.green]].forEach(([cx, c]) => el('circle', { cx, cy: -340, r: 14, fill: c }, g));
+  el('path', { d: S.rrect(-20, -470, 640, 40, 16), fill: S.shade('#D8D2E6', 0.2) }, g);  // lid / platen frame
+  el('rect', { x: 10, y: -470, width: 580, height: 14, rx: 7, fill: '#9FE3DC' }, g);       // glass platen
+  el('path', { d: 'M600,-420L760,-392L760,-372L600,-384Z', fill: S.shade('#D8D2E6', 0.25) }, g);   // paper tray
+  return { g, top: [x + 300 * sc, y - 470 * sc], tray: [x + 680 * sc, y - 392 * sc] };
+}
+function crowdFig(parent, col) {             // generic flat silhouette, no face
+  const g = el('g', {}, parent);
+  const body = el('g', {}, g);
+  el('ellipse', { cx: 0, cy: 0, rx: 90, ry: 16, fill: P.ink, opacity: .25 }, g);
+  el('path', { d: S.rrect(-56, -330, 46, 330, 22), fill: col }, body);
+  el('path', { d: S.rrect(10, -330, 46, 330, 22), fill: S.shade(col) }, body);
+  el('path', { d: S.rrect(-80, -620, 160, 320, 60), fill: col }, body);
+  el('path', { d: S.rrect(20, -620, 60, 320, 40), fill: S.shade(col) }, body);
+  const head = el('g', {}, body);
+  el('circle', { cx: 0, cy: -700, r: 72, fill: col }, head);
+  el('path', { d: 'M30,-765A72,72 0 0 1 30,-635A90,90 0 0 0 30,-765Z', fill: S.shade(col) }, head);
+  const armL = el('path', { d: S.rrect(-24, 0, 44, 260, 22), fill: col }, body);
+  const armR = el('path', { d: S.rrect(-20, 0, 44, 260, 22), fill: S.shade(col) }, body);
+  return { g, body, head, armL, armR };
+}
+
+SC.start(() => {
+  const F = SC.F, W = SC.W;
+  const tU = W('U'), tLe = W('Lekin'), tTa = W('Tashqaridan'), tFa = W('Faqat');
+
+  /* =================== SHOT 9 · hallway copier: hop, scan, TWIN slides out =================== */
+  const s9 = SC.shot({ name: 'S9 copier', f0: 0, cueWord: 'Chalmersning' });
+  hallway(s9.w, { floorY: 1640, lockY: 900, ceilY: 20 });
+  const cp = copier(s9.w, 130, 1660, 1.0);
+  const hero = HERO.create(svg, s9.w, { id: 'hero', seed: 301 });
+  Object.assign(hero.pose, { x: cp.top[0], y: cp.top[1] + 4, s: 0.85, hop: 150, aL1: 40, aL2: -30, aR1: -40, aR2: 30, legL: -10, legR: 12 });
+  const twin = HERO.create(svg, s9.w, { id: 'twin', seed: 302 });
+  SC.greyOrb(twin.slots.inside, { x: 0, y: -10 });          // TWIN: only an unlit grey orb inside
+  twin.slots.inside.style.display = 'none';
+  Object.assign(twin.pose, { x: 840, y: 1650, s: 0.85, rot: -90, opacity: 0 });
+  // mid-hop at frame 0 → lands with squash
+  const tLand = 8 / FPS;
+  tl.fromTo(hero.pose, { hop: 150 }, { hop: 0, duration: tLand, ease: E.inCubic }, 0);
+  tl.to(hero.pose, { aL1: 10, aL2: -8, aR1: -10, aR2: 8, legL: 0, legR: 0, duration: 10 / FPS, ease: E.outCubic }, 0);
+  tl.to(hero.pose, { sx: 1.15, sy: 0.85, duration: 2 / FPS, ease: E.outCubic }, tLand);
+  tl.to(hero.pose, { sx: 1, sy: 1, duration: 14 / FPS, ease: E.spring(0.6) }, tLand + 2 / FPS);
+  SC.cue(tLand, 'land');
+  // teal scan bar sweeps him in 18 frames
+  const tNx = W('nusxangni');
+  const scan = el('g', {}, s9.w);
+  el('rect', { x: -230, y: -60, width: 460, height: 60, fill: P.teal, opacity: .28 }, scan);
+  el('rect', { x: -230, y: -14, width: 460, height: 14, rx: 7, fill: P.teal }, scan);
+  const scSt = { u: -1 };
+  tl.fromTo(scSt, { u: 0 }, { u: 1, duration: 18 / FPS, ease: E.inOutSine }, tNx);
+  tl.set(scSt, { u: -1 }, tNx + 19 / FPS);
+  SC.cue(tNx, 'hum', { dur: 18 / FPS + 0.1 });
+  SC.on(() => { scan.style.display = scSt.u < 0 ? 'none' : ''; scan.setAttribute('transform', `translate(${cp.top[0]},${cp.top[1] - 700 + 700 * scSt.u})`); });
+  // TWIN slides out of the paper tray and springs upright (ζ 0.55)
+  const tTv = W('tasavvur');
+  tl.set(twin.pose, { opacity: 1 }, tTv);
+  tl.fromTo(twin.pose, { x: cp.tray[0] - 60, y: cp.tray[1] - 40 }, { x: 840, y: 1650, duration: 20 / FPS, ease: E.inOutSine }, tTv);
+  tl.fromTo(twin.pose, { s: 0.3 }, { s: 0.85, duration: 20 / FPS, ease: E.inOutSine }, tTv);
+  tl.fromTo(twin.pose, { rot: -90 }, { rot: 0, duration: 22 / FPS, ease: E.spring(0.55) }, tTv + 2 / FPS);
+  SC.cue(tTv, 'slide', { dur: 0.35, pan: 0.5, pan_end: 0.7 }); SC.cue(tTv + 16 / FPS, 'land', { gain: 0.5, pan: 0.6 });
+  const faces9 = [[0, 'happy'], [tNx, 'wonder'], [tTv + 12 / FPS, 'wonder']];
+  tl.to(hero.pose, { lookX: 5, turn: 0.35, duration: 8 / FPS, ease: E.outCubic }, tTv + 6 / FPS);
+  SC.on(t => { hero.setFace(faceAt(faces9, t)[1]); hero.apply(t); twin.setFace('neutral'); twin.apply(t); });
+  tl.fromTo(s9.camState, { x: 520, y: 860, s: 0.98 }, { x: 590, y: 880, s: 1.04, duration: tU, ease: E.inOutSine }, 0);
+
+  /* =================== SHOT 10 · tight two-shot: TWIN talks, laughs, "voy" =================== */
+  const s10 = SC.shot({ name: 'S10 two-shot', f0: F('U'), cueWord: 'U', cut: 'hard' });
+  hallway(s10.w, { floorY: 1900, lockY: 640, ceilY: 120 });
+  const cp10 = copier(s10.w, 960, 1910, 1.3);
+  const h10 = HERO.create(svg, s10.w, { id: 'h10', seed: 303 });
+  const t10 = HERO.create(svg, s10.w, { id: 't10', seed: 304 });
+  SC.greyOrb(t10.slots.inside, { x: 0, y: -10 }); t10.slots.inside.style.display = 'none';
+  Object.assign(h10.pose, { x: 300, y: 1900, s: 1.22, turn: 0.35, lookX: 5 });
+  Object.assign(t10.pose, { x: 730, y: 1900, s: 1.22, turn: -0.2, lookX: -2 });
+  const tKu = W('kuladi'), tVoy = W('voy');
+  // talking: 3 mouth shapes from "U" to "kuladi"
+  const talk = ['A', 'M', 'E', 'M', 'A', 'E'];
+  for (let f = F('U'), i = 0; f < F('kuladi'); f += 4, i++) if (i % 3 === 0) SC.cue(f / FPS, 'chatter', { f: 480 + (i % 4) * 40, pan: 0.35 });
+  SC.cue(tKu, 'giggle', { pan: 0.35 });
+  tl.to(t10.pose, { hop: 18, duration: 4 / FPS, ease: E.outCubic, yoyo: true, repeat: 3 }, tKu);
+  // "voy": stubs his toe on the copier, hops, mouth O
+  const kick = tVoy - 8 / FPS;
+  tl.to(t10.pose, { legR: -6, duration: 3 / FPS, ease: E.inCubic }, kick - 3 / FPS);
+  tl.to(t10.pose, { legR: -28, x: 760, duration: 5 / FPS, ease: E.inCubic }, kick);
+  SC.cue(tVoy - 3 / FPS, 'boing', { pan: 0.5 });
+  tl.to(t10.pose, { hop: 70, legR: -40, aL1: 50, aR1: -60, duration: 6 / FPS, ease: E.outCubic }, tVoy - 3 / FPS);
+  tl.to(t10.pose, { hop: 0, duration: 6 / FPS, ease: E.inCubic }, tVoy + 3 / FPS);
+  tl.to(t10.pose, { hop: 50, duration: 5 / FPS, ease: E.outCubic }, tVoy + 9 / FPS);
+  tl.to(t10.pose, { hop: 0, legR: 0, aL1: 10, aR1: -10, duration: 6 / FPS, ease: E.inCubic }, tVoy + 14 / FPS);
+  SC.cue(tVoy + 9 / FPS, 'land', { gain: 0.4, pan: 0.4 }); SC.cue(tVoy + 20 / FPS, 'land', { gain: 0.4, pan: 0.4 });
+  // coral burst "Voy!"
+  const burst = el('g', { 'data-check': 'label' }, s10.scr);
+  { const pts = []; for (let i = 0; i < 24; i++) { const r = i % 2 ? 92 : 128, a = i / 24 * Math.PI * 2; pts.push([Math.cos(a) * r * 1.25, Math.sin(a) * r]); }
+    el('path', { d: 'M' + pts.map(p => p.join(',')).join('L') + 'Z', fill: P.coral }, burst);
+    const tx = el('text', { 'font-family': 'Montserrat', 'font-weight': 800, 'font-size': 64, fill: '#FFFFFF', 'text-anchor': 'middle', 'dominant-baseline': 'central', y: 2 }, burst); tx.textContent = 'Voy!'; }
+  const bSt = { p: 0 };
+  tl.fromTo(bSt, { p: 0 }, { p: 1, duration: 12 / FPS, ease: t => E.outBack(t, 2.4) }, tVoy);
+  SC.cue(tVoy, 'pop', { pan: 0.4 });
+  SC.on(() => { burst.setAttribute('transform', `translate(735,620) scale(${bSt.p}) rotate(-8)`); burst.style.opacity = bSt.p > 0.01 ? 1 : 0; });
+  const faces10t = [[0, 'talk']], faces10h = [[0, 'wonder'], [tKu, 'happy'], [tVoy, 'worried']];
+  SC.on((t, fr) => {
+    let mouth = null, face = 'talk';
+    if (t < tKu) mouth = talk[Math.floor((fr - F('U')) / 4) % talk.length];
+    else if (t < tVoy - 8 / FPS) face = 'laugh';
+    else if (t < tVoy + 24 / FPS) { face = 'worried'; mouth = 'O'; }
+    else face = 'sad';
+    t10.setFace(face, mouth); t10.apply(t);
+    h10.setFace(faceAt(faces10h, t)[1]); h10.apply(t);
+  });
+  tl.fromTo(s10.camState, { x: 520, y: 1180, s: 1.0 }, { x: 560, y: 1160, s: 1.04, duration: tLe - tU, ease: E.inOutSine }, tU);
+
+  /* =================== SHOT 11 · magnifier: dark in TWIN, light in HERO =================== */
+  const s11 = SC.shot({ name: 'S11 magnifier', f0: F('Lekin'), cueWord: 'Lekin', cut: 'hard' });
+  hallway(s11.w, { floorY: 2300, lockY: 380, ceilY: -200 });
+  const HS = 1.6, HY = 1020;
+  const h11 = HERO.create(svg, s11.w, { id: 'h11', seed: 305 });
+  const t11 = HERO.create(svg, s11.w, { id: 't11', seed: 306 });
+  Object.assign(h11.pose, { x: 330, y: HY + 648 * HS, s: HS, turn: 0.15 });
+  Object.assign(t11.pose, { x: 750, y: HY + 648 * HS, s: HS, turn: -0.15 });
+  const mag = el('g', {}, s11.w);
+  el('path', { d: S.rrect(-22, 150, 44, 260, 22), fill: S.back(P.violet, 1), transform: 'rotate(-30)' }, mag);
+  const mcid = S.uid('mag'); const mcp = el('clipPath', { id: mcid }, S.defs(svg)); el('circle', { r: 150 }, mcp);
+  const magIn = el('g', { 'clip-path': `url(#${mcid})` }, mag);
+  const inner = el('g', {}, magIn);
+  const headD = S.rrect(-110 * HS, -120 * HS, 220 * HS, 240 * HS, 84 * HS);
+  el('path', { d: headD, fill: '#1C1540', transform: `translate(${750},${HY})` }, inner);
+  el('path', { d: headD, fill: '#1C1540', transform: `translate(${330},${HY})` }, inner);
+  const grey = el('circle', { cx: 750, cy: HY - 10, r: 18 * HS, fill: 'none', stroke: P.grey, 'stroke-width': 4 * HS }, inner);
+  const lt11 = SC.innerLight(inner, { x: 330, y: HY - 10 }); lt11.st.s = HS;
+  el('circle', { r: 150, fill: 'none', stroke: P.paper, 'stroke-width': 14 }, mag);
+  const mSt = { x: 1400, y: HY + 40, show: 0 };
+  const tCq = W('chiroq'), tMove = Math.min(tCq + 12 / FPS, tTa - 0.75);
+  tl.set(mSt, { show: 1 }, tLe + 4 / FPS);
+  tl.fromTo(mSt, { x: 1400 }, { x: 750, duration: 14 / FPS, ease: E.outQuint }, tLe + 4 / FPS);
+  SC.cue(tLe + 10 / FPS, 'swoosh', { pan: 0.7, pan_end: 0.3 });
+  tl.to(mSt, { x: 330, duration: 10 / FPS, ease: E.inOutCubic }, tMove);
+  SC.cue(tMove + 5 / FPS, 'swoosh', { pan: 0.3, pan_end: -0.4 });
+  SC.cue(tMove + 10 / FPS, 'swell', { dur: 0.6, pan: -0.3 });
+  tl.fromTo(lt11.st, { s: HS * 0.9 }, { s: HS, duration: 12 / FPS, ease: E.spring(0.7) }, tMove + 8 / FPS);
+  const pOff = SC.pill(s11.scr, { text: 'chiroq oʻchiq', color: P.coral, x: 750, y: 640, target: () => SC.toScreen(grey, 750, HY - 10 - 18 * HS) });
+  SC.popIn(pOff, tCq); SC.cue(tCq, 'pop', { pan: 0.4 });
+  tl.to(pOff.st, { p: 0, lead: 0, duration: 6 / FPS, ease: E.inCubic }, tMove - 2 / FPS);
+  SC.on(t => {
+    mag.style.display = mSt.show ? '' : 'none';
+    mag.setAttribute('transform', `translate(${mSt.x},${mSt.y})`);
+    inner.setAttribute('transform', `translate(${-mSt.x},${-mSt.y})`);
+    h11.setFace(t < tMove + 10 / FPS ? 'neutral' : 'happy'); h11.apply(t);
+    t11.setFace('neutral'); t11.apply(t);
+  });
+  tl.fromTo(s11.camState, { x: 540, y: 1040, s: 1.0 }, { x: 520, y: 1020, s: 1.03, duration: tTa - tLe, ease: E.inOutSine }, tLe);
+
+  /* =================== SHOT 12 · wide hallway: the crowd can't tell; push in on HERO =================== */
+  const s12 = SC.shot({ name: 'S12 crowd', f0: F('Tashqaridan'), cueWord: 'Tashqaridan', cut: 'hard' });
+  hallway(s12.w, { floorY: 1500, lockY: 760, lockerCol: S.back(P.violet, 1) });
+  const BOYS = { h: [275, 1560], t: [640, 1560] };
+  const crowd = [{ x: 930, d: 2, col: S.mix(P.violet, S.back(P.violet, 1), 0.35) }, { x: 850, d: 0, col: P.violet }, { x: 770, d: 1, col: S.mix(P.violet, S.back(P.violet, 1), 0.18) }].map((c, i) => {
+    const f = crowdFig(s12.w, c.col); return Object.assign(f, c, { i });
+  });
+  const h12 = HERO.create(svg, s12.w, { id: 'h12', seed: 307 });
+  const t12 = HERO.create(svg, s12.w, { id: 't12', seed: 308 });
+  Object.assign(h12.pose, { x: BOYS.h[0], y: BOYS.h[1], s: 0.78 });
+  Object.assign(t12.pose, { x: BOYS.t[0], y: BOYS.t[1], s: 0.78 });
+  const chestLight = SC.innerLight(h12.slots.chest, { x: 0, y: 0 });
+  chestLight.st.k = 0;
+  // crowd walks in, looks from one boy to the other, shrugs, "?" over each
+  const walkEnd = tTa + 0.75;
+  crowd.forEach(c => { c.st = { x: c.x + 520 + c.i * 60, look: 0, shrug: 0 };
+    tl.fromTo(c.st, { x: c.x + 520 + c.i * 60 }, { x: c.x, duration: 0.75 + c.i * 0.06, ease: E.outCubic }, tTa);
+    [0, 0.22, 0.44].forEach(k => SC.cue(tTa + k + c.i * 0.07, 'step', { pan: 0.6, gain: 0.6 }));
+    tl.to(c.st, { look: -1, duration: 6 / FPS, ease: E.inOutSine }, walkEnd + c.i * 0.05);
+    tl.to(c.st, { look: 1, duration: 8 / FPS, ease: E.inOutSine }, walkEnd + 0.35 + c.i * 0.05);
+    tl.to(c.st, { look: 0, duration: 6 / FPS, ease: E.inOutSine }, walkEnd + 0.75 + c.i * 0.05);
+    tl.to(c.st, { shrug: 1, duration: 6 / FPS, ease: E.outBack }, walkEnd + 0.95 + c.i * 0.06);
+  });
+  SC.cue(walkEnd + 0.98, 'swoosh', { gain: 0.6, pan: 0.5 });
+  const qs = crowd.map(c => { const tx = el('text', { 'font-family': 'Montserrat', 'font-weight': 800, 'font-size': 64, fill: P.paper, 'text-anchor': 'middle', 'data-check': 'label' }, s12.scr); tx.textContent = '?'; return tx; });
+  const qSt = crowd.map(() => ({ p: 0 }));
+  qSt.forEach((q, i) => { tl.fromTo(q, { p: 0 }, { p: 1, duration: 10 / FPS, ease: t => E.outBack(t, 2.2) }, walkEnd + 1.0 + i * 3 / FPS); SC.cue(walkEnd + 1.0 + i * 3 / FPS, 'pop', { gain: 0.3, pan: 0.5 }); });
+  SC.on(t => crowd.forEach((c, i) => {
+    const bob = c.st.x > c.x + 2 ? Math.abs(Math.sin((c.st.x - c.x) / 40)) * 10 : 0;
+    const s = 0.86 - c.d * 0.04;
+    c.g.setAttribute('transform', `translate(${c.st.x},${1530 - c.d * 20 - bob}) scale(${s})`);
+    c.head.setAttribute('transform', `translate(${c.st.look * 18},0)`);
+    c.armL.setAttribute('transform', `translate(-92,-600) rotate(${12 + c.st.shrug * 60})`);
+    c.armR.setAttribute('transform', `translate(92,-600) rotate(${-12 - c.st.shrug * 60})`);
+    c.body.setAttribute('transform', `translate(0,${-c.st.shrug * 10})`);
+    const [sx, sy] = SC.toScreen(c.g, 0, -860);
+    qs[i].setAttribute('x', sx); qs[i].setAttribute('y', sy);
+    qs[i].setAttribute('transform', `translate(${sx},${sy}) scale(${qSt[i].p}) translate(${-sx},${-sy})`); qs[i].style.opacity = qSt[i].p > 0.01 ? 1 : 0;
+  }));
+  qSt.forEach(q => tl.to(q, { p: 0, duration: 5 / FPS, ease: E.inCubic }, tFa - 5 / FPS));
+  // "Faqat": push in on HERO, hand on chest, INNER_LIGHT through the sweater, pulse 1.0→1.25→1.0
+  const chest = h12.ik('L', -20, -430, true);
+  tl.to(h12.pose, { aL1: chest.a1, aL2: chest.a2, duration: 10 / FPS, ease: E.spring(0.7) }, tFa + 2 / FPS);
+  tl.set(h12.pose, { handL: 'open' }, tFa + 4 / FPS);
+  tl.fromTo(chestLight.st, { k: 0, s: 0.4 }, { k: 1, s: 1.0, duration: 10 / FPS, ease: E.outCubic }, tFa + 8 / FPS);
+  tl.to(chestLight.st, { s: 1.25, duration: 9 / FPS, ease: E.outCubic }, tFa + 20 / FPS);
+  tl.to(chestLight.st, { s: 1.0, duration: 15 / FPS, ease: E.spring(0.7) }, tFa + 29 / FPS);
+  SC.cue(tFa + 29 / FPS, 'swell', { dur: 0.8, pan: -0.1 });
+  const faces12 = [[0, 'neutral'], [tTa + 0.9, 'thinking'], [tFa + 4 / FPS, 'happy']];
+  SC.on(t => { h12.setFace(faceAt(faces12, t)[1]); h12.apply(t); t12.setFace('neutral'); t12.apply(t); });
+  tl.fromTo(s12.camState, { x: 560, y: 1150, s: 1.0 }, { x: 545, y: 1135, s: 1.03, duration: tFa - tTa, ease: E.inOutSine }, tTa);
+  tl.to(s12.camState, { x: BOYS.h[0] + 10, y: BOYS.h[1] - 470, s: 2.0, duration: 18 / FPS, ease: E.outCubic }, tFa);
+  tl.to(s12.camState, { s: 2.08, duration: 15 - tFa - 18 / FPS, ease: E.inOutSine }, tFa + 18 / FPS);
+});
+})();
+</script>
+</body>
+</html>

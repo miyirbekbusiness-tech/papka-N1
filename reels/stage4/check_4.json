@@ -1,0 +1,313 @@
+{
+ "subs": [],
+ "cuts": [
+  {
+   "shot": "S13 hill drain",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 3.9,
+   "lenOK": true
+  },
+  {
+   "shot": "S14 re-ignite",
+   "f0": 117,
+   "cueFrame": 117,
+   "onCue": true,
+   "dur": 3.5,
+   "lenOK": true
+  },
+  {
+   "shot": "S15 aerial city",
+   "f0": 222,
+   "cueFrame": 222,
+   "onCue": true,
+   "dur": 3.6,
+   "lenOK": true
+  },
+  {
+   "shot": "S16 CTA",
+   "f0": 330,
+   "cueFrame": 330,
+   "onCue": true,
+   "dur": 4,
+   "lenOK": true
+  }
+ ],
+ "safe": [],
+ "labels": [],
+ "phraseBoxes": [
+  {
+   "text": "Demak, sen boʻlmasang,",
+   "t": 0.16666666666666666,
+   "f": 5,
+   "box": [
+    120,
+    300,
+    383,
+    380
+   ],
+   "fEnd": 40
+  },
+  {
+   "text": "Demak, sen boʻlmasang,",
+   "t": 0.7,
+   "f": 21,
+   "box": [
+    120,
+    300,
+    522,
+    380
+   ],
+   "fEnd": 40
+  },
+  {
+   "text": "Demak, sen boʻlmasang,",
+   "t": 1.3,
+   "f": 39,
+   "box": [
+    120,
+    300,
+    956,
+    380
+   ],
+   "fEnd": 40
+  },
+  {
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi.",
+   "t": 1.5333333333333334,
+   "f": 46,
+   "box": [
+    120,
+    300,
+    411,
+    380
+   ],
+   "fEnd": 114
+  },
+  {
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi.",
+   "t": 2.6333333333333333,
+   "f": 79,
+   "box": [
+    120,
+    300,
+    867,
+    380
+   ],
+   "fEnd": 114
+  },
+  {
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi.",
+   "t": 3.7666666666666666,
+   "f": 113,
+   "box": [
+    120,
+    300,
+    867,
+    460
+   ],
+   "fEnd": 114
+  },
+  {
+   "text": "Mavjudligingning yagona guvohi —",
+   "t": 4,
+   "f": 120,
+   "box": [
+    120,
+    300,
+    719,
+    380
+   ],
+   "fEnd": 170
+  },
+  {
+   "text": "Mavjudligingning yagona guvohi —",
+   "t": 4.8,
+   "f": 144,
+   "box": [
+    120,
+    300,
+    719,
+    460
+   ],
+   "fEnd": 170
+  },
+  {
+   "text": "Mavjudligingning yagona guvohi —",
+   "t": 5.633333333333334,
+   "f": 169,
+   "box": [
+    120,
+    300,
+    719,
+    460
+   ],
+   "fEnd": 170
+  },
+  {
+   "text": "ichingdagi shu yorugʻlik.",
+   "t": 5.866666666666666,
+   "f": 176,
+   "box": [
+    120,
+    300,
+    484,
+    380
+   ],
+   "fEnd": 219
+  },
+  {
+   "text": "ichingdagi shu yorugʻlik.",
+   "t": 6.533333333333333,
+   "f": 196,
+   "box": [
+    120,
+    300,
+    626,
+    380
+   ],
+   "fEnd": 219
+  },
+  {
+   "text": "ichingdagi shu yorugʻlik.",
+   "t": 7.266666666666667,
+   "f": 218,
+   "box": [
+    120,
+    300,
+    626,
+    460
+   ],
+   "fEnd": 219
+  },
+  {
+   "text": "U hozir ham yonib turibdi.",
+   "t": 7.5,
+   "f": 225,
+   "box": [
+    120,
+    300,
+    170,
+    380
+   ],
+   "fEnd": 318
+  },
+  {
+   "text": "U hozir ham yonib turibdi.",
+   "t": 9,
+   "f": 270,
+   "box": [
+    120,
+    300,
+    739,
+    380
+   ],
+   "fEnd": 318
+  },
+  {
+   "text": "U hozir ham yonib turibdi.",
+   "t": 10.566666666666666,
+   "f": 317,
+   "box": [
+    120,
+    300,
+    739,
+    460
+   ],
+   "fEnd": 318
+  },
+  {
+   "text": "Shunday savollar uchun dangasa_ai",
+   "t": 11.1,
+   "f": 333,
+   "box": [
+    120,
+    300,
+    419,
+    380
+   ],
+   "fEnd": 387
+  },
+  {
+   "text": "Shunday savollar uchun dangasa_ai",
+   "t": 11.966666666666667,
+   "f": 359,
+   "box": [
+    120,
+    300,
+    703,
+    380
+   ],
+   "fEnd": 387
+  },
+  {
+   "text": "Shunday savollar uchun dangasa_ai",
+   "t": 12.866666666666667,
+   "f": 386,
+   "box": [
+    120,
+    300,
+    937,
+    460
+   ],
+   "fEnd": 387
+  },
+  {
+   "text": "sahifamizga obuna boʻling.",
+   "t": 13.1,
+   "f": 393,
+   "box": [
+    120,
+    300,
+    533,
+    380
+   ],
+   "fEnd": 440
+  },
+  {
+   "text": "sahifamizga obuna boʻling.",
+   "t": 13.833333333333334,
+   "f": 415,
+   "box": [
+    120,
+    300,
+    767,
+    380
+   ],
+   "fEnd": 440
+  },
+  {
+   "text": "sahifamizga obuna boʻling.",
+   "t": 14.633333333333333,
+   "f": 439,
+   "box": [
+    120,
+    300,
+    767,
+    460
+   ],
+   "fEnd": 440
+  }
+ ],
+ "swatch": [
+  {
+   "shot": "S13 hill drain",
+   "f": 59,
+   "x": 559,
+   "y": 1361
+  },
+  {
+   "shot": "S14 re-ignite",
+   "f": 170,
+   "x": 379,
+   "y": 1446
+  },
+  {
+   "shot": "S16 CTA",
+   "f": 390,
+   "x": 178,
+   "y": 1401
+  }
+ ]
+}

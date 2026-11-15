@@ -1,0 +1,385 @@
+{
+ "subs": [],
+ "cuts": [
+  {
+   "shot": "S5 pencil redraw",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 3.6,
+   "lenOK": true
+  },
+  {
+   "shot": "S6 brain cutaway",
+   "f0": 108,
+   "cueFrame": 108,
+   "onCue": true,
+   "dur": 3.9,
+   "lenOK": true
+  },
+  {
+   "shot": "S7 apple x-ray",
+   "f0": 225,
+   "cueFrame": 225,
+   "onCue": true,
+   "dur": 3.7,
+   "lenOK": true
+  },
+  {
+   "shot": "S8 heroic stamp",
+   "f0": 336,
+   "cueFrame": 336,
+   "onCue": true,
+   "dur": 3.8,
+   "lenOK": true
+  }
+ ],
+ "safe": [],
+ "labels": [],
+ "phraseBoxes": [
+  {
+   "text": "Faylasuf Devid Chalmers",
+   "t": 0.2,
+   "f": 6,
+   "box": [
+    120,
+    300,
+    405,
+    380
+   ],
+   "fEnd": 48
+  },
+  {
+   "text": "Faylasuf Devid Chalmers",
+   "t": 0.8666666666666667,
+   "f": 26,
+   "box": [
+    120,
+    300,
+    622,
+    380
+   ],
+   "fEnd": 48
+  },
+  {
+   "text": "Faylasuf Devid Chalmers",
+   "t": 1.5666666666666667,
+   "f": 47,
+   "box": [
+    120,
+    300,
+    622,
+    460
+   ],
+   "fEnd": 48
+  },
+  {
+   "text": "buni boshqacha soʻradi.",
+   "t": 1.8,
+   "f": 54,
+   "box": [
+    120,
+    300,
+    273,
+    380
+   ],
+   "fEnd": 103
+  },
+  {
+   "text": "buni boshqacha soʻradi.",
+   "t": 2.566666666666667,
+   "f": 77,
+   "box": [
+    120,
+    300,
+    667,
+    380
+   ],
+   "fEnd": 103
+  },
+  {
+   "text": "buni boshqacha soʻradi.",
+   "t": 3.4,
+   "f": 102,
+   "box": [
+    120,
+    300,
+    933,
+    380
+   ],
+   "fEnd": 103
+  },
+  {
+   "text": "Olimlar miya ishini oʻrgana oladi:",
+   "t": 3.7,
+   "f": 111,
+   "box": [
+    120,
+    300,
+    370,
+    380
+   ],
+   "fEnd": 151
+  },
+  {
+   "text": "Olimlar miya ishini oʻrgana oladi:",
+   "t": 4.333333333333333,
+   "f": 130,
+   "box": [
+    120,
+    300,
+    757,
+    380
+   ],
+   "fEnd": 151
+  },
+  {
+   "text": "Olimlar miya ishini oʻrgana oladi:",
+   "t": 5,
+   "f": 150,
+   "box": [
+    120,
+    300,
+    757,
+    460
+   ],
+   "fEnd": 151
+  },
+  {
+   "text": "koʻz yorugʻlikni ushlaydi,",
+   "t": 5.233333333333333,
+   "f": 157,
+   "box": [
+    120,
+    300,
+    258,
+    380
+   ],
+   "fEnd": 185
+  },
+  {
+   "text": "koʻz yorugʻlikni ushlaydi,",
+   "t": 5.666666666666667,
+   "f": 170,
+   "box": [
+    120,
+    300,
+    641,
+    380
+   ],
+   "fEnd": 185
+  },
+  {
+   "text": "koʻz yorugʻlikni ushlaydi,",
+   "t": 6.133333333333334,
+   "f": 184,
+   "box": [
+    120,
+    300,
+    641,
+    460
+   ],
+   "fEnd": 185
+  },
+  {
+   "text": "neyronlar signal yuboradi.",
+   "t": 6.366666666666666,
+   "f": 191,
+   "box": [
+    120,
+    300,
+    449,
+    380
+   ],
+   "fEnd": 222
+  },
+  {
+   "text": "neyronlar signal yuboradi.",
+   "t": 6.833333333333333,
+   "f": 205,
+   "box": [
+    120,
+    300,
+    673,
+    380
+   ],
+   "fEnd": 222
+  },
+  {
+   "text": "neyronlar signal yuboradi.",
+   "t": 7.366666666666666,
+   "f": 221,
+   "box": [
+    120,
+    300,
+    673,
+    460
+   ],
+   "fEnd": 222
+  },
+  {
+   "text": "Lekin nega olmaning shirinligi",
+   "t": 7.6,
+   "f": 228,
+   "box": [
+    120,
+    300,
+    308,
+    380
+   ],
+   "fEnd": 281
+  },
+  {
+   "text": "Lekin nega olmaning shirinligi",
+   "t": 8.433333333333334,
+   "f": 253,
+   "box": [
+    120,
+    300,
+    841,
+    380
+   ],
+   "fEnd": 281
+  },
+  {
+   "text": "Lekin nega olmaning shirinligi",
+   "t": 9.333333333333334,
+   "f": 280,
+   "box": [
+    120,
+    300,
+    841,
+    460
+   ],
+   "fEnd": 281
+  },
+  {
+   "text": "ichingda his qilinadi?",
+   "t": 9.566666666666666,
+   "f": 287,
+   "box": [
+    120,
+    300,
+    418,
+    380
+   ],
+   "fEnd": 331
+  },
+  {
+   "text": "ichingda his qilinadi?",
+   "t": 10.266666666666667,
+   "f": 308,
+   "box": [
+    120,
+    300,
+    536,
+    380
+   ],
+   "fEnd": 331
+  },
+  {
+   "text": "ichingda his qilinadi?",
+   "t": 11,
+   "f": 330,
+   "box": [
+    120,
+    300,
+    848,
+    380
+   ],
+   "fEnd": 331
+  },
+  {
+   "text": "Chalmers buni ongning",
+   "t": 11.3,
+   "f": 339,
+   "box": [
+    120,
+    300,
+    443,
+    380
+   ],
+   "fEnd": 379
+  },
+  {
+   "text": "Chalmers buni ongning",
+   "t": 11.933333333333334,
+   "f": 358,
+   "box": [
+    120,
+    300,
+    615,
+    380
+   ],
+   "fEnd": 379
+  },
+  {
+   "text": "Chalmers buni ongning",
+   "t": 12.6,
+   "f": 378,
+   "box": [
+    120,
+    300,
+    921,
+    380
+   ],
+   "fEnd": 379
+  },
+  {
+   "text": "qiyin muammosi deb atadi.",
+   "t": 12.833333333333334,
+   "f": 385,
+   "box": [
+    120,
+    300,
+    289,
+    380
+   ],
+   "fEnd": 440
+  },
+  {
+   "text": "qiyin muammosi deb atadi.",
+   "t": 13.7,
+   "f": 411,
+   "box": [
+    120,
+    300,
+    691,
+    380
+   ],
+   "fEnd": 440
+  },
+  {
+   "text": "qiyin muammosi deb atadi.",
+   "t": 14.633333333333333,
+   "f": 439,
+   "box": [
+    120,
+    300,
+    839,
+    460
+   ],
+   "fEnd": 440
+  }
+ ],
+ "swatch": [
+  {
+   "shot": "S5 pencil redraw",
+   "f": 54,
+   "x": 318,
+   "y": 1258
+  },
+  {
+   "shot": "S7 apple x-ray",
+   "f": 281,
+   "x": 392,
+   "y": 1448
+  },
+  {
+   "shot": "S8 heroic stamp",
+   "f": 393,
+   "x": 416,
+   "y": 1472
+  }
+ ]
+}

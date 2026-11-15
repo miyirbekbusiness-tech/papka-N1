@@ -1,0 +1,197 @@
+{
+ "stage": 4,
+ "subtitle_contrast_min": 10.01,
+ "subtitle_contrast": [
+  {
+   "text": "Demak, sen boʻlmasang,",
+   "bgL95": 0.0146,
+   "contrast": 16.25
+  },
+  {
+   "text": "Demak, sen boʻlmasang,",
+   "bgL95": 0.0146,
+   "contrast": 16.25
+  },
+  {
+   "text": "Demak, sen boʻlmasang,",
+   "bgL95": 0.0133,
+   "contrast": 16.59
+  },
+  {
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi.",
+   "bgL95": 0.0138,
+   "contrast": 16.47
+  },
+  {
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi.",
+   "bgL95": 0.0139,
+   "contrast": 16.44
+  },
+  {
+   "text": "yoʻqlikni his qiladigan hech kim qolmaydi.",
+   "bgL95": 0.0146,
+   "contrast": 16.26
+  },
+  {
+   "text": "Mavjudligingning yagona guvohi —",
+   "bgL95": 0.0131,
+   "contrast": 16.65
+  },
+  {
+   "text": "Mavjudligingning yagona guvohi —",
+   "bgL95": 0.0146,
+   "contrast": 16.25
+  },
+  {
+   "text": "Mavjudligingning yagona guvohi —",
+   "bgL95": 0.0146,
+   "contrast": 16.25
+  },
+  {
+   "text": "ichingdagi shu yorugʻlik.",
+   "bgL95": 0.0139,
+   "contrast": 16.43
+  },
+  {
+   "text": "ichingdagi shu yorugʻlik.",
+   "bgL95": 0.0138,
+   "contrast": 16.46
+  },
+  {
+   "text": "ichingdagi shu yorugʻlik.",
+   "bgL95": 0.0146,
+   "contrast": 16.25
+  },
+  {
+   "text": "U hozir ham yonib turibdi.",
+   "bgL95": 0.0095,
+   "contrast": 17.65
+  },
+  {
+   "text": "U hozir ham yonib turibdi.",
+   "bgL95": 0.0301,
+   "contrast": 13.11
+  },
+  {
+   "text": "U hozir ham yonib turibdi.",
+   "bgL95": 0.0549,
+   "contrast": 10.01
+  },
+  {
+   "text": "Shunday savollar uchun dangasa_ai",
+   "bgL95": 0.0143,
+   "contrast": 16.33
+  },
+  {
+   "text": "Shunday savollar uchun dangasa_ai",
+   "bgL95": 0.0143,
+   "contrast": 16.33
+  },
+  {
+   "text": "Shunday savollar uchun dangasa_ai",
+   "bgL95": 0.0152,
+   "contrast": 16.11
+  },
+  {
+   "text": "sahifamizga obuna boʻling.",
+   "bgL95": 0.0143,
+   "contrast": 16.33
+  },
+  {
+   "text": "sahifamizga obuna boʻling.",
+   "bgL95": 0.0143,
+   "contrast": 16.33
+  },
+  {
+   "text": "sahifamizga obuna boʻling.",
+   "bgL95": 0.0152,
+   "contrast": 16.11
+  }
+ ],
+ "labels": [],
+ "sweater": [
+  {
+   "shot": "S13 hill drain",
+   "frame": 59,
+   "measured": "#2B2643",
+   "max_channel_diff": 199.4
+  },
+  {
+   "shot": "S14 re-ignite",
+   "frame": 170,
+   "measured": "#F2A739",
+   "max_channel_diff": 2.2
+  },
+  {
+   "shot": "S16 CTA",
+   "frame": 390,
+   "measured": "#F1A739",
+   "max_channel_diff": 2.2
+  }
+ ],
+ "streams": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_type": "video",
+    "duration": "15.000000",
+    "nb_frames": "450"
+   },
+   {
+    "codec_type": "audio",
+    "duration": "15.000000",
+    "nb_frames": "705"
+   }
+  ],
+  "format": {
+   "duration": "15.000000"
+  }
+ },
+ "loudness": {
+  "integrated_lufs": -14.0,
+  "true_peak_dbtp": -3.2
+ },
+ "hero_js_sha256": "dad898763e0b507a",
+ "kit_sha256": {
+  "hero.js": "dad898763e0b507a",
+  "subs.js": "9cb7f5b4a1b84428",
+  "style.js": "25a39ef87376a161",
+  "scene.js": "4ebe2db5617c04d1"
+ },
+ "cuts": [
+  {
+   "shot": "S13 hill drain",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 3.9,
+   "lenOK": true
+  },
+  {
+   "shot": "S14 re-ignite",
+   "f0": 117,
+   "cueFrame": 117,
+   "onCue": true,
+   "dur": 3.5,
+   "lenOK": true
+  },
+  {
+   "shot": "S15 aerial city",
+   "f0": 222,
+   "cueFrame": 222,
+   "onCue": true,
+   "dur": 3.6,
+   "lenOK": true
+  },
+  {
+   "shot": "S16 CTA",
+   "f0": 330,
+   "cueFrame": 330,
+   "onCue": true,
+   "dur": 4,
+   "lenOK": true
+  }
+ ],
+ "subs_mismatch": [],
+ "safe_area_violations": []
+}

@@ -1,0 +1,176 @@
+{
+ "stage": 4,
+ "provisional": false,
+ "voice_duration": null,
+ "words": [
+  {
+   "word": "Demak,",
+   "start": 0.064,
+   "end": 0.351,
+   "frame": 2
+  },
+  {
+   "word": "sen",
+   "start": 0.526,
+   "end": 0.731,
+   "frame": 16
+  },
+  {
+   "word": "boʻlmasang,",
+   "start": 0.771,
+   "end": 1.265,
+   "frame": 23
+  },
+  {
+   "word": "yoʻqlikni",
+   "start": 1.441,
+   "end": 1.894,
+   "frame": 43
+  },
+  {
+   "word": "his",
+   "start": 1.934,
+   "end": 2.138,
+   "frame": 58
+  },
+  {
+   "word": "qiladigan",
+   "start": 2.178,
+   "end": 2.631,
+   "frame": 65
+  },
+  {
+   "word": "hech",
+   "start": 2.671,
+   "end": 2.917,
+   "frame": 80
+  },
+  {
+   "word": "kim",
+   "start": 2.957,
+   "end": 3.161,
+   "frame": 89
+  },
+  {
+   "word": "qolmaydi.",
+   "start": 3.201,
+   "end": 3.612,
+   "frame": 96
+  },
+  {
+   "word": "Mavjudligingning",
+   "start": 3.9,
+   "end": 4.694,
+   "frame": 117
+  },
+  {
+   "word": "yagona",
+   "start": 4.736,
+   "end": 5.087,
+   "frame": 142
+  },
+  {
+   "word": "guvohi",
+   "start": 5.13,
+   "end": 5.48,
+   "frame": 154
+  },
+  {
+   "word": "—",
+   "start": 5.523,
+   "end": 5.592,
+   "frame": 166
+  },
+  {
+   "word": "ichingdagi",
+   "start": 5.778,
+   "end": 6.306,
+   "frame": 173
+  },
+  {
+   "word": "shu",
+   "start": 6.349,
+   "end": 6.567,
+   "frame": 190
+  },
+  {
+   "word": "yorugʻlik.",
+   "start": 6.61,
+   "end": 7.094,
+   "frame": 198
+  },
+  {
+   "word": "U",
+   "start": 7.4,
+   "end": 7.655,
+   "frame": 222
+  },
+  {
+   "word": "hozir",
+   "start": 7.739,
+   "end": 8.34,
+   "frame": 232
+  },
+  {
+   "word": "ham",
+   "start": 8.425,
+   "end": 8.853,
+   "frame": 253
+  },
+  {
+   "word": "yonib",
+   "start": 8.936,
+   "end": 9.539,
+   "frame": 268
+  },
+  {
+   "word": "turibdi.",
+   "start": 9.622,
+   "end": 10.399,
+   "frame": 289
+  },
+  {
+   "word": "Shunday",
+   "start": 11.0,
+   "end": 11.426,
+   "frame": 330
+  },
+  {
+   "word": "savollar",
+   "start": 11.472,
+   "end": 11.946,
+   "frame": 344
+  },
+  {
+   "word": "uchun",
+   "start": 11.992,
+   "end": 12.322,
+   "frame": 360
+  },
+  {
+   "word": "dangasa_ai",
+   "start": 12.369,
+   "end": 12.938,
+   "frame": 371
+  },
+  {
+   "word": "sahifamizga",
+   "start": 12.985,
+   "end": 13.601,
+   "frame": 390
+  },
+  {
+   "word": "obuna",
+   "start": 13.648,
+   "end": 13.978,
+   "frame": 409
+  },
+  {
+   "word": "boʻling.",
+   "start": 14.024,
+   "end": 14.45,
+   "frame": 421
+  }
+ ],
+ "retimed_no_voice": true
+}
