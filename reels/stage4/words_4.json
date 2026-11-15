@@ -1,175 +1,176 @@
 {
  "stage": 4,
- "provisional": true,
+ "provisional": false,
  "voice_duration": null,
  "words": [
   {
    "word": "Demak,",
-   "start": 0.077,
-   "end": 0.424,
+   "start": 0.064,
+   "end": 0.351,
    "frame": 2
   },
   {
    "word": "sen",
-   "start": 0.635,
-   "end": 0.882,
-   "frame": 19
+   "start": 0.526,
+   "end": 0.731,
+   "frame": 16
   },
   {
    "word": "boʻlmasang,",
-   "start": 0.93,
-   "end": 1.527,
-   "frame": 28
+   "start": 0.771,
+   "end": 1.265,
+   "frame": 23
   },
   {
    "word": "yoʻqlikni",
-   "start": 1.739,
-   "end": 2.285,
-   "frame": 52
+   "start": 1.441,
+   "end": 1.894,
+   "frame": 43
   },
   {
    "word": "his",
-   "start": 2.334,
-   "end": 2.58,
-   "frame": 70
+   "start": 1.934,
+   "end": 2.138,
+   "frame": 58
   },
   {
    "word": "qiladigan",
-   "start": 2.628,
-   "end": 3.175,
-   "frame": 79
+   "start": 2.178,
+   "end": 2.631,
+   "frame": 65
   },
   {
    "word": "hech",
-   "start": 3.223,
-   "end": 3.52,
-   "frame": 97
+   "start": 2.671,
+   "end": 2.917,
+   "frame": 80
   },
   {
    "word": "kim",
-   "start": 3.568,
-   "end": 3.814,
-   "frame": 107
+   "start": 2.957,
+   "end": 3.161,
+   "frame": 89
   },
   {
    "word": "qolmaydi.",
-   "start": 3.862,
-   "end": 4.359,
-   "frame": 116
+   "start": 3.201,
+   "end": 3.612,
+   "frame": 96
   },
   {
    "word": "Mavjudligingning",
-   "start": 4.706,
-   "end": 5.603,
-   "frame": 141
+   "start": 3.9,
+   "end": 4.694,
+   "frame": 117
   },
   {
    "word": "yagona",
-   "start": 5.651,
-   "end": 6.048,
-   "frame": 170
+   "start": 4.736,
+   "end": 5.087,
+   "frame": 142
   },
   {
    "word": "guvohi",
-   "start": 6.096,
-   "end": 6.492,
-   "frame": 183
+   "start": 5.13,
+   "end": 5.48,
+   "frame": 154
   },
   {
    "word": "—",
-   "start": 6.541,
-   "end": 6.618,
-   "frame": 196
+   "start": 5.523,
+   "end": 5.592,
+   "frame": 166
   },
   {
    "word": "ichingdagi",
-   "start": 6.829,
-   "end": 7.426,
-   "frame": 205
+   "start": 5.778,
+   "end": 6.306,
+   "frame": 173
   },
   {
    "word": "shu",
-   "start": 7.474,
-   "end": 7.721,
-   "frame": 224
+   "start": 6.349,
+   "end": 6.567,
+   "frame": 190
   },
   {
    "word": "yorugʻlik.",
-   "start": 7.769,
-   "end": 8.316,
-   "frame": 233
+   "start": 6.61,
+   "end": 7.094,
+   "frame": 198
   },
   {
    "word": "U",
-   "start": 8.662,
-   "end": 8.809,
-   "frame": 260
+   "start": 7.4,
+   "end": 7.655,
+   "frame": 222
   },
   {
    "word": "hozir",
-   "start": 8.857,
-   "end": 9.203,
-   "frame": 266
+   "start": 7.739,
+   "end": 8.34,
+   "frame": 232
   },
   {
    "word": "ham",
-   "start": 9.252,
-   "end": 9.498,
-   "frame": 278
+   "start": 8.425,
+   "end": 8.853,
+   "frame": 253
   },
   {
    "word": "yonib",
-   "start": 9.546,
-   "end": 9.893,
-   "frame": 286
+   "start": 8.936,
+   "end": 9.539,
+   "frame": 268
   },
   {
    "word": "turibdi.",
-   "start": 9.941,
-   "end": 10.388,
-   "frame": 298
+   "start": 9.622,
+   "end": 10.399,
+   "frame": 289
   },
   {
    "word": "Shunday",
-   "start": 10.734,
-   "end": 11.181,
-   "frame": 322
+   "start": 11.0,
+   "end": 11.426,
+   "frame": 330
   },
   {
    "word": "savollar",
-   "start": 11.229,
-   "end": 11.726,
-   "frame": 337
+   "start": 11.472,
+   "end": 11.946,
+   "frame": 344
   },
   {
    "word": "uchun",
-   "start": 11.774,
-   "end": 12.12,
-   "frame": 353
+   "start": 11.992,
+   "end": 12.322,
+   "frame": 360
   },
   {
    "word": "dangasa_ai",
-   "start": 12.169,
-   "end": 12.765,
-   "frame": 365
+   "start": 12.369,
+   "end": 12.938,
+   "frame": 371
   },
   {
    "word": "sahifamizga",
-   "start": 12.814,
-   "end": 13.46,
-   "frame": 384
+   "start": 12.985,
+   "end": 13.601,
+   "frame": 390
   },
   {
    "word": "obuna",
-   "start": 13.509,
-   "end": 13.855,
-   "frame": 405
+   "start": 13.648,
+   "end": 13.978,
+   "frame": 409
   },
   {
    "word": "boʻling.",
-   "start": 13.903,
-   "end": 14.35,
-   "frame": 417
+   "start": 14.024,
+   "end": 14.45,
+   "frame": 421
   }
- ]
+ ],
+ "retimed_no_voice": true
 }

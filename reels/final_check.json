@@ -1,0 +1,154 @@
+[
+ {
+  "stage": 1,
+  "shot": "S1 close-up",
+  "start_s": 0.0,
+  "dur_s": 4.8,
+  "cut": "open",
+  "len_ok": true
+ },
+ {
+  "stage": 1,
+  "shot": "S2 wide bedroom",
+  "start_s": 4.8,
+  "dur_s": 4.467,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 1,
+  "shot": "S3 low angle chair",
+  "start_s": 9.267,
+  "dur_s": 2.867,
+  "cut": "hard",
+  "len_ok": false
+ },
+ {
+  "stage": 1,
+  "shot": "S4 macro crumbs",
+  "start_s": 12.133,
+  "dur_s": 2.867,
+  "cut": "match",
+  "len_ok": false
+ },
+ {
+  "stage": 1,
+  "subs_on_voice_frames": true,
+  "words": 29,
+  "provisional_timing": false
+ },
+ {
+  "stage": 2,
+  "shot": "S5 pencil redraw",
+  "start_s": 15.0,
+  "dur_s": 3.6,
+  "cut": "open",
+  "len_ok": true
+ },
+ {
+  "stage": 2,
+  "shot": "S6 brain cutaway",
+  "start_s": 18.6,
+  "dur_s": 3.9,
+  "cut": "match",
+  "len_ok": true
+ },
+ {
+  "stage": 2,
+  "shot": "S7 apple x-ray",
+  "start_s": 22.5,
+  "dur_s": 3.7,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 2,
+  "shot": "S8 heroic stamp",
+  "start_s": 26.2,
+  "dur_s": 3.8,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 2,
+  "subs_on_voice_frames": true,
+  "words": 31,
+  "provisional_timing": false
+ },
+ {
+  "stage": 3,
+  "shot": "S9 copier",
+  "start_s": 30.0,
+  "dur_s": 3.6,
+  "cut": "open",
+  "len_ok": true
+ },
+ {
+  "stage": 3,
+  "shot": "S10 two-shot",
+  "start_s": 33.6,
+  "dur_s": 3.7,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 3,
+  "shot": "S11 magnifier",
+  "start_s": 37.3,
+  "dur_s": 3.7,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 3,
+  "shot": "S12 crowd",
+  "start_s": 41.0,
+  "dur_s": 4,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 3,
+  "subs_on_voice_frames": true,
+  "words": 30,
+  "provisional_timing": false
+ },
+ {
+  "stage": 4,
+  "shot": "S13 hill drain",
+  "start_s": 45.0,
+  "dur_s": 3.9,
+  "cut": "open",
+  "len_ok": true
+ },
+ {
+  "stage": 4,
+  "shot": "S14 re-ignite",
+  "start_s": 48.9,
+  "dur_s": 3.5,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 4,
+  "shot": "S15 aerial city",
+  "start_s": 52.4,
+  "dur_s": 3.6,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 4,
+  "shot": "S16 CTA",
+  "start_s": 56.0,
+  "dur_s": 4,
+  "cut": "hard",
+  "len_ok": true
+ },
+ {
+  "stage": 4,
+  "subs_on_voice_frames": true,
+  "words": 28,
+  "provisional_timing": false
+ }
+]

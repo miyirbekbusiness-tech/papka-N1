@@ -19,6 +19,7 @@ SR = 48000
 ROOT = Path(__file__).resolve().parent.parent
 STAGE_LEN = 15.0
 BEAT = 60 / 90
+MUS_UP, FX_UP = 8.0, 2.0       # level lift for stages that have no narration
 
 
 def noise(n, seed):
@@ -90,14 +91,14 @@ def sfx(cue, seed):
         return np.tanh(x * 1.4), a, g * (1.0 if ty != 'land' else 0.7), pan, None
     if ty == 'windup':
         tt = t(0.14); f = 380 + 700 * (tt / tt[-1]) ** 1.5
-        x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.sin(np.pi * tt / tt[-1]) ** 2
+        x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.abs(np.sin(np.pi * tt / tt[-1])) ** 2
         return x * 0.18, len(x) // 2, g, pan, None
     if ty == 'scrub':                            # rubber eraser scrub
         n = int(dur * SR); tt = t(dur)
         nz = bp(noise(n, seed), 1400, 4200)
         am = 0.55 + 0.45 * np.sin(2 * np.pi * rng.uniform(26, 34) * tt) ** 2
         sq = np.sin(2 * np.pi * np.cumsum(900 + 250 * np.sin(2 * np.pi * 7 * tt)) / SR) * 0.12
-        e = np.sin(np.pi * tt / tt[-1]) ** 1.2
+        e = np.abs(np.sin(np.pi * tt / tt[-1])) ** 1.2
         return (nz * am * 0.5 + sq) * e, n // 2, g * 0.55, pan, None
     if ty == 'crumb':
         tt = t(0.06)
@@ -129,13 +130,13 @@ def sfx(cue, seed):
         a = int(0.002 * SR); x[:a] *= np.linspace(0, 1, a)
         return x * 0.16, a, g, pan, None
     if ty == 'cloth':
-        tt = t(0.22); x = lp(noise(len(tt), seed), 2200) * np.sin(np.pi * tt / tt[-1]) ** 2
+        tt = t(0.22); x = lp(noise(len(tt), seed), 2200) * np.abs(np.sin(np.pi * tt / tt[-1])) ** 2
         return x * 0.22, len(x) // 2, g, pan, None
     if ty in ('draw', 'pencil'):                 # pencil / chalk line
         n = int(dur * SR); tt = t(dur)
         gr = (rng.random(n) < 0.02).astype(float)
         gr = np.convolve(gr, np.hanning(60), 'same')
-        x = bp(noise(n, seed), 2500, 6000) * (0.4 + gr) * np.sin(np.pi * tt / tt[-1]) ** 0.6
+        x = bp(noise(n, seed), 2500, 6000) * (0.4 + gr) * np.abs(np.sin(np.pi * tt / tt[-1])) ** 0.6
         return x * 0.3, 0, g, pan, None
     if ty in ('pop', 'fillpop'):
         tt = t(0.12); f = 500 + 500 * (1 - np.exp(-tt * 60))
@@ -162,7 +163,7 @@ def sfx(cue, seed):
         return x * e * 0.16, pre, g, pan, None
     if ty == 'slide':                            # book / copier / card slide
         n = int(dur * SR); tt = t(dur)
-        x = bp(noise(n, seed), 400, 2500) * np.sin(np.pi * tt / tt[-1]) ** 1.5
+        x = bp(noise(n, seed), 400, 2500) * np.abs(np.sin(np.pi * tt / tt[-1])) ** 1.5
         return x * 0.35, n // 2, g, pan, cue.get('pan_end')
     if ty == 'zip':                              # ray zip
         n = int(dur * SR); tt = t(dur); f = 600 + 2400 * (tt / tt[-1]) ** 1.3
@@ -190,7 +191,7 @@ def sfx(cue, seed):
         return x * 0.45, pre, g, pan, cue.get('pan_end')
     if ty == 'hum':                              # scanner hum
         n = int(dur * SR); tt = t(dur)
-        x = (np.sin(2 * np.pi * 120 * tt) + 0.5 * np.sin(2 * np.pi * 240 * tt) + 0.3 * bp(noise(n, seed), 1500, 3000)) * np.sin(np.pi * tt / tt[-1]) ** 0.5
+        x = (np.sin(2 * np.pi * 120 * tt) + 0.5 * np.sin(2 * np.pi * 240 * tt) + 0.3 * bp(noise(n, seed), 1500, 3000)) * np.abs(np.sin(np.pi * tt / tt[-1])) ** 0.5
         return x * 0.16, 0, g, pan, None
     if ty == 'hop':
         tt = t(0.12); f = 300 + 500 * tt / tt[-1]
@@ -225,8 +226,9 @@ def sfx(cue, seed):
         return x, 0, g, pan, None
     if ty in ('click', 'spark'):
         tt = t(0.08)
-        x = hp(noise(len(tt), seed), 2500) * np.exp(-tt * 200) + np.sin(2 * np.pi * (1800 if ty == 'click' else 3200) * tt) * np.exp(-tt * 90) * 0.5
-        return x * 0.45, 1, g, pan, None
+        x = hp(noise(len(tt), seed), 2500) * np.exp(-tt * 140) * 0.5 + np.sin(2 * np.pi * (1800 if ty == 'click' else 3200) * tt) * np.exp(-tt * 60) * 0.5
+        a = int(0.002 * SR); x[:a] *= np.linspace(0, 1, a)
+        return x * 0.16, a, g, pan, None
     raise ValueError('unknown sfx ' + ty)
 
 
@@ -447,6 +449,20 @@ def render(stages, t_start, t_end, voices, seed=1):
     music = music / mus_rms * v_rms * 10 ** (-12 / 20) * duck
     fxb = compress(fx.buf, 20 * np.log10(np.abs(fx.buf).max() + 1e-9) - 9, 4.0, 0.002, 0.08)
     fx_buf = fxb / (np.sqrt(np.mean(fxb[:, np.abs(fxb).max(axis=0) > 1e-4] ** 2)) + 1e-9) * v_rms * 10 ** (-9 / 20)
+    # stages without narration: effects 4 dB lower (sit just under the music); 50 ms crossfade at joins
+    # stages without narration: the music fills the space (+MUS_UP dB) and effects sit just under it;
+    # 50 ms crossfades at the joins, so loudness matches the narrated stages
+    curve, mcurve = np.ones(fx_buf.shape[1]), np.ones(fx_buf.shape[1])
+    for n, _m in stages:
+        if n in voices:
+            continue
+        a = int(round((STAGE_LEN * (n - 1) - t_start) * SR)); b = a + int(round(STAGE_LEN * SR))
+        a, b = max(0, a), min(len(curve), b)
+        if b > a:
+            curve[a:b] = 10 ** (FX_UP / 20); mcurve[a:b] = 10 ** (MUS_UP / 20)
+    k = int(0.05 * SR)
+    sm = lambda c: np.convolve(np.pad(c, (k, k), mode='edge'), np.ones(k) / k, 'same')[k:-k]
+    fx_buf = fx_buf * sm(curve); music = music * sm(mcurve)
     mix = music + fx_buf + np.vstack([vbus, vbus]) * 0.7071
     # no clicks at the very start/end of a file
     e = int(0.003 * SR); mix[:, :e] *= np.linspace(0, 1, e)
@@ -467,7 +483,9 @@ def main():
             mp = ROOT / f'stage{k}' / f'meta_{k}.json'
             if mp.exists():
                 stages.append((k, json.loads(mp.read_text())))
-        voices[n] = load_voice(ROOT / f'stage{n}' / f'voice_{n}.mp3')
+        vp = ROOT / f'stage{n}' / f'voice_{n}.mp3'
+        if vp.exists():
+            voices[n] = load_voice(vp)                 # no voice file → music + sfx only
         # tails of earlier stages' sfx/music only; earlier voices end before 15 s
         t0 = STAGE_LEN * (n - 1)
         mix = render(stages, t0, t0 + STAGE_LEN, voices)
@@ -476,10 +494,15 @@ def main():
         print(json.dumps({'stage': n, 'lufs': round(lufs, 2), 'true_peak_dbtp': round(tp, 2), 'limiter_gr_db': round(gr, 2)}))
     elif mode == 'final':
         stages = [(k, json.loads((ROOT / f'stage{k}' / f'meta_{k}.json').read_text())) for k in range(1, 5)]
-        voices = {k: load_voice(ROOT / f'stage{k}' / f'voice_{k}.mp3') for k in range(1, 5)}
+        global FX_UP
+        skip = set(int(a) for a in sys.argv[2:])        # e.g. `final 1 2 3 4` → no voice at all
+        if skip:
+            FX_UP = -2.0                                  # all-instrumental cut: effects a touch lower
+        voices = {k: load_voice(ROOT / f'stage{k}' / f'voice_{k}.mp3') for k in range(1, 5)
+                  if k not in skip and (ROOT / f'stage{k}' / f'voice_{k}.mp3').exists()}
         mix = render(stages, 0.0, 4 * STAGE_LEN, voices)
         mix, lufs, tp, gr = master(mix)
-        write_wav(ROOT / 'final_mix.wav', mix)
+        write_wav(ROOT / ('final_mix.wav' if not skip else 'final_mix_novoice.wav'), mix)
         print(json.dumps({'lufs': round(lufs, 2), 'true_peak_dbtp': round(tp, 2), 'limiter_gr_db': round(gr, 2)}))
 
 

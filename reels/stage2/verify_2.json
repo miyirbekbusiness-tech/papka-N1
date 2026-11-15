@@ -1,0 +1,227 @@
+{
+ "stage": 2,
+ "subtitle_contrast_min": 8.97,
+ "subtitle_contrast": [
+  {
+   "text": "Faylasuf Devid Chalmers",
+   "bgL95": 0.0057,
+   "contrast": 18.86
+  },
+  {
+   "text": "Faylasuf Devid Chalmers",
+   "bgL95": 0.0057,
+   "contrast": 18.86
+  },
+  {
+   "text": "Faylasuf Devid Chalmers",
+   "bgL95": 0.0218,
+   "contrast": 14.62
+  },
+  {
+   "text": "buni boshqacha soʻradi.",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "buni boshqacha soʻradi.",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "buni boshqacha soʻradi.",
+   "bgL95": 0.0227,
+   "contrast": 14.44
+  },
+  {
+   "text": "Olimlar miya ishini oʻrgana oladi:",
+   "bgL95": 0.025,
+   "contrast": 14.0
+  },
+  {
+   "text": "Olimlar miya ishini oʻrgana oladi:",
+   "bgL95": 0.0229,
+   "contrast": 14.4
+  },
+  {
+   "text": "Olimlar miya ishini oʻrgana oladi:",
+   "bgL95": 0.0237,
+   "contrast": 14.25
+  },
+  {
+   "text": "koʻz yorugʻlikni ushlaydi,",
+   "bgL95": 0.0229,
+   "contrast": 14.4
+  },
+  {
+   "text": "koʻz yorugʻlikni ushlaydi,",
+   "bgL95": 0.0229,
+   "contrast": 14.4
+  },
+  {
+   "text": "koʻz yorugʻlikni ushlaydi,",
+   "bgL95": 0.0237,
+   "contrast": 14.25
+  },
+  {
+   "text": "neyronlar signal yuboradi.",
+   "bgL95": 0.0229,
+   "contrast": 14.4
+  },
+  {
+   "text": "neyronlar signal yuboradi.",
+   "bgL95": 0.0229,
+   "contrast": 14.4
+  },
+  {
+   "text": "neyronlar signal yuboradi.",
+   "bgL95": 0.0237,
+   "contrast": 14.25
+  },
+  {
+   "text": "Lekin nega olmaning shirinligi",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "Lekin nega olmaning shirinligi",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "Lekin nega olmaning shirinligi",
+   "bgL95": 0.0227,
+   "contrast": 14.44
+  },
+  {
+   "text": "ichingda his qilinadi?",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "ichingda his qilinadi?",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "ichingda his qilinadi?",
+   "bgL95": 0.022,
+   "contrast": 14.58
+  },
+  {
+   "text": "Chalmers buni ongning",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "Chalmers buni ongning",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "Chalmers buni ongning",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "qiyin muammosi deb atadi.",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "qiyin muammosi deb atadi.",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  },
+  {
+   "text": "qiyin muammosi deb atadi.",
+   "bgL95": 0.0671,
+   "contrast": 8.97
+  }
+ ],
+ "labels": [],
+ "sweater": [
+  {
+   "shot": "S5 pencil redraw",
+   "frame": 54,
+   "measured": "#F2A739",
+   "max_channel_diff": 2.3
+  },
+  {
+   "shot": "S7 apple x-ray",
+   "frame": 281,
+   "measured": "#F1A739",
+   "max_channel_diff": 2.3
+  },
+  {
+   "shot": "S8 heroic stamp",
+   "frame": 393,
+   "measured": "#F1A739",
+   "max_channel_diff": 2.3
+  }
+ ],
+ "streams": {
+  "programs": [],
+  "streams": [
+   {
+    "codec_type": "video",
+    "duration": "15.000000",
+    "nb_frames": "450"
+   },
+   {
+    "codec_type": "audio",
+    "duration": "15.000000",
+    "nb_frames": "705"
+   }
+  ],
+  "format": {
+   "duration": "15.000000"
+  }
+ },
+ "loudness": {
+  "integrated_lufs": -14.0,
+  "true_peak_dbtp": -2.5
+ },
+ "hero_js_sha256": "dad898763e0b507a",
+ "kit_sha256": {
+  "hero.js": "dad898763e0b507a",
+  "subs.js": "9cb7f5b4a1b84428",
+  "style.js": "25a39ef87376a161",
+  "scene.js": "4ebe2db5617c04d1"
+ },
+ "cuts": [
+  {
+   "shot": "S5 pencil redraw",
+   "f0": 0,
+   "cueFrame": 0,
+   "onCue": true,
+   "dur": 3.6,
+   "lenOK": true
+  },
+  {
+   "shot": "S6 brain cutaway",
+   "f0": 108,
+   "cueFrame": 108,
+   "onCue": true,
+   "dur": 3.9,
+   "lenOK": true
+  },
+  {
+   "shot": "S7 apple x-ray",
+   "f0": 225,
+   "cueFrame": 225,
+   "onCue": true,
+   "dur": 3.7,
+   "lenOK": true
+  },
+  {
+   "shot": "S8 heroic stamp",
+   "f0": 336,
+   "cueFrame": 336,
+   "onCue": true,
+   "dur": 3.8,
+   "lenOK": true
+  }
+ ],
+ "subs_mismatch": [],
+ "safe_area_violations": []
+}

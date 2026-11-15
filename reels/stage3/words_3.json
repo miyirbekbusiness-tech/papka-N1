@@ -1,187 +1,188 @@
 {
  "stage": 3,
- "provisional": true,
+ "provisional": false,
  "voice_duration": null,
  "words": [
   {
    "word": "Chalmersning",
-   "start": 0.076,
-   "end": 0.763,
+   "start": 0.067,
+   "end": 0.671,
    "frame": 2
   },
   {
    "word": "tajribasi:",
-   "start": 0.811,
-   "end": 1.35,
-   "frame": 24
+   "start": 0.713,
+   "end": 1.187,
+   "frame": 21
   },
   {
    "word": "sening",
-   "start": 1.559,
-   "end": 1.95,
-   "frame": 47
+   "start": 1.37,
+   "end": 1.714,
+   "frame": 41
   },
   {
    "word": "aynan",
-   "start": 1.998,
-   "end": 2.339,
-   "frame": 60
+   "start": 1.756,
+   "end": 2.056,
+   "frame": 53
   },
   {
    "word": "nusxangni",
-   "start": 2.387,
-   "end": 2.926,
-   "frame": 72
+   "start": 2.098,
+   "end": 2.572,
+   "frame": 63
   },
   {
    "word": "tasavvur",
-   "start": 2.974,
-   "end": 3.464,
-   "frame": 89
+   "start": 2.614,
+   "end": 3.045,
+   "frame": 78
   },
   {
    "word": "qil.",
-   "start": 3.511,
-   "end": 3.754,
-   "frame": 105
+   "start": 3.086,
+   "end": 3.299,
+   "frame": 93
   },
   {
    "word": "U",
-   "start": 4.096,
-   "end": 4.24,
-   "frame": 123
+   "start": 3.6,
+   "end": 3.764,
+   "frame": 108
   },
   {
    "word": "ham",
-   "start": 4.288,
-   "end": 4.531,
-   "frame": 129
+   "start": 3.819,
+   "end": 4.096,
+   "frame": 115
   },
   {
    "word": "gapiradi,",
-   "start": 4.578,
-   "end": 5.068,
-   "frame": 137
+   "start": 4.15,
+   "end": 4.709,
+   "frame": 125
   },
   {
    "word": "kuladi,",
-   "start": 5.277,
-   "end": 5.668,
-   "frame": 158
+   "start": 4.947,
+   "end": 5.394,
+   "frame": 148
   },
   {
    "word": "ogʻrisa",
-   "start": 5.877,
-   "end": 6.318,
-   "frame": 176
+   "start": 5.632,
+   "end": 6.135,
+   "frame": 169
   },
   {
    "word": "«voy»",
-   "start": 6.365,
-   "end": 6.608,
-   "frame": 191
+   "start": 6.189,
+   "end": 6.466,
+   "frame": 186
   },
   {
    "word": "deydi.",
-   "start": 6.656,
-   "end": 6.997,
-   "frame": 200
+   "start": 6.521,
+   "end": 6.91,
+   "frame": 196
   },
   {
    "word": "Lekin",
-   "start": 7.339,
-   "end": 7.681,
-   "frame": 220
+   "start": 7.3,
+   "end": 7.689,
+   "frame": 219
   },
   {
    "word": "ichida",
-   "start": 7.729,
-   "end": 8.12,
+   "start": 7.743,
+   "end": 8.188,
    "frame": 232
   },
   {
    "word": "hech",
-   "start": 8.167,
-   "end": 8.46,
-   "frame": 245
+   "start": 8.241,
+   "end": 8.574,
+   "frame": 247
   },
   {
    "word": "kim",
-   "start": 8.507,
-   "end": 8.75,
-   "frame": 255
+   "start": 8.628,
+   "end": 8.904,
+   "frame": 259
   },
   {
    "word": "yoʻq",
-   "start": 8.798,
-   "end": 9.09,
-   "frame": 264
+   "start": 8.958,
+   "end": 9.29,
+   "frame": 269
   },
   {
    "word": "—",
-   "start": 9.138,
-   "end": 9.213,
-   "frame": 274
+   "start": 9.345,
+   "end": 9.43,
+   "frame": 280
   },
   {
    "word": "chiroq",
-   "start": 9.422,
-   "end": 9.814,
-   "frame": 283
+   "start": 9.668,
+   "end": 10.113,
+   "frame": 290
   },
   {
    "word": "oʻchiq.",
-   "start": 9.861,
-   "end": 10.252,
-   "frame": 296
+   "start": 10.167,
+   "end": 10.611,
+   "frame": 305
   },
   {
    "word": "Tashqaridan",
-   "start": 10.594,
-   "end": 11.232,
-   "frame": 318
+   "start": 11.0,
+   "end": 11.586,
+   "frame": 330
   },
   {
    "word": "farqini",
-   "start": 11.279,
-   "end": 11.72,
-   "frame": 338
+   "start": 11.629,
+   "end": 12.034,
+   "frame": 349
   },
   {
    "word": "hech",
-   "start": 11.767,
-   "end": 12.06,
-   "frame": 353
+   "start": 12.077,
+   "end": 12.347,
+   "frame": 362
   },
   {
    "word": "kim",
-   "start": 12.107,
-   "end": 12.35,
-   "frame": 363
-  },
-  {
-   "word": "bilmaydi.",
-   "start": 12.398,
-   "end": 12.888,
+   "start": 12.39,
+   "end": 12.613,
    "frame": 372
   },
   {
+   "word": "bilmaydi.",
+   "start": 12.657,
+   "end": 13.107,
+   "frame": 380
+  },
+  {
    "word": "Faqat",
-   "start": 13.23,
-   "end": 13.571,
-   "frame": 397
+   "start": 13.421,
+   "end": 13.734,
+   "frame": 403
   },
   {
    "word": "sen",
-   "start": 13.619,
-   "end": 13.862,
-   "frame": 409
+   "start": 13.779,
+   "end": 14.002,
+   "frame": 413
   },
   {
    "word": "bilasan.",
-   "start": 13.909,
-   "end": 14.35,
-   "frame": 417
+   "start": 14.045,
+   "end": 14.45,
+   "frame": 421
   }
- ]
+ ],
+ "retimed_no_voice": true
 }

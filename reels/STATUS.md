@@ -1,21 +1,11 @@
-# Ong Reels (60 s, 1080x1920) — status
+# Ong Reels (60 s, 1080x1920) — done
 
-| Stage | Picture (partN.html) | Voice | partN.mp4 |
-|---|---|---|---|
-| 1 · 0–15 s | done, checked | ElevenLabs Mirjalol (eleven_v4) | **done** — 15.000 s, 450 fr, −14.0 LUFS, −2.8 dBTP |
-| 2 · 15–30 s | done, checked on provisional timing | **blocked: ElevenLabs credits** | waits for voice |
-| 3 · 30–45 s | done, checked on provisional timing | **blocked: ElevenLabs credits** | waits for voice |
-| 4 · 45–60 s | done, checked on provisional timing | **blocked: ElevenLabs credits** | waits for voice |
+- **final.mp4** — 60.000 s, 1800 frames, H.264 High CRF 14, AAC 192k, faststart; −14.0 LUFS, −2.6 dBTP (limiter 1.7 dB).
+  Stage 1 narrated (ElevenLabs Mirjalol, eleven_v4); stages 2–4 without narration (ElevenLabs credits ran out):
+  subtitles, music and all sound effects; music lifted 8 dB there so the four stages sit at the same loudness.
+- **final_no_voice.mp4** — the same film with no narration at all; −14.0 LUFS, −2.9 dBTP (limiter 1.8 dB).
+- final_contact.png — one frame per shot, from final.mp4. final_check.json — shot table + subtitle sync.
 
-ElevenLabs refused stage 2 ("exceeds your quota … 233 credits remaining, 238 required").
-Stages 2–4 need 238 + 207 + 215 = **660 credits** (eleven_v4 / v3, 1 credit per character).
-
-## Finishing once credits exist (one TTS + one Scribe call per stage)
-1. ElevenLabs TTS, voice `cfWx14ZbaEUT4BjIA5tH`, model eleven_v4, text = `shared/texts.json[N].voice`
-   → save as `stageN/voice_N_raw.mp3`
-2. ElevenLabs Scribe on that audio → `stageN/transcript_N.json` (`{"words":[{text,start,end},…]}`)
-3. `./make_stage.sh N`   (words → checks → contact sheet → 2x render → sound → partN.mp4 → verify)
-4. after stage 4: `./make_final.sh` → `final.mp4`, `final_contact.png`, loudness reading
-
-Everything in the pictures is cued from `words_N.json`, so the real timings re-time every cut,
-subtitle, hit and sound automatically.
+Stages 2–4 subtitles are paced for reading (shared/retime.py) so every shot is 3.5–5.0 s.
+To add narration later: ElevenLabs TTS + Scribe per stage → `./make_stage.sh N` → `./make_final.sh`
+(texts in shared/texts.json; 660 credits for stages 2–4).
