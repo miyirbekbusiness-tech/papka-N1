@@ -5,3 +5,9 @@ local.properties
 .idea/
 *.iml
 .DS_Store
+
+# meadow-film intermediates
+meadow-film/out/seg/
+meadow-film/out/*.wav
+meadow-film/out/meadow_video.mp4
+meadow-film/out/render.log

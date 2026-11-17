@@ -1,0 +1,21 @@
+const path=require('path'); const { chromium } = require('playwright'); const http=require('http'); const fs=require('fs');
+(async()=>{
+ const ROOT=path.resolve(__dirname,'..');
+ const srv=http.createServer((q,r)=>{const p=path.join(ROOT,q.url.split('?')[0]); r.writeHead(200,{'content-type':p.endsWith('.html')?'text/html':'application/javascript'}); fs.createReadStream(p).pipe(r);}).listen(0);
+ await new Promise(r=>srv.on('listening',r));
+ const b=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-watchdog']}); const pg=await b.newPage();
+ await pg.route('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js', r=>r.fulfill({status:200,contentType:'application/javascript',headers:{'access-control-allow-origin':'*'},body:fs.readFileSync(process.env.THREE_JS)}));
+ await pg.goto(`http://127.0.0.1:${srv.address().port}/meadow.html?render=1`); await pg.waitForFunction(()=>window.__ready);
+ const T=0.3;
+ const run = (label, fn) => pg.evaluate(([T,fn])=>{ const sc=window.__scene, gl=window.__renderer.getContext(); const px=new Uint8Array(4);
+   const set = new Function('sc','v', fn); window.__dbg={}; set(sc,false); window.renderAt(T); gl.readPixels(0,0,1,1,gl.RGBA,gl.UNSIGNED_BYTE,px);
+   const t0=performance.now(); window.renderAt(T); gl.readPixels(0,0,1,1,gl.RGBA,gl.UNSIGNED_BYTE,px); const dt=performance.now()-t0; set(sc,true); window.__dbg={}; return dt; }, [T,fn]).then(d=>console.log(label, d.toFixed(0)));
+ await run('base', '');
+ await run('noDof', 'window.__dbg.noDof=!v;');
+ await run('noGrass', 'sc.children.filter(o=>o.renderOrder===-2).forEach(o=>o.visible=v)');
+ await run('noFlowers', 'sc.children.filter(o=>o.renderOrder===-1).forEach(o=>o.visible=v)');
+ await run('noTerrain', 'sc.children.filter(o=>o.renderOrder===1).forEach(o=>o.visible=v)');
+ await run('noSky', 'sc.children.filter(o=>o.renderOrder===10).forEach(o=>o.visible=v)');
+ await run('nothing', 'sc.children.forEach(o=>o.visible=v)');
+ await b.close(); srv.close();
+})();
