@@ -1,0 +1,148 @@
+{
+ "intersections": {
+  "framesWithIntersections": 0,
+  "minEarthClearance": 1.6395347276069003,
+  "ok": true
+ },
+ "arcs": {
+  "f251_progress": 0.9999999411976118,
+  "f251_maxdist": 9.89040674007584e-07,
+  "f252_progress": 1,
+  "f252_maxdist": 0,
+  "ok": true
+ },
+ "text": {
+  "built": "dangasaAi",
+  "spec": "dangasa Ai",
+  "ok": true
+ },
+ "colour": {
+  "ivory": {
+   "target": "#F4EFE6",
+   "median": [
+    245.0,
+    239.0,
+    229.0
+   ],
+   "mean": [
+    244.8,
+    238.9,
+    228.8
+   ],
+   "n": 48670,
+   "max_delta_median": 1.0,
+   "per_letter_median": [
+    [
+     245,
+     239,
+     229
+    ],
+    [
+     245,
+     239,
+     229
+    ],
+    [
+     245,
+     239,
+     229
+    ],
+    [
+     245,
+     239,
+     229
+    ],
+    [
+     245,
+     239,
+     229
+    ],
+    [
+     245,
+     239,
+     229
+    ],
+    [
+     245,
+     239,
+     229
+    ]
+   ],
+   "worst_letter_delta": 1,
+   "ok": true
+  },
+  "amber": {
+   "target": "#F2A93B",
+   "median": [
+    240.0,
+    166.0,
+    53.0
+   ],
+   "mean": [
+    240.3,
+    166.2,
+    52.3
+   ],
+   "n": 11278,
+   "max_delta_median": 6.0,
+   "per_letter_median": [
+    [
+     240,
+     166,
+     52
+    ],
+    [
+     240,
+     166,
+     53
+    ]
+   ],
+   "worst_letter_delta": 7,
+   "ok": true
+  },
+  "ok": true
+ },
+ "contrast": {
+  "frames": 85,
+  "min_mean_ratio": 10.55,
+  "min_worst_ratio_p5_vs_p95": 6.34,
+  "worst_frame": 363,
+  "ok": 1.0
+ },
+ "crisp": {
+  "edges": 1521,
+  "median_10_90_px": 2.0,
+  "p90": 6.0,
+  "ok": true
+ },
+ "whole": {
+  "letter_pixels": [
+   12280,
+   10571,
+   9138,
+   12181,
+   9931,
+   9320,
+   10279,
+   12052,
+   5737
+  ],
+  "bbox": {
+   "widthFrac": 0.6339258652598545,
+   "x0": 0.1830591708723514,
+   "x1": 0.816985036132206,
+   "yTop": 0.388103419910875,
+   "yBot": 0.5497684645078105
+  },
+  "ok": true
+ },
+ "framing": {
+  "width_frac_324": 0.6212,
+  "width_frac_575": 0.6339,
+  "horizon_y": {
+   "324": 0.6730253173829298,
+   "575": 0.6758394975143491
+  },
+  "ok": true
+ }
+}
