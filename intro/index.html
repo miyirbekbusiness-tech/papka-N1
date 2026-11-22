@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dangasa Ai intro</title>
+<style>
+  html,body{margin:0;height:100%;background:#050608;overflow:hidden}
+  canvas{display:block;position:absolute;left:0;top:0}
+</style>
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<script type="module">
+import * as THREE from 'three';
+import { TTFLoader } from 'three/addons/loaders/TTFLoader.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { OBB } from 'three/addons/math/OBB.js';
+
+// ───────────────────────────── format ─────────────────────────────
+const FPS = 60, FRAMES = 576, BPM = 100, BEAT = 36;          // 1 beat = 36 frames
+const T_LAST = (FRAMES - 1) / FPS;                            // f575, held
+const F = (f) => f / FPS;
+const TEXT = 'dangasa Ai';
+const SEED = 0x0DA6A5A;
+
+const q = new URLSearchParams(location.search);
+const [RW, RH] = (q.get('res') || '1920x1080').split('x').map(Number);
+const FROZEN = q.has('t') ? parseFloat(q.get('t')) : (q.has('f') ? F(parseFloat(q.get('f'))) : null);
+
+// ───────────────────────────── brand ──────────────────────────────
+const HEX = { space: 0x050608, city: 0xFFB347, atmo: 0x6FA8DC, sun: 0xF6E7C8, ivory: 0xF4EFE6, amber: 0xF2A93B };
+const col = (h) => new THREE.Color(h);                        // sRGB hex -> linear working colour
+
+// Look-dev calibration: base-colour gain so the lit front faces read exactly
+// F4EFE6 / F2A93B in the final frame (fill + warm key). Found by probing.
+const CAL = { ivory: [1.0785, 1.1237, 1.2278], amber: [1.0586, 1.0833, 0.9372] };
+
+// ───────────────────────────── timeline (frames) ──────────────────
+const TL = {
+  fps: FPS, frames: FRAMES, bpm: BPM, beatFrames: BEAT, lastFrame: FRAMES - 1,
+  hook: 0,
+  flares: Array.from({ length: 8 }, (_, i) => 72 + 9 * i),   // one per sixteenth
+  arcLaunch: 144, arcArrive: 252,
+  windup: [248, 252],
+  flash: [252, 256],                                         // 4 frames: 252..255
+  letterStarts: [],                                          // filled once the layout is known (edge-in)
+  letterLocks: [],                                           // filled after spring solve
+  locked: 324,
+  sunrise: 360, sweep: [360, 432],
+  droop: [432, 450], snap: [465, 468, 471],
+  minorToMajor: 360, stabs: [252, 468],
+  end: FRAMES - 1,
+};
+
+// ───────────────────────────── helpers ────────────────────────────
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, x) => a + (b - a) * x;
+const smooth = (a, b, x) => { const u = clamp((x - a) / (b - a)); return u * u * (3 - 2 * u); };
+const easeInOutQuart = (x) => x < 0.5 ? 8 * x ** 4 : 1 - (-2 * x + 2) ** 4 / 2;
+const easeInOutSine = (x) => -(Math.cos(Math.PI * x) - 1) / 2;
+const easeInOutCubic = (x) => x < 0.5 ? 4 * x ** 3 : 1 - (-2 * x + 2) ** 3 / 2;
+const easeOutCubic = (x) => 1 - (1 - x) ** 3;
+const DEG = Math.PI / 180;
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rand = mulberry32(SEED);
+
+// ───────────────────────────── spring (ζ 0.7, 6% overshoot) ───────
+const ZETA = 0.7, OMEGA = 14.0, WD = OMEGA * Math.sqrt(1 - ZETA * ZETA);
+const springRaw = (t, v0) => 1 + Math.exp(-ZETA * OMEGA * t) * (-Math.cos(WD * t) + ((v0 - ZETA * OMEGA) / WD) * Math.sin(WD * t));
+const peakOf = (v0) => { let m = 0; for (let i = 0; i <= 4000; i++) m = Math.max(m, springRaw(i / 4000, v0)); return m; };
+let V0 = (() => { let lo = 0, hi = 200; for (let k = 0; k < 60; k++) { const mid = (lo + hi) / 2; (peakOf(mid) < 1.06 ? (lo = mid) : (hi = mid)); } return (lo + hi) / 2; })();
+// residual windowed to exactly zero by 48 frames so the wordmark is locked at f324
+const springS = (tau) => tau <= 0 ? 0 : tau >= F(48) ? 1 : 1 + (springRaw(tau, V0) - 1) * (1 - smooth(F(36), F(48), tau));
+(() => { // lock frame per letter: first frame after the peak from which |s-1| stays < 0.5%
+  let peakK = 0, pk = 0; for (let k = 0; k <= 48; k++) { const s = springS(F(k)); if (s > pk) { pk = s; peakK = k; } }
+  let lockK = 48; for (let k = 48; k >= peakK; k--) { if (Math.abs(springS(F(k)) - 1) < 0.005) lockK = k; else break; }
+  TL.lockAfter = lockK;
+  TL.springPeakFrame = peakK; TL.springPeak = pk; TL.springV0 = V0;
+})();
+
+// ───────────────────────────── renderer ───────────────────────────
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(1);
+renderer.setSize(RW, RH, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NoToneMapping;
+document.body.appendChild(renderer.domElement);
+function fit() {
+  const s = Math.min(innerWidth / RW, innerHeight / RH), c = renderer.domElement;
+  c.style.width = RW * s + 'px'; c.style.height = RH * s + 'px';
+  c.style.left = (innerWidth - RW * s) / 2 + 'px'; c.style.top = (innerHeight - RH * s) / 2 + 'px';
+}
+addEventListener('resize', fit); fit();
+
+const scene = new THREE.Scene();
+const BG = col(HEX.space);
+scene.background = BG;
+const camera = new THREE.PerspectiveCamera(35, RW / RH, 0.05, 3000);
+
+// ───────────────────────────── world layout ───────────────────────
+// Earth centre C; the Fergana-valley / Tashkent cluster sits at the top of the sphere
+// (world +y), north is world −z, east is world +x.
+const R = 60;
+const C = new THREE.Vector3(0, -R, 0);
+const CLUSTER = { lat: 40.9, lon: 71.0 };
+const CITIES = [ // west → east: Tashkent, Chirchiq, Angren, Kokand, Namangan, Fergana, Andijan, Osh
+  [41.31, 69.28], [41.47, 69.58], [41.02, 70.14], [40.53, 70.94],
+  [41.00, 71.67], [40.38, 71.79], [40.78, 72.34], [40.53, 72.80]];
+function texDir(lat, lon) { // matches SphereGeometry's equirect uv layout
+  const phi = (lon + 180) / 360 * Math.PI * 2, th = (90 - lat) * DEG;
+  return new THREE.Vector3(-Math.cos(phi) * Math.sin(th), Math.cos(th), Math.sin(phi) * Math.sin(th));
+}
+const earthQuat = (() => {
+  const up = texDir(CLUSTER.lat, CLUSTER.lon);
+  const pole = new THREE.Vector3(0, 1, 0);
+  const north = pole.clone().sub(up.clone().multiplyScalar(up.dot(pole))).normalize();
+  const east = new THREE.Vector3().crossVectors(north, up);
+  const south = north.clone().negate();
+  const m = new THREE.Matrix4().makeBasis(east, up, south).transpose();
+  return new THREE.Quaternion().setFromRotationMatrix(m);
+})();
+const surf = (lat, lon, alt = 0) => texDir(lat, lon).applyQuaternion(earthQuat).multiplyScalar(R + alt).add(C);
+// a point along the north meridian through the cluster: angle a (deg, + = north), altitude h
+const meridian = (aDeg, h) => new THREE.Vector3(0, Math.cos(aDeg * DEG), -Math.sin(aDeg * DEG)).multiplyScalar(R + h).add(C);
+
+// ───────────────────────────── camera (one continuous move) ────────
+// state = [a (deg along meridian), h (altitude), pitch (deg, relative to local horizon)]
+const CAM_A = { a: -6.0, h: 4.0 };                            // final framing position at 5.4 s
+const camState = (a, h, p) => {
+  const fwd = new THREE.Vector3(0, -Math.sin(a * DEG), -Math.cos(a * DEG));
+  const up = new THREE.Vector3(0, Math.cos(a * DEG), -Math.sin(a * DEG));
+  const dir = fwd.clone().multiplyScalar(Math.cos(p * DEG)).addScaledVector(up, Math.sin(p * DEG));
+  const cup = up.clone().multiplyScalar(Math.cos(p * DEG)).addScaledVector(fwd, -Math.sin(p * DEG));
+  return { pos: meridian(a, h), dir, up: cup };
+};
+const VFOV = 35, TAN_V = Math.tan(VFOV / 2 * DEG), TAN_H = TAN_V * RW / RH;
+
+// convergence point P: 3 units above the horizon seen from the final camera
+const Cf = meridian(CAM_A.a, CAM_A.h);
+const DIP = Math.acos(R / (R + CAM_A.h)) / DEG;              // horizon dip at Cf (deg)
+const H_A = CAM_A.a + DIP;                                     // tangent point angle
+const P = meridian(H_A, 3.0);
+const D_FLY = 8.0;                                              // letters fly 8 units from P toward camera
+const W = P.clone().addScaledVector(Cf.clone().sub(P).normalize(), D_FLY);
+// final pitch: W sits at 46% from top
+const pitchFor = (a, h, target, ndcY) => {
+  const pos = meridian(a, h), rel = target.clone().sub(pos);
+  const elevW = Math.atan2(rel.y, -rel.z) / DEG;               // world elevation of target
+  const elevCam = elevW - Math.atan(ndcY * TAN_V) / DEG;
+  return elevCam + a;                                          // world elev = pitch − a
+};
+const PF = pitchFor(CAM_A.a, CAM_A.h, W, 0.08);
+// 2 % push-in toward the wordmark over 5.4 → 9.6
+const Q4 = W.clone().add(Cf.clone().sub(W).multiplyScalar(0.98));
+const rel4 = Q4.clone().sub(C);
+const A4 = Math.atan2(-rel4.z, rel4.y) / DEG, H4 = rel4.length() - R, P4 = PF + (A4 - CAM_A.a);
+
+const KEYS = [ // t, state, velocity (per second)
+  { t: 0.0, s: [-5.3, 2.40, -21], v: [0.5, 0.02, 0] },
+  { t: 2.4, s: [-4.1, 2.45, -21], v: [0.5, 0.02, 0] },        // skim forward over the lights
+  { t: 4.2, s: [-3.3, 2.70, -11], v: [0.0, 0.10, 0] },        // tilted up 10° following the arcs
+  { t: 5.4, s: [CAM_A.a, CAM_A.h, PF], v: null },             // eased back to frame the wordmark
+  { t: 9.6, s: [A4, H4, P4], v: [0, 0, 0] },                  // 2 % push, settles
+];
+KEYS[3].v = [0, 1, 2].map((k) => 1.5 * (KEYS[4].s[k] - KEYS[3].s[k]) / (KEYS[4].t - KEYS[3].t));
+function camAt(t) {
+  t = clamp(t, 0, 9.6);
+  let i = 0; while (i < KEYS.length - 2 && t > KEYS[i + 1].t) i++;
+  const k0 = KEYS[i], k1 = KEYS[i + 1], T = k1.t - k0.t, s = (t - k0.t) / T;
+  const h00 = 2 * s ** 3 - 3 * s ** 2 + 1, h10 = s ** 3 - 2 * s ** 2 + s, h01 = -2 * s ** 3 + 3 * s ** 2, h11 = s ** 3 - s ** 2;
+  const st = [0, 1, 2].map((j) => h00 * k0.s[j] + h10 * T * k0.v[j] + h01 * k1.s[j] + h11 * T * k1.v[j]);
+  return camState(st[0], st[1], st[2]);
+}
+
+// ───────────────────────────── shared uniforms ────────────────────
+const U = {
+  uTime: { value: 0 }, uBloom: { value: 0 }, uTwAmt: { value: 1 },
+  uCam: { value: new THREE.Vector3() }, uSunDir: { value: new THREE.Vector3(1, 0, 0) }, uSunAmt: { value: 0 },
+};
+
+// ───────────────────────────── loading (before frame 0) ───────────
+const ttf = await new TTFLoader().loadAsync('fonts/Unbounded-Bold.ttf');
+const font = new FontLoader().parse(ttf);
+const lightsTex = await new THREE.TextureLoader().loadAsync('tex/earth_lights_2048.png');
+lightsTex.colorSpace = THREE.SRGBColorSpace;
+lightsTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+lightsTex.generateMipmaps = true; lightsTex.minFilter = THREE.LinearMipmapLinearFilter;
+
+// ───────────────────────────── Earth ──────────────────────────────
+const earthMat = new THREE.ShaderMaterial({
+  uniforms: {
+    uLights: { value: lightsTex }, uCity: { value: col(HEX.city) }, uAtmo: { value: col(HEX.atmo) },
+    uSeed: { value: (SEED % 997) + 0.5 }, uC: { value: C },
+    uTime: U.uTime, uBloom: U.uBloom, uTwAmt: U.uTwAmt, uCam: U.uCam,
+  },
+  vertexShader: /* glsl */`
+    varying vec2 vUv; varying vec3 vWP; varying vec3 vN;
+    void main(){ vUv = uv; vec4 wp = modelMatrix * vec4(position,1.0); vWP = wp.xyz;
+      vN = normalize(mat3(modelMatrix) * normal); gl_Position = projectionMatrix * viewMatrix * wp; }`,
+  fragmentShader: /* glsl */`
+    uniform sampler2D uLights; uniform vec3 uCity, uAtmo, uCam, uC; uniform float uTime, uBloom, uSeed, uTwAmt;
+    varying vec2 vUv; varying vec3 vWP; varying vec3 vN;
+    float hash12(vec2 p){ vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
+    void main(){
+      vec3 tex = texture2D(uLights, vUv).rgb;
+      float lum = smoothstep(0.015, 0.75, dot(tex, vec3(0.3, 0.59, 0.11)));
+      // seeded point lights on a fine grid, each twinkling at 0.5 Hz with its own phase
+      vec2 g = vUv * vec2(16384.0, 8192.0);
+      vec2 cell = floor(g), fr = fract(g);
+      float h1 = hash12(cell + uSeed);
+      vec2 c = vec2(hash12(cell + uSeed + 17.3), hash12(cell + uSeed + 41.9)) * 0.6 + 0.2;
+      vec2 fw = fwidth(g); float aa = max(fw.x, fw.y);
+      float rad = 0.17;
+      float dotm = 1.0 - smoothstep(rad - 0.5*aa, rad + 0.5*aa, length(fr - c));
+      float present = step(0.42, h1);
+      float tw = 1.0 + uTwAmt * 0.55 * sin(6.2831853 * (0.5 * uTime + h1 * 13.0));
+      float pat = dotm * present * tw * (0.55 + 0.9 * fract(h1 * 7.13));
+      float avg = 0.58 * 3.14159 * rad * rad * 1.0;
+      pat = mix(pat, avg, smoothstep(0.22, 0.9, aa));
+      vec3 lights = uCity * lum * (0.10 + 7.0 * pat) * 1.25;
+      vec3 N = normalize(vN), V = normalize(uCam - vWP);
+      float rim = 1.0 - clamp(dot(N, V), 0.0, 1.0);
+      vec3 haze = uAtmo * pow(rim, 18.0) * 0.20;
+      vec3 base = vec3(0.0011, 0.0012, 0.0014);
+      vec3 colr = uBloom > 0.5 ? lights * 0.55 : base + lights + haze;
+      gl_FragColor = vec4(colr, 1.0);
+    }`,
+});
+const earth = new THREE.Mesh(new THREE.SphereGeometry(R, 720, 360), earthMat);
+earth.position.copy(C); earth.quaternion.copy(earthQuat);
+scene.add(earth);
+
+const atmoMat = new THREE.ShaderMaterial({
+  uniforms: { uC: { value: C }, uR: { value: R }, uH: { value: 0.19 }, uAtmo: { value: col(HEX.atmo) }, uSun: { value: col(HEX.sun) },
+    uCam: U.uCam, uSunDir: U.uSunDir, uSunAmt: U.uSunAmt },
+  vertexShader: `varying vec3 vWP; void main(){ vec4 wp = modelMatrix*vec4(position,1.0); vWP = wp.xyz; gl_Position = projectionMatrix*viewMatrix*wp; }`,
+  fragmentShader: /* glsl */`
+    uniform vec3 uC, uCam, uAtmo, uSun, uSunDir; uniform float uR, uH, uSunAmt; varying vec3 vWP;
+    void main(){
+      vec3 dir = normalize(vWP - uCam);
+      float tc = dot(uC - uCam, dir);
+      float dmin = length(uCam + dir * max(tc, 0.0) - uC);
+      float hgt = max(dmin - uR, 0.0);
+      float glow = exp(-hgt / uH);
+      float sf = max(dot(dir, uSunDir), 0.0);
+      float warm = (pow(sf, 30.0) * 2.2 + pow(sf, 6.0) * 0.35) * uSunAmt;
+      vec3 c = uAtmo * glow * 0.50 * (1.0 - 0.6 * clamp(warm, 0.0, 1.0)) + uSun * glow * warm * 1.4 + uSun * pow(sf, 60.0) * uSunAmt * 0.25 * exp(-hgt / (uH * 6.0));
+      gl_FragColor = vec4(c, 1.0);
+    }`,
+  side: THREE.BackSide, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+});
+const atmo = new THREE.Mesh(new THREE.SphereGeometry(R + 2.2, 360, 180), atmoMat);
+atmo.position.copy(C); scene.add(atmo);
+
+// ───────────────────────────── glow sprites ───────────────────────
+const glowTex = (() => {
+  const n = 256, cv = document.createElement('canvas'); cv.width = cv.height = n;
+  const ctx = cv.getContext('2d'), img = ctx.createImageData(n, n);
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+    const r = Math.hypot(x - n / 2 + 0.5, y - n / 2 + 0.5) / (n / 2);
+    const v = clamp(Math.exp(-r * r * 9) + 0.25 * Math.exp(-r * r * 2.2) * (1 - r), 0, 1) * (r < 1 ? 1 : 0);
+    const i = 4 * (y * n + x); img.data[i] = img.data[i + 1] = img.data[i + 2] = 255; img.data[i + 3] = Math.round(v * 255);
+  }
+  ctx.putImageData(img, 0, 0);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.NoColorSpace; return t;
+})();
+const mkSprite = (hex, size, depthTest = false) => {
+  const m = new THREE.SpriteMaterial({ map: glowTex, color: col(hex), blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, depthTest, toneMapped: false });
+  const s = new THREE.Sprite(m); s.scale.setScalar(size); s.userData.base = col(hex); scene.add(s); return s;
+};
+
+// city flares (8) + arcs
+const cityPos = CITIES.map(([la, lo]) => surf(la, lo, 0.0));
+const flares = cityPos.map((p) => { const s = mkSprite(HEX.amber, 0.7); s.position.copy(p).addScaledVector(p.clone().sub(C).normalize(), 0.06); return s; });
+
+const arcMatProto = {
+  vertexShader: `varying float vU; void main(){ vU = uv.x; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: /* glsl */`
+    uniform float uP, uFade; uniform vec3 uCol, uHead; varying float vU;
+    void main(){
+      if (vU > uP) discard;
+      float tail = smoothstep(uP - 0.55, uP, vU);
+      vec3 c = mix(uCol * 0.9, uHead * 2.2, pow(tail, 6.0)) * (0.35 + 0.65 * tail) * uFade;
+      gl_FragColor = vec4(c, 1.0);
+    }`,
+};
+const nP = P.clone().sub(C).normalize();
+const arcs = cityPos.map((L, i) => {
+  const nL = L.clone().sub(C).normalize();
+  const back = L.clone().sub(P); back.addScaledVector(nP, -back.dot(nP)).normalize();
+  const toP = P.clone().sub(L); toP.addScaledVector(nL, -toP.dot(nL)).normalize();
+  const curve = new THREE.CubicBezierCurve3(
+    L.clone(), L.clone().addScaledVector(nL, 1.6 + 0.12 * (i % 3)).addScaledVector(toP, 1.2),
+    P.clone().addScaledVector(back, 6.0).addScaledVector(nP, 1.1), P.clone());
+  const mat = new THREE.ShaderMaterial({ ...arcMatProto, uniforms: { uP: { value: 0 }, uFade: { value: 1 }, uCol: { value: col(HEX.city).multiplyScalar(2.2) }, uHead: { value: new THREE.Color(1.0, 0.92, 0.78) } },
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false });
+  const mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 400, 0.011, 6, false), mat);
+  scene.add(mesh);
+  const head = mkSprite(0xFFE2B0, 0.32);
+  return { curve, mesh, mat, head };
+});
+const core = mkSprite(0xFFE6C4, 2.0); core.position.copy(P);
+const flash = mkSprite(0xFFFFFF, 7.0); flash.position.copy(P);
+
+// sun disc
+const SUN_R = 1.5; // angular radius, deg
+const sunMat = new THREE.ShaderMaterial({
+  uniforms: { uCol: { value: col(HEX.sun).multiplyScalar(3.2) } },
+  vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: `uniform vec3 uCol; varying vec2 vUv; void main(){ float r = length(vUv-0.5)*2.0; float a = 1.0 - smoothstep(0.92, 1.0, r); if (a <= 0.0) discard; gl_FragColor = vec4(uCol*a, 1.0); }`,
+  transparent: true, depthWrite: false, toneMapped: false,
+});
+const sunDist = 400, sun = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), sunMat);
+sun.scale.setScalar(sunDist * Math.tan(SUN_R * DEG)); scene.add(sun);
+const camF = camState(CAM_A.a, CAM_A.h, 0);
+const fwdF = camF.dir.clone(), upF = new THREE.Vector3(0, Math.cos(CAM_A.a * DEG), -Math.sin(CAM_A.a * DEG)), eastF = new THREE.Vector3(1, 0, 0);
+const SUN_AZ = 27;
+function sunDirAt(t) {
+  const e = -DIP - SUN_R * 1.02 + 3.3 * easeOutCubic(clamp((t - 6.0) / 1.8)) - (t < 6.0 ? 0.6 * (6.0 - t) : 0);
+  const ce = Math.cos(e * DEG);
+  return fwdF.clone().multiplyScalar(ce * Math.cos(SUN_AZ * DEG)).addScaledVector(eastF, ce * Math.sin(SUN_AZ * DEG)).addScaledVector(upF, Math.sin(e * DEG)).normalize();
+}
+
+// ───────────────────────────── wordmark ───────────────────────────
+const wordmark = new THREE.Group(); scene.add(wordmark);
+wordmark.position.copy(W);
+wordmark.up.copy(camState(CAM_A.a, CAM_A.h, PF).up);
+wordmark.lookAt(Cf);
+wordmark.updateMatrixWorld(true);
+const P_LOCAL = new THREE.Vector3(0, 0, -D_FLY);
+
+const sweepU = { uSweepX: { value: -99 }, uSweepAmt: { value: 0 }, uSweepCol: { value: col(HEX.sun) },
+  uWMInv: { value: new THREE.Matrix4().copy(wordmark.matrixWorld).invert() } };
+function letterMaterial(hex, rough, cal, side) {
+  const c = col(hex); c.r *= cal[0]; c.g *= cal[1]; c.b *= cal[2];
+  const m = new THREE.MeshPhysicalMaterial({ color: c, roughness: rough, metalness: 0, clearcoat: 0.35, clearcoatRoughness: 0.2, specularIntensity: 0.5 });
+  m.onBeforeCompile = (sh) => {
+    Object.assign(sh.uniforms, sweepU);
+    sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vWPos;')
+      .replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvWPos = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nvarying vec3 vWPos; uniform float uSweepX, uSweepAmt; uniform vec3 uSweepCol; uniform mat4 uWMInv;')
+      .replace('#include <opaque_fragment>', `
+        vec3 wl = (uWMInv * vec4(vWPos, 1.0)).xyz;
+        float bx = wl.x + 0.38 * wl.y;
+        float band = exp(-pow((bx - uSweepX) / 0.22, 2.0)) + 0.35 * exp(-pow((bx - uSweepX + 0.55) / 0.12, 2.0));
+        outgoingLight += uSweepCol * band * uSweepAmt * ${side ? '0.7' : '1.0'};
+        #include <opaque_fragment>`);
+  };
+  return m;
+}
+const mats = {
+  ivory: [letterMaterial(HEX.ivory, 0.38, CAL.ivory, false), letterMaterial(HEX.ivory, 0.38, CAL.ivory, true)],
+  amber: [letterMaterial(HEX.amber, 0.30, CAL.amber, false), letterMaterial(HEX.amber, 0.30, CAL.amber, true)],
+};
+const blackMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+// size the line so it spans 62 % of frame width at lock (5.4 s, camera at Cf)
+const BEVEL = 0.012;
+function buildGeo(ch, size) {
+  const g = new TextGeometry(ch, { font, size, height: 0.14 * size, curveSegments: 14, bevelEnabled: true, bevelThickness: BEVEL, bevelSize: BEVEL, bevelOffset: 0, bevelSegments: 3 });
+  g.translate(0, 0, -0.07 * size); g.computeBoundingBox(); return g;
+}
+const chars = TEXT.split('');
+const glyphAdv = (ch) => font.data.glyphs[ch].ha / font.data.resolution;
+function layout(size) {
+  let x = 0; const out = [];
+  for (const ch of chars) { out.push({ ch, x }); x += glyphAdv(ch) * size; }
+  const geos = out.filter((o) => o.ch !== ' ').map((o) => ({ ...o, geo: buildGeo(o.ch, size) }));
+  const minX = geos[0].x + geos[0].geo.boundingBox.min.x, maxX = geos.at(-1).x + geos.at(-1).geo.boundingBox.max.x;
+  return { geos, minX, maxX, width: maxX - minX };
+}
+const dW = W.distanceTo(Cf);
+const targetW = 0.62 * 2 * dW * TAN_H;
+let size = targetW / layout(1).width;
+let L = layout(size);
+// refine against the true projection from the 5.4 s camera
+{
+  const cs = camState(CAM_A.a, CAM_A.h, PF);
+  camera.position.copy(cs.pos); camera.up.copy(cs.up); camera.lookAt(cs.pos.clone().add(cs.dir)); camera.updateMatrixWorld(true);
+  const ex = (x) => wordmark.localToWorld(new THREE.Vector3(x, 0, 0.07 * size)).project(camera).x;
+  const frac = (ex(L.maxX - (L.minX + L.maxX) / 2) - ex(L.minX - (L.minX + L.maxX) / 2)) / 2;
+  size *= 0.62 / frac; L = layout(size);
+}
+const capH = L.geos.find((g) => g.ch === 'A').geo.boundingBox.max.y;
+const x0 = -(L.minX + L.maxX) / 2, y0 = -capH / 2;
+const aiGroup = new THREE.Group(); aiGroup.matrixAutoUpdate = false; wordmark.add(aiGroup);
+const letters = L.geos.map((g, i) => {
+  const isAi = i >= 7;
+  // centre each glyph on its own bbox so the spring's scale grows symmetrically about the letter
+  const bb = g.geo.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cy = (bb.min.y + bb.max.y) / 2;
+  g.geo.translate(-cx, -cy, 0); g.geo.computeBoundingBox();
+  const mesh = new THREE.Mesh(g.geo, isAi ? mats.amber : mats.ivory);
+  mesh.matrixAutoUpdate = false;
+  mesh.userData = { i, ch: g.ch, isAi, T: new THREE.Vector3(g.x + x0 + cx, y0 + cy, 0), mats: mesh.material };
+  (isAi ? aiGroup : wordmark).add(mesh);
+  return mesh;
+});
+// burst order: edge-in, 3 frames apart — an outer letter is always further along its path than its inner
+// neighbour, so the homothety from P can never push neighbours into each other
+{ const cx = letters.map((m) => Math.abs(m.userData.T.x + (m.geometry.boundingBox.min.x + m.geometry.boundingBox.max.x) / 2));
+  const order = cx.map((c, i) => [c, i]).sort((a, b) => b[0] - a[0]).map((p) => p[1]);
+  TL.burstOrder = order; TL.letterStarts = new Array(9);
+  order.forEach((li, k) => (TL.letterStarts[li] = 252 + 3 * k));
+  TL.letterLocks = TL.letterStarts.map((f) => f + TL.lockAfter); }
+const aiA = letters[7], aiI = letters[8];
+const AI_PIVOT = new THREE.Vector3(aiA.userData.T.x + aiA.geometry.boundingBox.min.x, y0, 0);
+const AI_CENTER = new THREE.Vector3((AI_PIVOT.x + aiI.userData.T.x + aiI.geometry.boundingBox.max.x) / 2, y0 + capH / 2, 0);
+
+// ───────────────────────────── lights ─────────────────────────────
+const wmRight = new THREE.Vector3(1, 0, 0).applyQuaternion(wordmark.quaternion);
+const wmUp = new THREE.Vector3(0, 1, 0).applyQuaternion(wordmark.quaternion);
+const wmFwd = new THREE.Vector3(0, 0, 1).applyQuaternion(wordmark.quaternion);   // toward camera
+const ambient = new THREE.AmbientLight(0xffffff, 1.25); scene.add(ambient);
+const fill = new THREE.DirectionalLight(0xe9eef4, 0.75);
+fill.position.copy(W).addScaledVector(wmFwd, 6).addScaledVector(wmUp, 2.5).addScaledVector(wmRight, -2.5); fill.target.position.copy(W);
+const rim = new THREE.DirectionalLight(col(HEX.atmo), 4.0);
+rim.position.copy(W).addScaledVector(wmFwd, -6).addScaledVector(wmUp, 3.5); rim.target.position.copy(W);
+const key = new THREE.DirectionalLight(col(HEX.sun), 0);
+key.position.copy(W).addScaledVector(wmRight, 6).addScaledVector(wmUp, -2.2).addScaledVector(wmFwd, 4.0); key.target.position.copy(W);
+for (const l of [fill, rim, key]) { scene.add(l); scene.add(l.target); }
+const KEY_I = 2.4;
+
+// ───────────────────────────── post ───────────────────────────────
+const rtOpts = { type: THREE.HalfFloatType, samples: 4 };
+const bloomComposer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(RW, RH, { type: THREE.HalfFloatType }));
+bloomComposer.renderToScreen = false;
+bloomComposer.addPass(new RenderPass(scene, camera));
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(RW, RH), 0.75, 0.35, 0.0);
+bloomComposer.addPass(bloomPass);
+const finalComposer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(RW, RH, rtOpts));
+finalComposer.addPass(new RenderPass(scene, camera));
+const mixPass = new ShaderPass(new THREE.ShaderMaterial({
+  uniforms: { tDiffuse: { value: null }, tBloom: { value: bloomComposer.renderTarget2.texture }, uFlash: { value: 0 } },
+  vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: `uniform sampler2D tDiffuse, tBloom; uniform float uFlash; varying vec2 vUv;
+    void main(){ vec4 b = texture2D(tDiffuse, vUv); vec3 c = b.rgb + texture2D(tBloom, vUv).rgb + vec3(uFlash); gl_FragColor = vec4(c, 1.0); }`,
+}), 'tDiffuse');
+finalComposer.addPass(mixPass);
+finalComposer.addPass(new OutputPass());
+const grainPass = new ShaderPass(new THREE.ShaderMaterial({
+  uniforms: { tDiffuse: { value: null }, uFrame: { value: 0 }, uScale: { value: RH / 1080 }, uAspect: { value: RW / RH }, uSeed: { value: (SEED % 1013) + 0.25 } },
+  vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: /* glsl */`
+    uniform sampler2D tDiffuse; uniform float uFrame, uScale, uAspect, uSeed; varying vec2 vUv;
+    float hash13(vec3 p3){ p3 = fract(p3 * .1031); p3 += dot(p3, p3.zyx + 31.32); return fract((p3.x + p3.y) * p3.z); }
+    void main(){
+      vec3 c = texture2D(tDiffuse, vUv).rgb;                 // display-referred (sRGB)
+      vec2 d = (vUv - 0.5) * vec2(uAspect, 1.0);
+      float r = length(d) / length(vec2(uAspect, 1.0) * 0.5);
+      c *= 1.0 - 0.12 * smoothstep(0.5, 1.0, r);              // 12 % vignette at the corners
+      vec2 px = floor(gl_FragCoord.xy / uScale);              // grain on the 1080p grid
+      float n = hash13(vec3(px, uFrame + uSeed)) + hash13(vec3(px + 71.0, uFrame * 1.37 + uSeed)) - 1.0;
+      c += n * 0.015;                                         // ~1.5 % grain
+      gl_FragColor = vec4(clamp(c, 0.0, 1.0), 1.0);
+    }`,
+}), 'tDiffuse');
+finalComposer.addPass(grainPass);
+
+// ───────────────────────────── state at time t ────────────────────
+const _m = new THREE.Matrix4(), _m2 = new THREE.Matrix4(), _v = new THREE.Vector3(), _qq = new THREE.Quaternion();
+const state = { t: 0, s: [], flash: 0, arcP: 0 };
+function setState(t) {
+  t = clamp(t, 0, T_LAST);
+  const f = t * FPS;
+  state.t = t;
+  U.uTime.value = t;
+  U.uTwAmt.value = 1 - smooth(6.0, 7.8, t);
+  // camera
+  const cs = camAt(t);
+  camera.position.copy(cs.pos); camera.up.copy(cs.up); camera.lookAt(cs.pos.clone().add(cs.dir));
+  camera.updateMatrixWorld(true);
+  U.uCam.value.copy(camera.position);
+
+  // flares: one per sixteenth from f72
+  flares.forEach((s, i) => {
+    const t0 = F(TL.flares[i]);
+    const atk = smooth(t0 - F(3), t0 + F(1), t);
+    const settle = 1 - 0.4 * smooth(t0 + F(1), t0 + F(19), t);
+    const out = 1 - 0.75 * smooth(2.4, 4.2, t) - 0.25 * smooth(4.2, 4.5, t);
+    const k = atk * settle * out;
+    s.visible = k > 1e-3;
+    s.material.color.copy(s.userData.base).multiplyScalar(1.5 * k);
+    s.scale.setScalar(0.22 + 0.3 * atk * settle);
+  });
+
+  // arcs: launch 2.4, ease-in-out-quart, all arrive exactly at f252
+  const pa = easeInOutQuart(clamp((t - F(TL.arcLaunch)) / (F(TL.arcArrive) - F(TL.arcLaunch))));
+  state.arcP = pa;
+  const fade = 1 - smooth(F(252), F(266), t);
+  arcs.forEach((a) => {
+    a.mesh.visible = t >= F(TL.arcLaunch) && fade > 0;
+    a.mat.uniforms.uP.value = pa; a.mat.uniforms.uFade.value = fade;
+    a.head.visible = a.mesh.visible && pa < 1;
+    a.curve.getPointAt(pa, a.head.position);
+    a.head.material.color.copy(a.head.userData.base).multiplyScalar(1.1 * fade * smooth(2.4, 2.5, t));
+  });
+
+  // gathering core + 4-frame wind-up (contracts f248→f252), then one 4-frame white flash
+  const gather = smooth(3.55, F(248), t);
+  const wind = smooth(F(248), F(252), t);
+  core.visible = t < F(252) && gather > 0;
+  core.scale.setScalar(2.4 * gather * (1 - 0.62 * wind) + 0.01);
+  core.material.color.copy(core.userData.base).multiplyScalar(1.6 * gather * (1 + 0.9 * wind));
+  const ff = f - TL.flash[0];
+  const fk = ff < 0 || ff >= 4 ? 0 : [1.0, 0.62, 0.34, 0.12][Math.floor(ff)];
+  state.flash = fk;
+  flash.visible = fk > 0;
+  flash.scale.setScalar(5 + 1.5 * Math.floor(Math.max(ff, 0)));
+  flash.material.color.setScalar(1.6 * fk);
+  mixPass.uniforms.uFlash.value = 0.85 * fk;
+
+  // letters: burst from P, 3 frames apart, spring ζ 0.7 with 6 % overshoot (homothety about P)
+  letters.forEach((m, i) => {
+    const s = springS(t - F(TL.letterStarts[i]));
+    state.s[i] = s;
+    m.visible = s > 1e-4;
+    const T = m.userData.T;
+    // flight toward camera follows the full spring (6 % overshoot along the path); lateral spread and
+    // scale stop at 1, so letters past the target hold their exact final spacing and never collide
+    const sLat = Math.min(s, 1);
+    _v.set(T.x * sLat, P_LOCAL.y + (T.y - P_LOCAL.y) * sLat, P_LOCAL.z + (T.z - P_LOCAL.z) * s);
+    if (m.userData.isAi) _v.sub(AI_PIVOT);
+    const sc = Math.max(Math.min(s, 1), 1e-4); m.matrix.compose(_v, _qq.identity(), new THREE.Vector3(sc, sc, sc));
+    m.matrixWorldNeedsUpdate = true;
+  });
+  // "Ai" gag: droop 6° + sink 4 % (f432→f450), snap upright f465→f468, scale pop 1→1.08→1 peaking f468
+  const droop = easeInOutSine(clamp((f - TL.droop[0]) / (TL.droop[1] - TL.droop[0]))) * (1 - easeOutCubic(clamp((f - TL.snap[0]) / (TL.snap[1] - TL.snap[0]))));
+  const pop = f <= TL.snap[1] ? easeOutCubic(clamp((f - TL.snap[0]) / (TL.snap[1] - TL.snap[0]))) : 1 - easeInOutSine(clamp((f - TL.snap[1]) / (TL.snap[2] - TL.snap[1])));
+  const sc = 1 + 0.08 * pop;
+  _m.makeTranslation(AI_PIVOT.x, AI_PIVOT.y - 0.04 * capH * droop, 0)
+    .multiply(_m2.makeRotationZ(-6 * DEG * droop))
+    .multiply(new THREE.Matrix4().makeTranslation(AI_CENTER.x - AI_PIVOT.x, AI_CENTER.y - AI_PIVOT.y, 0))
+    .multiply(new THREE.Matrix4().makeScale(sc, sc, sc))
+    .multiply(new THREE.Matrix4().makeTranslation(-(AI_CENTER.x - AI_PIVOT.x), -(AI_CENTER.y - AI_PIVOT.y), 0));
+  aiGroup.matrix.copy(_m); aiGroup.matrixWorldNeedsUpdate = true;
+  state.droop = droop; state.pop = sc;
+
+  // light: cool atmosphere rim before 6.0, then the sun as a warm key from low right
+  const sunK = easeInOutSine(clamp((t - 6.0) / 1.2));
+  rim.intensity = 4.0 * (1 - sunK);
+  key.intensity = KEY_I * sunK;
+  const sd = sunDirAt(t);
+  U.uSunDir.value.copy(sd);
+  U.uSunAmt.value = smooth(5.75, 7.0, t);
+  sun.position.copy(Cf).addScaledVector(sd, sunDist);
+  sun.quaternion.copy(camera.quaternion);
+  sun.visible = t > 5.5;
+  // specular streak sweeps left → right over 1.2 s
+  const sw = (t - 6.0) / 1.2;
+  sweepU.uSweepAmt.value = sw > 0 && sw < 1 ? Math.sin(Math.PI * sw) ** 0.5 : 0;
+  const half = (L.maxX - L.minX) / 2 + 1.2;
+  sweepU.uSweepX.value = lerp(-half, half, easeInOutSine(clamp(sw)));
+
+  grainPass.uniforms.uFrame.value = Math.round(f);
+  scene.updateMatrixWorld(true);
+}
+
+function render() {
+  // bloom source: city lights, arcs, flash and sun only
+  U.uBloom.value = 1; atmo.visible = false; scene.background = null;
+  renderer.setClearColor(0x000000, 1);
+  letters.forEach((m) => (m.material = blackMat));
+  bloomComposer.render();
+  U.uBloom.value = 0; atmo.visible = true; scene.background = BG;
+  letters.forEach((m) => (m.material = m.userData.mats));
+  finalComposer.render();
+}
+
+function renderAt(t) { setState(t); render(); return state.t; }
+
+// ───────────────────────────── diagnostics for CHECKS ─────────────
+const idMat = (r, g) => new THREE.ShaderMaterial({ vertexShader: `void main(){ gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`, fragmentShader: `void main(){ gl_FragColor = vec4(${(r / 255).toFixed(5)}, ${(g / 255).toFixed(5)}, 0.0, 1.0); }` });
+const maskMats = letters.map((m, i) => [idMat(20 * (i + 1), 255), idMat(20 * (i + 1), 128)]);
+function renderMask(t) {
+  setState(t);
+  const hidden = [earth, atmo, sun, core, flash, ...flares, ...arcs.map((a) => a.mesh), ...arcs.map((a) => a.head)];
+  const vis = hidden.map((o) => o.visible); hidden.forEach((o) => (o.visible = false));
+  letters.forEach((m, i) => (m.material = maskMats[i]));
+  scene.background = null; renderer.setClearColor(0x000000, 1);
+  renderer.setRenderTarget(null); renderer.render(scene, camera);
+  hidden.forEach((o, k) => (o.visible = vis[k]));
+  letters.forEach((m) => (m.material = m.userData.mats)); scene.background = BG;
+}
+function checkFrame(t) {
+  setState(t);
+  const obbs = letters.map((m) => m.visible ? new OBB().fromBox3(m.geometry.boundingBox).applyMatrix4(m.matrixWorld) : null);
+  const pairs = [], earthHits = [];
+  for (let i = 0; i < obbs.length; i++) {
+    if (!obbs[i]) continue;
+    const cp = obbs[i].clampPoint(C, new THREE.Vector3());
+    const clearance = cp.distanceTo(C) - R;
+    if (clearance <= 0) earthHits.push({ i, clearance });
+    for (let j = i + 1; j < obbs.length; j++) if (obbs[j] && obbs[i].intersectsOBB(obbs[j])) pairs.push([i, j]);
+  }
+  const minClear = Math.min(...obbs.filter(Boolean).map((o) => o.clampPoint(C, new THREE.Vector3()).distanceTo(C) - R), Infinity);
+  return { t, pairs, earthHits, minClear, s: state.s.slice() };
+}
+function projectedText(t) {
+  setState(t);
+  let x0 = 1, x1 = -1, y0 = 1, y1 = -1;
+  letters.forEach((m) => { const b = m.geometry.boundingBox;
+    for (let k = 0; k < 8; k++) { _v.set(k & 1 ? b.max.x : b.min.x, k & 2 ? b.max.y : b.min.y, k & 4 ? b.max.z : b.min.z).applyMatrix4(m.matrixWorld).project(camera);
+      x0 = Math.min(x0, _v.x); x1 = Math.max(x1, _v.x); y0 = Math.min(y0, _v.y); y1 = Math.max(y1, _v.y); } });
+  return { widthFrac: (x1 - x0) / 2, x0: (x0 + 1) / 2, x1: (x1 + 1) / 2, yTop: (1 - y1) / 2, yBot: (1 - y0) / 2 };
+}
+function arcCheck(f) { setState(F(f)); return { f, p: state.arcP, dist: arcs.map((a) => a.curve.getPointAt(state.arcP).distanceTo(P)) }; }
+function horizonY(t) { // screen y (0 top) of the horizon straight ahead
+  setState(t);
+  const cam = camera.position, rel = cam.clone().sub(C), d = rel.length();
+  const ang = Math.acos(R / d), aCam = Math.atan2(-rel.z, rel.y);
+  const hp = meridian((aCam + ang) / DEG, 0).project(camera);
+  return (1 - hp.y) / 2;
+}
+
+window.TIMELINE = TL;
+window.renderAt = renderAt;
+function boxes(t) { setState(t); const inv = new THREE.Matrix4().copy(wordmark.matrixWorld).invert();
+  return letters.map((m) => { const b = m.geometry.boundingBox.clone().applyMatrix4(new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld)); return [m.userData.ch, +b.min.x.toFixed(4), +b.max.x.toFixed(4), +b.min.z.toFixed(4), +b.max.z.toFixed(4), +b.min.y.toFixed(3), +b.max.y.toFixed(3)]; }); }
+window.diag = { boxes, checkFrame, renderMask, projectedText, arcCheck, horizonY, text: () => letters.map((m) => m.userData.ch).join(''), textSpec: TEXT, size: () => size,
+  sunScreen: (t) => { setState(t); const p = sun.position.clone().project(camera); return { x: (p.x + 1) / 2, y: (1 - p.y) / 2 }; } };
+
+// ───────────────────────────── run ────────────────────────────────
+renderAt(FROZEN ?? 0);
+window.READY = true;
+if (FROZEN === null) {
+  let t0 = null;
+  const loop = (now) => { if (t0 === null) t0 = now; const t = Math.min((now - t0) / 1000, T_LAST); renderAt(t); if (t < T_LAST) requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>

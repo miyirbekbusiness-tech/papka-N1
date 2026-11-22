@@ -1,0 +1,203 @@
+{
+ "lufs_integrated": -14.0,
+ "true_peak_dbtp": -2.3,
+ "limiter_max_gr_db": 2.99,
+ "master_gain_db": 2.51,
+ "boom_energy_share_120_200": 0.471,
+ "boom_energy_share_20_120": 0.492,
+ "hits": [
+  {
+   "name": "ping1",
+   "event_frame": 72,
+   "peak_s": 1.2171,
+   "peak_frame": 73.02,
+   "offset_frames": 1.02,
+   "ok": true
+  },
+  {
+   "name": "ping2",
+   "event_frame": 81,
+   "peak_s": 1.3671,
+   "peak_frame": 82.03,
+   "offset_frames": 1.03,
+   "ok": true
+  },
+  {
+   "name": "ping3",
+   "event_frame": 90,
+   "peak_s": 1.5171,
+   "peak_frame": 91.03,
+   "offset_frames": 1.03,
+   "ok": true
+  },
+  {
+   "name": "ping4",
+   "event_frame": 99,
+   "peak_s": 1.667,
+   "peak_frame": 100.02,
+   "offset_frames": 1.02,
+   "ok": true
+  },
+  {
+   "name": "ping5",
+   "event_frame": 108,
+   "peak_s": 1.8169,
+   "peak_frame": 109.02,
+   "offset_frames": 1.02,
+   "ok": true
+  },
+  {
+   "name": "ping6",
+   "event_frame": 117,
+   "peak_s": 1.9672,
+   "peak_frame": 118.03,
+   "offset_frames": 1.03,
+   "ok": true
+  },
+  {
+   "name": "ping7",
+   "event_frame": 126,
+   "peak_s": 2.1167,
+   "peak_frame": 127.0,
+   "offset_frames": 1.0,
+   "ok": true
+  },
+  {
+   "name": "ping8",
+   "event_frame": 135,
+   "peak_s": 2.2669,
+   "peak_frame": 136.01,
+   "offset_frames": 1.01,
+   "ok": true
+  },
+  {
+   "name": "boom+shimmer",
+   "event_frame": 252,
+   "peak_s": 4.2183,
+   "peak_frame": 253.1,
+   "offset_frames": 1.1,
+   "ok": true
+  },
+  {
+   "name": "tick_i",
+   "event_frame": 279,
+   "peak_s": 4.6663,
+   "peak_frame": 279.98,
+   "offset_frames": 0.98,
+   "ok": true
+  },
+  {
+   "name": "tick_d",
+   "event_frame": 282,
+   "peak_s": 4.7162,
+   "peak_frame": 282.97,
+   "offset_frames": 0.97,
+   "ok": true
+  },
+  {
+   "name": "tick_A",
+   "event_frame": 285,
+   "peak_s": 4.7662,
+   "peak_frame": 285.97,
+   "offset_frames": 0.97,
+   "ok": true
+  },
+  {
+   "name": "tick_a",
+   "event_frame": 288,
+   "peak_s": 4.8162,
+   "peak_frame": 288.97,
+   "offset_frames": 0.97,
+   "ok": true
+  },
+  {
+   "name": "tick_a",
+   "event_frame": 291,
+   "peak_s": 4.8662,
+   "peak_frame": 291.97,
+   "offset_frames": 0.97,
+   "ok": true
+  },
+  {
+   "name": "tick_n",
+   "event_frame": 294,
+   "peak_s": 4.9162,
+   "peak_frame": 294.97,
+   "offset_frames": 0.97,
+   "ok": true
+  },
+  {
+   "name": "tick_s",
+   "event_frame": 297,
+   "peak_s": 4.9662,
+   "peak_frame": 297.97,
+   "offset_frames": 0.97,
+   "ok": true
+  },
+  {
+   "name": "tick_g",
+   "event_frame": 300,
+   "peak_s": 5.0164,
+   "peak_frame": 300.98,
+   "offset_frames": 0.98,
+   "ok": true
+  },
+  {
+   "name": "tick_a",
+   "event_frame": 303,
+   "peak_s": 5.0663,
+   "peak_frame": 303.98,
+   "offset_frames": 0.98,
+   "ok": true
+  },
+  {
+   "name": "sunrise_swell",
+   "event_frame": 360,
+   "peak_s": 6.0172,
+   "peak_frame": 361.03,
+   "offset_frames": 1.03,
+   "ok": true
+  },
+  {
+   "name": "lazy_slide",
+   "event_frame": 432,
+   "peak_s": 7.2174,
+   "peak_frame": 433.05,
+   "offset_frames": 1.05,
+   "ok": true
+  },
+  {
+   "name": "snap_pop",
+   "event_frame": 468,
+   "peak_s": 7.8167,
+   "peak_frame": 469.0,
+   "offset_frames": 1.0,
+   "ok": true
+  },
+  {
+   "name": "brass_stab_1",
+   "event_frame": 252,
+   "peak_s": 4.2167,
+   "peak_frame": 253.0,
+   "offset_frames": 1.0,
+   "ok": true
+  },
+  {
+   "name": "brass_stab_2",
+   "event_frame": 468,
+   "peak_s": 7.818,
+   "peak_frame": 469.08,
+   "offset_frames": 1.08,
+   "ok": true
+  },
+  {
+   "name": "timpani_accent",
+   "event_frame": 252,
+   "peak_s": 4.2149,
+   "peak_frame": 252.9,
+   "offset_frames": 0.9,
+   "ok": true
+  }
+ ],
+ "all_hits_ok": true
+}
