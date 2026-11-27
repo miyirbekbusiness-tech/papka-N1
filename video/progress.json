@@ -1,0 +1,9 @@
+{
+  "project": "Agarda SSSR yana tiklansa?",
+  "stages": {
+    "0": {"status": "blocked", "gate": "passed", "blocked_on": "ELEVENLABS_API_KEY missing; api.elevenlabs.io blocked by network policy", "notes": "ref/namuna.mp4 missing"},
+    "1": {"status": "todo"}, "2": {"status": "todo"}, "3": {"status": "todo", "voiced": []},
+    "4": {"status": "todo"}, "5": {"status": "todo"}, "6": {"status": "todo"}, "7": {"status": "todo"}, "8": {"status": "todo"}
+  },
+  "voice": {"name": "Mirjalol Professional Voice", "voice_id_seen_via_connector": "cfWx14ZbaEUT4BjIA5tH"}
+}
