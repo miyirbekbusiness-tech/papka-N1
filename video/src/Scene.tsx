@@ -17,7 +17,7 @@ const SC: Record<number, any> = {};
 for (const s of (script as any).scenes) SC[s.id] = s;
 export const T: Record<string, any> = (timing as any).scenes;
 
-const OVERVIEW: Cam = {s: 1.18, x: 960, y: 560};
+const OVERVIEW: Cam = {s: 1.15, x: 960, y: 650};
 
 // generic push-in camera for non-map scenes: 1.0 -> 1.05 around focal point
 const usePush = (frames: number, fx = 960, fy = 500, amt = 0.05) => {

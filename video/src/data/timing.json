@@ -360,24 +360,24 @@
    ]
   },
   "15": {
-   "dur": 5.536478784040533,
-   "measured": false,
-   "frames": 177,
+   "dur": 5.58,
+   "measured": true,
+   "frames": 178,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.975,
-     "speech_end": 2.775
+     "tout": 2.97,
+     "speech_end": 2.73
     },
     {
-     "tin": 2.975,
-     "tout": 5.716,
-     "speech_end": 5.416
+     "tin": 2.97,
+     "tout": 5.82,
+     "speech_end": 5.52
     }
    ],
    "label_t": [
-    3.614,
-    4.951
+    3.638,
+    5.034
    ]
   },
   "16": {
@@ -406,30 +406,30 @@
    ]
   },
   "17": {
-   "dur": 7.816402786573781,
-   "measured": false,
-   "frames": 245,
+   "dur": 8.72,
+   "measured": true,
+   "frames": 272,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 2.277,
-     "speech_end": 2.077
+     "tin": 0.07,
+     "tout": 2.36,
+     "speech_end": 2.21
     },
     {
-     "tin": 2.277,
-     "tout": 5.22,
-     "speech_end": 5.02
+     "tin": 2.36,
+     "tout": 5.46,
+     "speech_end": 5.34
     },
     {
-     "tin": 5.22,
-     "tout": 7.996,
-     "speech_end": 7.696
+     "tin": 5.46,
+     "tout": 8.96,
+     "speech_end": 8.66
     }
    ],
    "label_t": [
-    6.223,
-    6.517,
-    7.166
+    6.755,
+    7.136,
+    7.974
    ]
   },
   "18": {
@@ -1738,5 +1738,5 @@
    ]
   }
  },
- "total_s": 595.17
+ "total_s": 596.1
 }

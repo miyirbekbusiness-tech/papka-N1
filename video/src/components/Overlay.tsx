@@ -64,7 +64,7 @@ export const Subtitles: React.FC<{cues: {sub: string; kw: string | null}[]; time
   }
   return (
     <div style={{position: 'absolute', left: 0, right: 0, bottom: 120, display: 'flex', justifyContent: 'center', opacity: op}}>
-      <div style={{maxWidth: 1500, textAlign: 'center', fontFamily: MONT, fontWeight: 800, fontSize: 54, lineHeight: 1.18, color: C.white,
+      <div style={{maxWidth: 1500, textAlign: 'center', fontFamily: MONT, fontWeight: 800, fontSize: 54, lineHeight: 1.18, color: C.white, textWrap: 'balance' as any,
         WebkitTextStroke: `12px ${C.ink}`, paintOrder: 'stroke fill'}}>{parts}</div>
     </div>
   );

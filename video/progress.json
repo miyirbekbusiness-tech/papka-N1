@@ -33,7 +33,9 @@
         12,
         13,
         14,
-        16
+        15,
+        16,
+        17
       ],
       "scenes": {
         "2": {
@@ -119,6 +121,18 @@
           "chars": 132,
           "dur": 8.64,
           "cps": 15.28
+        },
+        "15": {
+          "gen": "usv1k55z0J6v92bVYlMs",
+          "chars": 89,
+          "dur": 5.68,
+          "cps": 15.67
+        },
+        "17": {
+          "gen": "yuu3U7lZCbver5VjulUU",
+          "chars": 125,
+          "dur": 8.8,
+          "cps": 14.2
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -148,11 +162,9 @@
         "needed_chars_7_70": 8447
       },
       "pending_generations": {
-        "15": "usv1k55z0J6v92bVYlMs",
-        "17": "yuu3U7lZCbver5VjulUU"
+        "18": "jxUjLp85vOKKQJ05cGqD"
       },
       "next_unvoiced": [
-        18,
         19,
         20,
         21,
