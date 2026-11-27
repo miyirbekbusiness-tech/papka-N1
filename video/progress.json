@@ -35,7 +35,8 @@
         14,
         15,
         16,
-        17
+        17,
+        18
       ],
       "scenes": {
         "2": {
@@ -133,6 +134,12 @@
           "chars": 125,
           "dur": 8.8,
           "cps": 14.2
+        },
+        "18": {
+          "gen": "jxUjLp85vOKKQJ05cGqD",
+          "chars": 128,
+          "dur": 8.64,
+          "cps": 14.81
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -162,11 +169,10 @@
         "needed_chars_7_70": 8447
       },
       "pending_generations": {
-        "18": "jxUjLp85vOKKQJ05cGqD"
+        "20": "OT4NQDC7hSaVwTy4zGCg"
       },
       "next_unvoiced": [
         19,
-        20,
         21,
         22,
         23,
@@ -218,7 +224,7 @@
         69,
         70
       ],
-      "note": "13 pending (auto-retry after concurrency limit); 15 not started (free queue busy, not charged). Generate max ~3 at a time."
+      "note": "Free tier: 1 concurrent generation. Generate sequentially: start one, poll creative_get_flow_run_status until completed, then next."
     },
     "4": {
       "status": "todo"

@@ -7,7 +7,7 @@ import {Icon} from './components/Icons';
 import {MapView, camFor, centroid, toScreen, useCam, Cam, project} from './components/MapView';
 import {Art} from './components/Art';
 import {Chart} from './components/Charts';
-import {C} from './theme';
+import {C, mix} from './theme';
 import {MONT} from './fonts';
 import {DEFS, SceneDef, Anchor} from './defs';
 import script from './data/script.json';
@@ -17,6 +17,8 @@ const SC: Record<number, any> = {};
 for (const s of (script as any).scenes) SC[s.id] = s;
 export const T: Record<string, any> = (timing as any).scenes;
 
+const SEA: Record<string, string> = Object.fromEntries((['krem', 'osmon', 'toʻq sariq', 'yashil', 'jigarrang', 'tun'] as const).map((b) => [b,
+  mix(mix(C.osmon, C.white, 0.3), ({krem: C.krem, osmon: C.osmon, 'toʻq sariq': C.toqsariq, yashil: C.yashil, jigarrang: C.jigar, tun: C.tun} as any)[b], b === 'tun' ? 0.45 : 0.2)]));
 const OVERVIEW: Cam = {s: 1.15, x: 960, y: 650};
 
 // generic push-in camera for non-map scenes: 1.0 -> 1.05 around focal point
@@ -67,7 +69,7 @@ export const SceneView: React.FC<{id: number}> = ({id}) => {
 
   if (isMap) {
     content = (
-      <MapView cam={cam} fills={def.fills} dashed={def.dashed} thick={def.thick}
+      <MapView cam={cam} sea={SEA[s.bg]} fills={def.fills} dashed={def.dashed} thick={def.thick}
         overlay={(c) => (
           <g>
             {(def.icons ?? []).map((ic, i) => {

@@ -40,7 +40,7 @@ export const ICONS: Record<string, React.ReactNode> = {
   doc: <g><path d="M26 10 H80 L100 30 V110 H26 Z" fill={C.white} {...S} />{[44, 62, 80].map((y) => <line key={y} x1={40} y1={y} x2={86} y2={y} {...S} strokeWidth={4} />)}</g>,
   check: <g><circle cx={60} cy={60} r={46} fill={C.yashil} {...S} /><path d="M38 62 L54 78 L84 44" fill="none" stroke={C.white} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" /></g>,
   cross: <g><circle cx={60} cy={60} r={46} fill={C.qizil} {...S} /><path d="M42 42 L78 78 M78 42 L42 78" stroke={C.white} strokeWidth={10} strokeLinecap="round" /></g>,
-  bubble: <g><path d="M14 24 H106 V84 H50 L28 104 V84 H14 Z" fill={C.white} {...S} /><text x={60} y={64} textAnchor="middle" fontSize={24} fontWeight={900} fontFamily="Montserrat" fill={k}>Ha/Yoʻq</text></g>,
+  bubble: <g><path d="M14 24 H106 V84 H50 L28 104 V84 H14 Z" fill={C.white} {...S} /><text x={60} y={64} textAnchor="middle" fontSize={19} fontWeight={900} fontFamily="Montserrat" fill={k}>Ha / Yoʻq</text></g>,
   question: <g><circle cx={60} cy={60} r={48} fill={C.sariq} {...S} /><text x={60} y={82} textAnchor="middle" fontSize={66} fontWeight={900} fontFamily="Montserrat" fill={k}>?</text></g>,
   gate: <g><rect x={10} y={20} width={14} height={90} fill={C.jigar} {...S} /><rect x={96} y={20} width={14} height={90} fill={C.jigar} {...S} />{[34, 50, 66, 82].map((x) => <line key={x} x1={x} y1={30} x2={x} y2={104} {...S} />)}<line x1={24} y1={50} x2={96} y2={50} {...S} /><line x1={24} y1={86} x2={96} y2={86} {...S} /></g>,
   person: <g><circle cx={60} cy={34} r={20} fill={C.skin} {...S} strokeWidth={4} /><path d="M24 110 Q24 62 60 62 Q96 62 96 110 Z" fill={C.osmon} {...S} strokeWidth={4} /></g>,

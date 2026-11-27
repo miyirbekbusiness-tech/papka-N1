@@ -79,7 +79,7 @@ export const Art: React.FC<{name: string; frames: number; cueStart: (i: number) 
   if (name === 'mosque') {
     return (
       <svg width={1920} height={1080} style={{position: 'absolute', left: 0, top: 0}}>
-        <g fill={mix(C.tun, C.ink, 0.45)} {...S} strokeWidth={4}>
+        <g fill={mix(C.tun, C.white, 0.28)} {...S} strokeWidth={5}>
           <rect x={560} y={560} width={620} height={340} />
           <path d="M640 560 Q870 260 1100 560 Z" />
           <rect x={1240} y={300} width={70} height={600} />

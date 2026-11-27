@@ -51,7 +51,7 @@ export const useCam = (from: Cam, to: Cam, frames: number): Cam => {
 };
 
 export const MapView: React.FC<{cam: Cam; fills?: Record<string, string>; dimOthers?: boolean; dashed?: string[]; thick?: Record<string, string>;
-  overlay?: (cam: Cam) => React.ReactNode; base?: string}> = ({cam, fills = {}, dashed = [], thick = {}, overlay, base}) => {
+  overlay?: (cam: Cam) => React.ReactNode; base?: string; sea?: string}> = ({cam, fills = {}, dashed = [], thick = {}, overlay, base, sea}) => {
   const ussrIds = new Set(USSR.map((k) => ID[k]));
   const fillOf = (id: string) => {
     const k = Object.keys(ID).find((key) => ID[key] === id);
@@ -63,6 +63,7 @@ export const MapView: React.FC<{cam: Cam; fills?: Record<string, string>; dimOth
   const sw = 1.6 / cam.s;
   return (
     <svg width={1920} height={1080} style={{position: 'absolute', left: 0, top: 0}}>
+      <rect x={0} y={0} width={1920} height={1080} fill={sea ?? mix(C.osmon, C.white, 0.45)} />
       <g transform={`translate(960,540) scale(${cam.s}) translate(${-cam.x},${-cam.y})`}>
         {Object.entries(D).map(([id, d]) => (
           <path key={id} d={d} fill={fillOf(id)} stroke={C.ink} strokeWidth={ussrIds.has(id) ? sw * 1.6 : sw} strokeLinejoin="round" />

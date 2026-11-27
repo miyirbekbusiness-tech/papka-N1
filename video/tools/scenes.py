@@ -278,7 +278,7 @@ sc(40, 'TAXMIN', ['T09', 'R55'], 'yashil', 'map',
     ('Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy.', 'Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy.', 'neft-gazga'),
     ('Blok ichida yoqilgʻi arzonlashishi mumkin.', 'Blok ichida yoqilgʻi arzonlashishi mumkin.', 'arzonlashishi')])
 
-sc(41, 'TAXMIN', ['T09'], 'tun', 'icons',
+sc(41, 'TAXMIN', ['T09'], 'jigarrang', 'icons',
    'Night: a valve wheel in the middle; pipelines to Europe and Asia switch between open and closed. ' + C,
    [('siyosiy dastak', 0, 'dastakka'), ('Yevropa va Osiyo', 2, 'Osiyo')],
    [('Ammo bu boylik siyosiy dastakka ham aylanadi.', 'Ammo bu boylik siyosiy dastakka ham aylanadi.', 'siyosiy dastakka'),

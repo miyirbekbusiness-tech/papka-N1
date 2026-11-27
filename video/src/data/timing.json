@@ -433,29 +433,29 @@
    ]
   },
   "18": {
-   "dur": 8.006396453451552,
-   "measured": false,
-   "frames": 251,
+   "dur": 8.55,
+   "measured": true,
+   "frames": 267,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 3.138,
-     "speech_end": 2.938
+     "tout": 3.32,
+     "speech_end": 3.12
     },
     {
-     "tin": 3.138,
-     "tout": 6.391,
-     "speech_end": 6.191
+     "tin": 3.32,
+     "tout": 6.76,
+     "speech_end": 6.48
     },
     {
-     "tin": 6.391,
-     "tout": 8.186,
-     "speech_end": 7.886
+     "tin": 6.76,
+     "tout": 8.79,
+     "speech_end": 8.49
     }
    ],
    "label_t": [
-    2.332,
-    5.251
+    2.476,
+    5.508
    ]
   },
   "19": {
@@ -1738,5 +1738,5 @@
    ]
   }
  },
- "total_s": 596.1
+ "total_s": 596.63
 }
