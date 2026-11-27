@@ -1,0 +1,2756 @@
+{
+ "title": "Agarda SSSR yana tiklansa?",
+ "voice": "Mirjalol Professional Voice",
+ "scenes": [
+  {
+   "id": 2,
+   "type": "FAKT",
+   "src": [
+    "R01",
+    "R02"
+   ],
+   "bg": "jigarrang",
+   "kind": "timeline",
+   "visual": "Archive paper timeline: 1922 pin drops, 4 republics light up on a small map, then it fills to 15. Host (thinking) at right.",
+   "labels": [
+    {
+     "text": "1922",
+     "cue": 0,
+     "word": "ikkinchi"
+    },
+    {
+     "text": "4 respublika",
+     "cue": 1,
+     "word": "boʻlgan"
+    },
+    {
+     "text": "15 respublika",
+     "cue": 2,
+     "word": "beshta"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Sovet Ittifoqi bir ming toʻqqiz yuz yigirma ikkinchi yilda tuzilgan.",
+     "sub": "Sovet Ittifoqi 1922-yilda tuzilgan.",
+     "kw": "1922-yilda"
+    },
+    {
+     "say": "Boshida toʻrtta respublika boʻlgan,",
+     "sub": "Boshida 4 ta respublika boʻlgan,",
+     "kw": null
+    },
+    {
+     "say": "oxirida esa oʻn beshta boʻldi.",
+     "sub": "oxirida esa 15 ta boʻldi.",
+     "kw": "15 ta"
+    }
+   ],
+   "say": "Sovet Ittifoqi bir ming toʻqqiz yuz yigirma ikkinchi yilda tuzilgan. Boshida toʻrtta respublika boʻlgan, oxirida esa oʻn beshta boʻldi."
+  },
+  {
+   "id": 3,
+   "type": "FAKT",
+   "src": [
+    "R03",
+    "R04",
+    "R51"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "USSR map, 15 republics outlined, Uzbekistan green. Counter ticks to 287 mln; a single rouble coin icon.",
+   "labels": [
+    {
+     "text": "287 mln",
+     "cue": 0,
+     "word": "million"
+    },
+    {
+     "text": "Oʻzbekiston ~20 mln",
+     "cue": 1,
+     "word": "Oʻzbekistonda"
+    },
+    {
+     "text": "yagona rubl",
+     "cue": 2,
+     "word": "rubl"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Unda qariyb ikki yuz sakson yetti million odam yashagan.",
+     "sub": "Unda qariyb 287 million odam yashagan.",
+     "kw": "287 million"
+    },
+    {
+     "say": "Ulardan yigirma millionga yaqini Oʻzbekistonda edi.",
+     "sub": "Ulardan 20 millionga yaqini Oʻzbekistonda edi.",
+     "kw": "Oʻzbekistonda"
+    },
+    {
+     "say": "Hammasi bitta pul — rubl ishlatardi.",
+     "sub": "Hammasi bitta pul — rubl ishlatardi.",
+     "kw": "rubl"
+    }
+   ],
+   "say": "Unda qariyb ikki yuz sakson yetti million odam yashagan. Ulardan yigirma millionga yaqini Oʻzbekistonda edi. Hammasi bitta pul — rubl ishlatardi."
+  },
+  {
+   "id": 4,
+   "type": "FAKT",
+   "src": [
+    "R05",
+    "R06"
+   ],
+   "bg": "yashil",
+   "kind": "scene",
+   "visual": "Cotton field to the horizon, host in a cap (worried); camera pans to the Aral Sea: old and new coastlines.",
+   "labels": [
+    {
+     "text": "Ittifoq paxtasining 60%+ (80-yillar)",
+     "cue": 1,
+     "word": "foizdan"
+    },
+    {
+     "text": "Orol dengizi",
+     "cue": 2,
+     "word": "Orol"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Oʻzbekistonning vazifasi esa paxta edi.",
+     "sub": "Oʻzbekistonning vazifasi esa paxta edi.",
+     "kw": "paxta"
+    },
+    {
+     "say": "Ittifoq paxtasining oltmish foizdan koʻprogʻi shu yerda edi.",
+     "sub": "Ittifoq paxtasining 60 foizdan koʻprogʻi shu yerda edi.",
+     "kw": "60 foizdan"
+    },
+    {
+     "say": "Paxtani sugʻorish sababli Orol dengizi deyarli qurib qoldi.",
+     "sub": "Paxtani sugʻorish sababli Orol dengizi deyarli qurib qoldi.",
+     "kw": "Orol dengizi"
+    }
+   ],
+   "say": "Oʻzbekistonning vazifasi esa paxta edi. Ittifoq paxtasining oltmish foizdan koʻprogʻi shu yerda edi. Paxtani sugʻorish sababli Orol dengizi deyarli qurib qoldi."
+  },
+  {
+   "id": 5,
+   "type": "FAKT",
+   "src": [
+    "R10",
+    "R11"
+   ],
+   "bg": "jigarrang",
+   "kind": "chart",
+   "visual": "Archive style: oil barrel with a falling price arrow; then an empty shop shelf, host worried.",
+   "labels": [
+    {
+     "text": "neft arzonlashdi",
+     "cue": 1,
+     "word": "arzonlashdi"
+    },
+    {
+     "text": "taqchillik",
+     "cue": 2,
+     "word": "boʻshab"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Saksoninchi yillar oxirida tizim qiynala boshladi.",
+     "sub": "80-yillar oxirida tizim qiynala boshladi.",
+     "kw": "qiynala"
+    },
+    {
+     "say": "Neft arzonlashdi, davlatning valyuta tushumi kamaydi.",
+     "sub": "Neft arzonlashdi, davlatning valyuta tushumi kamaydi.",
+     "kw": "Neft"
+    },
+    {
+     "say": "Doʻkonlar boʻshab qoldi.",
+     "sub": "Doʻkonlar boʻshab qoldi.",
+     "kw": "boʻshab"
+    }
+   ],
+   "say": "Saksoninchi yillar oxirida tizim qiynala boshladi. Neft arzonlashdi, davlatning valyuta tushumi kamaydi. Doʻkonlar boʻshab qoldi."
+  },
+  {
+   "id": 6,
+   "type": "FAKT",
+   "src": [
+    "R11",
+    "R12"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "chart",
+   "visual": "Printing press stamping notes; a price tag rising; an output line bending down at 1990.",
+   "labels": [
+    {
+     "text": "narxlar ↑",
+     "cue": 0,
+     "word": "koʻtarildi"
+    },
+    {
+     "text": "pul bosildi",
+     "cue": 1,
+     "word": "bosdi"
+    },
+    {
+     "text": "1990: pasayish",
+     "cue": 2,
+     "word": "qisqara"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Keyin narxlar ham koʻtarildi,",
+     "sub": "Keyin narxlar ham koʻtarildi,",
+     "kw": "narxlar"
+    },
+    {
+     "say": "chunki hukumat koʻproq pul bosdi.",
+     "sub": "chunki hukumat koʻproq pul bosdi.",
+     "kw": "pul bosdi"
+    },
+    {
+     "say": "Toʻqsoninchi yilda iqtisodiyot qisqara boshladi.",
+     "sub": "90-yilda iqtisodiyot qisqara boshladi.",
+     "kw": "qisqara"
+    }
+   ],
+   "say": "Keyin narxlar ham koʻtarildi, chunki hukumat koʻproq pul bosdi. Toʻqsoninchi yilda iqtisodiyot qisqara boshladi."
+  },
+  {
+   "id": 7,
+   "type": "FAKT",
+   "src": [
+    "R13",
+    "R52"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "USSR map: Lithuania pulses first; then 6 republics turn grey (did not take part in the March 1991 referendum).",
+   "labels": [
+    {
+     "text": "Litva, 1990",
+     "cue": 0,
+     "word": "Litva"
+    },
+    {
+     "text": "1991, mart",
+     "cue": 1,
+     "word": "martida"
+    },
+    {
+     "text": "6 respublika qatnashmadi",
+     "cue": 2,
+     "word": "qatnashmadi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Shu paytda birinchi boʻlib Litva mustaqillik eʼlon qildi.",
+     "sub": "Shu paytda birinchi boʻlib Litva mustaqillik eʼlon qildi.",
+     "kw": "Litva"
+    },
+    {
+     "say": "Keyingi yil martida Ittifoq taqdiri boʻyicha referendum boʻldi.",
+     "sub": "Keyingi yil martida Ittifoq taqdiri boʻyicha referendum boʻldi.",
+     "kw": "referendum"
+    },
+    {
+     "say": "Oʻn besh respublikadan oltitasi unda qatnashmadi.",
+     "sub": "15 respublikadan 6 tasi unda qatnashmadi.",
+     "kw": "6 tasi"
+    }
+   ],
+   "say": "Shu paytda birinchi boʻlib Litva mustaqillik eʼlon qildi. Keyingi yil martida Ittifoq taqdiri boʻyicha referendum boʻldi. Oʻn besh respublikadan oltitasi unda qatnashmadi."
+  },
+  {
+   "id": 8,
+   "type": "FAKT",
+   "src": [
+    "R14",
+    "R18"
+   ],
+   "bg": "tun",
+   "kind": "scene",
+   "visual": "Night Moscow skyline silhouette; calendar flips 19–21 August; then Tashkent at dawn with a 31 August date card. No weapons, no people portraits.",
+   "labels": [
+    {
+     "text": "1991, avgust",
+     "cue": 0,
+     "word": "Avgustda"
+    },
+    {
+     "text": "3 kun",
+     "cue": 1,
+     "word": "kunda"
+    },
+    {
+     "text": "31-avgust",
+     "cue": 2,
+     "word": "avgustda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Avgustda Moskvada bir guruh rahbarlar hokimiyatni olishga urindi,",
+     "sub": "Avgustda Moskvada bir guruh rahbarlar hokimiyatni olishga urindi,",
+     "kw": "Avgustda"
+    },
+    {
+     "say": "lekin uch kunda magʻlub boʻldi.",
+     "sub": "lekin 3 kunda magʻlub boʻldi.",
+     "kw": "3 kunda"
+    },
+    {
+     "say": "Oʻttiz birinchi avgustda Oʻzbekiston mustaqillik eʼlon qildi.",
+     "sub": "31-avgustda Oʻzbekiston mustaqillik eʼlon qildi.",
+     "kw": "31-avgustda"
+    }
+   ],
+   "say": "Avgustda Moskvada bir guruh rahbarlar hokimiyatni olishga urindi, lekin uch kunda magʻlub boʻldi. Oʻttiz birinchi avgustda Oʻzbekiston mustaqillik eʼlon qildi."
+  },
+  {
+   "id": 9,
+   "type": "FAKT",
+   "src": [
+    "R15",
+    "R16",
+    "R17"
+   ],
+   "bg": "osmon",
+   "kind": "timeline",
+   "visual": "December calendar with pins 8 → 21 → end of month; a plain red flag lowers and 15 colour chips rise.",
+   "labels": [
+    {
+     "text": "8-dekabr",
+     "cue": 0,
+     "word": "Sakkizinchi"
+    },
+    {
+     "text": "21-dekabr",
+     "cue": 1,
+     "word": "birinchi"
+    },
+    {
+     "text": "dekabr oxiri",
+     "cue": 2,
+     "word": "tugadi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Sakkizinchi dekabrda esa uch respublika Ittifoq tugaganini eʼlon qildi.",
+     "sub": "8-dekabrda esa 3 respublika Ittifoq tugaganini eʼlon qildi.",
+     "kw": "8-dekabrda"
+    },
+    {
+     "say": "Yigirma birinchi dekabrda buni oʻn bir respublika tasdiqladi.",
+     "sub": "21-dekabrda buni 11 respublika tasdiqladi.",
+     "kw": "11 respublika"
+    },
+    {
+     "say": "Yil oxirida Ittifoq rasman tugadi.",
+     "sub": "Yil oxirida Ittifoq rasman tugadi.",
+     "kw": "tugadi"
+    }
+   ],
+   "say": "Sakkizinchi dekabrda esa uch respublika Ittifoq tugaganini eʼlon qildi. Yigirma birinchi dekabrda buni oʻn bir respublika tasdiqladi. Yil oxirida Ittifoq rasman tugadi."
+  },
+  {
+   "id": 10,
+   "type": "FAKT",
+   "src": [
+    "R21",
+    "R22",
+    "R23",
+    "R24"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Modern map of the 15 countries in palette colours, Uzbekistan green; tags on the biggest and smallest; counter 300 mln.",
+   "labels": [
+    {
+     "text": "~300 mln",
+     "cue": 1,
+     "word": "millionga"
+    },
+    {
+     "text": "Rossiya 143,5 mln",
+     "cue": 2,
+     "word": "Rossiya"
+    },
+    {
+     "text": "Estoniya 1,4 mln",
+     "cue": 2,
+     "word": "Estoniya"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Oʻshandan beri oʻttiz besh yilcha oʻtdi.",
+     "sub": "Oʻshandan beri 35 yilcha oʻtdi.",
+     "kw": "35 yilcha"
+    },
+    {
+     "say": "Bugun oʻn besh davlatda uch yuz millionga yaqin odam yashaydi.",
+     "sub": "Bugun 15 davlatda 300 millionga yaqin odam yashaydi.",
+     "kw": "300 millionga"
+    },
+    {
+     "say": "Eng kattasi Rossiya, eng kichigi Estoniya.",
+     "sub": "Eng kattasi Rossiya, eng kichigi Estoniya.",
+     "kw": null
+    }
+   ],
+   "say": "Oʻshandan beri oʻttiz besh yilcha oʻtdi. Bugun oʻn besh davlatda uch yuz millionga yaqin odam yashaydi. Eng kattasi Rossiya, eng kichigi Estoniya."
+  },
+  {
+   "id": 11,
+   "type": "FAKT",
+   "src": [
+    "R25",
+    "R04",
+    "R23"
+   ],
+   "bg": "osmon",
+   "kind": "chart",
+   "visual": "Two rows of people icons: \"avval\" 1 of 14 green; \"bugun\" 1 of 8 green. Host happy-surprised.",
+   "labels": [
+    {
+     "text": "avval: 14 tadan 1",
+     "cue": 1,
+     "word": "biri"
+    },
+    {
+     "text": "bugun: 8 tadan 1",
+     "cue": 2,
+     "word": "biri"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Nisbatlar ham oʻzgardi.",
+     "sub": "Nisbatlar ham oʻzgardi.",
+     "kw": "Nisbatlar"
+    },
+    {
+     "say": "Avval har oʻn toʻrt sovet fuqarosidan biri oʻzbekistonlik edi.",
+     "sub": "Avval har 14 sovet fuqarosidan biri oʻzbekistonlik edi.",
+     "kw": "14"
+    },
+    {
+     "say": "Bugun esa har sakkiz kishidan biri oʻzbekistonlik.",
+     "sub": "Bugun esa har 8 kishidan biri oʻzbekistonlik.",
+     "kw": "8 kishidan"
+    }
+   ],
+   "say": "Nisbatlar ham oʻzgardi. Avval har oʻn toʻrt sovet fuqarosidan biri oʻzbekistonlik edi. Bugun esa har sakkiz kishidan biri oʻzbekistonlik."
+  },
+  {
+   "id": 12,
+   "type": "FAKT",
+   "src": [
+    "R26",
+    "R28"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "chart",
+   "visual": "Two bars: Estonia tall, Tajikistan tiny; a ×23 bracket springs between them. Host surprised.",
+   "labels": [
+    {
+     "text": "Estoniya ~32 800 $",
+     "cue": 1,
+     "word": "dollar"
+    },
+    {
+     "text": "Tojikiston ~1 400 $",
+     "cue": 2,
+     "word": "atrofida"
+    },
+    {
+     "text": "×23",
+     "cue": 3,
+     "word": "baravar"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Eng katta farq esa daromadda.",
+     "sub": "Eng katta farq esa daromadda.",
+     "kw": "farq"
+    },
+    {
+     "say": "Estoniyada jon boshiga qariyb oʻttiz uch ming dollar,",
+     "sub": "Estoniyada jon boshiga qariyb 33 ming dollar,",
+     "kw": "33 ming"
+    },
+    {
+     "say": "Tojikistonda esa bir ming toʻrt yuz dollar atrofida.",
+     "sub": "Tojikistonda esa 1 400 dollar atrofida.",
+     "kw": "1 400"
+    },
+    {
+     "say": "Farq qariyb yigirma uch baravar.",
+     "sub": "Farq qariyb 23 baravar.",
+     "kw": "23 baravar"
+    }
+   ],
+   "say": "Eng katta farq esa daromadda. Estoniyada jon boshiga qariyb oʻttiz uch ming dollar, Tojikistonda esa bir ming toʻrt yuz dollar atrofida. Farq qariyb yigirma uch baravar."
+  },
+  {
+   "id": 13,
+   "type": "FAKT",
+   "src": [
+    "R26"
+   ],
+   "bg": "yashil",
+   "kind": "chart",
+   "visual": "Horizontal bar ranking of 15 countries; Uzbekistan bar green near the bottom; Kazakhstan bar just above Russia.",
+   "labels": [
+    {
+     "text": "Oʻzbekiston ~3 500 $",
+     "cue": 0,
+     "word": "atrofida"
+    },
+    {
+     "text": "Qozogʻiston 14 770 $",
+     "cue": 1,
+     "word": "Qozogʻistonda"
+    },
+    {
+     "text": "Rossiya 14 260 $",
+     "cue": 1,
+     "word": "Rossiyadan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Oʻzbekistonda bu raqam uch ming besh yuz dollar atrofida.",
+     "sub": "Oʻzbekistonda bu raqam 3 500 dollar atrofida.",
+     "kw": "3 500"
+    },
+    {
+     "say": "Qozogʻistonda esa u hatto Rossiyadan ham yuqori.",
+     "sub": "Qozogʻistonda esa u hatto Rossiyadan ham yuqori.",
+     "kw": "Rossiyadan ham yuqori"
+    }
+   ],
+   "say": "Oʻzbekistonda bu raqam uch ming besh yuz dollar atrofida. Qozogʻistonda esa u hatto Rossiyadan ham yuqori."
+  },
+  {
+   "id": 14,
+   "type": "FAKT",
+   "src": [
+    "R31",
+    "R32",
+    "R35"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Map with groups: Baltics in osmon (EU+NATO), the five EAEU members (Russia + 4) in toʻq sariq, Uzbekistan green with dashed outline (observer).",
+   "labels": [
+    {
+     "text": "YeI + NATO",
+     "cue": 0,
+     "word": "NATOda"
+    },
+    {
+     "text": "Yevroosiyo iqtisodiy ittifoqi",
+     "cue": 1,
+     "word": "ittifoqda"
+    },
+    {
+     "text": "kuzatuvchi",
+     "cue": 2,
+     "word": "kuzatuvchi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda.",
+     "sub": "Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda.",
+     "kw": "NATOda"
+    },
+    {
+     "say": "Toʻrttasi Rossiya bilan iqtisodiy ittifoqda.",
+     "sub": "4 tasi Rossiya bilan iqtisodiy ittifoqda.",
+     "kw": "iqtisodiy ittifoqda"
+    },
+    {
+     "say": "Oʻzbekiston esa unda kuzatuvchi.",
+     "sub": "Oʻzbekiston esa unda kuzatuvchi.",
+     "kw": "kuzatuvchi"
+    }
+   ],
+   "say": "Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda. Toʻrttasi Rossiya bilan iqtisodiy ittifoqda. Oʻzbekiston esa unda kuzatuvchi."
+  },
+  {
+   "id": 15,
+   "type": "TAXMIN",
+   "src": [
+    "T01"
+   ],
+   "bg": "osmon",
+   "kind": "host",
+   "visual": "Host close-up, eyes widen (surprised); behind him 15 country shapes slide together like puzzle pieces. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "tinch yoʻl",
+     "cue": 1,
+     "word": "tinch"
+    },
+    {
+     "text": "referendum",
+     "cue": 1,
+     "word": "referendum"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Endi tasavvur qiling: ular yana birlashsa-chi?",
+     "sub": "Endi tasavvur qiling: ular yana birlashsa-chi?",
+     "kw": "birlashsa-chi"
+    },
+    {
+     "say": "Faqat tinch yoʻl bilan, referendum orqali.",
+     "sub": "Faqat tinch yoʻl bilan, referendum orqali.",
+     "kw": "referendum"
+    }
+   ],
+   "say": "Endi tasavvur qiling: ular yana birlashsa-chi? Faqat tinch yoʻl bilan, referendum orqali."
+  },
+  {
+   "id": 16,
+   "type": "TAXMIN",
+   "src": [
+    "T01",
+    "R33",
+    "R34"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "host",
+   "visual": "Host thinking under a big question mark; small cards fly out: \"MDHdan chiqish\", \"ishtirok muzlatildi\". Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "fikriy tajriba",
+     "cue": 2,
+     "word": "tajriba"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Lekin kim bunga rozi boʻladi?",
+     "sub": "Lekin kim bunga rozi boʻladi?",
+     "kw": "rozi"
+    },
+    {
+     "say": "Hozir ayrim davlatlar aksincha ittifoqlardan chiqmoqda.",
+     "sub": "Hozir ayrim davlatlar aksincha ittifoqlardan chiqmoqda.",
+     "kw": "chiqmoqda"
+    },
+    {
+     "say": "Shuning uchun bu prognoz emas, fikriy tajriba.",
+     "sub": "Shuning uchun bu prognoz emas, fikriy tajriba.",
+     "kw": "fikriy tajriba"
+    }
+   ],
+   "say": "Lekin kim bunga rozi boʻladi? Hozir ayrim davlatlar aksincha ittifoqlardan chiqmoqda. Shuning uchun bu prognoz emas, fikriy tajriba."
+  },
+  {
+   "id": 17,
+   "type": "TAXMIN",
+   "src": [
+    "T02"
+   ],
+   "bg": "krem",
+   "kind": "icons",
+   "visual": "Three round icons pop in on cue words: market stall, coin, shield. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "umumiy bozor",
+     "cue": 1,
+     "word": "bozor"
+    },
+    {
+     "text": "umumiy pul",
+     "cue": 1,
+     "word": "pul"
+    },
+    {
+     "text": "umumiy mudofaa",
+     "cue": 1,
+     "word": "mudofaa"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Faraz qilaylik, hamma rozi boʻldi.",
+     "sub": "Faraz qilaylik, hamma rozi boʻldi.",
+     "kw": null
+    },
+    {
+     "say": "Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi.",
+     "sub": "Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi.",
+     "kw": "umumiy"
+    }
+   ],
+   "say": "Faraz qilaylik, hamma rozi boʻldi. Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi."
+  },
+  {
+   "id": 18,
+   "type": "TAXMIN",
+   "src": [
+    "T02",
+    "T06"
+   ],
+   "bg": "yashil",
+   "kind": "icons",
+   "visual": "Row of 15 abstract colour chips (no real flags) keep their colours; arrows converge to a round table in the centre. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "oʻz tili va parlamenti",
+     "cue": 0,
+     "word": "parlamentini"
+    },
+    {
+     "text": "umumiy markaz",
+     "cue": 1,
+     "word": "markazda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Respublikalar oʻz tili va parlamentini saqlaydi,",
+     "sub": "Respublikalar oʻz tili va parlamentini saqlaydi,",
+     "kw": "saqlaydi"
+    },
+    {
+     "say": "lekin muhim qarorlar umumiy markazda qabul qilinadi.",
+     "sub": "lekin muhim qarorlar umumiy markazda qabul qilinadi.",
+     "kw": "umumiy markazda"
+    },
+    {
+     "say": "Bahs shu yerda boshlanadi.",
+     "sub": "Bahs shu yerda boshlanadi.",
+     "kw": "Bahs"
+    }
+   ],
+   "say": "Respublikalar oʻz tili va parlamentini saqlaydi, lekin muhim qarorlar umumiy markazda qabul qilinadi. Bahs shu yerda boshlanadi."
+  },
+  {
+   "id": 19,
+   "type": "TAXMIN",
+   "src": [
+    "R25",
+    "T02"
+   ],
+   "bg": "osmon",
+   "kind": "chart",
+   "visual": "Pie chart of votes by population: Russia slice ~48% fills almost half; small slices for the rest; host worried. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Rossiya ~48%",
+     "cue": 1,
+     "word": "yarmini"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Masalan, ovozlar qanday taqsimlanadi?",
+     "sub": "Masalan, ovozlar qanday taqsimlanadi?",
+     "kw": "ovozlar"
+    },
+    {
+     "say": "Aholiga qarab boʻlinsa, Rossiya deyarli yarmini oladi.",
+     "sub": "Aholiga qarab boʻlinsa, Rossiya deyarli yarmini oladi.",
+     "kw": "yarmini"
+    },
+    {
+     "say": "Kichik respublikalar buni xavfli deb biladi.",
+     "sub": "Kichik respublikalar buni xavfli deb biladi.",
+     "kw": "xavfli"
+    }
+   ],
+   "say": "Masalan, ovozlar qanday taqsimlanadi? Aholiga qarab boʻlinsa, Rossiya deyarli yarmini oladi. Kichik respublikalar buni xavfli deb biladi."
+  },
+  {
+   "id": 20,
+   "type": "TAXMIN",
+   "src": [
+    "R21",
+    "R26"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Map zooms to Russia (qizil fill). Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Rossiya",
+     "cue": 0,
+     "word": "Rossiya"
+    },
+    {
+     "text": "yetakchilik",
+     "cue": 0,
+     "word": "yetakchilik"
+    },
+    {
+     "text": "moliyaviy yuk",
+     "cue": 1,
+     "word": "moliyalaydi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Davlatma-davlat koʻrsak, Rossiya yetakchilik qiladi,",
+     "sub": "Davlatma-davlat koʻrsak, Rossiya yetakchilik qiladi,",
+     "kw": "yetakchilik"
+    },
+    {
+     "say": "lekin kambagʻalroq aʼzolarni ham moliyalaydi.",
+     "sub": "lekin kambagʻalroq aʼzolarni ham moliyalaydi.",
+     "kw": "moliyalaydi"
+    },
+    {
+     "say": "Koʻp rossiyaliklar bu yukni ogʻir deb biladi.",
+     "sub": "Koʻp rossiyaliklar bu yukni ogʻir deb biladi.",
+     "kw": "yukni"
+    }
+   ],
+   "say": "Davlatma-davlat koʻrsak, Rossiya yetakchilik qiladi, lekin kambagʻalroq aʼzolarni ham moliyalaydi. Koʻp rossiyaliklar bu yukni ogʻir deb biladi."
+  },
+  {
+   "id": 21,
+   "type": "TAXMIN",
+   "src": [
+    "R50"
+   ],
+   "bg": "jigarrang",
+   "kind": "map",
+   "visual": "Map pans to Ukraine (sariq fill); a closed gate icon between it and the union outline. No weapons drawn. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Ukraina",
+     "cue": 0,
+     "word": "Ukraina"
+    },
+    {
+     "text": "yoʻl deyarli yopiq",
+     "cue": 1,
+     "word": "yopgan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ukraina uchun esa bu eng ogʻir savol.",
+     "sub": "Ukraina uchun esa bu eng ogʻir savol.",
+     "kw": "Ukraina"
+    },
+    {
+     "say": "Rossiya bilan urush bu yoʻlni deyarli yopgan.",
+     "sub": "Rossiya bilan urush bu yoʻlni deyarli yopgan.",
+     "kw": "yopgan"
+    },
+    {
+     "say": "Koʻp ukrainaliklar buni mustaqillik yoʻqolishi deb biladi.",
+     "sub": "Koʻp ukrainaliklar buni mustaqillik yoʻqolishi deb biladi.",
+     "kw": "mustaqillik"
+    }
+   ],
+   "say": "Ukraina uchun esa bu eng ogʻir savol. Rossiya bilan urush bu yoʻlni deyarli yopgan. Koʻp ukrainaliklar buni mustaqillik yoʻqolishi deb biladi."
+  },
+  {
+   "id": 22,
+   "type": "TAXMIN",
+   "src": [
+    "R32",
+    "R33"
+   ],
+   "bg": "osmon",
+   "kind": "map",
+   "visual": "Map to Belarus (pushti fill), already tied to Russia by two thin lines (economy, defence). Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Belarus",
+     "cue": 0,
+     "word": "Belarus"
+    },
+    {
+     "text": "allaqachon ittifoqda",
+     "cue": 1,
+     "word": "ittifoqda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Belarus esa bunga eng tayyor davlat.",
+     "sub": "Belarus esa bunga eng tayyor davlat.",
+     "kw": "Belarus"
+    },
+    {
+     "say": "U allaqachon Rossiya bilan ittifoqda.",
+     "sub": "U allaqachon Rossiya bilan ittifoqda.",
+     "kw": "ittifoqda"
+    },
+    {
+     "say": "Lekin mustaqil qaror imkoni yana torayadi.",
+     "sub": "Lekin mustaqil qaror imkoni yana torayadi.",
+     "kw": "torayadi"
+    }
+   ],
+   "say": "Belarus esa bunga eng tayyor davlat. U allaqachon Rossiya bilan ittifoqda. Lekin mustaqil qaror imkoni yana torayadi."
+  },
+  {
+   "id": 23,
+   "type": "TAXMIN",
+   "src": [
+    "R34"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "map",
+   "visual": "Map to Moldova (osmon fill), arrow pointing west labelled Yevropa; two small groups of people facing opposite ways. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Moldova",
+     "cue": 0,
+     "word": "Moldova"
+    },
+    {
+     "text": "MDHdan chiqish",
+     "cue": 1,
+     "word": "chiqishga"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Moldova aksincha, Yevropaga qarab ketmoqda.",
+     "sub": "Moldova aksincha, Yevropaga qarab ketmoqda.",
+     "kw": "Yevropaga"
+    },
+    {
+     "say": "U Mustaqil Davlatlar Hamdoʻstligidan chiqishga qaror qilgan.",
+     "sub": "U Mustaqil Davlatlar Hamdoʻstligidan chiqishga qaror qilgan.",
+     "kw": "chiqishga"
+    },
+    {
+     "say": "Bu savol jamiyatni ikkiga boʻladi.",
+     "sub": "Bu savol jamiyatni ikkiga boʻladi.",
+     "kw": "ikkiga"
+    }
+   ],
+   "say": "Moldova aksincha, Yevropaga qarab ketmoqda. U Mustaqil Davlatlar Hamdoʻstligidan chiqishga qaror qilgan. Bu savol jamiyatni ikkiga boʻladi."
+  },
+  {
+   "id": 24,
+   "type": "TAXMIN",
+   "src": [
+    "R26",
+    "R29",
+    "R31"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Map to Estonia (osmon fill); three exit-door icons: €, YeI, NATO. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Estoniya",
+     "cue": 0,
+     "word": "Estoniya"
+    },
+    {
+     "text": "yevro, YeI, NATO",
+     "cue": 1,
+     "word": "NATOdan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi.",
+     "sub": "Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi.",
+     "kw": "eng boy"
+    },
+    {
+     "say": "U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi.",
+     "sub": "U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi.",
+     "kw": "chiqadi"
+    }
+   ],
+   "say": "Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi. U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi."
+  },
+  {
+   "id": 25,
+   "type": "TAXMIN",
+   "src": [
+    "R29"
+   ],
+   "bg": "jigarrang",
+   "kind": "map",
+   "visual": "Map to Latvia (sariq fill); a euro coin morphs into a blank new coin; price tags wobble. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Latviya",
+     "cue": 0,
+     "word": "Latviyada"
+    },
+    {
+     "text": "yevro → yangi pul",
+     "cue": 0,
+     "word": "pulga"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Latviyada yevrodan yangi pulga oʻtish narxlarni beqaror qiladi.",
+     "sub": "Latviyada yevrodan yangi pulga oʻtish narxlarni beqaror qiladi.",
+     "kw": "beqaror"
+    },
+    {
+     "say": "Biznes Yevropa bozoridan ayrilishdan qoʻrqadi.",
+     "sub": "Biznes Yevropa bozoridan ayrilishdan qoʻrqadi.",
+     "kw": "Yevropa bozoridan"
+    }
+   ],
+   "say": "Latviyada yevrodan yangi pulga oʻtish narxlarni beqaror qiladi. Biznes Yevropa bozoridan ayrilishdan qoʻrqadi."
+  },
+  {
+   "id": 26,
+   "type": "TAXMIN",
+   "src": [
+    "R52",
+    "R26"
+   ],
+   "bg": "osmon",
+   "kind": "map",
+   "visual": "Map to Lithuania (toʻq sariq fill); the 1990 archive pin returns; rank badge #2. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Litva",
+     "cue": 0,
+     "word": "Litva"
+    },
+    {
+     "text": "daromad: 2-oʻrin",
+     "cue": 1,
+     "word": "oʻrinda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Litva esa Ittifoqdan birinchi boʻlib chiqqan edi.",
+     "sub": "Litva esa Ittifoqdan birinchi boʻlib chiqqan edi.",
+     "kw": "birinchi"
+    },
+    {
+     "say": "Bugun u daromad boʻyicha ikkinchi oʻrinda.",
+     "sub": "Bugun u daromad boʻyicha 2-oʻrinda.",
+     "kw": "2-oʻrinda"
+    },
+    {
+     "say": "Koʻp litvaliklar qaytishni orqaga qadam deb biladi.",
+     "sub": "Koʻp litvaliklar qaytishni orqaga qadam deb biladi.",
+     "kw": "orqaga qadam"
+    }
+   ],
+   "say": "Litva esa Ittifoqdan birinchi boʻlib chiqqan edi. Bugun u daromad boʻyicha ikkinchi oʻrinda. Koʻp litvaliklar qaytishni orqaga qadam deb biladi."
+  },
+  {
+   "id": 27,
+   "type": "TAXMIN",
+   "src": [
+    "R34"
+   ],
+   "bg": "yashil",
+   "kind": "map",
+   "visual": "Map pans south to the Caucasus, Georgia (pushti fill); mountain silhouettes; a small market stall icon. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Gruziya",
+     "cue": 0,
+     "word": "Gruziya"
+    },
+    {
+     "text": "2009: MDHdan chiqqan",
+     "cue": 0,
+     "word": "chiqqan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Kavkazdagi Gruziya esa Hamdoʻstlikdan allaqachon chiqqan.",
+     "sub": "Kavkazdagi Gruziya esa Hamdoʻstlikdan allaqachon chiqqan.",
+     "kw": "chiqqan"
+    },
+    {
+     "say": "Qaytish Yevropa yoʻlidan voz kechish boʻladi,",
+     "sub": "Qaytish Yevropa yoʻlidan voz kechish boʻladi,",
+     "kw": "Yevropa yoʻlidan"
+    },
+    {
+     "say": "lekin mahsulotlariga katta bozor ochiladi.",
+     "sub": "lekin mahsulotlariga katta bozor ochiladi.",
+     "kw": "katta bozor"
+    }
+   ],
+   "say": "Kavkazdagi Gruziya esa Hamdoʻstlikdan allaqachon chiqqan. Qaytish Yevropa yoʻlidan voz kechish boʻladi, lekin mahsulotlariga katta bozor ochiladi."
+  },
+  {
+   "id": 28,
+   "type": "TAXMIN",
+   "src": [
+    "R32",
+    "R33"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Map to Armenia (qizil fill); two switches: economy ON, defence paused. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Armaniston",
+     "cue": 0,
+     "word": "Armaniston"
+    },
+    {
+     "text": "iqtisodiy ittifoq: ha",
+     "cue": 0,
+     "word": "aʼzosi"
+    },
+    {
+     "text": "harbiy: muzlatilgan",
+     "cue": 1,
+     "word": "muzlatgan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Qoʻshni Armaniston iqtisodiy ittifoq aʼzosi,",
+     "sub": "Qoʻshni Armaniston iqtisodiy ittifoq aʼzosi,",
+     "kw": "Armaniston"
+    },
+    {
+     "say": "lekin harbiy ittifoqdagi ishtirokini muzlatgan.",
+     "sub": "lekin harbiy ittifoqdagi ishtirokini muzlatgan.",
+     "kw": "muzlatgan"
+    },
+    {
+     "say": "U xavfsizlik va mustaqil siyosat orasida tanlaydi.",
+     "sub": "U xavfsizlik va mustaqil siyosat orasida tanlaydi.",
+     "kw": "tanlaydi"
+    }
+   ],
+   "say": "Qoʻshni Armaniston iqtisodiy ittifoq aʼzosi, lekin harbiy ittifoqdagi ishtirokini muzlatgan. U xavfsizlik va mustaqil siyosat orasida tanlaydi."
+  },
+  {
+   "id": 29,
+   "type": "TAXMIN",
+   "src": [
+    "R55",
+    "T09"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "map",
+   "visual": "Map to Azerbaijan (sariq fill) with flat oil-derrick and gas-flame icons; coins flow into a shared pot. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Ozarbayjon",
+     "cue": 0,
+     "word": "Ozarbayjon"
+    },
+    {
+     "text": "neft va gaz",
+     "cue": 0,
+     "word": "gazi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ozarbayjon esa neft va gazi bilan kuchli.",
+     "sub": "Ozarbayjon esa neft va gazi bilan kuchli.",
+     "kw": "neft va gazi"
+    },
+    {
+     "say": "Ittifoqda u daromadini boshqalar bilan boʻlishadi.",
+     "sub": "Ittifoqda u daromadini boshqalar bilan boʻlishadi.",
+     "kw": "boʻlishadi"
+    }
+   ],
+   "say": "Ozarbayjon esa neft va gazi bilan kuchli. Ittifoqda u daromadini boshqalar bilan boʻlishadi."
+  },
+  {
+   "id": 30,
+   "type": "TAXMIN",
+   "src": [
+    "R26",
+    "T09"
+   ],
+   "bg": "osmon",
+   "kind": "map",
+   "visual": "Map swings east to Kazakhstan (toʻq sariq fill), wheat and oil icons. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Qozogʻiston",
+     "cue": 0,
+     "word": "Qozogʻiston"
+    },
+    {
+     "text": "2-markaz",
+     "cue": 2,
+     "word": "markaziga"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Markaziy Osiyoda eng boy davlat — Qozogʻiston.",
+     "sub": "Markaziy Osiyoda eng boy davlat — Qozogʻiston.",
+     "kw": "eng boy"
+    },
+    {
+     "say": "Neft pulining bir qismi umumiy byudjetga ketadi,",
+     "sub": "Neft pulining bir qismi umumiy byudjetga ketadi,",
+     "kw": "umumiy byudjetga"
+    },
+    {
+     "say": "lekin u ittifoqning ikkinchi kuchli markaziga aylanadi.",
+     "sub": "lekin u ittifoqning ikkinchi kuchli markaziga aylanadi.",
+     "kw": "markaziga"
+    }
+   ],
+   "say": "Markaziy Osiyoda eng boy davlat — Qozogʻiston. Neft pulining bir qismi umumiy byudjetga ketadi, lekin u ittifoqning ikkinchi kuchli markaziga aylanadi."
+  },
+  {
+   "id": 31,
+   "type": "TAXMIN",
+   "src": [
+    "R32",
+    "R33"
+   ],
+   "bg": "yashil",
+   "kind": "map",
+   "visual": "Map to Kyrgyzstan (pushti fill), mountains; a migrant worker icon whose document turns into a tick. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Qirgʻiziston",
+     "cue": 0,
+     "word": "Qirgʻiziston"
+    },
+    {
+     "text": "ikkala ittifoqda",
+     "cue": 0,
+     "word": "ittifoqda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Qirgʻiziston esa allaqachon ikkala ittifoqda.",
+     "sub": "Qirgʻiziston esa allaqachon ikkala ittifoqda.",
+     "kw": "ikkala ittifoqda"
+    },
+    {
+     "say": "Uning yutugʻi — migrantlar uchun qulaylik,",
+     "sub": "Uning yutugʻi — migrantlar uchun qulaylik,",
+     "kw": "migrantlar"
+    },
+    {
+     "say": "yoʻqotishi — savdo qoidalarini oʻzi belgilash imkoni.",
+     "sub": "yoʻqotishi — savdo qoidalarini oʻzi belgilash imkoni.",
+     "kw": "yoʻqotishi"
+    }
+   ],
+   "say": "Qirgʻiziston esa allaqachon ikkala ittifoqda. Uning yutugʻi — migrantlar uchun qulaylik, yoʻqotishi — savdo qoidalarini oʻzi belgilash imkoni."
+  },
+  {
+   "id": 32,
+   "type": "TAXMIN",
+   "src": [
+    "R26"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Map to Tajikistan (sariq fill); a balance: big help on one pan, a small vote on the other. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Tojikiston",
+     "cue": 0,
+     "word": "Tojikiston"
+    },
+    {
+     "text": "koʻp yordam",
+     "cue": 1,
+     "word": "yordam"
+    },
+    {
+     "text": "kam taʼsir",
+     "cue": 2,
+     "word": "taʼsiri"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Tojikiston esa roʻyxatdagi eng kambagʻal davlat.",
+     "sub": "Tojikiston esa roʻyxatdagi eng kambagʻal davlat.",
+     "kw": "eng kambagʻal"
+    },
+    {
+     "say": "U ittifoqdan eng koʻp yordam oladi,",
+     "sub": "U ittifoqdan eng koʻp yordam oladi,",
+     "kw": "yordam"
+    },
+    {
+     "say": "ammo qarorlarga taʼsiri eng kam boʻladi.",
+     "sub": "ammo qarorlarga taʼsiri eng kam boʻladi.",
+     "kw": "eng kam"
+    }
+   ],
+   "say": "Tojikiston esa roʻyxatdagi eng kambagʻal davlat. U ittifoqdan eng koʻp yordam oladi, ammo qarorlarga taʼsiri eng kam boʻladi."
+  },
+  {
+   "id": 33,
+   "type": "TAXMIN",
+   "src": [
+    "R53",
+    "R55"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "map",
+   "visual": "Map to Turkmenistan (osmon fill), desert dunes; a gas pipeline line reaches the union outline; 1995 neutrality pin. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Turkmaniston",
+     "cue": 0,
+     "word": "Turkmaniston"
+    },
+    {
+     "text": "1995: betaraflik",
+     "cue": 0,
+     "word": "betaraflikni"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Turkmaniston esa betaraflikni tanlagan.",
+     "sub": "Turkmaniston esa betaraflikni tanlagan.",
+     "kw": "betaraflikni"
+    },
+    {
+     "say": "Ittifoq unga gaz uchun katta bozor beradi,",
+     "sub": "Ittifoq unga gaz uchun katta bozor beradi,",
+     "kw": "gaz"
+    },
+    {
+     "say": "lekin uning betarafligi tugaydi.",
+     "sub": "lekin uning betarafligi tugaydi.",
+     "kw": "tugaydi"
+    }
+   ],
+   "say": "Turkmaniston esa betaraflikni tanlagan. Ittifoq unga gaz uchun katta bozor beradi, lekin uning betarafligi tugaydi."
+  },
+  {
+   "id": 34,
+   "type": "TAXMIN",
+   "src": [
+    "R23",
+    "R25"
+   ],
+   "bg": "yashil",
+   "kind": "map",
+   "visual": "Map pushes in on Uzbekistan (yashil 3BB273) until it fills the frame; host appears beside it (thinking). Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Oʻzbekiston",
+     "cue": 0,
+     "word": "Oʻzbekiston"
+    },
+    {
+     "text": "38,2 mln",
+     "cue": 0,
+     "word": "yirik"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Va nihoyat, Oʻzbekiston — eng yirik respublikalardan biri.",
+     "sub": "Va nihoyat, Oʻzbekiston — eng yirik respublikalardan biri.",
+     "kw": "Oʻzbekiston"
+    },
+    {
+     "say": "Unga keyinroq qaytamiz, avval dunyoga qaraylik.",
+     "sub": "Unga keyinroq qaytamiz, avval dunyoga qaraylik.",
+     "kw": "dunyoga"
+    }
+   ],
+   "say": "Va nihoyat, Oʻzbekiston — eng yirik respublikalardan biri. Unga keyinroq qaytamiz, avval dunyoga qaraylik."
+  },
+  {
+   "id": 35,
+   "type": "TAXMIN",
+   "src": [
+    "R31",
+    "T07"
+   ],
+   "bg": "tun",
+   "kind": "map",
+   "visual": "Night globe from above, Europe lit; the Baltic outline detaches from a NATO ring. Host worried. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "NATO",
+     "cue": 0,
+     "word": "NATOdan"
+    },
+    {
+     "text": "Yevropa xavfsizligi",
+     "cue": 0,
+     "word": "xavfsizlikni"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Gʻarb uchun Boltiqboʻyining NATOdan chiqishi xavfsizlikni oʻzgartiradi.",
+     "sub": "Gʻarb uchun Boltiqboʻyining NATOdan chiqishi xavfsizlikni oʻzgartiradi.",
+     "kw": "xavfsizlikni"
+    },
+    {
+     "say": "Shuning uchun Gʻarb yangi ittifoqdan xavotirga tushadi.",
+     "sub": "Shuning uchun Gʻarb yangi ittifoqdan xavotirga tushadi.",
+     "kw": "xavotirga"
+    }
+   ],
+   "say": "Gʻarb uchun Boltiqboʻyining NATOdan chiqishi xavfsizlikni oʻzgartiradi. Shuning uchun Gʻarb yangi ittifoqdan xavotirga tushadi."
+  },
+  {
+   "id": 36,
+   "type": "TAXMIN",
+   "src": [
+    "T07",
+    "R42"
+   ],
+   "bg": "jigarrang",
+   "kind": "icons",
+   "visual": "Padlock icons snap onto: bank card, cargo container, plane. Host worried. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "sanksiyalar",
+     "cue": 0,
+     "word": "sanksiyaga"
+    },
+    {
+     "text": "eksport va toʻlovlar",
+     "cue": 2,
+     "word": "toʻlovlarini"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Xavotir esa koʻpincha sanksiyaga aylanadi.",
+     "sub": "Xavotir esa koʻpincha sanksiyaga aylanadi.",
+     "kw": "sanksiyaga"
+    },
+    {
+     "say": "Cheklovlar bizga ham tegishi mumkin.",
+     "sub": "Cheklovlar bizga ham tegishi mumkin.",
+     "kw": "bizga ham"
+    },
+    {
+     "say": "Bu eksport va bank toʻlovlarini qiyinlashtiradi.",
+     "sub": "Bu eksport va bank toʻlovlarini qiyinlashtiradi.",
+     "kw": "bank toʻlovlarini"
+    }
+   ],
+   "say": "Xavotir esa koʻpincha sanksiyaga aylanadi. Cheklovlar bizga ham tegishi mumkin. Bu eksport va bank toʻlovlarini qiyinlashtiradi."
+  },
+  {
+   "id": 37,
+   "type": "TAXMIN",
+   "src": [
+    "R42",
+    "T08"
+   ],
+   "bg": "osmon",
+   "kind": "chart",
+   "visual": "Donut chart of Uzbekistan trade: China 21,2% slice in qizil, Russia 16% in osmon; camera pans to the China slice. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Xitoy 21,2%",
+     "cue": 1,
+     "word": "hamkori"
+    },
+    {
+     "text": "Rossiya 16%",
+     "cue": 1,
+     "word": "hamkori"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Sharqda esa Xitoy turibdi.",
+     "sub": "Sharqda esa Xitoy turibdi.",
+     "kw": "Xitoy"
+    },
+    {
+     "say": "U bugun Oʻzbekistonning birinchi savdo hamkori.",
+     "sub": "U bugun Oʻzbekistonning birinchi savdo hamkori.",
+     "kw": "birinchi"
+    },
+    {
+     "say": "Xitoy savdoni davom ettiradi, taʼsirini ham saqlashga intiladi.",
+     "sub": "Xitoy savdoni davom ettiradi, taʼsirini ham saqlashga intiladi.",
+     "kw": "taʼsirini"
+    }
+   ],
+   "say": "Sharqda esa Xitoy turibdi. U bugun Oʻzbekistonning birinchi savdo hamkori. Xitoy savdoni davom ettiradi, taʼsirini ham saqlashga intiladi."
+  },
+  {
+   "id": 38,
+   "type": "TAXMIN",
+   "src": [
+    "T03"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "icons",
+   "visual": "One big new coin in the centre (blank face); 15 smaller coins orbit and merge into it. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "umumiy pul",
+     "cue": 0,
+     "word": "pulni"
+    },
+    {
+     "text": "bitta stavka",
+     "cue": 1,
+     "word": "stavkasini"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ichkarida esa umumiy pulni bitta markaziy bank chiqaradi",
+     "sub": "Ichkarida esa umumiy pulni bitta markaziy bank chiqaradi",
+     "kw": "markaziy bank"
+    },
+    {
+     "say": "va hamma uchun bitta foiz stavkasini belgilaydi.",
+     "sub": "va hamma uchun bitta foiz stavkasini belgilaydi.",
+     "kw": "foiz stavkasini"
+    }
+   ],
+   "say": "Ichkarida esa umumiy pulni bitta markaziy bank chiqaradi va hamma uchun bitta foiz stavkasini belgilaydi."
+  },
+  {
+   "id": 39,
+   "type": "TAXMIN",
+   "src": [
+    "T03",
+    "R29"
+   ],
+   "bg": "krem",
+   "kind": "chart",
+   "visual": "Two thermometers (rich and poor economy) driven by one dial: one overheats, one freezes. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "boy iqtisod",
+     "cue": 1,
+     "word": "boy"
+    },
+    {
+     "text": "kambagʻal iqtisod",
+     "cue": 1,
+     "word": "kambagʻal"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Yevro hududi buni boshdan kechirgan:",
+     "sub": "Yevro hududi buni boshdan kechirgan:",
+     "kw": "Yevro hududi"
+    },
+    {
+     "say": "Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.",
+     "sub": "Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.",
+     "kw": "bitta stavka"
+    }
+   ],
+   "say": "Yevro hududi buni boshdan kechirgan: Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi."
+  },
+  {
+   "id": 40,
+   "type": "TAXMIN",
+   "src": [
+    "T09",
+    "R55"
+   ],
+   "bg": "yashil",
+   "kind": "map",
+   "visual": "Map with four energy producers highlighted (Russia, Kazakhstan, Turkmenistan, Azerbaijan); pipeline lines reach Uzbekistan. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "neft va gaz",
+     "cue": 1,
+     "word": "neft-gazga"
+    },
+    {
+     "text": "arzonroq yoqilgʻi",
+     "cue": 2,
+     "word": "arzonlashishi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ittifoqning kuchli tomoni esa energiya.",
+     "sub": "Ittifoqning kuchli tomoni esa energiya.",
+     "kw": "energiya"
+    },
+    {
+     "say": "Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy.",
+     "sub": "Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy.",
+     "kw": "neft-gazga"
+    },
+    {
+     "say": "Blok ichida yoqilgʻi arzonlashishi mumkin.",
+     "sub": "Blok ichida yoqilgʻi arzonlashishi mumkin.",
+     "kw": "arzonlashishi"
+    }
+   ],
+   "say": "Ittifoqning kuchli tomoni esa energiya. Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy. Blok ichida yoqilgʻi arzonlashishi mumkin."
+  },
+  {
+   "id": 41,
+   "type": "TAXMIN",
+   "src": [
+    "T09"
+   ],
+   "bg": "tun",
+   "kind": "icons",
+   "visual": "Night: a valve wheel in the middle; pipelines to Europe and Asia switch between open and closed. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "siyosiy dastak",
+     "cue": 0,
+     "word": "dastakka"
+    },
+    {
+     "text": "Yevropa va Osiyo",
+     "cue": 1,
+     "word": "Osiyo"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ammo bu boylik siyosiy dastakka ham aylanadi.",
+     "sub": "Ammo bu boylik siyosiy dastakka ham aylanadi.",
+     "kw": "siyosiy dastakka"
+    },
+    {
+     "say": "Bu Yevropa va Osiyo bilan yangi bahs keltiradi.",
+     "sub": "Bu Yevropa va Osiyo bilan yangi bahs keltiradi.",
+     "kw": "yangi bahs"
+    }
+   ],
+   "say": "Ammo bu boylik siyosiy dastakka ham aylanadi. Bu Yevropa va Osiyo bilan yangi bahs keltiradi."
+  },
+  {
+   "id": 42,
+   "type": "TAXMIN",
+   "src": [
+    "R45"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Map of Uzbekistan and its 5 neighbours: inner borders dissolve into dashes; the Afghan border thickens in qizil. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "ichki chegaralar",
+     "cue": 1,
+     "word": "yoʻqoladi"
+    },
+    {
+     "text": "Afgʻoniston chegarasi",
+     "cue": 2,
+     "word": "chegaramiz"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Chegaralar ham oʻzgaradi.",
+     "sub": "Chegaralar ham oʻzgaradi.",
+     "kw": "Chegaralar"
+    },
+    {
+     "say": "Ichki chegaralar yoʻqoladi, tashqisi qattiqlashadi.",
+     "sub": "Ichki chegaralar yoʻqoladi, tashqisi qattiqlashadi.",
+     "kw": "qattiqlashadi"
+    },
+    {
+     "say": "Afgʻoniston bilan chegaramiz ittifoq chegarasiga aylanadi.",
+     "sub": "Afgʻoniston bilan chegaramiz ittifoq chegarasiga aylanadi.",
+     "kw": "ittifoq chegarasiga"
+    }
+   ],
+   "say": "Chegaralar ham oʻzgaradi. Ichki chegaralar yoʻqoladi, tashqisi qattiqlashadi. Afgʻoniston bilan chegaramiz ittifoq chegarasiga aylanadi."
+  },
+  {
+   "id": 43,
+   "type": "FAKT",
+   "src": [
+    "R30",
+    "T03"
+   ],
+   "bg": "osmon",
+   "kind": "icons",
+   "visual": "Host holds a generic soʻm note (no real design); it flips into a blank \"umumiy pul\" note. Chip FAKT (soʻm history).",
+   "labels": [
+    {
+     "text": "soʻm, 1994",
+     "cue": 1,
+     "word": "soʻm"
+    },
+    {
+     "text": "umumiy pul",
+     "cue": 2,
+     "word": "pulga"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Oʻzbekistonda birinchi oʻzgarish pulda boʻladi.",
+     "sub": "Oʻzbekistonda birinchi oʻzgarish pulda boʻladi.",
+     "kw": "pulda"
+    },
+    {
+     "say": "Toʻqson toʻrtinchi yildan beri bizda oʻz pulimiz — soʻm bor.",
+     "sub": "94-yildan beri bizda oʻz pulimiz — soʻm bor.",
+     "kw": "soʻm"
+    },
+    {
+     "say": "Ittifoqda u umumiy pulga almashadi.",
+     "sub": "Ittifoqda u umumiy pulga almashadi.",
+     "kw": "umumiy pulga"
+    }
+   ],
+   "say": "Oʻzbekistonda birinchi oʻzgarish pulda boʻladi. Toʻqson toʻrtinchi yildan beri bizda oʻz pulimiz — soʻm bor. Ittifoqda u umumiy pulga almashadi."
+  },
+  {
+   "id": 44,
+   "type": "TAXMIN",
+   "src": [
+    "T04"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "icons",
+   "visual": "Bazaar stall: price tags on bread, rice, meat step up on cue starts; a salary envelope follows slowly behind. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "narxlar ↑",
+     "cue": 1,
+     "word": "koʻtariladi"
+    },
+    {
+     "text": "maosh sekinroq",
+     "cue": 2,
+     "word": "sekinroq"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Pul oʻzgarsa, narxlar ham oʻzgaradi.",
+     "sub": "Pul oʻzgarsa, narxlar ham oʻzgaradi.",
+     "kw": "narxlar"
+    },
+    {
+     "say": "Narxlar boy qoʻshnilarga qarab koʻtariladi,",
+     "sub": "Narxlar boy qoʻshnilarga qarab koʻtariladi,",
+     "kw": "koʻtariladi"
+    },
+    {
+     "say": "maoshlar esa ularga sekinroq yetib boradi.",
+     "sub": "maoshlar esa ularga sekinroq yetib boradi.",
+     "kw": "sekinroq"
+    }
+   ],
+   "say": "Pul oʻzgarsa, narxlar ham oʻzgaradi. Narxlar boy qoʻshnilarga qarab koʻtariladi, maoshlar esa ularga sekinroq yetib boradi."
+  },
+  {
+   "id": 45,
+   "type": "FAKT",
+   "src": [
+    "R37",
+    "T03"
+   ],
+   "bg": "krem",
+   "kind": "chart",
+   "visual": "Inflation line 9,8% → 7,3% going down; then a steering wheel handed to a distant \"markaz\" building. Chip FAKT.",
+   "labels": [
+    {
+     "text": "2024: 9,8%",
+     "cue": 0,
+     "word": "inflyatsiya"
+    },
+    {
+     "text": "2025: 7,3%",
+     "cue": 0,
+     "word": "foizga"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Holbuki, oʻtgan yili inflyatsiya yetti butun oʻndan uch foizga tushdi.",
+     "sub": "Holbuki, oʻtgan yili inflyatsiya 7,3 foizga tushdi.",
+     "kw": "7,3 foizga"
+    },
+    {
+     "say": "Ittifoqda bu jarayonni oʻzimiz boshqara olmaymiz.",
+     "sub": "Ittifoqda bu jarayonni oʻzimiz boshqara olmaymiz.",
+     "kw": "boshqara olmaymiz"
+    }
+   ],
+   "say": "Holbuki, oʻtgan yili inflyatsiya yetti butun oʻndan uch foizga tushdi. Ittifoqda bu jarayonni oʻzimiz boshqara olmaymiz."
+  },
+  {
+   "id": 46,
+   "type": "FAKT",
+   "src": [
+    "R39",
+    "R40"
+   ],
+   "bg": "osmon",
+   "kind": "chart",
+   "visual": "Salary bars: average 6,4 mln soʻm tall; teacher and doctor bars shorter with small icons. Chip FAKT.",
+   "labels": [
+    {
+     "text": "6,4 mln soʻm",
+     "cue": 0,
+     "word": "soʻm"
+    },
+    {
+     "text": "≈ 529 $",
+     "cue": 1,
+     "word": "koʻproq"
+    },
+    {
+     "text": "oʻqituvchi, shifokor",
+     "cue": 2,
+     "word": "shifokorlar"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Oʻtgan yili oʻrtacha oylik olti butun oʻndan toʻrt million soʻm boʻldi.",
+     "sub": "Oʻtgan yili oʻrtacha oylik 6,4 million soʻm boʻldi.",
+     "kw": "6,4 million"
+    },
+    {
+     "say": "Bu besh yuz dollardan sal koʻproq.",
+     "sub": "Bu 500 dollardan sal koʻproq.",
+     "kw": "500 dollardan"
+    },
+    {
+     "say": "Oʻqituvchi va shifokorlar esa kamroq oladi.",
+     "sub": "Oʻqituvchi va shifokorlar esa kamroq oladi.",
+     "kw": "kamroq"
+    }
+   ],
+   "say": "Oʻtgan yili oʻrtacha oylik olti butun oʻndan toʻrt million soʻm boʻldi. Bu besh yuz dollardan sal koʻproq. Oʻqituvchi va shifokorlar esa kamroq oladi."
+  },
+  {
+   "id": 47,
+   "type": "TAXMIN",
+   "src": [
+    "T03",
+    "R26"
+   ],
+   "bg": "yashil",
+   "kind": "icons",
+   "visual": "Two pay slips side by side in the same new currency; footprints lead from the smaller to the bigger. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "bir xil pul",
+     "cue": 0,
+     "word": "pulda"
+    },
+    {
+     "text": "koʻchish",
+     "cue": 1,
+     "word": "koʻchadi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ittifoqda maoshlar bir pulda solishtiriladi.",
+     "sub": "Ittifoqda maoshlar bir pulda solishtiriladi.",
+     "kw": "bir pulda"
+    },
+    {
+     "say": "Farqni koʻrgan odamlar yaxshi maosh tomon koʻchadi.",
+     "sub": "Farqni koʻrgan odamlar yaxshi maosh tomon koʻchadi.",
+     "kw": "koʻchadi"
+    }
+   ],
+   "say": "Ittifoqda maoshlar bir pulda solishtiriladi. Farqni koʻrgan odamlar yaxshi maosh tomon koʻchadi."
+  },
+  {
+   "id": 48,
+   "type": "FAKT",
+   "src": [
+    "R41"
+   ],
+   "bg": "jigarrang",
+   "kind": "chart",
+   "visual": "Money arrows from abroad into Uzbekistan: total 14,8 mlrd $; three quarters of the arrow coloured as from Russia. Chip FAKT.",
+   "labels": [
+    {
+     "text": "14,8 mlrd $",
+     "cue": 0,
+     "word": "oʻtkazildi"
+    },
+    {
+     "text": "77% — Rossiyadan",
+     "cue": 1,
+     "word": "Rossiyadan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.",
+     "sub": "2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.",
+     "kw": "15 milliard"
+    },
+    {
+     "say": "Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan.",
+     "sub": "Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan.",
+     "kw": "Rossiyadan"
+    }
+   ],
+   "say": "Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi. Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan."
+  },
+  {
+   "id": 49,
+   "type": "TAXMIN",
+   "src": [
+    "T05"
+   ],
+   "bg": "osmon",
+   "kind": "host",
+   "visual": "Host as a young worker with a backpack; a stack of papers (patent, registration) blows away. Host happy. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "patent",
+     "cue": 1,
+     "word": "Patent"
+    },
+    {
+     "text": "roʻyxatdan oʻtish",
+     "cue": 1,
+     "word": "roʻyxatdan"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ittifoqda migrantlar hayoti yengillashadi.",
+     "sub": "Ittifoqda migrantlar hayoti yengillashadi.",
+     "kw": "yengillashadi"
+    },
+    {
+     "say": "Patent va roʻyxatdan oʻtish muammolari yoʻqoladi.",
+     "sub": "Patent va roʻyxatdan oʻtish muammolari yoʻqoladi.",
+     "kw": "yoʻqoladi"
+    },
+    {
+     "say": "Ular oʻz yurtidagidek ishlaydi.",
+     "sub": "Ular oʻz yurtidagidek ishlaydi.",
+     "kw": "oʻz yurtidagidek"
+    }
+   ],
+   "say": "Ittifoqda migrantlar hayoti yengillashadi. Patent va roʻyxatdan oʻtish muammolari yoʻqoladi. Ular oʻz yurtidagidek ishlaydi."
+  },
+  {
+   "id": 50,
+   "type": "TAXMIN",
+   "src": [
+    "T05"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "scene",
+   "visual": "Sunset village street; young figures walk toward a bus; an empty workbench remains. Host worried. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "yoshlar ketadi",
+     "cue": 1,
+     "word": "ketishi"
+    },
+    {
+     "text": "ishchi qoʻllar",
+     "cue": 2,
+     "word": "qoʻllar"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Ammo buning teskari tomoni ham bor.",
+     "sub": "Ammo buning teskari tomoni ham bor.",
+     "kw": "teskari tomoni"
+    },
+    {
+     "say": "Gʻayratli yoshlarning ketishi osonlashadi,",
+     "sub": "Gʻayratli yoshlarning ketishi osonlashadi,",
+     "kw": "ketishi"
+    },
+    {
+     "say": "qishloqlarda esa ishchi qoʻllar kamayadi.",
+     "sub": "qishloqlarda esa ishchi qoʻllar kamayadi.",
+     "kw": "kamayadi"
+    }
+   ],
+   "say": "Ammo buning teskari tomoni ham bor. Gʻayratli yoshlarning ketishi osonlashadi, qishloqlarda esa ishchi qoʻllar kamayadi."
+  },
+  {
+   "id": 51,
+   "type": "FAKT",
+   "src": [
+    "R20",
+    "T06"
+   ],
+   "bg": "krem",
+   "kind": "icons",
+   "visual": "Open book with Uzbek text lines; an 1989 \"davlat tili\" stamp; a second book \"ish tili?\" slides in. Chip FAKT.",
+   "labels": [
+    {
+     "text": "davlat tili, 1989",
+     "cue": 0,
+     "word": "tili"
+    },
+    {
+     "text": "umumiy ish tili?",
+     "cue": 1,
+     "word": "kerak"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Tilga kelsak, oʻzbek tili sakson toʻqqizinchi yildan beri davlat tili.",
+     "sub": "Tilga kelsak, oʻzbek tili 89-yildan beri davlat tili.",
+     "kw": "davlat tili"
+    },
+    {
+     "say": "Ittifoqqa esa umumiy ish tili kerak boʻladi,",
+     "sub": "Ittifoqqa esa umumiy ish tili kerak boʻladi,",
+     "kw": "ish tili"
+    },
+    {
+     "say": "va bu, ehtimol, rus tili boʻladi.",
+     "sub": "va bu, ehtimol, rus tili boʻladi.",
+     "kw": "rus tili"
+    }
+   ],
+   "say": "Tilga kelsak, oʻzbek tili sakson toʻqqizinchi yildan beri davlat tili. Ittifoqqa esa umumiy ish tili kerak boʻladi, va bu, ehtimol, rus tili boʻladi."
+  },
+  {
+   "id": 52,
+   "type": "FAKT",
+   "src": [
+    "R43"
+   ],
+   "bg": "jigarrang",
+   "kind": "icons",
+   "visual": "Archive desk: Latin letter tiles \"Oʻ Gʻ Sh Ch\" beside Cyrillic tiles; a 1993 stamp; the arrow between them slows. Chip FAKT.",
+   "labels": [
+    {
+     "text": "lotin alifbosi, 1993",
+     "cue": 0,
+     "word": "yozuviga"
+    },
+    {
+     "text": "kirill",
+     "cue": 1,
+     "word": "kirillda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Alifbo ham muhim: lotin yozuviga toʻqson uchinchi yilda oʻta boshlaganmiz.",
+     "sub": "Alifbo ham muhim: lotin yozuviga 93-yilda oʻta boshlaganmiz.",
+     "kw": "lotin yozuviga"
+    },
+    {
+     "say": "Umumiy hujjatlar kirillda boʻlsa, bu oʻtish sekinlashadi.",
+     "sub": "Umumiy hujjatlar kirillda boʻlsa, bu oʻtish sekinlashadi.",
+     "kw": "sekinlashadi"
+    }
+   ],
+   "say": "Alifbo ham muhim: lotin yozuviga toʻqson uchinchi yilda oʻta boshlaganmiz. Umumiy hujjatlar kirillda boʻlsa, bu oʻtish sekinlashadi."
+  },
+  {
+   "id": 53,
+   "type": "FAKT",
+   "src": [
+    "R47",
+    "T06"
+   ],
+   "bg": "osmon",
+   "kind": "scene",
+   "visual": "Bright classroom, host at a desk (happy), board shows \"11 yil\"; a second-language book appears on each desk. Chip FAKT.",
+   "labels": [
+    {
+     "text": "11 yil, bepul",
+     "cue": 0,
+     "word": "taʼlim"
+    },
+    {
+     "text": "umumiy standart",
+     "cue": 1,
+     "word": "standartga"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Maktabda hozir oʻn bir yillik bepul taʼlim bor.",
+     "sub": "Maktabda hozir 11 yillik bepul taʼlim bor.",
+     "kw": "11 yillik"
+    },
+    {
+     "say": "Ittifoqda dasturlar umumiy standartga moslashadi.",
+     "sub": "Ittifoqda dasturlar umumiy standartga moslashadi.",
+     "kw": "umumiy standartga"
+    }
+   ],
+   "say": "Maktabda hozir oʻn bir yillik bepul taʼlim bor. Ittifoqda dasturlar umumiy standartga moslashadi."
+  },
+  {
+   "id": 54,
+   "type": "TAXMIN",
+   "src": [
+    "T02"
+   ],
+   "bg": "yashil",
+   "kind": "map",
+   "visual": "Union map with university pins in several republics; a student icon hops between them. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "istalgan respublika",
+     "cue": 1,
+     "word": "respublikada"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Maktabdan keyin esa imkoniyat kengayadi.",
+     "sub": "Maktabdan keyin esa imkoniyat kengayadi.",
+     "kw": "kengayadi"
+    },
+    {
+     "say": "Talabalar istalgan respublikada oʻqiy oladi.",
+     "sub": "Talabalar istalgan respublikada oʻqiy oladi.",
+     "kw": "istalgan respublikada"
+    }
+   ],
+   "say": "Maktabdan keyin esa imkoniyat kengayadi. Talabalar istalgan respublikada oʻqiy oladi."
+  },
+  {
+   "id": 55,
+   "type": "FAKT",
+   "src": [
+    "R07",
+    "R46"
+   ],
+   "bg": "tun",
+   "kind": "scene",
+   "visual": "Evening silhouette of a generic dome and minaret (no real building), stars; host calm-thinking; a scroll \"vijdon erkinligi\" unrolls. Chip FAKT.",
+   "labels": [
+    {
+     "text": "Sovet davri: cheklovlar",
+     "cue": 0,
+     "word": "cheklangan"
+    },
+    {
+     "text": "vijdon erkinligi",
+     "cue": 2,
+     "word": "erkinligi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Din esa Sovet davrida qattiq cheklangan edi.",
+     "sub": "Din esa Sovet davrida qattiq cheklangan edi.",
+     "kw": "cheklangan"
+    },
+    {
+     "say": "Bugun aholimizning aksariyati musulmon.",
+     "sub": "Bugun aholimizning aksariyati musulmon.",
+     "kw": "musulmon"
+    },
+    {
+     "say": "Shartnomada vijdon erkinligi qatʼiy yozilishi kerak.",
+     "sub": "Shartnomada vijdon erkinligi qatʼiy yozilishi kerak.",
+     "kw": "vijdon erkinligi"
+    }
+   ],
+   "say": "Din esa Sovet davrida qattiq cheklangan edi. Bugun aholimizning aksariyati musulmon. Shartnomada vijdon erkinligi qatʼiy yozilishi kerak."
+  },
+  {
+   "id": 56,
+   "type": "FAKT",
+   "src": [
+    "R08"
+   ],
+   "bg": "krem",
+   "kind": "icons",
+   "visual": "Old-style passport with an exit-permit stamp (archive), then a modern ID card; a train crosses an inner border freely. Chip FAKT.",
+   "labels": [
+    {
+     "text": "chiqish uchun ruxsat",
+     "cue": 0,
+     "word": "ruxsat"
+    },
+    {
+     "text": "ichki safar",
+     "cue": 1,
+     "word": "safarlar"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Sovet davrida chet elga chiqishga ruxsat kerak edi.",
+     "sub": "Sovet davrida chet elga chiqishga ruxsat kerak edi.",
+     "kw": "ruxsat"
+    },
+    {
+     "say": "Yangi ittifoqda ichki safarlar osonlashadi.",
+     "sub": "Yangi ittifoqda ichki safarlar osonlashadi.",
+     "kw": "ichki safarlar"
+    }
+   ],
+   "say": "Sovet davrida chet elga chiqishga ruxsat kerak edi. Yangi ittifoqda ichki safarlar osonlashadi."
+  },
+  {
+   "id": 57,
+   "type": "TAXMIN",
+   "src": [
+    "R54"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "scene",
+   "visual": "Sunset over generic blue domes and an arch (no copy of a real landmark); tourists with suitcases; a visa form appears and the queue slows. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "vizasiz rejim",
+     "cue": 0,
+     "word": "vizasiz"
+    },
+    {
+     "text": "umumiy viza",
+     "cue": 1,
+     "word": "viza"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Bugun esa koʻp davlat fuqarolari bizga vizasiz keladi.",
+     "sub": "Bugun esa koʻp davlat fuqarolari bizga vizasiz keladi.",
+     "kw": "vizasiz"
+    },
+    {
+     "say": "Umumiy viza siyosati bu ochiqlikni toraytirishi mumkin.",
+     "sub": "Umumiy viza siyosati bu ochiqlikni toraytirishi mumkin.",
+     "kw": "toraytirishi"
+    }
+   ],
+   "say": "Bugun esa koʻp davlat fuqarolari bizga vizasiz keladi. Umumiy viza siyosati bu ochiqlikni toraytirishi mumkin."
+  },
+  {
+   "id": 58,
+   "type": "TAXMIN",
+   "src": [
+    "R24",
+    "T10"
+   ],
+   "bg": "osmon",
+   "kind": "icons",
+   "visual": "Delivery truck with textile and fruit rolls across a dissolved border onto a huge map; counter 300 mln customers. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "300 mln xaridor",
+     "cue": 1,
+     "word": "xaridorga"
+    },
+    {
+     "text": "bojsiz",
+     "cue": 1,
+     "word": "bojsiz"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Biznes uchun esa ulkan bozor ochiladi.",
+     "sub": "Biznes uchun esa ulkan bozor ochiladi.",
+     "kw": "ulkan bozor"
+    },
+    {
+     "say": "Uch yuz million xaridorga bojsiz yetib borish mumkin.",
+     "sub": "300 million xaridorga bojsiz yetib borish mumkin.",
+     "kw": "300 million"
+    }
+   ],
+   "say": "Biznes uchun esa ulkan bozor ochiladi. Uch yuz million xaridorga bojsiz yetib borish mumkin."
+  },
+  {
+   "id": 59,
+   "type": "TAXMIN",
+   "src": [
+    "T10"
+   ],
+   "bg": "yashil",
+   "kind": "icons",
+   "visual": "Small local shop next to a giant chain-store block casting a shadow; a \"mulk huquqi\" shield appears in front of the shop. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "raqobat",
+     "cue": 0,
+     "word": "raqobat"
+    },
+    {
+     "text": "mulk huquqi",
+     "cue": 1,
+     "word": "huquqi"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Lekin katta bozor — katta raqobat degani.",
+     "sub": "Lekin katta bozor — katta raqobat degani.",
+     "kw": "raqobat"
+    },
+    {
+     "say": "Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.",
+     "sub": "Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.",
+     "kw": "Mulk huquqi"
+    }
+   ],
+   "say": "Lekin katta bozor — katta raqobat degani. Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi."
+  },
+  {
+   "id": 60,
+   "type": "FAKT",
+   "src": [
+    "R09",
+    "R48"
+   ],
+   "bg": "jigarrang",
+   "kind": "chart",
+   "visual": "Two calendar bars: Soviet 24 months vs today 12 months; a question mark over a third bar \"umumiy armiya\". Chip FAKT.",
+   "labels": [
+    {
+     "text": "Sovet: 24 oy",
+     "cue": 0,
+     "word": "yil"
+    },
+    {
+     "text": "bugun: 12 oy",
+     "cue": 1,
+     "word": "oy"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Armiyada Sovet davrida xizmat ikki yil edi,",
+     "sub": "Armiyada Sovet davrida xizmat 2 yil edi,",
+     "kw": "2 yil"
+    },
+    {
+     "say": "bugun esa oʻn ikki oy.",
+     "sub": "bugun esa 12 oy.",
+     "kw": "12 oy"
+    },
+    {
+     "say": "Umumiy armiyada muddatni markaz belgilaydi.",
+     "sub": "Umumiy armiyada muddatni markaz belgilaydi.",
+     "kw": "markaz"
+    }
+   ],
+   "say": "Armiyada Sovet davrida xizmat ikki yil edi, bugun esa oʻn ikki oy. Umumiy armiyada muddatni markaz belgilaydi."
+  },
+  {
+   "id": 61,
+   "type": "TAXMIN",
+   "src": [
+    "T05",
+    "T09",
+    "T10"
+   ],
+   "bg": "yashil",
+   "kind": "icons",
+   "visual": "Left pan of a balance fills with gain icons dropping in on cue words: market, migrant, energy, shield. Host happy. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "+ bozor",
+     "cue": 0,
+     "word": "bozor"
+    },
+    {
+     "text": "+ energiya",
+     "cue": 1,
+     "word": "energiya"
+    },
+    {
+     "text": "+ xavfsizlik",
+     "cue": 1,
+     "word": "xavfsizlik"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Jamlasak, yutuqlar: katta bozor, migrantlarga qulaylik,",
+     "sub": "Jamlasak, yutuqlar: katta bozor, migrantlarga qulaylik,",
+     "kw": "yutuqlar"
+    },
+    {
+     "say": "arzon energiya va umumiy xavfsizlik.",
+     "sub": "arzon energiya va umumiy xavfsizlik.",
+     "kw": "energiya"
+    }
+   ],
+   "say": "Jamlasak, yutuqlar: katta bozor, migrantlarga qulaylik, arzon energiya va umumiy xavfsizlik."
+  },
+  {
+   "id": 62,
+   "type": "TAXMIN",
+   "src": [
+    "T03",
+    "T06",
+    "R05"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "icons",
+   "visual": "Right pan fills with loss icons: soʻm coin, compass (foreign policy), letter tile, cotton boll; the scale levels out. Host worried. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "− oʻz pulimiz",
+     "cue": 0,
+     "word": "pulimiz"
+    },
+    {
+     "text": "− mustaqil siyosat",
+     "cue": 0,
+     "word": "siyosat"
+    },
+    {
+     "text": "xom ashyo xavfi",
+     "cue": 1,
+     "word": "xom"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat.",
+     "sub": "Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat.",
+     "kw": "Yoʻqotishlar"
+    },
+    {
+     "say": "Yana xom ashyo yetkazuvchisiga aylanish xavfi bor.",
+     "sub": "Yana xom ashyo yetkazuvchisiga aylanish xavfi bor.",
+     "kw": "xom ashyo"
+    }
+   ],
+   "say": "Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat. Yana xom ashyo yetkazuvchisiga aylanish xavfi bor."
+  },
+  {
+   "id": 63,
+   "type": "TAXMIN",
+   "src": [
+    "T10",
+    "R26"
+   ],
+   "bg": "osmon",
+   "kind": "map",
+   "visual": "Union map: poorer republics highlighted yashil (gain), Russia sariq (influence). Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "yutadi: kambagʻalroqlar",
+     "cue": 1,
+     "word": "oladi"
+    },
+    {
+     "text": "yutadi: Rossiya",
+     "cue": 2,
+     "word": "taʼsir"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Butun ittifoqda kim yutadi?",
+     "sub": "Butun ittifoqda kim yutadi?",
+     "kw": "yutadi"
+    },
+    {
+     "say": "Kambagʻalroq respublikalar bozor va yordam oladi,",
+     "sub": "Kambagʻalroq respublikalar bozor va yordam oladi,",
+     "kw": "yordam"
+    },
+    {
+     "say": "Rossiya esa katta taʼsir oladi.",
+     "sub": "Rossiya esa katta taʼsir oladi.",
+     "kw": "taʼsir"
+    }
+   ],
+   "say": "Butun ittifoqda kim yutadi? Kambagʻalroq respublikalar bozor va yordam oladi, Rossiya esa katta taʼsir oladi."
+  },
+  {
+   "id": 64,
+   "type": "TAXMIN",
+   "src": [
+    "T10",
+    "R31",
+    "R34"
+   ],
+   "bg": "krem",
+   "kind": "map",
+   "visual": "Same map: Baltics, Georgia and Moldova highlighted qizil (loss). Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Boltiqboʻyi",
+     "cue": 1,
+     "word": "Boltiqboʻyi"
+    },
+    {
+     "text": "Gruziya va Moldova",
+     "cue": 2,
+     "word": "Moldova"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Kim esa yutqazadi?",
+     "sub": "Kim esa yutqazadi?",
+     "kw": "yutqazadi"
+    },
+    {
+     "say": "Boltiqboʻyi Yevropa bozoridan ajraladi.",
+     "sub": "Boltiqboʻyi Yevropa bozoridan ajraladi.",
+     "kw": "ajraladi"
+    },
+    {
+     "say": "Gruziya va Moldova tanlagan yoʻlidan voz kechadi.",
+     "sub": "Gruziya va Moldova tanlagan yoʻlidan voz kechadi.",
+     "kw": "voz kechadi"
+    }
+   ],
+   "say": "Kim esa yutqazadi? Boltiqboʻyi Yevropa bozoridan ajraladi. Gruziya va Moldova tanlagan yoʻlidan voz kechadi."
+  },
+  {
+   "id": 65,
+   "type": "TAXMIN",
+   "src": [
+    "T10"
+   ],
+   "bg": "yashil",
+   "kind": "host",
+   "visual": "Two neutral generic characters (not real people) look at the same map: one smiles, one frowns. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "qayta uchrashuv",
+     "cue": 1,
+     "word": "uchrashuvi"
+    },
+    {
+     "text": "mustaqillikni yoʻqotish",
+     "cue": 2,
+     "word": "yoʻqotish"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Bir voqeaga har xalq turlicha qaraydi.",
+     "sub": "Bir voqeaga har xalq turlicha qaraydi.",
+     "kw": "turlicha"
+    },
+    {
+     "say": "Kimdir buni eski qoʻshnilar uchrashuvi deb biladi,",
+     "sub": "Kimdir buni eski qoʻshnilar uchrashuvi deb biladi,",
+     "kw": "uchrashuvi"
+    },
+    {
+     "say": "boshqasi uchun esa bu mustaqillikni yoʻqotish.",
+     "sub": "boshqasi uchun esa bu mustaqillikni yoʻqotish.",
+     "kw": "mustaqillikni yoʻqotish"
+    }
+   ],
+   "say": "Bir voqeaga har xalq turlicha qaraydi. Kimdir buni eski qoʻshnilar uchrashuvi deb biladi, boshqasi uchun esa bu mustaqillikni yoʻqotish."
+  },
+  {
+   "id": 66,
+   "type": "TAXMIN",
+   "src": [
+    "T11",
+    "R18"
+   ],
+   "bg": "toʻq sariq",
+   "kind": "timeline",
+   "visual": "Timeline 1991 → today; a baby icon at 1991 grows into a young adult at today. Host thinking. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "1991",
+     "cue": 1,
+     "word": "yildan"
+    },
+    {
+     "text": "yangi avlod",
+     "cue": 1,
+     "word": "avlod"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Xoʻsh, nega tarix orqaga qaytmaydi?",
+     "sub": "Xoʻsh, nega tarix orqaga qaytmaydi?",
+     "kw": "orqaga qaytmaydi"
+    },
+    {
+     "say": "Toʻqson birinchi yildan beri yangi avlod ulgʻaydi.",
+     "sub": "91-yildan beri yangi avlod ulgʻaydi.",
+     "kw": "yangi avlod"
+    },
+    {
+     "say": "Ular uchun mustaqillik odatiy hol.",
+     "sub": "Ular uchun mustaqillik odatiy hol.",
+     "kw": "mustaqillik"
+    }
+   ],
+   "say": "Xoʻsh, nega tarix orqaga qaytmaydi? Toʻqson birinchi yildan beri yangi avlod ulgʻaydi. Ular uchun mustaqillik odatiy hol."
+  },
+  {
+   "id": 67,
+   "type": "TAXMIN",
+   "src": [
+    "T11",
+    "R51"
+   ],
+   "bg": "osmon",
+   "kind": "icons",
+   "visual": "Fifteen small stacks appear: coin, shield, colour chip, signature; each grows roots into the ground. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "oʻz puli, armiyasi, ittifoqlari",
+     "cue": 0,
+     "word": "ittifoqlari"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Har davlatda oʻz puli, armiyasi va ittifoqlari bor.",
+     "sub": "Har davlatda oʻz puli, armiyasi va ittifoqlari bor.",
+     "kw": "oʻz puli"
+    },
+    {
+     "say": "Ularni bekor qilish yaratishdan ham qiyin.",
+     "sub": "Ularni bekor qilish yaratishdan ham qiyin.",
+     "kw": "qiyin"
+    }
+   ],
+   "say": "Har davlatda oʻz puli, armiyasi va ittifoqlari bor. Ularni bekor qilish yaratishdan ham qiyin."
+  },
+  {
+   "id": 68,
+   "type": "TAXMIN",
+   "src": [
+    "T11"
+   ],
+   "bg": "jigarrang",
+   "kind": "scene",
+   "visual": "Archive book pages flip; then a modern road with trucks and travellers linking the countries. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "savdo va doʻstlik",
+     "cue": 1,
+     "word": "doʻstlik"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Tarqalgan ittifoqlar tarixda deyarli qayta tiklanmagan.",
+     "sub": "Tarqalgan ittifoqlar tarixda deyarli qayta tiklanmagan.",
+     "kw": "qayta tiklanmagan"
+    },
+    {
+     "say": "Xalqlar esa savdo va doʻstlik orqali yaqinlashadi.",
+     "sub": "Xalqlar esa savdo va doʻstlik orqali yaqinlashadi.",
+     "kw": "savdo va doʻstlik"
+    }
+   ],
+   "say": "Tarqalgan ittifoqlar tarixda deyarli qayta tiklanmagan. Xalqlar esa savdo va doʻstlik orqali yaqinlashadi."
+  },
+  {
+   "id": 69,
+   "type": "TAXMIN",
+   "src": [
+    "T10",
+    "T11"
+   ],
+   "bg": "yashil",
+   "kind": "host",
+   "visual": "Host faces camera (thinking → calm smile), Uzbekistan map behind; two cards: imkoniyat / xavf. Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "imkoniyat",
+     "cue": 0,
+     "word": "imkoniyat"
+    },
+    {
+     "text": "xavf",
+     "cue": 0,
+     "word": "xavf"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Xulosa: bunday ittifoq bizga ham imkoniyat, ham xavf.",
+     "sub": "Xulosa: bunday ittifoq bizga ham imkoniyat, ham xavf.",
+     "kw": "imkoniyat"
+    },
+    {
+     "say": "Bozor kengayadi, lekin mustaqil qaror imkoni torayadi.",
+     "sub": "Bozor kengayadi, lekin mustaqil qaror imkoni torayadi.",
+     "kw": "torayadi"
+    }
+   ],
+   "say": "Xulosa: bunday ittifoq bizga ham imkoniyat, ham xavf. Bozor kengayadi, lekin mustaqil qaror imkoni torayadi."
+  },
+  {
+   "id": 70,
+   "type": "TAXMIN",
+   "src": [],
+   "bg": "osmon",
+   "kind": "host",
+   "visual": "Host points at the viewer (happy), then at a comment bubble with \"Ha / Yoʻq\". Corner: TAXMINIY SSENARIY.",
+   "labels": [
+    {
+     "text": "Ha yoki yoʻq?",
+     "cue": 1,
+     "word": "boʻlarmidingiz"
+    },
+    {
+     "text": "izohlarda yozing",
+     "cue": 2,
+     "word": "izohlarda"
+    }
+   ],
+   "cues": [
+    {
+     "say": "Endi navbat sizga.",
+     "sub": "Endi navbat sizga.",
+     "kw": "sizga"
+    },
+    {
+     "say": "Siz bunday ittifoqqa ha deb ovoz bergan boʻlarmidingiz?",
+     "sub": "Siz bunday ittifoqqa ha deb ovoz bergan boʻlarmidingiz?",
+     "kw": "ha deb"
+    },
+    {
+     "say": "Javobingizni izohlarda yozing.",
+     "sub": "Javobingizni izohlarda yozing.",
+     "kw": "izohlarda"
+    }
+   ],
+   "say": "Endi navbat sizga. Siz bunday ittifoqqa ha deb ovoz bergan boʻlarmidingiz? Javobingizni izohlarda yozing."
+  }
+ ]
+}

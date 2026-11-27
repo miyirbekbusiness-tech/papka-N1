@@ -2,19 +2,23 @@
   "project": "Agarda SSSR yana tiklansa?",
   "stages": {
     "0": {
-      "status": "blocked",
+      "status": "done",
       "gate": "passed",
-      "blocked_on": "Mirjalol voice not in new ElevenLabs account (key OK, free 10000 chars)",
-      "notes": "ref/namuna.mp4 missing"
+      "notes": "ref/namuna.mp4 missing; working from text style description"
     },
     "1": {
-      "status": "todo"
+      "status": "done",
+      "gate": "passed"
     },
     "2": {
-      "status": "todo"
+      "status": "done",
+      "gate": "passed",
+      "say_chars": 8526,
+      "speech_target_s": 578,
+      "note": "595s+breaths+hook exceeds 10:00±10; target lowered to 578s"
     },
     "3": {
-      "status": "todo",
+      "status": "in_progress",
       "voiced": []
     },
     "4": {
@@ -35,7 +39,8 @@
   },
   "voice": {
     "name": "Mirjalol Professional Voice",
-    "voice_id_seen_via_connector": "cfWx14ZbaEUT4BjIA5tH"
+    "account_name": "Mirjalol - Calm, Confident",
+    "voice_id": "cfWx14ZbaEUT4BjIA5tH"
   },
   "elevenlabs": {
     "tier": "free",

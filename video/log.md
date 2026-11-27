@@ -6,3 +6,14 @@
 - Toʻxtash sababi: .env va ELEVENLABS_API_KEY yoʻq; api.elevenlabs.io bu konteyner tarmogʻida bloklangan. ref/namuna.mp4 ham yoʻq. Ulangan ElevenLabs akkauntida "Mirjalol Professional Voice" (cfWx14ZbaEUT4BjIA5tH) bor, lekin u free tarif: 10 000 dan 5 485 belgi qolgan.
 - Yangilanish: ElevenLabs kaliti xavfsiz forma orqali saqlandi (proxy kalitni oʻzi qoʻshadi, .env da shablon qiymat turadi). Akkaunt: free, 0/10 000 belgi ishlatilgan. Oʻzbek tilini qoʻllaydigan modellar: eleven_v4, eleven_v4_turbo (eleven_v3 va multilingual_v2 roʻyxatida uz yoʻq).
 - Ovoz: yangi akkauntda "Mirjalol" yoʻq; Voice Library'da bor (cfWx14ZbaEUT4BjIA5tH, free_users_allowed=true). Qoʻshishni foydalanuvchidan soʻradim.
+- STAGE 0 yopildi: foydalanuvchi Mirjalolni akkauntga qoʻshdi (cfWx14ZbaEUT4BjIA5tH, akkauntdagi nomi "Mirjalol - Calm, Confident" — Voice Library'dagi "Mirjalol Professional Voice" bilan bir xil ID).
+
+## STAGE 1 · Research — gate oʻtdi
+- research.md: 55 ta R-fakt (har biri 2 URL), 11 ta TAXMIN mulohaza (T01–T11), 7 ta manbalar farqi alohida roʻyxatda. Jahon banki/XVJ API bu muhitdan ochilmadi — raqamlar veb-qidiruv orqali milliy statistika, XVJ va Jahon banki sahifalaridan olindi.
+- Raqamlar bir xil "nashr"dan: YaIM jon boshiga — XVJ 2025 (avgust 2025), aholi — Jahon banki 2024 + stat.uz/stat.gov.kz. Farqli raqamlar (soʻm sanasi, YaIM hajmi, musulmonlar ulushi) ssenariyda raqamsiz aytiladi.
+- GATE: keyingi bosqichlarda ishlatiladigan har bir raqam research.md'da 2 manba bilan; hisoblangan raqamlar (300 mln, 23 baravar, ulushlar) "FAKT (hisob)" deb belgilandi.
+
+## STAGE 2 · Script — gate oʻtdi
+- script.json: sahnalar 2–70 (69 ta; 23 FAKT, 46 TAXMIN), 182 cue; har bir sahnada say/subs(cues)/visual/labels/src. Hamma FAKT sahna research.md dagi R-ID'larga bogʻlangan (topilmagan ID: 0).
+- Uzunlik: say jami 8 526 belgi (≈609 s @14 bel/s). Muhim: 595 s nutq + 69×0,35 s nafas + hook ≈ 623 s — bu 10:00±10 s ga sigʻmaydi, shuning uchun STAGE 3 kalibrlashda nutq maqsadi ≈578 s qilib olinadi (video ≈10:06). ElevenLabs krediti (10 000) ham shunga yetadi.
+- GATE: subs_review.md — 182 cue roʻyxati, 15+ tuzatish qayd etilgan, ochiq muammo 0; tools/lint_script.py — 0 muammo.
