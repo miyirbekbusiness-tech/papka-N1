@@ -30,8 +30,14 @@
         "speed": 1.0
       },
       "seed": 4242,
-      "blocked_on": "402 paid_plan_required: free users cannot use library voices via API (no credits spent)",
-      "next_scene": 2
+      "blocked_on": "API: 402 paid_plan_required (free tier, library voice). Connector: audio host elevenlabsusercontent.com blocked (user declined). 0 scenes voiced.",
+      "next_scene": 2,
+      "connector_test": {
+        "flow_id": "WbNbGKE3zKqa9o7RU5ef",
+        "scene": 2,
+        "credits": 135,
+        "downloaded": false
+      }
     },
     "4": {
       "status": "todo"

@@ -21,3 +21,4 @@
 ## STAGE 3 · Voice — toʻxtatildi (tarif cheklovi)
 - Ovoz topildi (cfWx14ZbaEUT4BjIA5tH), model: eleven_v4 (oʻzbek tilini faqat v4/v4_turbo qoʻllaydi; v3 va multilingual_v2 da uz yoʻq). v4 `style` parametrini qoʻllamaydi (can_use_style=false) — yuboriladi, lekin taʼsir qilmaydi.
 - Birinchi soʻrov (sahna 2) 402 paid_plan_required qaytardi: bepul tarif Voice Library ovozlarini API orqali ishlata olmaydi. Kredit sarflanmadi, 0/69 sahna ovozlangan, keyingisi: 2. Qoida boʻyicha qayta urinilmadi.
+- Muqobil yoʻl sinaldi: ElevenLabs ulagichi (boshqa, bepul akkaunt) Mirjalol bilan sahna 2 ni yaratdi (8,16 s, 135 kredit sarflandi), lekin audio faqat elevenlabsusercontent.com dan yuklanadi — bu host tarmoqda yopiq; ruxsat soʻrovi rad etildi. Fayl konteynerga tushmadi, sahna ovozlangan deb hisoblanmadi.
