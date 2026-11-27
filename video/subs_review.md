@@ -30,6 +30,10 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 - Ovoz matnida raqam yoʻq; yillar va sonlar soʻz bilan ("bir ming toʻqqiz yuz yigirma ikkinchi", "yetti butun oʻndan uch"). "SSSR" ovozda — "Sovet Ittifoqi"; MDH — "Mustaqil Davlatlar Hamdoʻstligi"; NATO — oʻzicha oʻqiladi.
 - "Siz" murojaati (sahna 15, 70), qisqa gaplar, rus kalkalari yoʻq.
 
+## Kalibrlashdan keyin qoʻshilgan cue'lar (STAGE 3)
+
+Haqiqiy tezlik 15,8 bel/s chiqdi (taxmin 14), shuning uchun 7–70-sahnalarga avval qisqartirilgan 14 ta jumla qaytarildi (13: 7,7% oʻsish — R36; 14, 17, 24, 29, 36, 39, 41, 48, 49, 58, 59, 62; 12-sahna boshlanishi). Har biri yuqoridagi qoidalar boʻyicha qayta oʻqildi va linterdan oʻtdi.
+
 ## Barcha cue'lar
 
 | Sahna | # | Cue (ekranda) | Soʻz | Qatorlar | Holat |
@@ -64,22 +68,25 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 11 FAKT | 1 | Nisbatlar ham oʻzgardi. | 3 | 1 | OK |
 | 11 FAKT | 2 | Avval har 14 sovet fuqarosidan biri oʻzbekistonlik edi. | 8 | 2 | OK |
 | 11 FAKT | 3 | Bugun esa har 8 kishidan biri oʻzbekistonlik. | 7 | 2 | OK |
-| 12 FAKT | 1 | Eng katta farq esa daromadda. | 5 | 1 | OK |
+| 12 FAKT | 1 | Lekin eng katta farq odamlar sonida emas, daromadda. | 8 | 2 | OK |
 | 12 FAKT | 2 | Estoniyada jon boshiga qariyb 33 ming dollar, | 7 | 2 | OK |
 | 12 FAKT | 3 | Tojikistonda esa 1 400 dollar atrofida. | 6 | 1 | OK |
 | 12 FAKT | 4 | Farq qariyb 23 baravar. | 4 | 1 | OK |
 | 13 FAKT | 1 | Oʻzbekistonda bu raqam 3 500 dollar atrofida. | 7 | 2 | OK |
 | 13 FAKT | 2 | Qozogʻistonda esa u hatto Rossiyadan ham yuqori. | 7 | 2 | OK |
-| 14 FAKT | 1 | Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda. | 6 | 2 | OK |
-| 14 FAKT | 2 | 4 tasi Rossiya bilan iqtisodiy ittifoqda. | 6 | 1 | OK |
-| 14 FAKT | 3 | Oʻzbekiston esa unda kuzatuvchi. | 4 | 1 | OK |
+| 13 FAKT | 3 | Ammo iqtisodiyotimiz oʻtgan yili 7,7 foiz oʻsdi. | 7 | 2 | OK |
+| 14 FAKT | 1 | Bu davlatlar bugun turli tomonga qarab ketgan. | 7 | 2 | OK |
+| 14 FAKT | 2 | Boltiqboʻyi Yevropa Ittifoqi va NATOda. | 5 | 1 | OK |
+| 14 FAKT | 3 | 4 tasi Rossiya bilan iqtisodiy ittifoqda. | 6 | 1 | OK |
+| 14 FAKT | 4 | Oʻzbekiston esa unda kuzatuvchi. | 4 | 1 | OK |
 | 15 TAXMIN | 1 | Endi tasavvur qiling: ular yana birlashsa-chi? | 6 | 2 | OK |
 | 15 TAXMIN | 2 | Faqat tinch yoʻl bilan, referendum orqali. | 6 | 1 | OK |
 | 16 TAXMIN | 1 | Lekin kim bunga rozi boʻladi? | 5 | 1 | OK |
 | 16 TAXMIN | 2 | Hozir ayrim davlatlar aksincha ittifoqlardan chiqmoqda. | 6 | 2 | OK |
 | 16 TAXMIN | 3 | Shuning uchun bu prognoz emas, fikriy tajriba. | 7 | 2 | OK |
 | 17 TAXMIN | 1 | Faraz qilaylik, hamma rozi boʻldi. | 5 | 1 | OK |
-| 17 TAXMIN | 2 | Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi. | 8 | 2 | OK |
+| 17 TAXMIN | 2 | Yangi ittifoq eski tizimning nusxasi boʻlmaydi. | 6 | 2 | OK |
+| 17 TAXMIN | 3 | Unda umumiy bozor, pul va mudofaa boʻladi. | 7 | 1 | OK |
 | 18 TAXMIN | 1 | Respublikalar oʻz tili va parlamentini saqlaydi, | 6 | 2 | OK |
 | 18 TAXMIN | 2 | lekin muhim qarorlar umumiy markazda qabul qilinadi. | 7 | 2 | OK |
 | 18 TAXMIN | 3 | Bahs shu yerda boshlanadi. | 4 | 1 | OK |
@@ -98,8 +105,9 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 23 TAXMIN | 1 | Moldova aksincha, Yevropaga qarab ketmoqda. | 5 | 2 | OK |
 | 23 TAXMIN | 2 | U Mustaqil Davlatlar Hamdoʻstligidan chiqishga qaror qilgan. | 7 | 2 | OK |
 | 23 TAXMIN | 3 | Bu savol jamiyatni ikkiga boʻladi. | 5 | 1 | OK |
-| 24 TAXMIN | 1 | Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi. | 6 | 2 | OK |
-| 24 TAXMIN | 2 | U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi. | 7 | 2 | OK |
+| 24 TAXMIN | 1 | Boltiqboʻyida vaziyat butunlay boshqacha. | 4 | 1 | OK |
+| 24 TAXMIN | 2 | Estoniya ittifoqdagi eng boy respublika boʻlardi. | 6 | 2 | OK |
+| 24 TAXMIN | 3 | U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi. | 7 | 2 | OK |
 | 25 TAXMIN | 1 | Latviyada yevrodan yangi pulga oʻtish narxlarni beqaror qiladi. | 8 | 2 | OK |
 | 25 TAXMIN | 2 | Biznes Yevropa bozoridan ayrilishdan qoʻrqadi. | 5 | 2 | OK |
 | 26 TAXMIN | 1 | Litva esa Ittifoqdan birinchi boʻlib chiqqan edi. | 7 | 2 | OK |
@@ -112,7 +120,8 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 28 TAXMIN | 2 | lekin harbiy ittifoqdagi ishtirokini muzlatgan. | 5 | 2 | OK |
 | 28 TAXMIN | 3 | U xavfsizlik va mustaqil siyosat orasida tanlaydi. | 7 | 2 | OK |
 | 29 TAXMIN | 1 | Ozarbayjon esa neft va gazi bilan kuchli. | 7 | 1 | OK |
-| 29 TAXMIN | 2 | Ittifoqda u daromadini boshqalar bilan boʻlishadi. | 6 | 2 | OK |
+| 29 TAXMIN | 2 | U hozir hech bir bunday ittifoqqa kirmagan. | 7 | 2 | OK |
+| 29 TAXMIN | 3 | Ittifoqda u daromadini boshqalar bilan boʻlishadi. | 6 | 2 | OK |
 | 30 TAXMIN | 1 | Markaziy Osiyoda eng boy davlat — Qozogʻiston. | 7 | 2 | OK |
 | 30 TAXMIN | 2 | Neft pulining bir qismi umumiy byudjetga ketadi, | 7 | 2 | OK |
 | 30 TAXMIN | 3 | lekin u ittifoqning ikkinchi kuchli markaziga aylanadi. | 7 | 2 | OK |
@@ -130,7 +139,7 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 35 TAXMIN | 1 | Gʻarb uchun Boltiqboʻyining NATOdan chiqishi xavfsizlikni oʻzgartiradi. | 7 | 2 | OK |
 | 35 TAXMIN | 2 | Shuning uchun Gʻarb yangi ittifoqdan xavotirga tushadi. | 7 | 2 | OK |
 | 36 TAXMIN | 1 | Xavotir esa koʻpincha sanksiyaga aylanadi. | 5 | 1 | OK |
-| 36 TAXMIN | 2 | Cheklovlar bizga ham tegishi mumkin. | 5 | 1 | OK |
+| 36 TAXMIN | 2 | Cheklovlar butun blokka, jumladan bizga ham tegishi mumkin. | 8 | 2 | OK |
 | 36 TAXMIN | 3 | Bu eksport va bank toʻlovlarini qiyinlashtiradi. | 6 | 2 | OK |
 | 37 TAXMIN | 1 | Sharqda esa Xitoy turibdi. | 4 | 1 | OK |
 | 37 TAXMIN | 2 | U bugun Oʻzbekistonning birinchi savdo hamkori. | 6 | 2 | OK |
@@ -139,11 +148,13 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 38 TAXMIN | 2 | va hamma uchun bitta foiz stavkasini belgilaydi. | 7 | 2 | OK |
 | 39 TAXMIN | 1 | Yevro hududi buni boshdan kechirgan: | 5 | 1 | OK |
 | 39 TAXMIN | 2 | Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi. | 8 | 2 | OK |
+| 39 TAXMIN | 3 | Qiyin paytda kuchsizroq aʼzolar koʻproq qiynaladi. | 6 | 2 | OK |
 | 40 TAXMIN | 1 | Ittifoqning kuchli tomoni esa energiya. | 5 | 1 | OK |
 | 40 TAXMIN | 2 | Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy. | 7 | 2 | OK |
 | 40 TAXMIN | 3 | Blok ichida yoqilgʻi arzonlashishi mumkin. | 5 | 1 | OK |
 | 41 TAXMIN | 1 | Ammo bu boylik siyosiy dastakka ham aylanadi. | 7 | 2 | OK |
-| 41 TAXMIN | 2 | Bu Yevropa va Osiyo bilan yangi bahs keltiradi. | 8 | 2 | OK |
+| 41 TAXMIN | 2 | Gaz eksportini endi umumiy markaz boshqaradi. | 6 | 2 | OK |
+| 41 TAXMIN | 3 | Bu Yevropa va Osiyo bilan yangi bahs keltiradi. | 8 | 2 | OK |
 | 42 TAXMIN | 1 | Chegaralar ham oʻzgaradi. | 3 | 1 | OK |
 | 42 TAXMIN | 2 | Ichki chegaralar yoʻqoladi, tashqisi qattiqlashadi. | 5 | 2 | OK |
 | 42 TAXMIN | 3 | Afgʻoniston bilan chegaramiz ittifoq chegarasiga aylanadi. | 6 | 2 | OK |
@@ -160,11 +171,12 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 46 FAKT | 3 | Oʻqituvchi va shifokorlar esa kamroq oladi. | 6 | 2 | OK |
 | 47 TAXMIN | 1 | Ittifoqda maoshlar bir pulda solishtiriladi. | 5 | 2 | OK |
 | 47 TAXMIN | 2 | Farqni koʻrgan odamlar yaxshi maosh tomon koʻchadi. | 7 | 2 | OK |
-| 48 FAKT | 1 | 2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi. | 8 | 2 | OK |
-| 48 FAKT | 2 | Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan. | 6 | 2 | OK |
+| 48 FAKT | 1 | Bu bizni migratsiya mavzusiga olib keladi. | 6 | 1 | OK |
+| 48 FAKT | 2 | 2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi. | 8 | 2 | OK |
+| 48 FAKT | 3 | Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan. | 6 | 2 | OK |
 | 49 TAXMIN | 1 | Ittifoqda migrantlar hayoti yengillashadi. | 4 | 1 | OK |
 | 49 TAXMIN | 2 | Patent va roʻyxatdan oʻtish muammolari yoʻqoladi. | 6 | 2 | OK |
-| 49 TAXMIN | 3 | Ular oʻz yurtidagidek ishlaydi. | 4 | 1 | OK |
+| 49 TAXMIN | 3 | Ular boshqa respublikada oʻz yurtidagidek ishlaydi. | 6 | 2 | OK |
 | 50 TAXMIN | 1 | Ammo buning teskari tomoni ham bor. | 6 | 1 | OK |
 | 50 TAXMIN | 2 | Gʻayratli yoshlarning ketishi osonlashadi, | 4 | 1 | OK |
 | 50 TAXMIN | 3 | qishloqlarda esa ishchi qoʻllar kamayadi. | 5 | 1 | OK |
@@ -186,15 +198,18 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 57 TAXMIN | 2 | Umumiy viza siyosati bu ochiqlikni toraytirishi mumkin. | 7 | 2 | OK |
 | 58 TAXMIN | 1 | Biznes uchun esa ulkan bozor ochiladi. | 6 | 1 | OK |
 | 58 TAXMIN | 2 | 300 million xaridorga bojsiz yetib borish mumkin. | 7 | 2 | OK |
+| 58 TAXMIN | 3 | Toʻqimachilik va meva eksportchilari bundan yutadi. | 6 | 2 | OK |
 | 59 TAXMIN | 1 | Lekin katta bozor — katta raqobat degani. | 7 | 1 | OK |
-| 59 TAXMIN | 2 | Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi. | 7 | 2 | OK |
+| 59 TAXMIN | 2 | Yirik kompaniyalar bizning bozorga ham kiradi. | 6 | 2 | OK |
+| 59 TAXMIN | 3 | Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi. | 7 | 2 | OK |
 | 60 FAKT | 1 | Armiyada Sovet davrida xizmat 2 yil edi, | 7 | 1 | OK |
 | 60 FAKT | 2 | bugun esa 12 oy. | 4 | 1 | OK |
 | 60 FAKT | 3 | Umumiy armiyada muddatni markaz belgilaydi. | 5 | 2 | OK |
 | 61 TAXMIN | 1 | Jamlasak, yutuqlar: katta bozor, migrantlarga qulaylik, | 6 | 2 | OK |
 | 61 TAXMIN | 2 | arzon energiya va umumiy xavfsizlik. | 5 | 1 | OK |
 | 62 TAXMIN | 1 | Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat. | 7 | 2 | OK |
-| 62 TAXMIN | 2 | Yana xom ashyo yetkazuvchisiga aylanish xavfi bor. | 7 | 2 | OK |
+| 62 TAXMIN | 2 | Til erkinligi ham qisman cheklanadi. | 5 | 1 | OK |
+| 62 TAXMIN | 3 | Yana xom ashyo yetkazuvchisiga aylanish xavfi bor. | 7 | 2 | OK |
 | 63 TAXMIN | 1 | Butun ittifoqda kim yutadi? | 4 | 1 | OK |
 | 63 TAXMIN | 2 | Kambagʻalroq respublikalar bozor va yordam oladi, | 6 | 2 | OK |
 | 63 TAXMIN | 3 | Rossiya esa katta taʼsir oladi. | 5 | 1 | OK |
@@ -217,4 +232,4 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 | 70 TAXMIN | 2 | Siz bunday ittifoqqa ha deb ovoz bergan boʻlarmidingiz? | 8 | 2 | OK |
 | 70 TAXMIN | 3 | Javobingizni izohlarda yozing. | 3 | 1 | OK |
 
-Jami: 69 sahna, 182 cue. **Ochiq muammolar: 0.**
+Jami: 69 sahna, 193 cue. **Ochiq muammolar: 0.**

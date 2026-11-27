@@ -78,21 +78,23 @@ sc(11, 'FAKT', ['R25', 'R04', 'R23'], 'osmon', 'chart',
 sc(12, 'FAKT', ['R26', 'R28'], 'toʻq sariq', 'chart',
    'Two bars: Estonia tall, Tajikistan tiny; a ×23 bracket springs between them. Host surprised.',
    [('Estoniya ~32 800 $', 1, 'dollar'), ('Tojikiston ~1 400 $', 2, 'atrofida'), ('×23', 3, 'baravar')],
-   [('Eng katta farq esa daromadda.', 'Eng katta farq esa daromadda.', 'farq'),
+   [('Lekin eng katta farq odamlar sonida emas, daromadda.', 'Lekin eng katta farq odamlar sonida emas, daromadda.', 'daromadda'),
     ('Estoniyada jon boshiga qariyb oʻttiz uch ming dollar,', 'Estoniyada jon boshiga qariyb 33 ming dollar,', '33 ming'),
     ('Tojikistonda esa bir ming toʻrt yuz dollar atrofida.', 'Tojikistonda esa 1 400 dollar atrofida.', '1 400'),
     ('Farq qariyb yigirma uch baravar.', 'Farq qariyb 23 baravar.', '23 baravar')])
 
-sc(13, 'FAKT', ['R26'], 'yashil', 'chart',
+sc(13, 'FAKT', ['R26', 'R36'], 'yashil', 'chart',
    'Horizontal bar ranking of 15 countries; Uzbekistan bar green near the bottom; Kazakhstan bar just above Russia.',
    [('Oʻzbekiston ~3 500 $', 0, 'atrofida'), ('Qozogʻiston 14 770 $', 1, 'Qozogʻistonda'), ('Rossiya 14 260 $', 1, 'Rossiyadan')],
    [('Oʻzbekistonda bu raqam uch ming besh yuz dollar atrofida.', 'Oʻzbekistonda bu raqam 3 500 dollar atrofida.', '3 500'),
-    ('Qozogʻistonda esa u hatto Rossiyadan ham yuqori.', 'Qozogʻistonda esa u hatto Rossiyadan ham yuqori.', 'Rossiyadan ham yuqori')])
+    ('Qozogʻistonda esa u hatto Rossiyadan ham yuqori.', 'Qozogʻistonda esa u hatto Rossiyadan ham yuqori.', 'Rossiyadan ham yuqori'),
+    ('Ammo iqtisodiyotimiz oʻtgan yili yetti butun oʻndan yetti foiz oʻsdi.', 'Ammo iqtisodiyotimiz oʻtgan yili 7,7 foiz oʻsdi.', '7,7 foiz')])
 
 sc(14, 'FAKT', ['R31', 'R32', 'R35'], 'krem', 'map',
    'Map with groups: Baltics in osmon (EU+NATO), the five EAEU members (Russia + 4) in toʻq sariq, Uzbekistan green with dashed outline (observer).',
-   [('YeI + NATO', 0, 'NATOda'), ('Yevroosiyo iqtisodiy ittifoqi', 1, 'ittifoqda'), ('kuzatuvchi', 2, 'kuzatuvchi')],
-   [('Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda.', 'Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda.', 'NATOda'),
+   [('YeI + NATO', 1, 'NATOda'), ('Yevroosiyo iqtisodiy ittifoqi', 2, 'ittifoqda'), ('kuzatuvchi', 3, 'kuzatuvchi')],
+   [('Bu davlatlar bugun turli tomonga qarab ketgan.', 'Bu davlatlar bugun turli tomonga qarab ketgan.', 'turli tomonga'),
+    ('Boltiqboʻyi Yevropa Ittifoqi va NATOda.', 'Boltiqboʻyi Yevropa Ittifoqi va NATOda.', 'NATOda'),
     ('Toʻrttasi Rossiya bilan iqtisodiy ittifoqda.', '4 tasi Rossiya bilan iqtisodiy ittifoqda.', 'iqtisodiy ittifoqda'),
     ('Oʻzbekiston esa unda kuzatuvchi.', 'Oʻzbekiston esa unda kuzatuvchi.', 'kuzatuvchi')])
 
@@ -112,9 +114,10 @@ sc(16, 'TAXMIN', ['T01', 'R33', 'R34'], 'toʻq sariq', 'host',
 
 sc(17, 'TAXMIN', ['T02'], 'krem', 'icons',
    'Three round icons pop in on cue words: market stall, coin, shield. ' + C,
-   [('umumiy bozor', 1, 'bozor'), ('umumiy pul', 1, 'pul'), ('umumiy mudofaa', 1, 'mudofaa')],
+   [('umumiy bozor', 2, 'bozor'), ('umumiy pul', 2, 'pul'), ('umumiy mudofaa', 2, 'mudofaa')],
    [('Faraz qilaylik, hamma rozi boʻldi.', 'Faraz qilaylik, hamma rozi boʻldi.', None),
-    ('Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi.', 'Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi.', 'umumiy')])
+    ('Yangi ittifoq eski tizimning nusxasi boʻlmaydi.', 'Yangi ittifoq eski tizimning nusxasi boʻlmaydi.', 'nusxasi boʻlmaydi'),
+    ('Unda umumiy bozor, pul va mudofaa boʻladi.', 'Unda umumiy bozor, pul va mudofaa boʻladi.', 'umumiy')])
 
 sc(18, 'TAXMIN', ['T02', 'T06'], 'yashil', 'icons',
    'Row of 15 abstract colour chips (no real flags) keep their colours; arrows converge to a round table in the centre. ' + C,
@@ -161,8 +164,9 @@ sc(23, 'TAXMIN', ['R34'], 'toʻq sariq', 'map',
 
 sc(24, 'TAXMIN', ['R26', 'R29', 'R31'], 'krem', 'map',
    'Map to Estonia (osmon fill); three exit-door icons: €, YeI, NATO. ' + C,
-   [('Estoniya', 0, 'Estoniya'), ('yevro, YeI, NATO', 1, 'NATOdan')],
-   [('Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi.', 'Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi.', 'eng boy'),
+   [('Estoniya', 1, 'Estoniya'), ('yevro, YeI, NATO', 2, 'NATOdan')],
+   [('Boltiqboʻyida vaziyat butunlay boshqacha.', 'Boltiqboʻyida vaziyat butunlay boshqacha.', 'Boltiqboʻyida'),
+    ('Estoniya ittifoqdagi eng boy respublika boʻlardi.', 'Estoniya ittifoqdagi eng boy respublika boʻlardi.', 'eng boy'),
     ('U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi.', 'U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi.', 'chiqadi')])
 
 sc(25, 'TAXMIN', ['R29'], 'jigarrang', 'map',
@@ -196,6 +200,7 @@ sc(29, 'TAXMIN', ['R55', 'T09'], 'toʻq sariq', 'map',
    'Map to Azerbaijan (sariq fill) with flat oil-derrick and gas-flame icons; coins flow into a shared pot. ' + C,
    [('Ozarbayjon', 0, 'Ozarbayjon'), ('neft va gaz', 0, 'gazi')],
    [('Ozarbayjon esa neft va gazi bilan kuchli.', 'Ozarbayjon esa neft va gazi bilan kuchli.', 'neft va gazi'),
+    ('U hozir hech bir bunday ittifoqqa kirmagan.', 'U hozir hech bir bunday ittifoqqa kirmagan.', None),
     ('Ittifoqda u daromadini boshqalar bilan boʻlishadi.', 'Ittifoqda u daromadini boshqalar bilan boʻlishadi.', 'boʻlishadi')])
 
 sc(30, 'TAXMIN', ['R26', 'T09'], 'osmon', 'map',
@@ -243,7 +248,7 @@ sc(36, 'TAXMIN', ['T07', 'R42'], 'jigarrang', 'icons',
    'Padlock icons snap onto: bank card, cargo container, plane. Host worried. ' + C,
    [('sanksiyalar', 0, 'sanksiyaga'), ('eksport va toʻlovlar', 2, 'toʻlovlarini')],
    [('Xavotir esa koʻpincha sanksiyaga aylanadi.', 'Xavotir esa koʻpincha sanksiyaga aylanadi.', 'sanksiyaga'),
-    ('Cheklovlar bizga ham tegishi mumkin.', 'Cheklovlar bizga ham tegishi mumkin.', 'bizga ham'),
+    ('Cheklovlar butun blokka, jumladan bizga ham tegishi mumkin.', 'Cheklovlar butun blokka, jumladan bizga ham tegishi mumkin.', 'bizga ham'),
     ('Bu eksport va bank toʻlovlarini qiyinlashtiradi.', 'Bu eksport va bank toʻlovlarini qiyinlashtiradi.', 'bank toʻlovlarini')])
 
 sc(37, 'TAXMIN', ['R42', 'T08'], 'osmon', 'chart',
@@ -263,7 +268,8 @@ sc(39, 'TAXMIN', ['T03', 'R29'], 'krem', 'chart',
    'Two thermometers (rich and poor economy) driven by one dial: one overheats, one freezes. ' + C,
    [('boy iqtisod', 1, 'boy'), ('kambagʻal iqtisod', 1, 'kambagʻal')],
    [('Yevro hududi buni boshdan kechirgan:', 'Yevro hududi buni boshdan kechirgan:', 'Yevro hududi'),
-    ('Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.', 'Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.', 'bitta stavka')])
+    ('Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.', 'Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.', 'bitta stavka'),
+    ('Qiyin paytda kuchsizroq aʼzolar koʻproq qiynaladi.', 'Qiyin paytda kuchsizroq aʼzolar koʻproq qiynaladi.', 'kuchsizroq')])
 
 sc(40, 'TAXMIN', ['T09', 'R55'], 'yashil', 'map',
    'Map with four energy producers highlighted (Russia, Kazakhstan, Turkmenistan, Azerbaijan); pipeline lines reach Uzbekistan. ' + C,
@@ -274,8 +280,9 @@ sc(40, 'TAXMIN', ['T09', 'R55'], 'yashil', 'map',
 
 sc(41, 'TAXMIN', ['T09'], 'tun', 'icons',
    'Night: a valve wheel in the middle; pipelines to Europe and Asia switch between open and closed. ' + C,
-   [('siyosiy dastak', 0, 'dastakka'), ('Yevropa va Osiyo', 1, 'Osiyo')],
+   [('siyosiy dastak', 0, 'dastakka'), ('Yevropa va Osiyo', 2, 'Osiyo')],
    [('Ammo bu boylik siyosiy dastakka ham aylanadi.', 'Ammo bu boylik siyosiy dastakka ham aylanadi.', 'siyosiy dastakka'),
+    ('Gaz eksportini endi umumiy markaz boshqaradi.', 'Gaz eksportini endi umumiy markaz boshqaradi.', 'umumiy markaz'),
     ('Bu Yevropa va Osiyo bilan yangi bahs keltiradi.', 'Bu Yevropa va Osiyo bilan yangi bahs keltiradi.', 'yangi bahs')])
 
 sc(42, 'TAXMIN', ['R45'], 'krem', 'map',
@@ -321,8 +328,9 @@ sc(47, 'TAXMIN', ['T03', 'R26'], 'yashil', 'icons',
 
 sc(48, 'FAKT', ['R41'], 'jigarrang', 'chart',
    'Money arrows from abroad into Uzbekistan: total 14,8 mlrd $; three quarters of the arrow coloured as from Russia. Chip FAKT.',
-   [('14,8 mlrd $', 0, 'oʻtkazildi'), ('77% — Rossiyadan', 1, 'Rossiyadan')],
-   [('Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.', '2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.', '15 milliard'),
+   [('14,8 mlrd $', 1, 'oʻtkazildi'), ('77% — Rossiyadan', 2, 'Rossiyadan')],
+   [('Bu bizni migratsiya mavzusiga olib keladi.', 'Bu bizni migratsiya mavzusiga olib keladi.', 'migratsiya'),
+    ('Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.', '2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.', '15 milliard'),
     ('Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan.', 'Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan.', 'Rossiyadan')])
 
 sc(49, 'TAXMIN', ['T05'], 'osmon', 'host',
@@ -330,7 +338,7 @@ sc(49, 'TAXMIN', ['T05'], 'osmon', 'host',
    [('patent', 1, 'Patent'), ('roʻyxatdan oʻtish', 1, 'roʻyxatdan')],
    [('Ittifoqda migrantlar hayoti yengillashadi.', 'Ittifoqda migrantlar hayoti yengillashadi.', 'yengillashadi'),
     ('Patent va roʻyxatdan oʻtish muammolari yoʻqoladi.', 'Patent va roʻyxatdan oʻtish muammolari yoʻqoladi.', 'yoʻqoladi'),
-    ('Ular oʻz yurtidagidek ishlaydi.', 'Ular oʻz yurtidagidek ishlaydi.', 'oʻz yurtidagidek')])
+    ('Ular boshqa respublikada oʻz yurtidagidek ishlaydi.', 'Ular boshqa respublikada oʻz yurtidagidek ishlaydi.', 'oʻz yurtidagidek')])
 
 sc(50, 'TAXMIN', ['T05'], 'toʻq sariq', 'scene',
    'Sunset village street; young figures walk toward a bus; an empty workbench remains. Host worried. ' + C,
@@ -387,12 +395,14 @@ sc(58, 'TAXMIN', ['R24', 'T10'], 'osmon', 'icons',
    'Delivery truck with textile and fruit rolls across a dissolved border onto a huge map; counter 300 mln customers. ' + C,
    [('300 mln xaridor', 1, 'xaridorga'), ('bojsiz', 1, 'bojsiz')],
    [('Biznes uchun esa ulkan bozor ochiladi.', 'Biznes uchun esa ulkan bozor ochiladi.', 'ulkan bozor'),
-    ('Uch yuz million xaridorga bojsiz yetib borish mumkin.', '300 million xaridorga bojsiz yetib borish mumkin.', '300 million')])
+    ('Uch yuz million xaridorga bojsiz yetib borish mumkin.', '300 million xaridorga bojsiz yetib borish mumkin.', '300 million'),
+    ('Toʻqimachilik va meva eksportchilari bundan yutadi.', 'Toʻqimachilik va meva eksportchilari bundan yutadi.', 'yutadi')])
 
 sc(59, 'TAXMIN', ['T10'], 'yashil', 'icons',
    'Small local shop next to a giant chain-store block casting a shadow; a "mulk huquqi" shield appears in front of the shop. ' + C,
-   [('raqobat', 0, 'raqobat'), ('mulk huquqi', 1, 'huquqi')],
+   [('raqobat', 0, 'raqobat'), ('mulk huquqi', 2, 'huquqi')],
    [('Lekin katta bozor — katta raqobat degani.', 'Lekin katta bozor — katta raqobat degani.', 'raqobat'),
+    ('Yirik kompaniyalar bizning bozorga ham kiradi.', 'Yirik kompaniyalar bizning bozorga ham kiradi.', 'Yirik kompaniyalar'),
     ('Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.', 'Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.', 'Mulk huquqi')])
 
 sc(60, 'FAKT', ['R09', 'R48'], 'jigarrang', 'chart',
@@ -410,8 +420,9 @@ sc(61, 'TAXMIN', ['T05', 'T09', 'T10'], 'yashil', 'icons',
 
 sc(62, 'TAXMIN', ['T03', 'T06', 'R05'], 'toʻq sariq', 'icons',
    'Right pan fills with loss icons: soʻm coin, compass (foreign policy), letter tile, cotton boll; the scale levels out. Host worried. ' + C,
-   [('− oʻz pulimiz', 0, 'pulimiz'), ('− mustaqil siyosat', 0, 'siyosat'), ('xom ashyo xavfi', 1, 'xom')],
+   [('− oʻz pulimiz', 0, 'pulimiz'), ('− mustaqil siyosat', 0, 'siyosat'), ('xom ashyo xavfi', 2, 'xom')],
    [('Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat.', 'Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat.', 'Yoʻqotishlar'),
+    ('Til erkinligi ham qisman cheklanadi.', 'Til erkinligi ham qisman cheklanadi.', 'cheklanadi'),
     ('Yana xom ashyo yetkazuvchisiga aylanish xavfi bor.', 'Yana xom ashyo yetkazuvchisiga aylanish xavfi bor.', 'xom ashyo')])
 
 # ---------- 63–68 Winners vs losers; why history rarely rewinds ----------

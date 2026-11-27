@@ -481,9 +481,9 @@
    ],
    "cues": [
     {
-     "say": "Eng katta farq esa daromadda.",
-     "sub": "Eng katta farq esa daromadda.",
-     "kw": "farq"
+     "say": "Lekin eng katta farq odamlar sonida emas, daromadda.",
+     "sub": "Lekin eng katta farq odamlar sonida emas, daromadda.",
+     "kw": "daromadda"
     },
     {
      "say": "Estoniyada jon boshiga qariyb oʻttiz uch ming dollar,",
@@ -501,13 +501,14 @@
      "kw": "23 baravar"
     }
    ],
-   "say": "Eng katta farq esa daromadda. Estoniyada jon boshiga qariyb oʻttiz uch ming dollar, Tojikistonda esa bir ming toʻrt yuz dollar atrofida. Farq qariyb yigirma uch baravar."
+   "say": "Lekin eng katta farq odamlar sonida emas, daromadda. Estoniyada jon boshiga qariyb oʻttiz uch ming dollar, Tojikistonda esa bir ming toʻrt yuz dollar atrofida. Farq qariyb yigirma uch baravar."
   },
   {
    "id": 13,
    "type": "FAKT",
    "src": [
-    "R26"
+    "R26",
+    "R36"
    ],
    "bg": "yashil",
    "kind": "chart",
@@ -539,9 +540,14 @@
      "say": "Qozogʻistonda esa u hatto Rossiyadan ham yuqori.",
      "sub": "Qozogʻistonda esa u hatto Rossiyadan ham yuqori.",
      "kw": "Rossiyadan ham yuqori"
+    },
+    {
+     "say": "Ammo iqtisodiyotimiz oʻtgan yili yetti butun oʻndan yetti foiz oʻsdi.",
+     "sub": "Ammo iqtisodiyotimiz oʻtgan yili 7,7 foiz oʻsdi.",
+     "kw": "7,7 foiz"
     }
    ],
-   "say": "Oʻzbekistonda bu raqam uch ming besh yuz dollar atrofida. Qozogʻistonda esa u hatto Rossiyadan ham yuqori."
+   "say": "Oʻzbekistonda bu raqam uch ming besh yuz dollar atrofida. Qozogʻistonda esa u hatto Rossiyadan ham yuqori. Ammo iqtisodiyotimiz oʻtgan yili yetti butun oʻndan yetti foiz oʻsdi."
   },
   {
    "id": 14,
@@ -557,24 +563,29 @@
    "labels": [
     {
      "text": "YeI + NATO",
-     "cue": 0,
+     "cue": 1,
      "word": "NATOda"
     },
     {
      "text": "Yevroosiyo iqtisodiy ittifoqi",
-     "cue": 1,
+     "cue": 2,
      "word": "ittifoqda"
     },
     {
      "text": "kuzatuvchi",
-     "cue": 2,
+     "cue": 3,
      "word": "kuzatuvchi"
     }
    ],
    "cues": [
     {
-     "say": "Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda.",
-     "sub": "Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda.",
+     "say": "Bu davlatlar bugun turli tomonga qarab ketgan.",
+     "sub": "Bu davlatlar bugun turli tomonga qarab ketgan.",
+     "kw": "turli tomonga"
+    },
+    {
+     "say": "Boltiqboʻyi Yevropa Ittifoqi va NATOda.",
+     "sub": "Boltiqboʻyi Yevropa Ittifoqi va NATOda.",
      "kw": "NATOda"
     },
     {
@@ -588,7 +599,7 @@
      "kw": "kuzatuvchi"
     }
    ],
-   "say": "Ittifoqlarda ham farq bor: Boltiqboʻyi NATOda. Toʻrttasi Rossiya bilan iqtisodiy ittifoqda. Oʻzbekiston esa unda kuzatuvchi."
+   "say": "Bu davlatlar bugun turli tomonga qarab ketgan. Boltiqboʻyi Yevropa Ittifoqi va NATOda. Toʻrttasi Rossiya bilan iqtisodiy ittifoqda. Oʻzbekiston esa unda kuzatuvchi."
   },
   {
    "id": 15,
@@ -674,17 +685,17 @@
    "labels": [
     {
      "text": "umumiy bozor",
-     "cue": 1,
+     "cue": 2,
      "word": "bozor"
     },
     {
      "text": "umumiy pul",
-     "cue": 1,
+     "cue": 2,
      "word": "pul"
     },
     {
      "text": "umumiy mudofaa",
-     "cue": 1,
+     "cue": 2,
      "word": "mudofaa"
     }
    ],
@@ -695,12 +706,17 @@
      "kw": null
     },
     {
-     "say": "Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi.",
-     "sub": "Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi.",
+     "say": "Yangi ittifoq eski tizimning nusxasi boʻlmaydi.",
+     "sub": "Yangi ittifoq eski tizimning nusxasi boʻlmaydi.",
+     "kw": "nusxasi boʻlmaydi"
+    },
+    {
+     "say": "Unda umumiy bozor, pul va mudofaa boʻladi.",
+     "sub": "Unda umumiy bozor, pul va mudofaa boʻladi.",
      "kw": "umumiy"
     }
    ],
-   "say": "Faraz qilaylik, hamma rozi boʻldi. Yangi ittifoqda umumiy bozor, pul va mudofaa boʻladi."
+   "say": "Faraz qilaylik, hamma rozi boʻldi. Yangi ittifoq eski tizimning nusxasi boʻlmaydi. Unda umumiy bozor, pul va mudofaa boʻladi."
   },
   {
    "id": 18,
@@ -960,19 +976,24 @@
    "labels": [
     {
      "text": "Estoniya",
-     "cue": 0,
+     "cue": 1,
      "word": "Estoniya"
     },
     {
      "text": "yevro, YeI, NATO",
-     "cue": 1,
+     "cue": 2,
      "word": "NATOdan"
     }
    ],
    "cues": [
     {
-     "say": "Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi.",
-     "sub": "Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi.",
+     "say": "Boltiqboʻyida vaziyat butunlay boshqacha.",
+     "sub": "Boltiqboʻyida vaziyat butunlay boshqacha.",
+     "kw": "Boltiqboʻyida"
+    },
+    {
+     "say": "Estoniya ittifoqdagi eng boy respublika boʻlardi.",
+     "sub": "Estoniya ittifoqdagi eng boy respublika boʻlardi.",
      "kw": "eng boy"
     },
     {
@@ -981,7 +1002,7 @@
      "kw": "chiqadi"
     }
    ],
-   "say": "Boltiqboʻyidagi Estoniya eng boy respublika boʻlardi. U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi."
+   "say": "Boltiqboʻyida vaziyat butunlay boshqacha. Estoniya ittifoqdagi eng boy respublika boʻlardi. U yevrodan, Yevropa Ittifoqidan va NATOdan chiqadi."
   },
   {
    "id": 25,
@@ -1174,12 +1195,17 @@
      "kw": "neft va gazi"
     },
     {
+     "say": "U hozir hech bir bunday ittifoqqa kirmagan.",
+     "sub": "U hozir hech bir bunday ittifoqqa kirmagan.",
+     "kw": null
+    },
+    {
      "say": "Ittifoqda u daromadini boshqalar bilan boʻlishadi.",
      "sub": "Ittifoqda u daromadini boshqalar bilan boʻlishadi.",
      "kw": "boʻlishadi"
     }
    ],
-   "say": "Ozarbayjon esa neft va gazi bilan kuchli. Ittifoqda u daromadini boshqalar bilan boʻlishadi."
+   "say": "Ozarbayjon esa neft va gazi bilan kuchli. U hozir hech bir bunday ittifoqqa kirmagan. Ittifoqda u daromadini boshqalar bilan boʻlishadi."
   },
   {
    "id": 30,
@@ -1450,8 +1476,8 @@
      "kw": "sanksiyaga"
     },
     {
-     "say": "Cheklovlar bizga ham tegishi mumkin.",
-     "sub": "Cheklovlar bizga ham tegishi mumkin.",
+     "say": "Cheklovlar butun blokka, jumladan bizga ham tegishi mumkin.",
+     "sub": "Cheklovlar butun blokka, jumladan bizga ham tegishi mumkin.",
      "kw": "bizga ham"
     },
     {
@@ -1460,7 +1486,7 @@
      "kw": "bank toʻlovlarini"
     }
    ],
-   "say": "Xavotir esa koʻpincha sanksiyaga aylanadi. Cheklovlar bizga ham tegishi mumkin. Bu eksport va bank toʻlovlarini qiyinlashtiradi."
+   "say": "Xavotir esa koʻpincha sanksiyaga aylanadi. Cheklovlar butun blokka, jumladan bizga ham tegishi mumkin. Bu eksport va bank toʻlovlarini qiyinlashtiradi."
   },
   {
    "id": 37,
@@ -1570,9 +1596,14 @@
      "say": "Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.",
      "sub": "Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi.",
      "kw": "bitta stavka"
+    },
+    {
+     "say": "Qiyin paytda kuchsizroq aʼzolar koʻproq qiynaladi.",
+     "sub": "Qiyin paytda kuchsizroq aʼzolar koʻproq qiynaladi.",
+     "kw": "kuchsizroq"
     }
    ],
-   "say": "Yevro hududi buni boshdan kechirgan: Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi."
+   "say": "Yevro hududi buni boshdan kechirgan: Boy va kambagʻal iqtisodga bitta stavka mos kelmaydi. Qiyin paytda kuchsizroq aʼzolar koʻproq qiynaladi."
   },
   {
    "id": 40,
@@ -1632,7 +1663,7 @@
     },
     {
      "text": "Yevropa va Osiyo",
-     "cue": 1,
+     "cue": 2,
      "word": "Osiyo"
     }
    ],
@@ -1643,12 +1674,17 @@
      "kw": "siyosiy dastakka"
     },
     {
+     "say": "Gaz eksportini endi umumiy markaz boshqaradi.",
+     "sub": "Gaz eksportini endi umumiy markaz boshqaradi.",
+     "kw": "umumiy markaz"
+    },
+    {
      "say": "Bu Yevropa va Osiyo bilan yangi bahs keltiradi.",
      "sub": "Bu Yevropa va Osiyo bilan yangi bahs keltiradi.",
      "kw": "yangi bahs"
     }
    ],
-   "say": "Ammo bu boylik siyosiy dastakka ham aylanadi. Bu Yevropa va Osiyo bilan yangi bahs keltiradi."
+   "say": "Ammo bu boylik siyosiy dastakka ham aylanadi. Gaz eksportini endi umumiy markaz boshqaradi. Bu Yevropa va Osiyo bilan yangi bahs keltiradi."
   },
   {
    "id": 42,
@@ -1901,16 +1937,21 @@
    "labels": [
     {
      "text": "14,8 mlrd $",
-     "cue": 0,
+     "cue": 1,
      "word": "oʻtkazildi"
     },
     {
      "text": "77% — Rossiyadan",
-     "cue": 1,
+     "cue": 2,
      "word": "Rossiyadan"
     }
    ],
    "cues": [
+    {
+     "say": "Bu bizni migratsiya mavzusiga olib keladi.",
+     "sub": "Bu bizni migratsiya mavzusiga olib keladi.",
+     "kw": "migratsiya"
+    },
     {
      "say": "Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.",
      "sub": "2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.",
@@ -1922,7 +1963,7 @@
      "kw": "Rossiyadan"
     }
    ],
-   "say": "Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi. Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan."
+   "say": "Bu bizni migratsiya mavzusiga olib keladi. Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi. Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan."
   },
   {
    "id": 49,
@@ -1957,12 +1998,12 @@
      "kw": "yoʻqoladi"
     },
     {
-     "say": "Ular oʻz yurtidagidek ishlaydi.",
-     "sub": "Ular oʻz yurtidagidek ishlaydi.",
+     "say": "Ular boshqa respublikada oʻz yurtidagidek ishlaydi.",
+     "sub": "Ular boshqa respublikada oʻz yurtidagidek ishlaydi.",
      "kw": "oʻz yurtidagidek"
     }
    ],
-   "say": "Ittifoqda migrantlar hayoti yengillashadi. Patent va roʻyxatdan oʻtish muammolari yoʻqoladi. Ular oʻz yurtidagidek ishlaydi."
+   "say": "Ittifoqda migrantlar hayoti yengillashadi. Patent va roʻyxatdan oʻtish muammolari yoʻqoladi. Ular boshqa respublikada oʻz yurtidagidek ishlaydi."
   },
   {
    "id": 50,
@@ -2289,9 +2330,14 @@
      "say": "Uch yuz million xaridorga bojsiz yetib borish mumkin.",
      "sub": "300 million xaridorga bojsiz yetib borish mumkin.",
      "kw": "300 million"
+    },
+    {
+     "say": "Toʻqimachilik va meva eksportchilari bundan yutadi.",
+     "sub": "Toʻqimachilik va meva eksportchilari bundan yutadi.",
+     "kw": "yutadi"
     }
    ],
-   "say": "Biznes uchun esa ulkan bozor ochiladi. Uch yuz million xaridorga bojsiz yetib borish mumkin."
+   "say": "Biznes uchun esa ulkan bozor ochiladi. Uch yuz million xaridorga bojsiz yetib borish mumkin. Toʻqimachilik va meva eksportchilari bundan yutadi."
   },
   {
    "id": 59,
@@ -2310,7 +2356,7 @@
     },
     {
      "text": "mulk huquqi",
-     "cue": 1,
+     "cue": 2,
      "word": "huquqi"
     }
    ],
@@ -2321,12 +2367,17 @@
      "kw": "raqobat"
     },
     {
+     "say": "Yirik kompaniyalar bizning bozorga ham kiradi.",
+     "sub": "Yirik kompaniyalar bizning bozorga ham kiradi.",
+     "kw": "Yirik kompaniyalar"
+    },
+    {
      "say": "Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.",
      "sub": "Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.",
      "kw": "Mulk huquqi"
     }
    ],
-   "say": "Lekin katta bozor — katta raqobat degani. Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi."
+   "say": "Lekin katta bozor — katta raqobat degani. Yirik kompaniyalar bizning bozorga ham kiradi. Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi."
   },
   {
    "id": 60,
@@ -2435,7 +2486,7 @@
     },
     {
      "text": "xom ashyo xavfi",
-     "cue": 1,
+     "cue": 2,
      "word": "xom"
     }
    ],
@@ -2446,12 +2497,17 @@
      "kw": "Yoʻqotishlar"
     },
     {
+     "say": "Til erkinligi ham qisman cheklanadi.",
+     "sub": "Til erkinligi ham qisman cheklanadi.",
+     "kw": "cheklanadi"
+    },
+    {
      "say": "Yana xom ashyo yetkazuvchisiga aylanish xavfi bor.",
      "sub": "Yana xom ashyo yetkazuvchisiga aylanish xavfi bor.",
      "kw": "xom ashyo"
     }
    ],
-   "say": "Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat. Yana xom ashyo yetkazuvchisiga aylanish xavfi bor."
+   "say": "Yoʻqotishlar: oʻz pulimiz va mustaqil tashqi siyosat. Til erkinligi ham qisman cheklanadi. Yana xom ashyo yetkazuvchisiga aylanish xavfi bor."
   },
   {
    "id": 63,
