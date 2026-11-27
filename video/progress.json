@@ -36,7 +36,11 @@
         15,
         16,
         17,
-        18
+        18,
+        19,
+        20,
+        21,
+        22
       ],
       "scenes": {
         "2": {
@@ -140,6 +144,30 @@
           "chars": 128,
           "dur": 8.64,
           "cps": 14.81
+        },
+        "19": {
+          "gen": "zukykBhUo13PSpN5h4kX",
+          "chars": 137,
+          "dur": 8.8,
+          "cps": 15.57
+        },
+        "20": {
+          "gen": "OT4NQDC7hSaVwTy4zGCg",
+          "chars": 144,
+          "dur": 9.2,
+          "cps": 15.65
+        },
+        "21": {
+          "gen": "EjaJfyrYhHkgUOz5zGZF",
+          "chars": 142,
+          "dur": 9.44,
+          "cps": 15.04
+        },
+        "22": {
+          "gen": "Y2qEFHFjky6YpFOGtPE2",
+          "chars": 117,
+          "dur": 8.0,
+          "cps": 14.62
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -169,13 +197,9 @@
         "needed_chars_7_70": 8447
       },
       "pending_generations": {
-        "20": "OT4NQDC7hSaVwTy4zGCg"
+        "23": "hd5UvUT1iqB1cV9prTkw"
       },
       "next_unvoiced": [
-        19,
-        21,
-        22,
-        23,
         24,
         25,
         26,
@@ -224,7 +248,7 @@
         69,
         70
       ],
-      "note": "Free tier: 1 concurrent generation. Generate sequentially: start one, poll creative_get_flow_run_status until completed, then next."
+      "note": "Free tier: 1 concurrent. Pattern: generate one, run a sandbox measure (≈5s wait), generate next; stop on busy."
     },
     "4": {
       "status": "todo"

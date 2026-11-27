@@ -1,3 +1,5 @@
 node_modules/
 out/
 .env
+audio/stems/*.wav
+sheets/frames/
