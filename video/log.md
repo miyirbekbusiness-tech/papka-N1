@@ -17,3 +17,7 @@
 - script.json: sahnalar 2–70 (69 ta; 23 FAKT, 46 TAXMIN), 182 cue; har bir sahnada say/subs(cues)/visual/labels/src. Hamma FAKT sahna research.md dagi R-ID'larga bogʻlangan (topilmagan ID: 0).
 - Uzunlik: say jami 8 526 belgi (≈609 s @14 bel/s). Muhim: 595 s nutq + 69×0,35 s nafas + hook ≈ 623 s — bu 10:00±10 s ga sigʻmaydi, shuning uchun STAGE 3 kalibrlashda nutq maqsadi ≈578 s qilib olinadi (video ≈10:06). ElevenLabs krediti (10 000) ham shunga yetadi.
 - GATE: subs_review.md — 182 cue roʻyxati, 15+ tuzatish qayd etilgan, ochiq muammo 0; tools/lint_script.py — 0 muammo.
+
+## STAGE 3 · Voice — toʻxtatildi (tarif cheklovi)
+- Ovoz topildi (cfWx14ZbaEUT4BjIA5tH), model: eleven_v4 (oʻzbek tilini faqat v4/v4_turbo qoʻllaydi; v3 va multilingual_v2 da uz yoʻq). v4 `style` parametrini qoʻllamaydi (can_use_style=false) — yuboriladi, lekin taʼsir qilmaydi.
+- Birinchi soʻrov (sahna 2) 402 paid_plan_required qaytardi: bepul tarif Voice Library ovozlarini API orqali ishlata olmaydi. Kredit sarflanmadi, 0/69 sahna ovozlangan, keyingisi: 2. Qoida boʻyicha qayta urinilmadi.

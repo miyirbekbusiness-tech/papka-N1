@@ -18,8 +18,20 @@
       "note": "595s+breaths+hook exceeds 10:00±10; target lowered to 578s"
     },
     "3": {
-      "status": "in_progress",
-      "voiced": []
+      "status": "blocked",
+      "voiced": [],
+      "scenes": {},
+      "voice_id": "cfWx14ZbaEUT4BjIA5tH",
+      "model": "eleven_v4",
+      "settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.8,
+        "style": 0.2,
+        "speed": 1.0
+      },
+      "seed": 4242,
+      "blocked_on": "402 paid_plan_required: free users cannot use library voices via API (no credits spent)",
+      "next_scene": 2
     },
     "4": {
       "status": "todo"
