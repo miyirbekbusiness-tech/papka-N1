@@ -53,7 +53,8 @@
         32,
         33,
         34,
-        35
+        35,
+        36
       ],
       "scenes": {
         "2": {
@@ -259,6 +260,12 @@
           "chars": 127,
           "dur": 7.76,
           "cps": 16.37
+        },
+        "36": {
+          "gen": "CUojHrA1TGVnqFTv2T01",
+          "chars": 151,
+          "dur": 9.68,
+          "cps": 15.6
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -289,7 +296,6 @@
       },
       "pending_generations": {},
       "next_unvoiced": [
-        36,
         37,
         38,
         39,
