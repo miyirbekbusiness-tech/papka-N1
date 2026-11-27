@@ -49,7 +49,11 @@
         28,
         29,
         30,
-        31
+        31,
+        32,
+        33,
+        34,
+        35
       ],
       "scenes": {
         "2": {
@@ -231,6 +235,30 @@
           "chars": 142,
           "dur": 8.96,
           "cps": 15.85
+        },
+        "32": {
+          "gen": "TVrthnETr0yyEZrnNoKf",
+          "chars": 125,
+          "dur": 8.56,
+          "cps": 14.6
+        },
+        "33": {
+          "gen": "muigoqCZlW9DfnnMlFmc",
+          "chars": 115,
+          "dur": 7.44,
+          "cps": 15.46
+        },
+        "34": {
+          "gen": "JAtyJKcmfUIQprGrsV1v",
+          "chars": 106,
+          "dur": 7.2,
+          "cps": 14.72
+        },
+        "35": {
+          "gen": "Ni121pAk6SAkdgp7TRog",
+          "chars": 127,
+          "dur": 7.76,
+          "cps": 16.37
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -261,10 +289,6 @@
       },
       "pending_generations": {},
       "next_unvoiced": [
-        32,
-        33,
-        34,
-        35,
         36,
         37,
         38,
