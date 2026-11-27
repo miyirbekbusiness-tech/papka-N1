@@ -43,7 +43,13 @@
         22,
         23,
         24,
-        25
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
       ],
       "scenes": {
         "2": {
@@ -189,6 +195,42 @@
           "chars": 110,
           "dur": 7.28,
           "cps": 15.11
+        },
+        "26": {
+          "gen": "ArXGoXIlBHspONchGW8l",
+          "chars": 144,
+          "dur": 9.12,
+          "cps": 15.79
+        },
+        "27": {
+          "gen": "6hA4BeRZw5bIqUam7drH",
+          "chars": 146,
+          "dur": 9.36,
+          "cps": 15.6
+        },
+        "28": {
+          "gen": "JC93vOkOLB9HOQhy61CP",
+          "chars": 143,
+          "dur": 9.44,
+          "cps": 15.15
+        },
+        "29": {
+          "gen": "MzHjpcz3nyCYMJSPN2cZ",
+          "chars": 136,
+          "dur": 8.88,
+          "cps": 15.32
+        },
+        "30": {
+          "gen": "bilyOj3BSJknbGHoNnRz",
+          "chars": 151,
+          "dur": 9.84,
+          "cps": 15.35
+        },
+        "31": {
+          "gen": "XNZQIbCXDeZM9xhfmkMp",
+          "chars": 142,
+          "dur": 8.96,
+          "cps": 15.85
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -217,15 +259,8 @@
         "target_total_s": 578,
         "needed_chars_7_70": 8447
       },
-      "pending_generations": {
-        "26": "ArXGoXIlBHspONchGW8l"
-      },
+      "pending_generations": {},
       "next_unvoiced": [
-        27,
-        28,
-        29,
-        30,
-        31,
         32,
         33,
         34,
