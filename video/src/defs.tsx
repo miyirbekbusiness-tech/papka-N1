@@ -111,7 +111,7 @@ export const DEFS: Record<number, SceneDef> = {
     anchors: [[600, 420], [1420, 420]], boxes: [[600, 200], [1420, 200]]},
   57: {kind: 'art', art: 'domes', anchors: [[380, 720], [1650, 600]], boxes: [[380, 300], [1650, 300]]},
   58: {kind: 'map', from: null, focus: null, fills: Object.fromEntries(Object.keys(ALL15).map((key) => [key, C.osmon])), icons: [{icon: 'truck', at: 'UZB', cue: 0, size: 130, dy: -70}], anchors: ['RUS', 'UZB']},
-  59: {kind: 'icons', icons: [{icon: 'shop', at: [640, 500], cue: 0, size: 240}, {icon: 'bigstore', at: [1180, 430], cue: 1, size: 380}, {icon: 'shield', at: [640, 290], cue: 2, size: 150}],
+  59: {kind: 'icons', icons: [{icon: 'shop', at: [640, 500], cue: 0, size: 240}, {icon: 'bigstore', at: [1180, 430], cue: 1, size: 380}, {icon: 'shield', at: [640, 290], cue: 1, size: 150}],
     anchors: [[1180, 430], [640, 290]], boxes: [[1600, 260], [330, 200]]},
   60: {kind: 'chart', chart: {type: 'bars', max: 26, items: [{label: 'Sovet', value: 24, color: C.qizil, cue: 0, text: '24 oy'}, {label: 'bugun', value: 12, color: C.yashil, cue: 1, text: '12 oy'}, {label: 'ittifoq', value: 0.01, color: C.krem, cue: 2, text: '?'}]},
     anchors: [[700, 283], [960, 541]], boxes: [[330, 300], [1450, 420]]},

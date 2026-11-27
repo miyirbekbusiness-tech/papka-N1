@@ -280,9 +280,8 @@ sc(40, 'TAXMIN', ['T09', 'R55'], 'yashil', 'map',
 
 sc(41, 'TAXMIN', ['T09'], 'jigarrang', 'icons',
    'Night: a valve wheel in the middle; pipelines to Europe and Asia switch between open and closed. ' + C,
-   [('siyosiy dastak', 0, 'dastakka'), ('Yevropa va Osiyo', 2, 'Osiyo')],
+   [('siyosiy dastak', 0, 'dastakka'), ('Yevropa va Osiyo', 1, 'Osiyo')],
    [('Ammo bu boylik siyosiy dastakka ham aylanadi.', 'Ammo bu boylik siyosiy dastakka ham aylanadi.', 'siyosiy dastakka'),
-    ('Gaz eksportini endi umumiy markaz boshqaradi.', 'Gaz eksportini endi umumiy markaz boshqaradi.', 'umumiy markaz'),
     ('Bu Yevropa va Osiyo bilan yangi bahs keltiradi.', 'Bu Yevropa va Osiyo bilan yangi bahs keltiradi.', 'yangi bahs')])
 
 sc(42, 'TAXMIN', ['R45'], 'krem', 'map',
@@ -328,9 +327,8 @@ sc(47, 'TAXMIN', ['T03', 'R26'], 'yashil', 'icons',
 
 sc(48, 'FAKT', ['R41'], 'jigarrang', 'chart',
    'Money arrows from abroad into Uzbekistan: total 14,8 mlrd $; three quarters of the arrow coloured as from Russia. Chip FAKT.',
-   [('14,8 mlrd $', 1, 'oʻtkazildi'), ('77% — Rossiyadan', 2, 'Rossiyadan')],
-   [('Bu bizni migratsiya mavzusiga olib keladi.', 'Bu bizni migratsiya mavzusiga olib keladi.', 'migratsiya'),
-    ('Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.', '2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.', '15 milliard'),
+   [('14,8 mlrd $', 0, 'oʻtkazildi'), ('77% — Rossiyadan', 1, 'Rossiyadan')],
+   [('Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.', '2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.', '15 milliard'),
     ('Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan.', 'Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan.', 'Rossiyadan')])
 
 sc(49, 'TAXMIN', ['T05'], 'osmon', 'host',
@@ -395,14 +393,12 @@ sc(58, 'TAXMIN', ['R24', 'T10'], 'osmon', 'icons',
    'Delivery truck with textile and fruit rolls across a dissolved border onto a huge map; counter 300 mln customers. ' + C,
    [('300 mln xaridor', 1, 'xaridorga'), ('bojsiz', 1, 'bojsiz')],
    [('Biznes uchun esa ulkan bozor ochiladi.', 'Biznes uchun esa ulkan bozor ochiladi.', 'ulkan bozor'),
-    ('Uch yuz million xaridorga bojsiz yetib borish mumkin.', '300 million xaridorga bojsiz yetib borish mumkin.', '300 million'),
-    ('Toʻqimachilik va meva eksportchilari bundan yutadi.', 'Toʻqimachilik va meva eksportchilari bundan yutadi.', 'yutadi')])
+    ('Uch yuz million xaridorga bojsiz yetib borish mumkin.', '300 million xaridorga bojsiz yetib borish mumkin.', '300 million')])
 
 sc(59, 'TAXMIN', ['T10'], 'yashil', 'icons',
    'Small local shop next to a giant chain-store block casting a shadow; a "mulk huquqi" shield appears in front of the shop. ' + C,
-   [('raqobat', 0, 'raqobat'), ('mulk huquqi', 2, 'huquqi')],
+   [('raqobat', 0, 'raqobat'), ('mulk huquqi', 1, 'huquqi')],
    [('Lekin katta bozor — katta raqobat degani.', 'Lekin katta bozor — katta raqobat degani.', 'raqobat'),
-    ('Yirik kompaniyalar bizning bozorga ham kiradi.', 'Yirik kompaniyalar bizning bozorga ham kiradi.', 'Yirik kompaniyalar'),
     ('Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.', 'Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.', 'Mulk huquqi')])
 
 sc(60, 'FAKT', ['R09', 'R48'], 'jigarrang', 'chart',

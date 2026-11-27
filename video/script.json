@@ -1663,7 +1663,7 @@
     },
     {
      "text": "Yevropa va Osiyo",
-     "cue": 2,
+     "cue": 1,
      "word": "Osiyo"
     }
    ],
@@ -1674,17 +1674,12 @@
      "kw": "siyosiy dastakka"
     },
     {
-     "say": "Gaz eksportini endi umumiy markaz boshqaradi.",
-     "sub": "Gaz eksportini endi umumiy markaz boshqaradi.",
-     "kw": "umumiy markaz"
-    },
-    {
      "say": "Bu Yevropa va Osiyo bilan yangi bahs keltiradi.",
      "sub": "Bu Yevropa va Osiyo bilan yangi bahs keltiradi.",
      "kw": "yangi bahs"
     }
    ],
-   "say": "Ammo bu boylik siyosiy dastakka ham aylanadi. Gaz eksportini endi umumiy markaz boshqaradi. Bu Yevropa va Osiyo bilan yangi bahs keltiradi."
+   "say": "Ammo bu boylik siyosiy dastakka ham aylanadi. Bu Yevropa va Osiyo bilan yangi bahs keltiradi."
   },
   {
    "id": 42,
@@ -1937,21 +1932,16 @@
    "labels": [
     {
      "text": "14,8 mlrd $",
-     "cue": 1,
+     "cue": 0,
      "word": "oʻtkazildi"
     },
     {
      "text": "77% — Rossiyadan",
-     "cue": 2,
+     "cue": 1,
      "word": "Rossiyadan"
     }
    ],
    "cues": [
-    {
-     "say": "Bu bizni migratsiya mavzusiga olib keladi.",
-     "sub": "Bu bizni migratsiya mavzusiga olib keladi.",
-     "kw": "migratsiya"
-    },
     {
      "say": "Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi.",
      "sub": "2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi.",
@@ -1963,7 +1953,7 @@
      "kw": "Rossiyadan"
     }
    ],
-   "say": "Bu bizni migratsiya mavzusiga olib keladi. Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi. Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan."
+   "say": "Ikki ming yigirma toʻrtinchi yilda chetdan qariyb oʻn besh milliard dollar pul oʻtkazildi. Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan."
   },
   {
    "id": 49,
@@ -2330,14 +2320,9 @@
      "say": "Uch yuz million xaridorga bojsiz yetib borish mumkin.",
      "sub": "300 million xaridorga bojsiz yetib borish mumkin.",
      "kw": "300 million"
-    },
-    {
-     "say": "Toʻqimachilik va meva eksportchilari bundan yutadi.",
-     "sub": "Toʻqimachilik va meva eksportchilari bundan yutadi.",
-     "kw": "yutadi"
     }
    ],
-   "say": "Biznes uchun esa ulkan bozor ochiladi. Uch yuz million xaridorga bojsiz yetib borish mumkin. Toʻqimachilik va meva eksportchilari bundan yutadi."
+   "say": "Biznes uchun esa ulkan bozor ochiladi. Uch yuz million xaridorga bojsiz yetib borish mumkin."
   },
   {
    "id": 59,
@@ -2356,7 +2341,7 @@
     },
     {
      "text": "mulk huquqi",
-     "cue": 2,
+     "cue": 1,
      "word": "huquqi"
     }
    ],
@@ -2367,17 +2352,12 @@
      "kw": "raqobat"
     },
     {
-     "say": "Yirik kompaniyalar bizning bozorga ham kiradi.",
-     "sub": "Yirik kompaniyalar bizning bozorga ham kiradi.",
-     "kw": "Yirik kompaniyalar"
-    },
-    {
      "say": "Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.",
      "sub": "Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi.",
      "kw": "Mulk huquqi"
     }
    ],
-   "say": "Lekin katta bozor — katta raqobat degani. Yirik kompaniyalar bizning bozorga ham kiradi. Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi."
+   "say": "Lekin katta bozor — katta raqobat degani. Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi."
   },
   {
    "id": 60,

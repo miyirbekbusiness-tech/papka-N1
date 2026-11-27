@@ -34,6 +34,11 @@ Har bir cue alohida oʻqildi: maʼnosi oʻzicha tushunarlimi, 3–8 soʻz, ≤2 
 
 Haqiqiy tezlik 15,8 bel/s chiqdi (taxmin 14), shuning uchun 7–70-sahnalarga avval qisqartirilgan 14 ta jumla qaytarildi (13: 7,7% oʻsish — R36; 14, 17, 24, 29, 36, 39, 41, 48, 49, 58, 59, 62; 12-sahna boshlanishi). Har biri yuqoridagi qoidalar boʻyicha qayta oʻqildi va linterdan oʻtdi.
 
+## Uzunlik tuzatishi (STAGE 3, 38 sahna ovozlangandan keyin)
+
+Haqiqiy tezlik 15,56 bel/s → jami ≈613 s (chegara 610). Hali ovozlanmagan sahnalardan 4 ta ikkinchi darajali jumla olib tashlandi: 41 (gaz eksporti markazda), 48 (migratsiyaga bogʻlovchi), 58 (toʻqimachilik eksportchilari), 59 (yirik kompaniyalar). Qolgan cue'lar oʻzgarmadi.
+
+
 ## Barcha cue'lar
 
 | Sahna | # | Cue (ekranda) | Soʻz | Qatorlar | Holat |
@@ -153,8 +158,7 @@ Haqiqiy tezlik 15,8 bel/s chiqdi (taxmin 14), shuning uchun 7–70-sahnalarga av
 | 40 TAXMIN | 2 | Rossiya, Qozogʻiston, Turkmaniston va Ozarbayjon neft-gazga boy. | 7 | 2 | OK |
 | 40 TAXMIN | 3 | Blok ichida yoqilgʻi arzonlashishi mumkin. | 5 | 1 | OK |
 | 41 TAXMIN | 1 | Ammo bu boylik siyosiy dastakka ham aylanadi. | 7 | 2 | OK |
-| 41 TAXMIN | 2 | Gaz eksportini endi umumiy markaz boshqaradi. | 6 | 2 | OK |
-| 41 TAXMIN | 3 | Bu Yevropa va Osiyo bilan yangi bahs keltiradi. | 8 | 2 | OK |
+| 41 TAXMIN | 2 | Bu Yevropa va Osiyo bilan yangi bahs keltiradi. | 8 | 2 | OK |
 | 42 TAXMIN | 1 | Chegaralar ham oʻzgaradi. | 3 | 1 | OK |
 | 42 TAXMIN | 2 | Ichki chegaralar yoʻqoladi, tashqisi qattiqlashadi. | 5 | 2 | OK |
 | 42 TAXMIN | 3 | Afgʻoniston bilan chegaramiz ittifoq chegarasiga aylanadi. | 6 | 2 | OK |
@@ -171,9 +175,8 @@ Haqiqiy tezlik 15,8 bel/s chiqdi (taxmin 14), shuning uchun 7–70-sahnalarga av
 | 46 FAKT | 3 | Oʻqituvchi va shifokorlar esa kamroq oladi. | 6 | 2 | OK |
 | 47 TAXMIN | 1 | Ittifoqda maoshlar bir pulda solishtiriladi. | 5 | 2 | OK |
 | 47 TAXMIN | 2 | Farqni koʻrgan odamlar yaxshi maosh tomon koʻchadi. | 7 | 2 | OK |
-| 48 FAKT | 1 | Bu bizni migratsiya mavzusiga olib keladi. | 6 | 1 | OK |
-| 48 FAKT | 2 | 2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi. | 8 | 2 | OK |
-| 48 FAKT | 3 | Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan. | 6 | 2 | OK |
+| 48 FAKT | 1 | 2024-yilda chetdan qariyb 15 milliard dollar pul oʻtkazildi. | 8 | 2 | OK |
+| 48 FAKT | 2 | Uning toʻrtdan uch qismidan koʻprogʻi Rossiyadan. | 6 | 2 | OK |
 | 49 TAXMIN | 1 | Ittifoqda migrantlar hayoti yengillashadi. | 4 | 1 | OK |
 | 49 TAXMIN | 2 | Patent va roʻyxatdan oʻtish muammolari yoʻqoladi. | 6 | 2 | OK |
 | 49 TAXMIN | 3 | Ular boshqa respublikada oʻz yurtidagidek ishlaydi. | 6 | 2 | OK |
@@ -198,10 +201,8 @@ Haqiqiy tezlik 15,8 bel/s chiqdi (taxmin 14), shuning uchun 7–70-sahnalarga av
 | 57 TAXMIN | 2 | Umumiy viza siyosati bu ochiqlikni toraytirishi mumkin. | 7 | 2 | OK |
 | 58 TAXMIN | 1 | Biznes uchun esa ulkan bozor ochiladi. | 6 | 1 | OK |
 | 58 TAXMIN | 2 | 300 million xaridorga bojsiz yetib borish mumkin. | 7 | 2 | OK |
-| 58 TAXMIN | 3 | Toʻqimachilik va meva eksportchilari bundan yutadi. | 6 | 2 | OK |
 | 59 TAXMIN | 1 | Lekin katta bozor — katta raqobat degani. | 7 | 1 | OK |
-| 59 TAXMIN | 2 | Yirik kompaniyalar bizning bozorga ham kiradi. | 6 | 2 | OK |
-| 59 TAXMIN | 3 | Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi. | 7 | 2 | OK |
+| 59 TAXMIN | 2 | Mulk huquqi himoyalanmasa, mahalliy biznes zarar koʻradi. | 7 | 2 | OK |
 | 60 FAKT | 1 | Armiyada Sovet davrida xizmat 2 yil edi, | 7 | 1 | OK |
 | 60 FAKT | 2 | bugun esa 12 oy. | 4 | 1 | OK |
 | 60 FAKT | 3 | Umumiy armiyada muddatni markaz belgilaydi. | 5 | 2 | OK |
@@ -232,4 +233,4 @@ Haqiqiy tezlik 15,8 bel/s chiqdi (taxmin 14), shuning uchun 7–70-sahnalarga av
 | 70 TAXMIN | 2 | Siz bunday ittifoqqa ha deb ovoz bergan boʻlarmidingiz? | 8 | 2 | OK |
 | 70 TAXMIN | 3 | Javobingizni izohlarda yozing. | 3 | 1 | OK |
 
-Jami: 69 sahna, 193 cue. **Ochiq muammolar: 0.**
+Jami: 69 sahna, 189 cue. **Ochiq muammolar: 0.**

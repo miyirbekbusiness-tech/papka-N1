@@ -459,531 +459,531 @@
    ]
   },
   "19": {
-   "dur": 8.576377454084865,
-   "measured": false,
-   "frames": 268,
-   "cues": [
-    {
-     "tin": 0.03,
-     "tout": 2.467,
-     "speech_end": 2.267
-    },
-    {
-     "tin": 2.467,
-     "tout": 5.85,
-     "speech_end": 5.65
-    },
-    {
-     "tin": 5.85,
-     "tout": 8.756,
-     "speech_end": 8.456
-    }
-   ],
-   "label_t": [
-    5.238
-   ]
-  },
-  "20": {
-   "dur": 9.019696010132996,
-   "measured": false,
-   "frames": 281,
-   "cues": [
-    {
-     "tin": 0.03,
-     "tout": 3.395,
-     "speech_end": 3.195
-    },
-    {
-     "tin": 3.395,
-     "tout": 6.228,
-     "speech_end": 6.028
-    },
-    {
-     "tin": 6.228,
-     "tout": 9.2,
-     "speech_end": 8.9
-    }
-   ],
-   "label_t": [
-    1.977,
-    2.708,
-    5.969
-   ]
-  },
-  "21": {
-   "dur": 8.893033565547816,
-   "measured": false,
-   "frames": 277,
-   "cues": [
-    {
-     "tin": 0.03,
-     "tout": 2.47,
-     "speech_end": 2.27
-    },
-    {
-     "tin": 2.47,
-     "tout": 5.302,
-     "speech_end": 5.102
-    },
-    {
-     "tin": 5.302,
-     "tout": 9.073,
-     "speech_end": 8.773
-    }
-   ],
-   "label_t": [
-    0.454,
-    5.043
-   ]
-  },
-  "22": {
-   "dur": 7.309753008233059,
-   "measured": false,
-   "frames": 230,
-   "cues": [
-    {
-     "tin": 0.03,
-     "tout": 2.394,
-     "speech_end": 2.194
-    },
-    {
-     "tin": 2.394,
-     "tout": 4.72,
-     "speech_end": 4.52
-    },
-    {
-     "tin": 4.72,
-     "tout": 7.49,
-     "speech_end": 7.19
-    }
-   ],
-   "label_t": [
-    0.451,
-    4.462
-   ]
-  },
-  "23": {
-   "dur": 8.703039898670045,
-   "measured": false,
+   "dur": 8.71,
+   "measured": true,
    "frames": 272,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.837,
-     "speech_end": 2.637
+     "tout": 2.64,
+     "speech_end": 2.4
     },
     {
-     "tin": 2.837,
-     "tout": 6.591,
-     "speech_end": 6.391
+     "tin": 2.64,
+     "tout": 6.18,
+     "speech_end": 5.95
     },
     {
-     "tin": 6.591,
-     "tout": 8.883,
-     "speech_end": 8.583
+     "tin": 6.18,
+     "tout": 8.95,
+     "speech_end": 8.65
     }
    ],
    "label_t": [
-    0.454,
-    5.562
+    5.521
+   ]
+  },
+  "20": {
+   "dur": 9.11,
+   "measured": true,
+   "frames": 284,
+   "cues": [
+    {
+     "tin": 0.01,
+     "tout": 3.3,
+     "speech_end": 3.12
+    },
+    {
+     "tin": 3.3,
+     "tout": 6.32,
+     "speech_end": 6.12
+    },
+    {
+     "tin": 6.32,
+     "tout": 9.35,
+     "speech_end": 9.05
+    }
+   ],
+   "label_t": [
+    1.924,
+    2.642,
+    6.057
+   ]
+  },
+  "21": {
+   "dur": 9.35,
+   "measured": true,
+   "frames": 291,
+   "cues": [
+    {
+     "tin": 0.03,
+     "tout": 3.0,
+     "speech_end": 2.68
+    },
+    {
+     "tin": 3.0,
+     "tout": 6.0,
+     "speech_end": 5.75
+    },
+    {
+     "tin": 6.0,
+     "tout": 9.59,
+     "speech_end": 9.29
+    }
+   ],
+   "label_t": [
+    0.531,
+    5.689
+   ]
+  },
+  "22": {
+   "dur": 7.93,
+   "measured": true,
+   "frames": 248,
+   "cues": [
+    {
+     "tin": 0.02,
+     "tout": 2.67,
+     "speech_end": 2.48
+    },
+    {
+     "tin": 2.67,
+     "tout": 5.06,
+     "speech_end": 4.89
+    },
+    {
+     "tin": 5.06,
+     "tout": 8.17,
+     "speech_end": 7.87
+    }
+   ],
+   "label_t": [
+    0.498,
+    4.83
+   ]
+  },
+  "23": {
+   "dur": 9.19,
+   "measured": true,
+   "frames": 286,
+   "cues": [
+    {
+     "tin": 0.02,
+     "tout": 3.3,
+     "speech_end": 3.09
+    },
+    {
+     "tin": 3.3,
+     "tout": 6.89,
+     "speech_end": 6.57
+    },
+    {
+     "tin": 6.89,
+     "tout": 9.43,
+     "speech_end": 9.13
+    }
+   ],
+   "label_t": [
+    0.52,
+    5.807
    ]
   },
   "24": {
-   "dur": 8.956364787840407,
-   "measured": false,
-   "frames": 279,
+   "dur": 9.58,
+   "measured": true,
+   "frames": 298,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 2.716,
-     "speech_end": 2.516
+     "tin": 0.01,
+     "tout": 2.76,
+     "speech_end": 2.48
     },
     {
-     "tin": 2.716,
-     "tout": 5.796,
-     "speech_end": 5.596
+     "tin": 2.76,
+     "tout": 6.0,
+     "speech_end": 5.76
     },
     {
-     "tin": 5.796,
-     "tout": 9.136,
-     "speech_end": 8.836
+     "tin": 6.0,
+     "tout": 9.82,
+     "speech_end": 9.52
     }
    ],
    "label_t": [
-    3.187,
-    8.3
+    3.25,
+    8.899
    ]
   },
   "25": {
-   "dur": 6.866434452184928,
-   "measured": false,
-   "frames": 216,
+   "dur": 7.15,
+   "measured": true,
+   "frames": 225,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 4.038,
-     "speech_end": 3.838
+     "tin": 0.02,
+     "tout": 4.14,
+     "speech_end": 3.88
     },
     {
-     "tin": 4.038,
-     "tout": 7.046,
-     "speech_end": 6.746
+     "tin": 4.14,
+     "tout": 7.39,
+     "speech_end": 7.09
     }
    ],
    "label_t": [
-    0.574,
-    1.843
+    0.571,
+    1.858
    ]
   },
   "26": {
-   "dur": 9.019696010132996,
-   "measured": false,
-   "frames": 281,
+   "dur": 8.99,
+   "measured": true,
+   "frames": 280,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 3.21,
-     "speech_end": 3.01
+     "tin": 0.02,
+     "tout": 3.16,
+     "speech_end": 2.92
     },
     {
-     "tin": 3.21,
-     "tout": 5.858,
-     "speech_end": 5.658
+     "tin": 3.16,
+     "tout": 5.93,
+     "speech_end": 5.69
     },
     {
-     "tin": 5.858,
-     "tout": 9.2,
-     "speech_end": 8.9
+     "tin": 5.93,
+     "tout": 9.23,
+     "speech_end": 8.93
     }
    ],
    "label_t": [
-    0.334,
-    5.6
+    0.316,
+    5.63
    ]
   },
   "27": {
-   "dur": 9.146358454718177,
-   "measured": false,
-   "frames": 285,
+   "dur": 9.25,
+   "measured": true,
+   "frames": 288,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 3.704,
-     "speech_end": 3.504
+     "tout": 3.76,
+     "speech_end": 3.54
     },
     {
-     "tin": 3.704,
-     "tout": 6.538,
-     "speech_end": 6.338
+     "tin": 3.76,
+     "tout": 6.5,
+     "speech_end": 6.34
     },
     {
-     "tin": 6.538,
-     "tout": 9.326,
-     "speech_end": 9.026
+     "tin": 6.5,
+     "tout": 9.49,
+     "speech_end": 9.19
     }
    ],
    "label_t": [
-    1.127,
-    3.443
+    1.138,
+    3.478
    ]
   },
   "28": {
-   "dur": 8.956364787840407,
-   "measured": false,
-   "frames": 279,
+   "dur": 9.34,
+   "measured": true,
+   "frames": 291,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 2.901,
-     "speech_end": 2.701
+     "tin": 0.02,
+     "tout": 2.82,
+     "speech_end": 2.65
     },
     {
-     "tin": 2.901,
-     "tout": 5.857,
-     "speech_end": 5.657
+     "tin": 2.82,
+     "tout": 5.93,
+     "speech_end": 5.7
     },
     {
-     "tin": 5.857,
-     "tout": 9.136,
-     "speech_end": 8.836
+     "tin": 5.93,
+     "tout": 9.58,
+     "speech_end": 9.28
     }
    ],
    "label_t": [
-    1.123,
-    2.641,
-    5.599
+    1.096,
+    2.59,
+    5.639
    ]
   },
   "29": {
-   "dur": 8.513046231792275,
-   "measured": false,
-   "frames": 266,
+   "dur": 8.76,
+   "measured": true,
+   "frames": 273,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 2.713,
-     "speech_end": 2.513
+     "tin": 0.05,
+     "tout": 2.99,
+     "speech_end": 2.77
     },
     {
-     "tin": 2.713,
-     "tout": 5.418,
-     "speech_end": 5.218
+     "tin": 2.99,
+     "tout": 5.77,
+     "speech_end": 5.53
     },
     {
-     "tin": 5.418,
-     "tout": 8.693,
-     "speech_end": 8.393
+     "tin": 5.77,
+     "tout": 9.0,
+     "speech_end": 8.7
     }
    ],
    "label_t": [
-    0.636,
-    1.665
+    0.713,
+    1.841
    ]
   },
   "30": {
-   "dur": 9.463014566181128,
-   "measured": false,
-   "frames": 294,
+   "dur": 9.77,
+   "measured": true,
+   "frames": 304,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 3.029,
-     "speech_end": 2.829
+     "tin": 0.02,
+     "tout": 3.36,
+     "speech_end": 3.13
     },
     {
-     "tin": 3.029,
-     "tout": 6.051,
-     "speech_end": 5.851
+     "tin": 3.36,
+     "tout": 6.33,
+     "speech_end": 6.15
     },
     {
-     "tin": 6.051,
-     "tout": 9.643,
-     "speech_end": 9.343
+     "tin": 6.33,
+     "tout": 10.01,
+     "speech_end": 9.71
     }
    ],
    "label_t": [
-    2.768,
-    8.744
+    3.062,
+    9.095
    ]
   },
   "31": {
-   "dur": 8.893033565547816,
-   "measured": false,
+   "dur": 8.88,
+   "measured": true,
    "frames": 277,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 2.962,
-     "speech_end": 2.762
+     "tin": 0.04,
+     "tout": 3.02,
+     "speech_end": 2.8
     },
     {
-     "tin": 2.962,
-     "tout": 5.61,
-     "speech_end": 5.41
+     "tin": 3.02,
+     "tout": 5.56,
+     "speech_end": 5.38
     },
     {
-     "tin": 5.61,
-     "tout": 9.073,
-     "speech_end": 8.773
+     "tin": 5.56,
+     "tout": 9.12,
+     "speech_end": 8.82
     }
    ],
    "label_t": [
-    0.759,
-    2.702
+    0.776,
+    2.739
    ]
   },
   "32": {
-   "dur": 7.816402786573781,
-   "measured": false,
-   "frames": 245,
+   "dur": 8.44,
+   "measured": true,
+   "frames": 264,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 3.135,
-     "speech_end": 2.935
+     "tin": 0.02,
+     "tout": 3.28,
+     "speech_end": 3.07
     },
     {
-     "tin": 3.135,
-     "tout": 5.343,
-     "speech_end": 5.143
+     "tin": 3.28,
+     "tout": 5.76,
+     "speech_end": 5.57
     },
     {
-     "tin": 5.343,
-     "tout": 7.996,
-     "speech_end": 7.696
+     "tin": 5.76,
+     "tout": 8.68,
+     "speech_end": 8.38
     }
    ],
    "label_t": [
-    0.635,
-    4.742,
-    6.696
+    0.655,
+    5.112,
+    7.267
    ]
   },
   "33": {
-   "dur": 7.1830905636478795,
-   "measured": false,
-   "frames": 226,
+   "dur": 7.36,
+   "measured": true,
+   "frames": 231,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.576,
-     "speech_end": 2.376
+     "tout": 2.52,
+     "speech_end": 2.26
     },
     {
-     "tin": 2.576,
-     "tout": 5.206,
-     "speech_end": 5.006
+     "tin": 2.52,
+     "tout": 5.47,
+     "speech_end": 5.28
     },
     {
-     "tin": 5.206,
-     "tout": 7.363,
-     "speech_end": 7.063
+     "tin": 5.47,
+     "tout": 7.6,
+     "speech_end": 7.3
     }
    ],
    "label_t": [
-    0.752,
-    1.775
+    0.716,
+    1.688
    ]
   },
   "34": {
-   "dur": 6.613109563014567,
-   "measured": false,
-   "frames": 209,
+   "dur": 7.12,
+   "measured": true,
+   "frames": 224,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 3.727,
-     "speech_end": 3.527
+     "tin": 0.02,
+     "tout": 4.1,
+     "speech_end": 3.89
     },
     {
-     "tin": 3.727,
-     "tout": 6.793,
-     "speech_end": 6.493
+     "tin": 4.1,
+     "tout": 7.36,
+     "speech_end": 7.06
     }
    ],
    "label_t": [
-    1.417,
-    2.14
+    1.555,
+    2.355
    ]
   },
   "35": {
-   "dur": 7.943065231158963,
-   "measured": false,
-   "frames": 249,
+   "dur": 7.62,
+   "measured": true,
+   "frames": 239,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 4.548,
-     "speech_end": 4.348
+     "tin": 0.01,
+     "tout": 4.34,
+     "speech_end": 4.12
     },
     {
-     "tin": 4.548,
-     "tout": 8.123,
-     "speech_end": 7.823
+     "tin": 4.34,
+     "tout": 7.86,
+     "speech_end": 7.56
     }
    ],
    "label_t": [
-    2.159,
-    3.497
+    2.036,
+    3.31
    ]
   },
   "36": {
-   "dur": 9.463014566181128,
-   "measured": false,
-   "frames": 294,
+   "dur": 9.57,
+   "measured": true,
+   "frames": 298,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.782,
-     "speech_end": 2.582
+     "tout": 2.77,
+     "speech_end": 2.56
     },
     {
-     "tin": 2.782,
-     "tout": 6.483,
-     "speech_end": 6.283
+     "tin": 2.77,
+     "tout": 6.49,
+     "speech_end": 6.34
     },
     {
-     "tin": 6.483,
-     "tout": 9.643,
-     "speech_end": 9.343
+     "tin": 6.49,
+     "tout": 9.81,
+     "speech_end": 9.51
     }
    ],
    "label_t": [
-    1.974,
-    8.33
+    1.958,
+    8.44
    ]
   },
   "37": {
-   "dur": 8.639708676377454,
-   "measured": false,
-   "frames": 270,
+   "dur": 8.7,
+   "measured": true,
+   "frames": 271,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 1.791,
-     "speech_end": 1.591
+     "tin": 0.02,
+     "tout": 1.94,
+     "speech_end": 1.74
     },
     {
-     "tin": 1.791,
-     "tout": 4.744,
-     "speech_end": 4.544
+     "tin": 1.94,
+     "tout": 4.95,
+     "speech_end": 4.72
     },
     {
-     "tin": 4.744,
-     "tout": 8.82,
-     "speech_end": 8.52
+     "tin": 4.95,
+     "tout": 8.94,
+     "speech_end": 8.64
     }
    ],
    "label_t": [
-    4.485,
-    4.485
+    4.661,
+    4.661
    ]
   },
   "38": {
-   "dur": 6.549778340721977,
-   "measured": false,
-   "frames": 207,
+   "dur": 6.72,
+   "measured": true,
+   "frames": 212,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 3.604,
-     "speech_end": 3.404
+     "tin": 0.02,
+     "tout": 3.725,
+     "speech_end": 3.525
     },
     {
-     "tin": 3.604,
-     "tout": 6.73,
-     "speech_end": 6.43
+     "tin": 3.725,
+     "tout": 6.96,
+     "speech_end": 6.66
     }
    ],
    "label_t": [
-    1.597,
-    5.723
+    1.647,
+    5.926
    ]
   },
   "39": {
-   "dur": 8.829702343255226,
-   "measured": false,
-   "frames": 275,
+   "dur": 9.16,
+   "measured": true,
+   "frames": 285,
    "cues": [
     {
-     "tin": 0.03,
-     "tout": 2.408,
-     "speech_end": 2.208
+     "tin": 0.01,
+     "tout": 2.48,
+     "speech_end": 2.17
     },
     {
-     "tin": 2.408,
-     "tout": 5.732,
-     "speech_end": 5.532
+     "tin": 2.48,
+     "tout": 6.1,
+     "speech_end": 5.81
     },
     {
-     "tin": 5.732,
-     "tout": 9.01,
-     "speech_end": 8.71
+     "tin": 6.1,
+     "tout": 9.4,
+     "speech_end": 9.1
     }
    ],
    "label_t": [
-    2.584,
-    3.351
+    2.668,
+    3.485
    ]
   },
   "40": {
@@ -1013,29 +1013,24 @@
    ]
   },
   "41": {
-   "dur": 8.703039898670045,
+   "dur": 5.789803673210893,
    "measured": false,
-   "frames": 272,
+   "frames": 184,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.961,
-     "speech_end": 2.761
+     "tout": 2.92,
+     "speech_end": 2.72
     },
     {
-     "tin": 2.961,
-     "tout": 5.791,
-     "speech_end": 5.591
-    },
-    {
-     "tin": 5.791,
-     "tout": 8.883,
-     "speech_end": 8.583
+     "tin": 2.92,
+     "tout": 5.97,
+     "speech_end": 5.67
     }
    ],
    "label_t": [
-    1.911,
-    6.92
+    1.883,
+    4.031
    ]
   },
   "42": {
@@ -1186,29 +1181,24 @@
    ]
   },
   "48": {
-   "dur": 11.489613679544016,
+   "dur": 8.766371120962635,
    "measured": false,
-   "frames": 355,
+   "frames": 273,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.794,
-     "speech_end": 2.594
+     "tout": 5.731,
+     "speech_end": 5.531
     },
     {
-     "tin": 2.794,
-     "tout": 8.433,
-     "speech_end": 8.233
-    },
-    {
-     "tin": 8.433,
-     "tout": 11.67,
-     "speech_end": 11.37
+     "tin": 5.731,
+     "tout": 8.946,
+     "speech_end": 8.646
     }
    ],
    "label_t": [
-    8.173,
-    11.31
+    5.47,
+    8.587
    ]
   },
   "49": {
@@ -1420,55 +1410,45 @@
    ]
   },
   "58": {
-   "dur": 9.019696010132996,
+   "dur": 5.726472450918304,
    "measured": false,
-   "frames": 281,
+   "frames": 182,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.532,
-     "speech_end": 2.332
+     "tout": 2.494,
+     "speech_end": 2.294
     },
     {
-     "tin": 2.532,
-     "tout": 5.858,
-     "speech_end": 5.658
-    },
-    {
-     "tin": 5.858,
-     "tout": 9.2,
-     "speech_end": 8.9
+     "tin": 2.494,
+     "tout": 5.906,
+     "speech_end": 5.606
     }
    ],
    "label_t": [
-    4.007,
-    4.42
+    3.962,
+    4.373
    ]
   },
   "59": {
-   "dur": 9.146358454718177,
+   "dur": 6.1697910069664355,
    "measured": false,
-   "frames": 285,
+   "frames": 196,
    "cues": [
     {
      "tin": 0.03,
-     "tout": 2.718,
-     "speech_end": 2.518
+     "tout": 2.684,
+     "speech_end": 2.484
     },
     {
-     "tin": 2.718,
-     "tout": 5.614,
-     "speech_end": 5.414
-    },
-    {
-     "tin": 5.614,
-     "tout": 9.326,
-     "speech_end": 9.026
+     "tin": 2.684,
+     "tout": 6.35,
+     "speech_end": 6.05
     }
    ],
    "label_t": [
-    2.033,
-    6.273
+    2.005,
+    3.333
    ]
   },
   "60": {
@@ -1738,5 +1718,5 @@
    ]
   }
  },
- "total_s": 596.63
+ "total_s": 590.07
 }
