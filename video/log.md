@@ -25,3 +25,4 @@
 - Ulagich orqali davom etildi (foydalanuvchi soʻrovi). Ulagich akkauntida oylik limit yangilangan (9 865 belgi). Kalibrlash (2–6): 681 belgi / 43,12 s = 15,8 bel/s → 7–70-sahnalarga 14 ta jumla qaytarildi (jami 8 416 belgi, maqsad ≈576 s). Audio ElevenLabs flow'ida qoladi (WbNbGKE3zKqa9o7RU5ef); vaqtlar sandbox'da pauza tahlili bilan olinadi; yakuniy yigʻish ham sandbox'da (repo public — video GitHub raw orqali beriladi).
 - Cheklovlar: ulagich voice_settings (similarity 0,8, style), seed va previous/next_text ni bermaydi — standart sozlamalar (stability 0,5).
 - Ovozlangan: 2–12, 14, 16 (13 navbatda); 15 — bepul navbat band, ishga tushmadi, kredit yechilmadi.
+- Yetkazish yoʻli sinaldi: GitHub raw (repo public) → creative_attach_reference_file → sandbox — 1920×1080 test video toʻgʻri oʻtdi; sandbox'da ffmpeg, librosa, pyloudnorm bor.
