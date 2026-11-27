@@ -24,7 +24,16 @@
         3,
         4,
         5,
-        6
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16
       ],
       "scenes": {
         "2": {
@@ -56,6 +65,60 @@
           "chars": 112,
           "dur": 7.04,
           "cps": 15.91
+        },
+        "7": {
+          "gen": "92NaXZKU5Aq8XTETD0RD",
+          "chars": 171,
+          "dur": 10.72,
+          "cps": 15.95
+        },
+        "8": {
+          "gen": "4WCGWoZEcwB9uKkqRWcM",
+          "chars": 159,
+          "dur": 9.92,
+          "cps": 16.03
+        },
+        "9": {
+          "gen": "GjoenupVK828aMt4og6H",
+          "chars": 168,
+          "dur": 10.56,
+          "cps": 15.91
+        },
+        "10": {
+          "gen": "5cMGrhVpJ6xCkVAKo0qr",
+          "chars": 146,
+          "dur": 9.92,
+          "cps": 14.72
+        },
+        "11": {
+          "gen": "Iaos7sEDEz7R7duCc19c",
+          "chars": 137,
+          "dur": 8.72,
+          "cps": 15.71
+        },
+        "12": {
+          "gen": "WAQdleKo5OhV8Jaq5TCT",
+          "chars": 192,
+          "dur": 12.64,
+          "cps": 15.19
+        },
+        "13": {
+          "gen": "dMglIa9FAd4UqawqPVZG",
+          "chars": 176,
+          "dur": 11.44,
+          "cps": 15.38
+        },
+        "14": {
+          "gen": "ESDXJsbTsIIl7pbbzjGR",
+          "chars": 164,
+          "dur": 10.88,
+          "cps": 15.07
+        },
+        "16": {
+          "gen": "H2RlMSzoZjl0boOzUOWG",
+          "chars": 132,
+          "dur": 8.64,
+          "cps": 15.28
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -85,19 +148,10 @@
         "needed_chars_7_70": 8447
       },
       "pending_generations": {
-        "7": "92NaXZKU5Aq8XTETD0RD",
-        "8": "4WCGWoZEcwB9uKkqRWcM",
-        "9": "GjoenupVK828aMt4og6H",
-        "10": "5cMGrhVpJ6xCkVAKo0qr",
-        "11": "Iaos7sEDEz7R7duCc19c",
-        "12": "WAQdleKo5OhV8Jaq5TCT",
-        "13": "dMglIa9FAd4UqawqPVZG",
-        "14": "ESDXJsbTsIIl7pbbzjGR",
-        "16": "H2RlMSzoZjl0boOzUOWG"
+        "15": "usv1k55z0J6v92bVYlMs",
+        "17": "yuu3U7lZCbver5VjulUU"
       },
       "next_unvoiced": [
-        15,
-        17,
         18,
         19,
         20,
@@ -152,16 +206,6 @@
         69,
         70
       ],
-      "done_durations_unmeasured": {
-        "7": 10.72,
-        "8": 9.92,
-        "9": 10.56,
-        "10": 9.92,
-        "11": 8.72,
-        "12": 12.64,
-        "14": 10.88,
-        "16": 8.64
-      },
       "note": "13 pending (auto-retry after concurrency limit); 15 not started (free queue busy, not charged). Generate max ~3 at a time."
     },
     "4": {

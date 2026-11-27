@@ -1,0 +1,29 @@
+{
+ "text": "Lekin eng katta farq odamlar sonida emas, daromadda. Estoniyada jon boshiga qariyb oʻttiz uch ming dollar, Tojikistonda esa bir ming toʻrt yuz dollar atrofida. Farq qariyb yigirma uch baravar.",
+ "generation_id": "WAQdleKo5OhV8Jaq5TCT",
+ "dur": 12.64,
+ "start": 0.03,
+ "end": 12.39,
+ "gaps": [
+  [
+   2.79,
+   2.96
+  ],
+  [
+   3.77,
+   4.01
+  ],
+  [
+   7.06,
+   7.25
+  ],
+  [
+   8.22,
+   8.38
+  ],
+  [
+   10.09,
+   10.27
+  ]
+ ]
+}
