@@ -42,7 +42,8 @@
         21,
         22,
         23,
-        24
+        24,
+        25
       ],
       "scenes": {
         "2": {
@@ -182,6 +183,12 @@
           "chars": 143,
           "dur": 9.68,
           "cps": 14.77
+        },
+        "25": {
+          "gen": "DJzHa5aTyML7JO2WQP5V",
+          "chars": 110,
+          "dur": 7.28,
+          "cps": 15.11
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -210,10 +217,10 @@
         "target_total_s": 578,
         "needed_chars_7_70": 8447
       },
-      "pending_generations": {},
+      "pending_generations": {
+        "26": "ArXGoXIlBHspONchGW8l"
+      },
       "next_unvoiced": [
-        25,
-        26,
         27,
         28,
         29,
