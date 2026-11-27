@@ -40,7 +40,9 @@
         19,
         20,
         21,
-        22
+        22,
+        23,
+        24
       ],
       "scenes": {
         "2": {
@@ -168,6 +170,18 @@
           "chars": 117,
           "dur": 8.0,
           "cps": 14.62
+        },
+        "23": {
+          "gen": "hd5UvUT1iqB1cV9prTkw",
+          "chars": 139,
+          "dur": 9.28,
+          "cps": 14.98
+        },
+        "24": {
+          "gen": "5kAmmkBs3s3IiodN6LqY",
+          "chars": 143,
+          "dur": 9.68,
+          "cps": 14.77
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -196,11 +210,8 @@
         "target_total_s": 578,
         "needed_chars_7_70": 8447
       },
-      "pending_generations": {
-        "23": "hd5UvUT1iqB1cV9prTkw"
-      },
+      "pending_generations": {},
       "next_unvoiced": [
-        24,
         25,
         26,
         27,

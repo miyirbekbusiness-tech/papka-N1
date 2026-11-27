@@ -41,7 +41,7 @@ const placeBoxes = (anchors: [number, number][], forceSide?: 'left' | 'right'): 
   });
 };
 
-export const SceneView: React.FC<{id: number}> = ({id}) => {
+export const SceneView: React.FC<{id: number; bare?: boolean}> = ({id, bare}) => {
   const s = SC[id];
   const t = T[String(id)];
   const def: SceneDef = DEFS[id];
@@ -116,10 +116,10 @@ export const SceneView: React.FC<{id: number}> = ({id}) => {
     <AbsoluteFill style={{overflow: 'hidden'}}>
       <Bg name={s.bg} />
       {content}
-      <Labels items={labels} />
-      <Chip type={s.type} />
-      {s.type === 'TAXMIN' && isMap && <ScenarioTag />}
-      <Subtitles cues={s.cues} times={t.cues} />
+      {!bare && <Labels items={labels} />}
+      {!bare && <Chip type={s.type} />}
+      {!bare && s.type === 'TAXMIN' && isMap && <ScenarioTag />}
+      {!bare && <Subtitles cues={s.cues} times={t.cues} />}
     </AbsoluteFill>
   );
 };

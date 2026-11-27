@@ -1,0 +1,128 @@
+{
+ "frames": 138,
+ "cues": [
+  {
+   "text": "Sovet Ittifoqi",
+   "kw": "Sovet Ittifoqi",
+   "kwColor": "qizil",
+   "tin": 0.05,
+   "tout": 0.85
+  },
+  {
+   "text": "ertaga qaytsa,",
+   "kw": "qaytsa",
+   "kwColor": "sariq",
+   "tin": 0.85,
+   "tout": 1.6
+  },
+  {
+   "text": "soʻmingiz,",
+   "kw": "soʻmingiz",
+   "kwColor": "sariq",
+   "tin": 1.6,
+   "tout": 2.3
+  },
+  {
+   "text": "tilingiz",
+   "kw": "tilingiz",
+   "kwColor": "sariq",
+   "tin": 2.3,
+   "tout": 2.95
+  },
+  {
+   "text": "va ishingizga",
+   "kw": "ishingizga",
+   "kwColor": "sariq",
+   "tin": 2.95,
+   "tout": 3.75
+  },
+  {
+   "text": "nima boʻladi?",
+   "kw": "nima",
+   "kwColor": "qizil",
+   "tin": 3.75,
+   "tout": 4.6
+  }
+ ],
+ "cuts": [
+  {
+   "scene": 10,
+   "at": 4.0,
+   "start": 0,
+   "end": 0.85
+  },
+  {
+   "scene": 34,
+   "at": 5.0,
+   "start": 0.85,
+   "end": 1.6
+  },
+  {
+   "scene": 43,
+   "at": 3.5,
+   "start": 1.6,
+   "end": 2.3
+  },
+  {
+   "scene": 51,
+   "at": 2.5,
+   "start": 2.3,
+   "end": 2.95
+  },
+  {
+   "scene": 49,
+   "at": 3.0,
+   "start": 2.95,
+   "end": 3.75
+  },
+  {
+   "scene": 19,
+   "at": 5.0,
+   "start": 3.75,
+   "end": 4.6
+  }
+ ],
+ "events": [
+  {
+   "type": "whoosh",
+   "t": 0.85
+  },
+  {
+   "type": "whoosh",
+   "t": 1.6
+  },
+  {
+   "type": "whoosh",
+   "t": 2.3
+  },
+  {
+   "type": "whoosh",
+   "t": 2.95
+  },
+  {
+   "type": "whoosh",
+   "t": 3.75
+  },
+  {
+   "type": "boom",
+   "t": 3.75,
+   "db": -12
+  },
+  {
+   "type": "whoosh",
+   "t": 4.6,
+   "db": -16
+  }
+ ],
+ "riser": [
+  2.2,
+  1.55
+ ],
+ "speech": [
+  [
+   0.05,
+   4.4
+  ]
+ ],
+ "provisional": true
+}
