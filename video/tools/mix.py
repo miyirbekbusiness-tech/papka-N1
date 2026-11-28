@@ -14,6 +14,7 @@ for item in plan['voices']:  # {file, start, trim}
     y = y[:int(item['trim'] * SR)]
     fade = int(0.01 * SR); y[-fade:] *= np.linspace(1, 0, fade)
     a = int(item['start'] * SR); voice[a:a + len(y)] += y[:N - a]
+sf.write(os.path.join(os.environ.get('MIX_TMP', '/workspace'), 'voice_only.wav'), voice, SR)
 sfx, _ = librosa.load(f'{IN}/sfx.flac', sr=SR, mono=True)
 mus, _ = librosa.load(f'{IN}/music.flac', sr=SR, mono=True)
 sfx = np.pad(sfx, (0, max(0, N - len(sfx))))[:N]

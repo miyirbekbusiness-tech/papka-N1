@@ -9,42 +9,42 @@
    "text": "Sovet Ittifoqi",
    "kw": "Sovet Ittifoqi",
    "kwColor": "qizil",
-   "tin": 0.1,
-   "tout": 0.95
+   "tin": 0.07,
+   "tout": 1.01
   },
   {
    "text": "ertaga qaytsa,",
    "kw": "qaytsa",
    "kwColor": "sariq",
-   "tin": 0.95,
-   "tout": 2.0
+   "tin": 1.01,
+   "tout": 2.12
   },
   {
    "text": "soʻmingiz,",
    "kw": "soʻmingiz",
    "kwColor": "sariq",
-   "tin": 2.0,
-   "tout": 2.8
+   "tin": 2.12,
+   "tout": 3.02
   },
   {
    "text": "tilingiz",
    "kw": "tilingiz",
    "kwColor": "sariq",
-   "tin": 2.8,
-   "tout": 3.28
+   "tin": 3.02,
+   "tout": 3.48
   },
   {
    "text": "va ishingizga",
    "kw": "ishingizga",
    "kwColor": "sariq",
-   "tin": 3.28,
-   "tout": 4.07
+   "tin": 3.48,
+   "tout": 4.23
   },
   {
    "text": "nima boʻladi?",
    "kw": "nima",
    "kwColor": "qizil",
-   "tin": 4.07,
+   "tin": 4.23,
    "tout": 5.0
   }
  ],
@@ -53,63 +53,63 @@
    "scene": 10,
    "at": 4.0,
    "start": 0,
-   "end": 0.95
+   "end": 1.01
   },
   {
    "scene": 34,
    "at": 5.0,
-   "start": 0.95,
-   "end": 2.0
+   "start": 1.01,
+   "end": 2.12
   },
   {
    "scene": 43,
    "at": 3.5,
-   "start": 2.0,
-   "end": 2.8
+   "start": 2.12,
+   "end": 3.02
   },
   {
    "scene": 51,
    "at": 2.5,
-   "start": 2.8,
-   "end": 3.28
+   "start": 3.02,
+   "end": 3.48
   },
   {
    "scene": 49,
    "at": 3.0,
-   "start": 3.28,
-   "end": 4.07
+   "start": 3.48,
+   "end": 4.23
   },
   {
    "scene": 19,
    "at": 5.0,
-   "start": 4.07,
+   "start": 4.23,
    "end": 5.0
   }
  ],
  "events": [
   {
    "type": "whoosh",
-   "t": 0.95
+   "t": 1.01
   },
   {
    "type": "whoosh",
-   "t": 2.0
+   "t": 2.12
   },
   {
    "type": "whoosh",
-   "t": 2.8
+   "t": 3.02
   },
   {
    "type": "whoosh",
-   "t": 3.28
+   "t": 3.48
   },
   {
    "type": "whoosh",
-   "t": 4.07
+   "t": 4.23
   },
   {
    "type": "boom",
-   "t": 4.07,
+   "t": 4.23,
    "db": -12
   },
   {
@@ -119,14 +119,14 @@
   }
  ],
  "riser": [
-  2.5,
+  2.65,
   1.55
  ],
  "speech": [
   [
-   0.1,
-   4.85
+   0.07,
+   4.96
   ]
  ],
- "timing": "estimated from character share (sandbox unavailable)"
+ "timing": "measured locally from hook.mp3 pauses (1.95-2.12, 2.94-3.02) + char share inside segments"
 }
