@@ -543,13 +543,16 @@
       "gate": "passed"
     },
     "5": {
-      "status": "in_progress"
+      "status": "stems_done",
+      "gate": "pending final mix (needs voice audio)"
     },
     "6": {
-      "status": "todo"
+      "status": "done",
+      "hook_generation": "fKJMCtfdvkDFKI6oRZPH",
+      "frames": 150
     },
     "7": {
-      "status": "todo"
+      "status": "in_progress"
     },
     "8": {
       "status": "todo"

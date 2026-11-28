@@ -34,3 +34,13 @@
 - Remotion: har sahna = audio (oxirgi jimlik kesilgan) + 0,35 s; har sahna oʻz taʼrifi (src/defs.tsx) bilan, kadr — faqat kadr raqamiga bogʻliq funksiya. Xaritalar world-atlas 50m, Oʻzbekiston doim 3BB273, TAXMIN xaritalarida "TAXMINIY SSENARIY".
 - Kontakt varaqlar (sheets/sheet_1..4.png, haqiqiy vaqtlar bilan): subtitrlar teg va yuzlarni yopmaydi; subtitr/teg matnida qora kontur — kontrast ≥4,5:1; fon oilasi ketma-ket 2 tadan oshmaydi; tun foni ≈5% (≤20%).
 - Tuzatilgan: dengizlar fon rangida chiqishi, 41-sahna tungi fonda koʻrinmasligi, pufak matni, muhr ikoni.
+
+## STAGE 5 · Sound — stemlar tayyor, gate yakuniy miksda
+- tools/sfx.py (numpy, 48 kHz, namunasiz): 69 whoosh (kamera harakati), 150 pop (teglar), 26 qogʻoz shitirlashi (xaritalar), 36 yozuv mashinkasi (raqamli cue'lar), 7 past boom (3, 8, 9, 12, 19, 48, 58-sahnalar), 2–9-sahnalarda sokin soat; har effekt choʻqqisi rasm voqeasidan 1 kadr keyin; gap paytida effektlar −6 dB.
+- Musiqa: Am–F–C–G sokin pad + 90 BPM yengil puls; miksda ovozdan 20 dB past (≥18 dB). Miks/normallash: tools/mix.py (−14 LUFS, TP −1,5 dBTP, ikki bosqichli loudnorm).
+
+## STAGE 6 · Hook — ovoz tayyor
+- Savol (9 soʻz): "Sovet Ittifoqi ertaga qaytsa, soʻmingiz, tilingiz va ishingizga nima boʻladi?" — Mirjalol, eleven_v4 + [excited]; 5,12 s (kesilgandan keyin 4,98 s), sahna 150 kadr = 5,0 s.
+- Vizual: 6 ta tez kesma (0,5–1,05 s: xarita → Oʻzbekiston → soʻm → til → ish → ovozlar), har zarbada 6 px silkinish, markazda Montserrat Black 150 px, 1–2 soʻzli cue'lar 3 kadrda 1,35→1,0; kalit soʻz qizil/sariq; riser + oxirgi soʻzda boom, 2-sahnaga whoosh.
+- Cheklov: ulagich stability/style/speed sozlamalarini bermaydi; hook cue vaqtlari belgilar ulushidan hisoblangan (sandbox kredit yetmagani uchun pauzalar oʻlchanmadi).
+- Jami uzunlik: 607,9 s = 10:07,9 (10:00 ±10 s ichida).

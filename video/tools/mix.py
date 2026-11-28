@@ -1,11 +1,11 @@
-# Runs INSIDE the ElevenLabs sandbox (offline). Inputs in /workspace/in: sNN.mp3 (scene voices), hook.mp3,
-# sfx.flac, music.flac, video.mp4 (silent render), plan.json (start times / trims).
+# Final audio mix + mux. Runs in the ElevenLabs sandbox (default paths) or locally with MIX_IN/MIX_TMP/OUT set.
+# Inputs in MIX_IN: hook.mp3, sNN.mp3 (scene voices), sfx.flac, music.flac, video.mp4, plan.json.
 # Output: $OUT/Agarda_SSSR_yana_tiklansa.mp4 (+ mix report on stdout).
 import json, os, subprocess, sys
 import numpy as np, soundfile as sf, pyloudnorm as pyln, librosa
 
 SR = 48000
-IN = '/workspace/in'
+IN = os.environ.get('MIX_IN', '/workspace/in')
 plan = json.load(open(f'{IN}/plan.json'))
 N = int(plan['total'] * SR) + SR
 voice = np.zeros(N)
@@ -34,18 +34,18 @@ for s0 in range(0, N - win, win):
     v = voice[s0:s0 + win]; m = mus[s0:s0 + win]
     if np.sqrt(np.mean(v ** 2)) > 1e-3:
         gaps.append(20 * np.log10(np.sqrt(np.mean(v ** 2)) / max(1e-9, np.sqrt(np.mean(m ** 2)))))
-sf.write('/workspace/mix_raw.wav', mix / max(1.0, np.abs(mix).max()), SR, subtype='FLOAT')
+sf.write(os.path.join(os.environ.get('MIX_TMP', '/workspace'), 'mix_raw.wav'), mix / max(1.0, np.abs(mix).max()), SR, subtype='FLOAT')
 # two-pass loudnorm to -14 LUFS, TP -1.5 dBTP
-r = subprocess.run(['ffmpeg', '-hide_banner', '-i', '/workspace/mix_raw.wav', '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-'],
+r = subprocess.run(['ffmpeg', '-hide_banner', '-i', os.path.join(os.environ.get('MIX_TMP', '/workspace'), 'mix_raw.wav'), '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-'],
                    capture_output=True, text=True).stderr
 m = json.loads(r[r.rindex('{'):r.rindex('}') + 1])
 af = (f"loudnorm=I=-14:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}"
       f":measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=48000")
-subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', '/workspace/mix_raw.wav', '-af', af, '-ar', '48000', '/workspace/mix.wav'], check=True)
+subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', os.path.join(os.environ.get('MIX_TMP', '/workspace'), 'mix_raw.wav'), '-af', af, '-ar', '48000', os.path.join(os.environ.get('MIX_TMP', '/workspace'), 'mix.wav')], check=True)
 out = os.environ.get('OUT', '/workspace/out')
 os.makedirs(out, exist_ok=True)
 dst = f'{out}/Agarda_SSSR_yana_tiklansa.mp4'
-subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'{IN}/video.mp4', '-i', '/workspace/mix.wav', '-map', '0:v:0', '-map', '1:a:0',
+subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'{IN}/video.mp4', '-i', os.path.join(os.environ.get('MIX_TMP', '/workspace'), 'mix.wav'), '-map', '0:v:0', '-map', '1:a:0',
                 '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-shortest', '-movflags', '+faststart', dst], check=True)
 # verify loudness of the final file
 r2 = subprocess.run(['ffmpeg', '-hide_banner', '-i', dst, '-af', 'loudnorm=I=-14:TP=-1.5:print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr

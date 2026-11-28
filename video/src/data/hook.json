@@ -1,47 +1,51 @@
 {
- "frames": 138,
+ "frames": 150,
+ "generation_id": "fKJMCtfdvkDFKI6oRZPH",
+ "audio_dur": 5.12,
+ "trim": 4.98,
+ "text": "Sovet Ittifoqi ertaga qaytsa, soʻmingiz, tilingiz va ishingizga nima boʻladi?",
  "cues": [
   {
    "text": "Sovet Ittifoqi",
    "kw": "Sovet Ittifoqi",
    "kwColor": "qizil",
-   "tin": 0.05,
-   "tout": 0.85
+   "tin": 0.1,
+   "tout": 0.95
   },
   {
    "text": "ertaga qaytsa,",
    "kw": "qaytsa",
    "kwColor": "sariq",
-   "tin": 0.85,
-   "tout": 1.6
+   "tin": 0.95,
+   "tout": 2.0
   },
   {
    "text": "soʻmingiz,",
    "kw": "soʻmingiz",
    "kwColor": "sariq",
-   "tin": 1.6,
-   "tout": 2.3
+   "tin": 2.0,
+   "tout": 2.8
   },
   {
    "text": "tilingiz",
    "kw": "tilingiz",
    "kwColor": "sariq",
-   "tin": 2.3,
-   "tout": 2.95
+   "tin": 2.8,
+   "tout": 3.28
   },
   {
    "text": "va ishingizga",
    "kw": "ishingizga",
    "kwColor": "sariq",
-   "tin": 2.95,
-   "tout": 3.75
+   "tin": 3.28,
+   "tout": 4.07
   },
   {
    "text": "nima boʻladi?",
    "kw": "nima",
    "kwColor": "qizil",
-   "tin": 3.75,
-   "tout": 4.6
+   "tin": 4.07,
+   "tout": 5.0
   }
  ],
  "cuts": [
@@ -49,80 +53,80 @@
    "scene": 10,
    "at": 4.0,
    "start": 0,
-   "end": 0.85
+   "end": 0.95
   },
   {
    "scene": 34,
    "at": 5.0,
-   "start": 0.85,
-   "end": 1.6
+   "start": 0.95,
+   "end": 2.0
   },
   {
    "scene": 43,
    "at": 3.5,
-   "start": 1.6,
-   "end": 2.3
+   "start": 2.0,
+   "end": 2.8
   },
   {
    "scene": 51,
    "at": 2.5,
-   "start": 2.3,
-   "end": 2.95
+   "start": 2.8,
+   "end": 3.28
   },
   {
    "scene": 49,
    "at": 3.0,
-   "start": 2.95,
-   "end": 3.75
+   "start": 3.28,
+   "end": 4.07
   },
   {
    "scene": 19,
    "at": 5.0,
-   "start": 3.75,
-   "end": 4.6
+   "start": 4.07,
+   "end": 5.0
   }
  ],
  "events": [
   {
    "type": "whoosh",
-   "t": 0.85
+   "t": 0.95
   },
   {
    "type": "whoosh",
-   "t": 1.6
+   "t": 2.0
   },
   {
    "type": "whoosh",
-   "t": 2.3
+   "t": 2.8
   },
   {
    "type": "whoosh",
-   "t": 2.95
+   "t": 3.28
   },
   {
    "type": "whoosh",
-   "t": 3.75
+   "t": 4.07
   },
   {
    "type": "boom",
-   "t": 3.75,
+   "t": 4.07,
    "db": -12
   },
   {
    "type": "whoosh",
-   "t": 4.6,
+   "t": 5.0,
    "db": -16
   }
  ],
  "riser": [
-  2.2,
+  2.5,
   1.55
  ],
  "speech": [
   [
-   0.05,
-   4.4
+   0.1,
+   4.85
   ]
  ],
- "provisional": true
+ "timing": "estimated from character share (sandbox unavailable)"
 }
