@@ -539,10 +539,11 @@
       "credits_left": 393
     },
     "4": {
-      "status": "in_progress"
+      "status": "done",
+      "gate": "passed"
     },
     "5": {
-      "status": "todo"
+      "status": "in_progress"
     },
     "6": {
       "status": "todo"
