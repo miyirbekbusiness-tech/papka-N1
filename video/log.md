@@ -26,3 +26,6 @@
 - Cheklovlar: ulagich voice_settings (similarity 0,8, style), seed va previous/next_text ni bermaydi — standart sozlamalar (stability 0,5).
 - Ovozlangan: 2–12, 14, 16 (13 navbatda); 15 — bepul navbat band, ishga tushmadi, kredit yechilmadi.
 - Yetkazish yoʻli sinaldi: GitHub raw (repo public) → creative_attach_reference_file → sandbox — 1920×1080 test video toʻgʻri oʻtdi; sandbox'da ffmpeg, librosa, pyloudnorm bor.
+- STAGE 3 GATE: 69/69 sahna ovozlandi (ulagich, eleven_v4, Mirjalol cfWx14ZbaEUT4BjIA5tH). Audio jami 585,6 s (jimlik kesilgach nutq 578,8 s); video hooksiz 602,9 s. 595±8 talabidan 1,4 s kam — ataylab: 10:00±10 s yakuniy chegarasi ustun (STAGE 2 izohiga qarang).
+- Spot-check: 5 sahnani qayta transkripsiya qilish (Scribe) 498 kredit talab qildi, akkauntda 393 qoldi — bajarilmadi (kredit yechilmadi). Oʻrniga barcha 69 sahna boʻyicha tekshiruv: tezlik 15,5±0,7 bel/s, eng chetdagi 13,2 va 17,2 (roʻyxat/raqamli gaplar), pauzalar soni tinish belgilariga mos — soʻz tushib qolishi belgisi yoʻq.
+- Qolgan 393 kredit hook ovozi va yakuniy miks sandbox'i uchun saqlanadi.

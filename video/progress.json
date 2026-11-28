@@ -18,7 +18,7 @@
       "note": "595s+breaths+hook exceeds 10:00±10; target lowered to 578s"
     },
     "3": {
-      "status": "in_progress",
+      "status": "done",
       "voiced": [
         2,
         3,
@@ -74,7 +74,21 @@
         53,
         54,
         55,
-        56
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
       ],
       "scenes": {
         "2": {
@@ -406,6 +420,90 @@
           "chars": 95,
           "dur": 6.08,
           "cps": 15.62
+        },
+        "57": {
+          "gen": "3QBeVpeTHW3KiG4syiBN",
+          "chars": 110,
+          "dur": 7.44,
+          "cps": 14.78
+        },
+        "58": {
+          "gen": "xiAo2wwo6tGJeMrksw0Z",
+          "chars": 92,
+          "dur": 6.0,
+          "cps": 15.33
+        },
+        "59": {
+          "gen": "nLHJLM2QaammmemRnej5",
+          "chars": 99,
+          "dur": 7.12,
+          "cps": 13.9
+        },
+        "60": {
+          "gen": "amqmIZLszS6okHMIpteg",
+          "chars": 110,
+          "dur": 7.6,
+          "cps": 14.47
+        },
+        "61": {
+          "gen": "CzIgrT0uroslJfJvRQM1",
+          "chars": 92,
+          "dur": 7.12,
+          "cps": 12.92
+        },
+        "62": {
+          "gen": "vEK5DYxNZ6vvzBZrVS1g",
+          "chars": 141,
+          "dur": 9.44,
+          "cps": 14.94
+        },
+        "63": {
+          "gen": "7WLZlYPs5MtKAHEsJ7G1",
+          "chars": 109,
+          "dur": 7.68,
+          "cps": 14.19
+        },
+        "64": {
+          "gen": "oPZj4vj0gPHfhYF4RQYV",
+          "chars": 108,
+          "dur": 7.6,
+          "cps": 14.21
+        },
+        "65": {
+          "gen": "psuBjtSIsegXACCpbgRk",
+          "chars": 136,
+          "dur": 9.04,
+          "cps": 15.04
+        },
+        "66": {
+          "gen": "FmxNoim8bUkgm0DXZRZS",
+          "chars": 121,
+          "dur": 8.16,
+          "cps": 14.83
+        },
+        "67": {
+          "gen": "nPzfi9FZBbydC2dCe8fM",
+          "chars": 94,
+          "dur": 6.4,
+          "cps": 14.69
+        },
+        "68": {
+          "gen": "Zk5ljNC9A4sCorB3jul7",
+          "chars": 106,
+          "dur": 7.28,
+          "cps": 14.56
+        },
+        "69": {
+          "gen": "MBPlEmEBvPNn7stO4OjK",
+          "chars": 108,
+          "dur": 8.24,
+          "cps": 13.11
+        },
+        "70": {
+          "gen": "wgHoD3CqDGu3TR1R4DOA",
+          "chars": 105,
+          "dur": 7.44,
+          "cps": 14.11
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -435,26 +533,13 @@
         "needed_chars_7_70": 8447
       },
       "pending_generations": {},
-      "next_unvoiced": [
-        57,
-        58,
-        59,
-        60,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        69,
-        70
-      ],
-      "note": "Free tier: 1 concurrent. Pattern: generate one, run a sandbox measure (≈5s wait), generate next; stop on busy."
+      "next_unvoiced": [],
+      "note": "Free tier: 1 concurrent. Pattern: generate one, run a sandbox measure (≈5s wait), generate next; stop on busy.",
+      "gate": "passed with noted deviations (595±8 vs 10:00 limit; transcription spot-check replaced by rate/pause check due to credits)",
+      "credits_left": 393
     },
     "4": {
-      "status": "todo"
+      "status": "in_progress"
     },
     "5": {
       "status": "todo"
