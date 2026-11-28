@@ -65,7 +65,16 @@
         44,
         45,
         46,
-        47
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
       ],
       "scenes": {
         "2": {
@@ -343,6 +352,60 @@
           "chars": 96,
           "dur": 6.0,
           "cps": 16.0
+        },
+        "48": {
+          "gen": "3y0GWp99QVJF1c0dXrb3",
+          "chars": 140,
+          "dur": 8.32,
+          "cps": 16.83
+        },
+        "49": {
+          "gen": "iK7NMt4D4KIhnpSYrLjM",
+          "chars": 144,
+          "dur": 9.2,
+          "cps": 15.65
+        },
+        "50": {
+          "gen": "VmhUWLRBLk4mlVgTOsX5",
+          "chars": 120,
+          "dur": 7.52,
+          "cps": 15.96
+        },
+        "51": {
+          "gen": "z5q4ohQbse31y34FRsyo",
+          "chars": 149,
+          "dur": 9.76,
+          "cps": 15.27
+        },
+        "52": {
+          "gen": "ud5vKHmuAkS9KEgcm3WK",
+          "chars": 132,
+          "dur": 8.56,
+          "cps": 15.42
+        },
+        "53": {
+          "gen": "B9JcdLTyupSbhfQIyzbL",
+          "chars": 97,
+          "dur": 6.32,
+          "cps": 15.35
+        },
+        "54": {
+          "gen": "OfkiGam8F25gYyE54fAf",
+          "chars": 85,
+          "dur": 5.68,
+          "cps": 14.96
+        },
+        "55": {
+          "gen": "uZXHAndgNB1KdSZSRkmT",
+          "chars": 137,
+          "dur": 9.12,
+          "cps": 15.02
+        },
+        "56": {
+          "gen": "WMb71MItevdbQCPNnXFB",
+          "chars": 95,
+          "dur": 6.08,
+          "cps": 15.62
         }
       },
       "voice_id": "cfWx14ZbaEUT4BjIA5tH",
@@ -373,15 +436,6 @@
       },
       "pending_generations": {},
       "next_unvoiced": [
-        48,
-        49,
-        50,
-        51,
-        52,
-        53,
-        54,
-        55,
-        56,
         57,
         58,
         59,
