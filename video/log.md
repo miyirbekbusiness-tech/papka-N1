@@ -44,3 +44,8 @@
 - Vizual: 6 ta tez kesma (0,5–1,05 s: xarita → Oʻzbekiston → soʻm → til → ish → ovozlar), har zarbada 6 px silkinish, markazda Montserrat Black 150 px, 1–2 soʻzli cue'lar 3 kadrda 1,35→1,0; kalit soʻz qizil/sariq; riser + oxirgi soʻzda boom, 2-sahnaga whoosh.
 - Cheklov: ulagich stability/style/speed sozlamalarini bermaydi; hook cue vaqtlari belgilar ulushidan hisoblangan (sandbox kredit yetmagani uchun pauzalar oʻlchanmadi).
 - Jami uzunlik: 607,9 s = 10:07,9 (10:00 ±10 s ichida).
+
+## STAGE 7 · Render — video tayyor, ovoz birlashtirish bloklangan
+- Toʻliq render: 1920×1080, 30 fps, 607,93 s (10:07,9), H.264 CRF 18; yuv420p ga qayta kodlanmoqda (+faststart). Fayl ≈340 MB — GitHub 100 MB chegarasi sabab repoga qoʻyilmaydi (out/ da).
+- final/subtitles.srt (195 cue), final/preview_ovozsiz_480p.mp4 (koʻrib chiqish uchun).
+- BLOK: Mirjalol ovozi faqat ElevenLabs'da (elevenlabsusercontent.com — konteynerda yopiq). Ulagich akkauntida ≈300 kredit qoldi, sandbox esa "kredit yetmaydi" deb ishlamayapti → ovozni video bilan birlashtirib boʻlmadi. Kerak: (a) ulagich akkauntiga kredit (oylik yangilanish 2026-12-28 yoki pullik tarif) — keyin tools/mix.py sandbox'da ishlaydi; yoki (b) elevenlabsusercontent.com xostiga ruxsat — keyin ovoz yuklab olinib, shu yerda birlashtiriladi (kredit kerak emas).

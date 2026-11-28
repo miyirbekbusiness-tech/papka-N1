@@ -552,7 +552,13 @@
       "frames": 150
     },
     "7": {
-      "status": "in_progress"
+      "status": "blocked",
+      "video": "out/video_silent.mp4 (+ out/video_yuv420.mp4)",
+      "blocked_on": "voice audio not reachable: connector sandbox out of credits; elevenlabsusercontent.com blocked",
+      "unblock": [
+        "connector credits (monthly reset 2026-12-28 or paid plan) -> run tools/mix.py in sandbox",
+        "or allow elevenlabsusercontent.com -> download voices, run tools/mix.py locally"
+      ]
     },
     "8": {
       "status": "todo"
