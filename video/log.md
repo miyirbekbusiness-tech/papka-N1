@@ -49,3 +49,17 @@
 - Toʻliq render: 1920×1080, 30 fps, 607,93 s (10:07,9), H.264 CRF 18; yuv420p ga qayta kodlanmoqda (+faststart). Fayl ≈340 MB — GitHub 100 MB chegarasi sabab repoga qoʻyilmaydi (out/ da).
 - final/subtitles.srt (195 cue), final/preview_ovozsiz_480p.mp4 (koʻrib chiqish uchun).
 - BLOK: Mirjalol ovozi faqat ElevenLabs'da (elevenlabsusercontent.com — konteynerda yopiq). Ulagich akkauntida ≈300 kredit qoldi, sandbox esa "kredit yetmaydi" deb ishlamayapti → ovozni video bilan birlashtirib boʻlmadi. Kerak: (a) ulagich akkauntiga kredit (oylik yangilanish 2026-12-28 yoki pullik tarif) — keyin tools/mix.py sandbox'da ishlaydi; yoki (b) elevenlabsusercontent.com xostiga ruxsat — keyin ovoz yuklab olinib, shu yerda birlashtiriladi (kredit kerak emas).
+- BLOK ochildi: foydalanuvchi elevenlabsusercontent.com ga ruxsat berdi → 70 ta ovoz fayli yuklab olindi (audio/voices), hook pauzalari lokal oʻlchandi, hook cue'lari aniqlashtirilib qayta render qilindi va videoga ulandi.
+
+## STAGE 5 · Sound — gate oʻtdi (yakuniy miksda oʻlchandi)
+- Musiqa ovozdan integrated 26 dB past + gap paytida moslashuvchan ducking: gap ketayotgan 0,4 s boʻlaklarda eng kam farq 20,5 dB (≥18). Effektlar gap paytida −6 dB, choʻqqisi ovoz choʻqqisidan 8 dB past.
+- Yakuniy: −14,15 LUFS integrated, true peak −2,08 dBTP (≤ −1,5).
+
+## STAGE 7 · Render — tayyor
+- final/Agarda_SSSR_yana_tiklansa.mp4: H.264 CRF 18, yuv420p, 1920×1080, 30 fps, AAC 192 kbps 48 kHz, +faststart, 607,93 s (10:07,9), 303 MB (GitHub 100 MB cheklovi sabab repoga kiritilmadi).
+- final/subtitles.srt — 195 cue (hook + 69 sahna).
+
+## STAGE 8 · Check — gate oʻtdi
+- ffprobe: 1920×1080, 30/1 fps, 607,93 s (9:50–10:10 ichida).
+- Subtitr ↔ ovoz sinxronligi, 10 tasodifiy nuqta: eng katta farq 0,6 kadr (≤2).
+- Cue'lar yana bir bor tekshirildi: tools/lint_script.py — 0 muammo; subs_review.md da ochiq muammo yoʻq.

@@ -543,8 +543,11 @@
       "gate": "passed"
     },
     "5": {
-      "status": "stems_done",
-      "gate": "pending final mix (needs voice audio)"
+      "status": "done",
+      "gate": "passed",
+      "music_min_gap_db": 20.5,
+      "lufs": -14.15,
+      "tp": -2.08
     },
     "6": {
       "status": "done",
@@ -552,16 +555,15 @@
       "frames": 150
     },
     "7": {
-      "status": "blocked",
-      "video": "out/video_silent.mp4 (+ out/video_yuv420.mp4)",
-      "blocked_on": "voice audio not reachable: connector sandbox out of credits; elevenlabsusercontent.com blocked",
-      "unblock": [
-        "connector credits (monthly reset 2026-12-28 or paid plan) -> run tools/mix.py in sandbox",
-        "or allow elevenlabsusercontent.com -> download voices, run tools/mix.py locally"
-      ]
+      "status": "done",
+      "file": "final/Agarda_SSSR_yana_tiklansa.mp4",
+      "duration_s": 607.93,
+      "size_mb": 303
     },
     "8": {
-      "status": "todo"
+      "status": "done",
+      "gate": "passed",
+      "sync_max_frames": 0.6
     }
   },
   "voice": {
